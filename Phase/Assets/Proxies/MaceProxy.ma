@@ -1,6 +1,6 @@
 //Maya ASCII 2013 scene
 //Name: MaceProxy.ma
-//Last modified: Tue, Jul 09, 2013 11:48:42 PM
+//Last modified: Wed, Jul 10, 2013 11:57:41 AM
 //Codeset: 1252
 requires maya "2013";
 requires "stereoCamera" "10.0";
@@ -13,12 +13,12 @@ fileInfo "osv" "Microsoft Windows 7 Home Premium Edition, 64-bit Windows 7 Servi
 fileInfo "license" "student";
 createNode transform -s -n "persp";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" -8.7628420609255322 3.2563230250611115 -17.314933692206914 ;
-	setAttr ".r" -type "double3" -5.1383527316666902 -512.60000000000696 0 ;
+	setAttr ".t" -type "double3" -0.34470225757774153 -0.24747763207226647 26.014821463290094 ;
+	setAttr ".r" -type "double3" -1.5383527318094206 -720.19999999994468 1.9412683463190274e-018 ;
 createNode camera -s -n "perspShape" -p "persp";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999986;
-	setAttr ".coi" 19.015326878705629;
+	setAttr ".coi" 25.928757476297783;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -198,7 +198,7 @@ createNode mesh -n "pConeShape2" -p "transform4";
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode transform -n "pCone3";
 	setAttr ".t" -type "double3" 0.7576625978385112 3.8757511837846872 0 ;
-	setAttr ".r" -type "double3" -184.45243237555118 0.6004748969777246 94.69393165181657 ;
+	setAttr ".r" -type "double3" -184.45243237555121 0.6004748969777246 94.69393165181657 ;
 	setAttr ".s" -type "double3" 0.26553066325625474 0.26553066325625474 0.26553066325625474 ;
 createNode transform -n "transform3" -p "pCone3";
 	setAttr ".v" no;
@@ -460,8 +460,11 @@ createNode mesh -n "polySurfaceShape1" -p "transform7";
 	setAttr ".covm[0]"  0 1 1;
 	setAttr ".cdvm[0]"  0 1 1;
 createNode transform -n "polySurface2";
-	setAttr ".t" -type "double3" 0 5.1530892018799204 0 ;
+	setAttr ".t" -type "double3" 0 -0.13688649151524265 0 ;
 	setAttr ".s" -type "double3" 1 -1 1 ;
+	setAttr ".rp" -type "double3" 0 0.1491412374421337 0 ;
+	setAttr ".sp" -type "double3" 0 -0.1491412374421337 0 ;
+	setAttr ".spt" -type "double3" 0 0.2982824748842674 0 ;
 createNode mesh -n "polySurfaceShape2" -p "polySurface2";
 	setAttr -k off ".v";
 	setAttr -s 4 ".iog[0].og";
@@ -568,7 +571,7 @@ createNode script -n "uiConfigurationScriptNode";
 		+ "\t\t\t\t$configName;\n\n            setNamedPanelLayout (localizedPanelLabel(\"Current Layout\"));\n        }\n\n        panelHistory -e -clear mainPanelHistory;\n        setFocus `paneLayout -q -p1 $gMainPane`;\n        sceneUIReplacement -deleteRemaining;\n        sceneUIReplacement -clear;\n\t}\n\n\ngrid -spacing 5 -size 12 -divisions 5 -displayAxes yes -displayGridLines yes -displayDivisionLines yes -displayPerspectiveLabels no -displayOrthographicLabels no -displayAxesBold yes -perspectiveLabelPosition axis -orthographicLabelPosition edge;\nviewManip -drawCompass 0 -compassAngle 0 -frontParameters \"\" -homeParameters \"\" -selectionLockParameters \"\";\n}\n");
 	setAttr ".st" 3;
 createNode script -n "sceneConfigurationScriptNode";
-	setAttr ".b" -type "string" "playbackOptions -min 1 -max 24 -ast 1 -aet 48 ";
+	setAttr ".b" -type "string" "playbackOptions -min 1 -max 96 -ast 1 -aet 96 ";
 	setAttr ".st" 6;
 createNode polyUnite -n "polyUnite1";
 	setAttr -s 6 ".ip";

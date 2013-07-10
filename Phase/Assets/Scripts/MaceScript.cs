@@ -19,6 +19,9 @@ public class MaceScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
+	
+	void FixedUpdate() {
 		// Swinging maces will be moving passively; Player has no control
 		timer += Time.deltaTime;
 		

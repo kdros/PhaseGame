@@ -15,7 +15,7 @@ public class MattyScript : MonoBehaviour {
 		
 		// Set Idle and Walk to loop
 	   gameObject.animation["Idle"].wrapMode = WrapMode.Loop;
-	   gameObject.animation["Walk"].wrapMode = WrapMode.Once;
+	   gameObject.animation["Walk"].wrapMode = WrapMode.Loop;
 	   
 	   // Set Jump to only play once
 	   gameObject.animation["Jump"].wrapMode = WrapMode.Once;
@@ -31,40 +31,52 @@ public class MattyScript : MonoBehaviour {
 		
 		if(Input.GetKeyDown("up"))
 	 	{
-	  		gameObject.animation.Play("Jump", PlayMode.StopAll);
+	  		gameObject.animation.CrossFade("Jump");
 	 	}
 	 	if(Input.GetKeyDown("right"))
 	 	{
 			stopForceTime = timer;
+			gameObject.animation.CrossFade("Walk");
 			
 			// Make sure Matty is facing to the right
 			gameObject.transform.eulerAngles = new Vector3(
 			gameObject.transform.eulerAngles.x,
 			facingRight_yDegrees,
 			gameObject.transform.eulerAngles.z);
-			
-			// Play walk animation and move Matty forward
-	  		gameObject.animation.Play("Walk", PlayMode.StopAll);
+	
+	  		
 			gameObject.rigidbody.AddForce (3000.0f,0.0f,0.0f);
 	 	}
 		if(Input.GetKeyDown("left"))
 	 	{
 			stopForceTime = timer;
+			gameObject.animation.CrossFade("Walk");
 			
 			gameObject.transform.eulerAngles = new Vector3(
 			gameObject.transform.eulerAngles.x,
 			facingLeft_yDegrees,
 			gameObject.transform.eulerAngles.z);
 			
-	  		gameObject.animation.Play("Walk", PlayMode.StopAll);
 			gameObject.rigidbody.AddForce (-3000.0f, 0.0f,0.0f);
 	 	}
 		
-		if(timer > (stopForceTime + 1.0f))
+		if(timer > (stopForceTime + 1.2f))
 		{
+			//gameObject.animation.CrossFade("Idle");
 			gameObject.rigidbody.velocity = Vector3.zero;
 			timer = 0;
 			stopForceTime = 0;
+		}
+	}
+	
+	void OnCollisionStay(Collision collision)
+	{
+		Collider collider = collision.collider;
+		
+		if(collider.CompareTag ("Wall"))
+		{
+			Debug.Log ("Collided with Wall");
+			gameObject.rigidbody.velocity = Vector3.zero;
 		}
 	}
 }

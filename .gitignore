@@ -12,16 +12,14 @@ Library/expandedItems
 Library/metadata
 Library/previews
 Library/guidmapper
-Temp
-Obj/
-Temp/
-Library/
-
-*.pidb
-build
-*.csproj
-*.unityproj
+    
 *.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+/obj
+/Temp
 
 ###############
 # Maya Binary #

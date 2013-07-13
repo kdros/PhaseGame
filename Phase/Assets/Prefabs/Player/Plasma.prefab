@@ -14,6 +14,7 @@ GameObject:
   - 160: {fileID: 16000000}
   - 161: {fileID: 16100000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Plasma
   m_TagString: Untagged
@@ -72,6 +73,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96620372f71cf4e40a2fe863899d031a, type: 3}
+  m_Name: 
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

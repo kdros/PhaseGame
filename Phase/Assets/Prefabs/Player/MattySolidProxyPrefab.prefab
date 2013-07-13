@@ -823,7 +823,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: MattySolidProxy
+  m_Name: MattySolidProxyPrefab
   m_TagString: MattySolid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1511,11 +1511,11 @@ Animation:
   m_GameObject: {fileID: 100108}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 66c7af39e9d14ab49baaa462e9b6ffec, type: 3}
+  m_Animation: {fileID: 7400000, guid: dec469392f64353458456b353d375182, type: 3}
   m_Animations:
-  - {fileID: 7400000, guid: 66c7af39e9d14ab49baaa462e9b6ffec, type: 3}
-  - {fileID: 7400002, guid: 66c7af39e9d14ab49baaa462e9b6ffec, type: 3}
-  - {fileID: 7400004, guid: 66c7af39e9d14ab49baaa462e9b6ffec, type: 3}
+  - {fileID: 7400000, guid: dec469392f64353458456b353d375182, type: 3}
+  - {fileID: 7400002, guid: dec469392f64353458456b353d375182, type: 3}
+  - {fileID: 7400004, guid: dec469392f64353458456b353d375182, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100108}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efb9f63fb092384aa7afd0c0efd49b4, type: 3}
+  m_Script: {fileID: 11500000, guid: d15fd1114c454f344837e2da5effc5bd, type: 3}
   m_Name: 
   timer: 0
   stopForceTime: 0
@@ -1549,9 +1549,9 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 9053fd45bb242fb49b89222f531dacfe, type: 2}
-  - {fileID: 2100000, guid: fb49f5e1b2bfa104aa6043a4b0d1d23e, type: 2}
-  - {fileID: 2100000, guid: 4c6c669e54b078544ba44f76795ff496, type: 2}
+  - {fileID: 2100000, guid: b7551771ff270724d95e4d0db2e2df9b, type: 2}
+  - {fileID: 2100000, guid: a0c6b2db51299e547817624e5b366fd4, type: 2}
+  - {fileID: 2100000, guid: 70034e1efc99c1244a651ad3ac3fd527, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1560,7 +1560,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: 66c7af39e9d14ab49baaa462e9b6ffec, type: 3}
+  m_Mesh: {fileID: 4300000, guid: dec469392f64353458456b353d375182, type: 3}
   m_Bones:
   - {fileID: 400086}
   - {fileID: 400070}

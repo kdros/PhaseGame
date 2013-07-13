@@ -44,7 +44,7 @@ public class MattySolidScript : MonoBehaviour {
 			facingRight_yDegrees,
 			gameObject.transform.eulerAngles.z);
 	  		
-			gameObject.rigidbody.AddForce (3000.0f,0.0f,0.0f);
+			gameObject.rigidbody.AddForce (15.0f,0.0f,0.0f);
 	 	}
 		if(Input.GetKeyDown("left"))
 	 	{
@@ -56,7 +56,7 @@ public class MattySolidScript : MonoBehaviour {
 			facingLeft_yDegrees,
 			gameObject.transform.eulerAngles.z);
 			
-			gameObject.rigidbody.AddForce (-3000.0f, 0.0f,0.0f);
+			gameObject.rigidbody.AddForce (-15.0f, 0.0f,0.0f);
 	 	}
 		
 		if(timer > (stopForceTime + 1.2f))

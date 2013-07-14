@@ -266,8 +266,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400034}
   - 95: {fileID: 9500000}
-  - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400000}
+  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: MaceProxyPrefab
   m_TagString: SwingingMace
@@ -477,7 +478,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.22638321, y: -2.38264513, z: -.0135412216}
+  m_LocalPosition: {x: 8.89542007, y: 6.94286346, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400032}
@@ -502,8 +503,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: cc0c5a73694896d4c82d2e0be7f45127, type: 2}
-  - {fileID: 2100000, guid: 8d4f2be317341b943a45d96210966b05, type: 2}
+  - {fileID: 2100000, guid: b7c482a25dda256408cc6c67a64f0b20, type: 2}
+  - {fileID: 2100000, guid: 385c2925c4792a144ad5b5a6f1989c22, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -515,7 +516,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
-  m_Mesh: {fileID: 4300000, guid: 65322150f57287842b211c71c3884d50, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d00941da1fa59b343864ed3cb698cd26, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -529,7 +530,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!95 &9500000
 Animator:
@@ -538,7 +539,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100034}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 65322150f57287842b211c71c3884d50, type: 3}
+  m_Avatar: {fileID: 9000000, guid: d00941da1fa59b343864ed3cb698cd26, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_ApplyRootMotion: 1
@@ -555,6 +556,19 @@ MonoBehaviour:
   m_Name: 
   timer: 0
   swingSpeed: 0
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .860000014
+  m_Height: 5.6500001
+  m_Direction: 1
+  m_Center: {x: 0, y: -2.04999995, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

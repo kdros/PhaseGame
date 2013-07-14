@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 5.96046448e-08, y: 3.23843551, z: -5.96046448e-08}
+  m_LocalPosition: {x: 21.9793739, y: 1.46072483, z: -.0316376686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +56,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.99000001
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -278,13 +278,13 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1085
+    maxNumParticles: 1067
   ShapeModule:
     serializedVersion: 2
     enabled: 1
     type: 4
-    radius: 1
-    angle: 25
+    radius: .00999999978
+    angle: 12.5799999
     length: 5
     boxX: 1
     boxY: 1
@@ -408,7 +408,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       maxGradient:
         key0:
@@ -416,7 +416,7 @@ ParticleSystem:
           rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 4293185904
         key2:
           serializedVersion: 2
           rgba: 0
@@ -970,7 +970,7 @@ ParticleSystem:
           rgba: 4294967295
         key1:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 4289045979
         key2:
           serializedVersion: 2
           rgba: 0
@@ -1059,7 +1059,7 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     type: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}

@@ -12,14 +12,15 @@ Phase/Library/expandedItems
 Phase/Library/metadata
 Phase/Library/previews
 Phase/Library/guidmapper
+
     
 *.sln
 *.userprefs
 *.csproj
 *.pidb
 *.unityproj
-/obj
-/Temp
+obj/
+Temp/
 
 ###############
 # Maya Binary #

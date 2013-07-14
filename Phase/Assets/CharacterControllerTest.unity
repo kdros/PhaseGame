@@ -19,8 +19,8 @@ RenderSettings:
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_AmbientLight: {r: .179104507, g: .179104507, b: .179104507, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 53412155bc1016547b1a77b2333c0380, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_HaloTexture: {fileID: 0}
@@ -137,7 +137,7 @@ Transform:
   m_GameObject: {fileID: 550117541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.14933777, y: 2.0961504, z: .161880374}
-  m_LocalScale: {x: 20, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 1, z: 4.04479885}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1516570894

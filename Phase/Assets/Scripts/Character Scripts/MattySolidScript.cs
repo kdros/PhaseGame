@@ -65,11 +65,15 @@ public class MattySolidScript : MonoBehaviour {
 			Debug.Log ("Hit Lava - DEATH");
 			Die();
 		}
-        	
     }
 		
 	public void Die ()
 	{
+		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+		g.death = true;
+		
+		
     	Destroy(gameObject);
 	}
 }

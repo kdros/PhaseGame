@@ -4,6 +4,16 @@ using System.Collections;
 public class MattySolidScript : MonoBehaviour {
 	
 	public AudioClip deathFallingIntoPit;
+	public float speed;
+	public Vector3 direction;
+	//CharacterController controller;
+	
+	void Start()
+	{
+		//controller = GetComponent<CharacterController>();
+		direction.x = -10;
+		speed = 100.0f;
+	}
 	
     void Update() {
 		
@@ -34,6 +44,15 @@ public class MattySolidScript : MonoBehaviour {
 		if (hit.collider.gameObject.tag == "Grate")
 		{
 			Debug.Log ("On Grate. - NO EFFECT");
+		}
+		if (hit.collider.gameObject.tag == "IcyFloor")
+		{
+			Debug.Log ("Sliding on Ice. - Increased Velocity");
+
+		}
+		if (hit.collider.gameObject.tag == "WindTunnel")
+		{
+			Debug.Log ("Hit Wind Tunnel - No Effect");
 		}
 		//WindTunnel Collision has no effect on solid state
         	

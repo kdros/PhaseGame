@@ -2,84 +2,22 @@ using UnityEngine;
 using System.Collections;
 
 public class MattySolidScript : MonoBehaviour {
-
-	public float timer;
-	public float stopForceTime;
-	public float facingRight_yDegrees;
-	public float facingLeft_yDegrees;
 	
-	void Start ()
-	{
-		timer = 0;
+    void Update() {
 		
-		// Set the correct directions for right and left
-		facingRight_yDegrees = gameObject.transform.eulerAngles.y;
-		facingLeft_yDegrees = gameObject.transform.eulerAngles.y + 180;
-		
-		// Set Idle and Walk to loop
-		gameObject.animation["Walk"].wrapMode = WrapMode.Loop;
-		gameObject.animation["Idle"].wrapMode = WrapMode.Loop;
-	   
-		// Set Jump to only play once
-		gameObject.animation["Jump"].wrapMode = WrapMode.Once;
-	   
-		// Set start motion to Idle
-		gameObject.animation.Play("Idle", PlayMode.StopAll);
-	}
-
-	void Update ()
-	{
-	}
-
-	void FixedUpdate()
-	{
-		if(timer > (stopForceTime + 1.0f))
-		{
-			gameObject.rigidbody.velocity = Vector3.zero;
-			timer = 0;
-			stopForceTime = 0;
-		}
-	}
+		// Lock any movement in the z direction
+        Vector3 mattySolidPos = transform.position;
+     	mattySolidPos.z = 0;
+     	transform.position = mattySolidPos;
+    }
 	
-	void OnGUI ()
+	void OnCollisionEnter(Collision collision)
 	{
-		timer += Time.deltaTime;
+		Collider collider = collision.collider;
 		
-		Event e = Event.current;
-		switch (e.keyCode)
+		if(collider.CompareTag ("IcyFloor"))
 		{
-			case KeyCode.LeftArrow:
-			{
-				stopForceTime = timer;
-				gameObject.animation.CrossFade("Walk");
-				
-				gameObject.transform.eulerAngles = new Vector3(
-				gameObject.transform.eulerAngles.x,
-				facingLeft_yDegrees,
-				gameObject.transform.eulerAngles.z);
-				
-				gameObject.rigidbody.AddForce (-15.0f, 0.0f,0.0f);
-				break;
-			}
-			case KeyCode.RightArrow:
-			{
-				stopForceTime = timer;
-				gameObject.animation.CrossFade("Walk");
-				
-				// Make sure Matty is facing to the right
-				gameObject.transform.eulerAngles = new Vector3(
-				gameObject.transform.eulerAngles.x,
-				facingRight_yDegrees,
-				gameObject.transform.eulerAngles.z);
-		  		
-				gameObject.rigidbody.AddForce (15.0f,0.0f,0.0f);
-				break;
-			}
-			case KeyCode.UpArrow:
-			{
-				gameObject.animation.CrossFade("Jump");
-				break;
-			}
+			Debug.Log ("Solid is sliding on icy floor");
 		}
 	}
 }

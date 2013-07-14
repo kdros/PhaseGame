@@ -19,6 +19,7 @@ Phase/Library/guidmapper
 *.csproj
 *.pidb
 *.unityproj
+*.orig
 obj/
 Temp/
 

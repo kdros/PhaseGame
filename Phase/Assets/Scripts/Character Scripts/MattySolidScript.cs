@@ -71,7 +71,7 @@ public class MattySolidScript : MonoBehaviour {
 	{
 		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
 		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-		g.death = true;
+		g.mattySolidDeath = true;
 		
 		
     	Destroy(gameObject);

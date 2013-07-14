@@ -1,8 +1,10 @@
 fileFormatVersion: 2
-guid: 0cb774b78c20e1c439c40c8718b9d3a0
+guid: d15fd1114c454f344837e2da5effc5bd
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - deathFallingIntoPit: {fileID: 8300000, guid: 919286da91690434b87ecb9a4b4fdb64,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

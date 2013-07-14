@@ -11,6 +11,11 @@ TagManager:
   - MattySolid
   - Platform
   - Wall
+  - FlamePillar
+  - Lava
+  - MattyPlasma
+  - MattyGas
+  - MattyLiquid
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

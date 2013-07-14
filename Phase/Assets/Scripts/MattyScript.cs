@@ -8,64 +8,78 @@ public class MattyScript : MonoBehaviour {
 	public float facingRight_yDegrees;
 	public float facingLeft_yDegrees;
 	
-	void Start () {
+	void Start ()
+	{
 		timer = 0;
+		
+		// Set the correct directions for right and left
 		facingRight_yDegrees = gameObject.transform.eulerAngles.y;
 		facingLeft_yDegrees = gameObject.transform.eulerAngles.y + 180;
 		
 		// Set Idle and Walk to loop
-	   gameObject.animation["Idle"].wrapMode = WrapMode.Loop;
-	   gameObject.animation["Walk"].wrapMode = WrapMode.Loop;
+		gameObject.animation["Walk"].wrapMode = WrapMode.Loop;
+		gameObject.animation["Idle"].wrapMode = WrapMode.Loop;
 	   
-	   // Set Jump to only play once
-	   gameObject.animation["Jump"].wrapMode = WrapMode.Once;
+		// Set Jump to only play once
+		gameObject.animation["Jump"].wrapMode = WrapMode.Once;
 	   
-	   gameObject.animation.Play("Idle", PlayMode.StopAll);
+		// Set start motion to Idle
+		gameObject.animation.Play("Idle", PlayMode.StopAll);
 	}
 
-	void Update () {
+	void Update ()
+	{
 	}
 
-	void FixedUpdate() {
-		timer += Time.deltaTime;
-		
-		if(Input.GetKeyDown("up"))
-	 	{
-	  		gameObject.animation.CrossFade("Jump");
-	 	}
-	 	if(Input.GetKeyDown("right"))
-	 	{
-			stopForceTime = timer;
-			gameObject.animation.CrossFade("Walk");
-			
-			// Make sure Matty is facing to the right
-			gameObject.transform.eulerAngles = new Vector3(
-			gameObject.transform.eulerAngles.x,
-			facingRight_yDegrees,
-			gameObject.transform.eulerAngles.z);
-	
-	  		
-			gameObject.rigidbody.AddForce (3000.0f,0.0f,0.0f);
-	 	}
-		if(Input.GetKeyDown("left"))
-	 	{
-			stopForceTime = timer;
-			gameObject.animation.CrossFade("Walk");
-			
-			gameObject.transform.eulerAngles = new Vector3(
-			gameObject.transform.eulerAngles.x,
-			facingLeft_yDegrees,
-			gameObject.transform.eulerAngles.z);
-			
-			gameObject.rigidbody.AddForce (-3000.0f, 0.0f,0.0f);
-	 	}
-		
-		if(timer > (stopForceTime + 1.2f))
+	void FixedUpdate()
+	{
+		if(timer > (stopForceTime + 1.0f))
 		{
-			//gameObject.animation.CrossFade("Idle");
 			gameObject.rigidbody.velocity = Vector3.zero;
 			timer = 0;
 			stopForceTime = 0;
+		}
+	}
+	
+	void OnGUI ()
+	{
+		timer += Time.deltaTime;
+		
+		Event e = Event.current;
+		switch (e.keyCode)
+		{
+			case KeyCode.LeftArrow:
+			{
+				stopForceTime = timer;
+				gameObject.animation.CrossFade("Walk");
+				
+				gameObject.transform.eulerAngles = new Vector3(
+				gameObject.transform.eulerAngles.x,
+				facingLeft_yDegrees,
+				gameObject.transform.eulerAngles.z);
+				
+				gameObject.rigidbody.AddForce (-15.0f, 0.0f,0.0f);
+				break;
+			}
+			case KeyCode.RightArrow:
+			{
+				stopForceTime = timer;
+				gameObject.animation.CrossFade("Walk");
+				
+				// Make sure Matty is facing to the right
+				gameObject.transform.eulerAngles = new Vector3(
+				gameObject.transform.eulerAngles.x,
+				facingRight_yDegrees,
+				gameObject.transform.eulerAngles.z);
+		  		
+				gameObject.rigidbody.AddForce (15.0f,0.0f,0.0f);
+				break;
+			}
+			case KeyCode.UpArrow:
+			{
+				gameObject.animation.CrossFade("Jump");
+				break;
+			}
 		}
 	}
 	

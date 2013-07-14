@@ -1116,8 +1116,8 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
-    type: 0
+    enabled: 1
+    type: 1
     plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
@@ -1128,7 +1128,7 @@ ParticleSystem:
     bounce: 1
     energyLossOnCollision: 0
     minKillSpeed: 0
-    particleRadius: .00999999978
+    particleRadius: .550000012
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295

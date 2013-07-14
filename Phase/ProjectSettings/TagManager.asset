@@ -10,12 +10,13 @@ TagManager:
   - Matty
   - MattySolid
   - Platform
-  - Grate
-  - FlamePillar
-  - Lava
-  - MattyPlasma
-  - MattyGas
-  - MattyLiquid
+  - Wall
+  - Icicle
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

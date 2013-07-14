@@ -9,10 +9,10 @@ public class MaceScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timer = 0;
-		swingSpeed = 1.5f;
+		swingSpeed = 1.0f;
 		
 		gameObject.transform.eulerAngles = new Vector3(
-			gameObject.transform.eulerAngles.x - 65,
+			gameObject.transform.eulerAngles.x - 83,
 			gameObject.transform.eulerAngles.y,
 			gameObject.transform.eulerAngles.z);
 	}
@@ -25,7 +25,7 @@ public class MaceScript : MonoBehaviour {
 		// Swinging maces will be moving passively; Player has no control
 		timer += Time.deltaTime;
 		
-		if(timer >= 2.0)
+		if(timer >= 3.3)
 		{
 			timer = 0;
 			swingSpeed = swingSpeed * -1.0f;

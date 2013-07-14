@@ -6,11 +6,9 @@ public class MattySolidScript : MonoBehaviour {
 	public AudioClip deathFallingIntoPit;
 	public float speed;
 	public Vector3 direction;
-	//CharacterController controller;
 	
 	void Start()
 	{
-		//controller = GetComponent<CharacterController>();
 		direction.x = -10;
 		speed = 100.0f;
 	}
@@ -48,6 +46,10 @@ public class MattySolidScript : MonoBehaviour {
 		if (hit.collider.gameObject.tag == "IcyFloor")
 		{
 			Debug.Log ("Sliding on Ice. - Increased Velocity");
+			CharacterController controller = GetComponent<CharacterController>();
+        	Vector3 newVelocity = new Vector3(15.0f, 0.0f, 0.0f);
+			newVelocity *= Time.deltaTime;
+     		gameObject.transform.Translate(newVelocity);
 		}
 		if (hit.collider.gameObject.tag == "WindTunnel")
 		{

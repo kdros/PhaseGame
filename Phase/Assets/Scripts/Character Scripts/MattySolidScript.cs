@@ -48,13 +48,21 @@ public class MattySolidScript : MonoBehaviour {
 		if (hit.collider.gameObject.tag == "IcyFloor")
 		{
 			Debug.Log ("Sliding on Ice. - Increased Velocity");
-
 		}
 		if (hit.collider.gameObject.tag == "WindTunnel")
 		{
 			Debug.Log ("Hit Wind Tunnel - No Effect");
 		}
-		//WindTunnel Collision has no effect on solid state
+		if (hit.collider.gameObject.tag == "FlamePillar")
+		{
+			Debug.Log ("Hit Flame Pillar - DEATH");
+			Die();
+		}
+		if (hit.collider.gameObject.tag == "Lava")
+		{
+			Debug.Log ("Hit Lava - DEATH");
+			Die();
+		}
         	
     }
 		

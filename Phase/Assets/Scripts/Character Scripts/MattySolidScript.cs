@@ -13,17 +13,6 @@ public class MattySolidScript : MonoBehaviour {
      	transform.position = mattySolidPos;
     }
 	
-	void OnCollisionEnter(Collision collision)
-	{
-		Collider collider = collision.collider;
-		
-		if(collider.CompareTag ("Pitfall"))
-		{
-			
-			//Kill
-		}
-	}
-	
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		
 		if (hit.collider.gameObject.tag == "Pitfall")
@@ -35,6 +24,11 @@ public class MattySolidScript : MonoBehaviour {
 		if (hit.collider.gameObject.tag == "SwingingMace")
 		{
 			Debug.Log ("Hit by swinging mace.");
+			Die();
+		}
+		if (hit.collider.gameObject.tag == "Spike")
+		{
+			Debug.Log ("Landed on spike.");
 			Die();
 		}
         	

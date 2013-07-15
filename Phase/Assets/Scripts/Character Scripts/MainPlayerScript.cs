@@ -66,6 +66,7 @@ public class MainPlayerScript : MonoBehaviour {
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 		
+		// Temp: Start out with soildMatty
 		//m_solidMatty.SetActive(false);		
 		m_liquidMatty.SetActive(false);
 		m_gasMatty.SetActive(false);
@@ -190,6 +191,15 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Fell off");
 			Die ();	
 		}
+		// testing
+		else if (collider.CompareTag("SwingingMace"))
+		{
+			Debug.Log("Player got hit by mace");
+			
+		}
+		
+		
+		
 	}
 	
 	void Die() 

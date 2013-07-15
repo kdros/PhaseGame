@@ -3,63 +3,58 @@ using System.Collections;
 
 public class MatterScript : MonoBehaviour {
 	
-	public virtual void CheckpointCollisionResolution()
+	public virtual bool CheckpointCollisionResolution()
 	{
-		
+		return false;
 	}
 	
-	public virtual void FallingBouldersCollisionResolution()
+	public virtual bool FallingBouldersCollisionResolution()
 	{
-		Die();
+		return false;
 	}
 	
-	public virtual void FlamePillarCollisionResolution()
+	public virtual bool FlamePillarCollisionResolution()
 	{
-		Die();
+		return false;
 	}
 	
-	public virtual void GrateCollisionResolution()
+	public virtual bool GrateCollisionResolution()
 	{
-		
+		return false;
 	}
 	
-	public virtual void IceCeilingCollisionResolution()
+	public virtual bool IceCeilingCollisionResolution()
 	{
-		Die();
+		return false;
 	}
 	
-	public virtual void IcyFloorCollisionResolution()
+	public virtual bool IcyFloorCollisionResolution()
 	{
-
+		return false;
 	}
 	
-	public virtual void LavaCollisionResolution()
+	public virtual bool LavaCollisionResolution()
 	{
-		Die();
+		return false;
 	}
 	
-	public virtual void PitfallCollisionResolution()
+	public virtual bool PitfallCollisionResolution()
 	{
-		Die();
+		return true;
 	}
 	
-	public virtual void SpikeCollisionResolution()
+	public virtual bool SpikeCollisionResolution()
 	{
-		Die();
+		return false;
 	}
 	
-	public virtual void SwingingMaceCollisionResolution()
+	public virtual bool SwingingMaceCollisionResolution()
 	{
-		Die();
+		return false;
 	}
 	
-	public virtual void WindTunnelCollisionResolution()
+	public virtual bool WindTunnelCollisionResolution()
 	{
-		
-	}
-	
-	public void Die ()
-	{		
-    	Destroy(gameObject);
+		return false;
 	}
 }

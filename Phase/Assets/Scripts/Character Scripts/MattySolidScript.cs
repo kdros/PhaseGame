@@ -15,9 +15,9 @@ public class MattySolidScript : MatterScript {
 	
     }
 	
-	public override void CheckpointCollisionResolution()
+	public override bool CheckpointCollisionResolution()
 	{
-		
+		return false;
 	}
 	
 	//public override void FallingBouldersCollisionResolution()
@@ -32,14 +32,17 @@ public class MattySolidScript : MatterScript {
 	//{
 	//}
 	
-	public override void IceCeilingCollisionResolution()
+	public override bool IceCeilingCollisionResolution()
 	{
 		// Shatters ice ceiling
+		return false;
 	}
 	
-	public override void IcyFloorCollisionResolution()
+	public override bool IcyFloorCollisionResolution()
 	{
 		// Slides on ice floor
+		BroadcastMessage("SpeedUp", 18.0f);
+		return false;
 	}
 	
 	//public override void LavaCollisionResolution()

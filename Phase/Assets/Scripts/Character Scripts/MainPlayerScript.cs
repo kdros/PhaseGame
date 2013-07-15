@@ -186,6 +186,7 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		Collider collider = hit.collider;
 		Debug.Log("called OnControllerColliderHit");
+		
 		if (collider.CompareTag("DeathPlane"))
 		{
 			Debug.Log("Fell off");
@@ -230,6 +231,8 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Pitfall"))
 		{
 			Debug.Log("Player fell into pitfall");
+			if(m_solidMattyScript.PitfallCollisionResolution())
+				Die ();
 			
 		}
 		else if (collider.CompareTag("Spike"))

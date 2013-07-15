@@ -15,23 +15,15 @@ public class MattySolidScript : MatterScript {
 	
     }
 	
+	// Functions that do not need to be overriden:
+	// FallingBoulders, FlamePillar, Grate, Lava, Pitfall
+	// Spike, SwingingMace, WindTunnel
+	
 	public override bool CheckpointCollisionResolution()
 	{
 		return false;
 	}
-	
-	//public override void FallingBouldersCollisionResolution()
-	//{
-	//}
-	
-	//public override void FlamePillarCollisionResolution()
-	//{	
-	//}
-	
-	//public override void GrateCollisionResolution()
-	//{
-	//}
-	
+
 	public override bool IceCeilingCollisionResolution()
 	{
 		// Shatters ice ceiling
@@ -44,26 +36,6 @@ public class MattySolidScript : MatterScript {
 		BroadcastMessage("SpeedUp", 18.0f);
 		return false;
 	}
-	
-	//public override void LavaCollisionResolution()
-	//{
-	//}
-	
-	//public override bool PitfallCollisionResolution()
-	//{
-	//}
-	
-	//public override void SpikeCollisionResolution()
-	//{	
-	//}
-	
-	//public override void SwingingMaceCollisionResolution()
-	//{
-	//}
-	
-	//public override void WindTunnelCollisionResolution()
-	//{
-	//}
 	
 	public void Die ()
 	{

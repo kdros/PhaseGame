@@ -210,7 +210,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Checkpoint"))
 		{
 			Debug.Log("Player reached checkpoint");
-			
+			//TODO - Not sure what should be returned since no death
 		}
 		else if (collider.CompareTag("FallingBoulders"))
 		{

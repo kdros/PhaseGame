@@ -187,11 +187,23 @@ public class MainPlayerScript : MonoBehaviour {
 		Collider collider = hit.collider;
 		Debug.Log("called OnControllerColliderHit");
 		
+		//if(m_currentState == (int)State.Default)
+
+		//else if(m_currentState == (int)State.Solid)
+
+		//else if(m_currentState == (int)State.Liquid)
+
+		//else if(m_currentState == (int)State.Gas)
+
+		//else if(m_currentState == (int)State.Plasma)
+
+		
 		if (collider.CompareTag("DeathPlane"))
 		{
 			Debug.Log("Fell off");
 			Die ();	
 		}
+		
 		// testing
 		else if (collider.CompareTag("Checkpoint"))
 		{
@@ -231,9 +243,9 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Pitfall"))
 		{
 			Debug.Log("Player fell into pitfall");
-			if(m_solidMattyScript.PitfallCollisionResolution())
-				Die ();
-			
+			if(m_currentState == (int)State.Solid)
+				if(m_solidMattyScript.PitfallCollisionResolution())
+					Die();
 		}
 		else if (collider.CompareTag("Spike"))
 		{

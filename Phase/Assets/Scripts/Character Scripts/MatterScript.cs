@@ -10,12 +10,12 @@ public class MatterScript : MonoBehaviour {
 	
 	public virtual bool FallingBouldersCollisionResolution()
 	{
-		return false;
+		return true;
 	}
 	
 	public virtual bool FlamePillarCollisionResolution()
 	{
-		return false;
+		return true;
 	}
 	
 	public virtual bool GrateCollisionResolution()
@@ -25,7 +25,7 @@ public class MatterScript : MonoBehaviour {
 	
 	public virtual bool IceCeilingCollisionResolution()
 	{
-		return false;
+		return true;
 	}
 	
 	public virtual bool IcyFloorCollisionResolution()
@@ -35,7 +35,7 @@ public class MatterScript : MonoBehaviour {
 	
 	public virtual bool LavaCollisionResolution()
 	{
-		return false;
+		return true;
 	}
 	
 	public virtual bool PitfallCollisionResolution()
@@ -45,12 +45,12 @@ public class MatterScript : MonoBehaviour {
 	
 	public virtual bool SpikeCollisionResolution()
 	{
-		return false;
+		return true;
 	}
 	
 	public virtual bool SwingingMaceCollisionResolution()
 	{
-		return false;
+		return true;
 	}
 	
 	public virtual bool WindTunnelCollisionResolution()

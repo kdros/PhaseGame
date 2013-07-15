@@ -30,15 +30,15 @@ public class Global_BegLev1 : MonoBehaviour {
 	{	
 		//checkpointHit += 1;
 		
-		if(mattySolidDeath == true)
-		{
-			Debug.Log ("Matty Solid Character was destroyed! Restoring...");
+		//if(mattySolidDeath == true)
+		//{
+			//Debug.Log ("Matty Solid Character was destroyed! Restoring...");
 			// Need to restor character to last checkpoint
-			Vector3 restorePos = checkpointPos[(hitCheckpoints - 1)];
-			Instantiate(mattySolid, restorePos, Quaternion.identity );
+			//Vector3 restorePos = checkpointPos[(hitCheckpoints - 1)];
+			//Instantiate(mattySolid, restorePos, Quaternion.identity );
 			
 			// Reset boolean variable
-			mattySolidDeath = false;
-		}
+			//mattySolidDeath = false;
+		//}
 	}
 }

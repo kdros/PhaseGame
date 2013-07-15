@@ -65,13 +65,40 @@ public class MattySolidScript : MonoBehaviour {
 			Debug.Log ("Hit Lava - DEATH");
 			Die();
 		}
+		if (hit.collider.gameObject.tag == "Checkpoint")
+		{
+			Debug.Log ("Hit a Checkpoint!");
+			
+			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+			bool checkpointExists = false;
+			
+			// Figure out which checkpoint was hit
+			for(int i = 0; i < g.hitCheckpoints; i++)
+			{
+				// Get position of the current checkpoint
+				Vector3 hitPos = hit.collider.gameObject.transform.position;
+				
+				// Compare checkpoint that was just hit to positions of
+				// all the checkpoints that have already been hit
+				if (hitPos == g.checkpointPos[i])
+				{
+					Debug.Log ("This checkpoint has already been hit");
+					checkpointExists = true;
+				}
+			}
+			
+			if (checkpointExists == false)
+				g.hitCheckpoints = g.hitCheckpoints + 1;
+			
+		}
     }
 		
 	public void Die ()
 	{
 		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
 		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-		g.death = true;
+		g.mattySolidDeath = true;
 		
 		
     	Destroy(gameObject);

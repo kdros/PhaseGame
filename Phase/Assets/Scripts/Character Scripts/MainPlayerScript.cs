@@ -192,13 +192,61 @@ public class MainPlayerScript : MonoBehaviour {
 			Die ();	
 		}
 		// testing
+		else if (collider.CompareTag("Checkpoint"))
+		{
+			Debug.Log("Player reached checkpoint");
+			
+		}
+		else if (collider.CompareTag("FallingBoulders"))
+		{
+			Debug.Log("Player got hit by falling boulders");
+			
+		}
+		else if (collider.CompareTag("FlamePillar"))
+		{
+			Debug.Log("Player got hit by flame pillar");
+			
+		}
+		else if (collider.CompareTag("Grate"))
+		{
+			Debug.Log("Player reached grate");
+			
+		}
+		else if (collider.CompareTag("IceCeiling"))
+		{
+			Debug.Log("Player got hit by ice ceiling");
+			
+		}
+		else if (collider.CompareTag("IcyFloor"))
+		{
+			Debug.Log("Player hiit icy floor");
+			
+		}
+		else if (collider.CompareTag("Lava"))
+		{
+			Debug.Log("Player hit lava");
+			
+		}
+		else if (collider.CompareTag("Pitfall"))
+		{
+			Debug.Log("Player fell into pitfall");
+			
+		}
+		else if (collider.CompareTag("Spike"))
+		{
+			Debug.Log("Player got hit spike");
+			
+		}
 		else if (collider.CompareTag("SwingingMace"))
 		{
 			Debug.Log("Player got hit by mace");
 			
 		}
-		
-		
+		else if (collider.CompareTag("WindTunnel"))
+		{
+			Debug.Log("Player hit wind tunnel");
+			
+		}
 		
 	}
 	

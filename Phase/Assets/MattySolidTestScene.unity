@@ -2030,7 +2030,7 @@ GameObject:
   - 65: {fileID: 248326281}
   - 114: {fileID: 248326280}
   m_Layer: 0
-  m_Name: Checkpoint_01
+  m_Name: Checkpoint_02
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7445,6 +7445,7 @@ GameObject:
   - 92: {fileID: 952399558}
   - 124: {fileID: 952399557}
   - 81: {fileID: 952399556}
+  - 114: {fileID: 952399561}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7512,6 +7513,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &952399561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 952399555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a542f7bc4bfc34f91ec178b002077f, type: 3}
+  m_Name: 
+  target: {fileID: 1625260804}
+  zpos: 9.18000031
 --- !u!1001 &968092606
 Prefab:
   m_ObjectHideFlags: 0
@@ -8964,7 +8977,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: 86241d6123897cd4c9d3e6c68b2532e9, type: 2}
       propertyPath: m_Name
-      value: Checkpoint_01
+      value: Checkpoint_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86241d6123897cd4c9d3e6c68b2532e9, type: 2}

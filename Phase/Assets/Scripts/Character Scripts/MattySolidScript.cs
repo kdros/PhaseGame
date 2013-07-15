@@ -49,8 +49,8 @@ public class MattySolidScript : MatterScript {
 	//{
 	//}
 	
-	//public override void PitfallCollisionResolution()
-	//{	
+	//public override bool PitfallCollisionResolution()
+	//{
 	//}
 	
 	//public override void SpikeCollisionResolution()

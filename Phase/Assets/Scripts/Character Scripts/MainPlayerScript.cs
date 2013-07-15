@@ -187,15 +187,17 @@ public class MainPlayerScript : MonoBehaviour {
 		Collider collider = hit.collider;
 		Debug.Log("called OnControllerColliderHit");
 		
-		//if(m_currentState == (int)State.Default)
+		// Assuming solid state as default for now (to initialize variable)
+		MatterScript stateScript = m_solidMattyScript;
 
-		//else if(m_currentState == (int)State.Solid)
-
+		if(m_currentState == (int)State.Solid)
+			stateScript = m_solidMattyScript;
 		//else if(m_currentState == (int)State.Liquid)
-
+			//stateScript = m_liquidMattyScript;
 		//else if(m_currentState == (int)State.Gas)
-
+			//stateScript = m_gasMattyScript;
 		//else if(m_currentState == (int)State.Plasma)
+			//stateScript = m_plasmaMattyScript;
 
 		
 		if (collider.CompareTag("DeathPlane"))
@@ -213,54 +215,62 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("FallingBoulders"))
 		{
 			Debug.Log("Player got hit by falling boulders");
-			
+			if(stateScript.FallingBouldersCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("FlamePillar"))
 		{
 			Debug.Log("Player got hit by flame pillar");
-			
+			if(stateScript.FlamePillarCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("Grate"))
 		{
 			Debug.Log("Player reached grate");
-			
+			if(stateScript.GrateCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("IceCeiling"))
 		{
 			Debug.Log("Player got hit by ice ceiling");
-			
+			if(stateScript.IceCeilingCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("IcyFloor"))
 		{
 			Debug.Log("Player hiit icy floor");
-			
+			if(stateScript.IcyFloorCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("Lava"))
 		{
 			Debug.Log("Player hit lava");
-			
+			if(stateScript.LavaCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("Pitfall"))
 		{
 			Debug.Log("Player fell into pitfall");
-			if(m_currentState == (int)State.Solid)
-				if(m_solidMattyScript.PitfallCollisionResolution())
-					Die();
+			if(stateScript.PitfallCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("Spike"))
 		{
 			Debug.Log("Player got hit spike");
-			
+			if(stateScript.SpikeCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("SwingingMace"))
 		{
 			Debug.Log("Player got hit by mace");
-			
+			if(stateScript.SwingingMaceCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag("WindTunnel"))
 		{
 			Debug.Log("Player hit wind tunnel");
-			
+			if(stateScript.WindTunnelCollisionResolution())
+				Die();
 		}
 		
 	}

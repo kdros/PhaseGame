@@ -3,22 +3,16 @@ using System.Collections;
 
 public class MattySolidScript : MatterScript {
 	
-	public AudioClip deathFallingIntoPit;
-	public float speed;
-	public Vector3 direction;
+	public MatterScript matter_solid;
 	
 	void Start()
 	{
-		direction.x = -10;
-		speed = 100.0f;
+		matter_solid = new MatterScript();
 	}
 	
-    void Update() {
-		
-		// Lock any movement in the z direction
-        Vector3 mattySolidPos = transform.position;
-     	mattySolidPos.z = 0;
-     	transform.position = mattySolidPos;
+    void Update()
+	{
+	
     }
 	
 	public override void CheckpointCollisionResolution()
@@ -26,20 +20,17 @@ public class MattySolidScript : MatterScript {
 		
 	}
 	
-	public override void FallingBouldersCollisionResolution()
-	{
-		
-	}
+	//public override void FallingBouldersCollisionResolution()
+	//{
+	//}
 	
-	public override void FlamePillarCollisionResolution()
-	{
-		
-	}
+	//public override void FlamePillarCollisionResolution()
+	//{	
+	//}
 	
-	public override void GrateCollisionResolution()
-	{
-		// No effect
-	}
+	//public override void GrateCollisionResolution()
+	//{
+	//}
 	
 	public override void IceCeilingCollisionResolution()
 	{
@@ -51,30 +42,25 @@ public class MattySolidScript : MatterScript {
 		// Slides on ice floor
 	}
 	
-	public override void LavaCollisionResolution()
-	{
-		
-	}
+	//public override void LavaCollisionResolution()
+	//{
+	//}
 	
-	public override void PitfallCollisionResolution()
-	{
-		
-	}
+	//public override void PitfallCollisionResolution()
+	//{	
+	//}
 	
-	public override void SpikeCollisionResolution()
-	{
-		
-	}
+	//public override void SpikeCollisionResolution()
+	//{	
+	//}
 	
-	public override void SwingingMaceCollisionResolution()
-	{
-		
-	}
+	//public override void SwingingMaceCollisionResolution()
+	//{
+	//}
 	
-	public override void WindTunnelCollisionResolution()
-	{
-		// No effect
-	}
+	//public override void WindTunnelCollisionResolution()
+	//{
+	//}
 	
 	public void Die ()
 	{

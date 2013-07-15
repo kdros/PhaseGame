@@ -15,9 +15,12 @@ TagManager:
   - IcyFloor
   - Grate
   - Checkpoint
-  - 
+  - FallingBoulders
   - MattyPlasma
   - DeathPlane
+  - FlamePillar
+  - IceCeiling
+  - Lava
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

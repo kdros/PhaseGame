@@ -18,19 +18,19 @@ public class Plasma : MonoBehaviour
 	
 	void OnGUI ()
 	{
-		Event e = Event.current;
-		switch (e.keyCode)
-		{
-		case KeyCode.LeftArrow: 
-			break;
-		case KeyCode.RightArrow: 
-			break;
-		case KeyCode.UpArrow: 
-			break;
+//		Event e = Event.current;
+//		switch (e.keyCode)
+//		{
+//		case KeyCode.LeftArrow: 
+//			break;
+//		case KeyCode.RightArrow: 
+//			break;
+//		case KeyCode.UpArrow: 
+//			break;
 /*		case KeyCode.DownArrow: 
 			break;
 		case KeyCode.LeftArrow: 
 			break;		*/
-		}
+		//}
 	}
 }

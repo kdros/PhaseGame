@@ -1,77 +1,75 @@
 using UnityEngine;
 using System.Collections;
 
-public class MattySolidScript : MonoBehaviour {
+public class MattySolidScript : MatterScript {
 	
-	public AudioClip deathFallingIntoPit;
-	public float speed;
-	public Vector3 direction;
+	public MatterScript matter_solid;
 	
 	void Start()
 	{
-		direction.x = -10;
-		speed = 100.0f;
+		matter_solid = new MatterScript();
 	}
 	
-    void Update() {
-		
-		// Lock any movement in the z direction
-        Vector3 mattySolidPos = transform.position;
-     	mattySolidPos.z = 0;
-     	transform.position = mattySolidPos;
+    void Update()
+	{
+	
     }
 	
-	void OnControllerColliderHit(ControllerColliderHit hit) {
-		
-		if (hit.collider.gameObject.tag == "Pitfall")
-		{
-			Debug.Log ("Crashed Into Pitfall - DEATH");
-			AudioSource.PlayClipAtPoint(deathFallingIntoPit, gameObject.transform.position);
-			Die();
-		}
-		if (hit.collider.gameObject.tag == "SwingingMace")
-		{
-			Debug.Log ("Hit by swinging mace. - DEATH");
-			Die();
-		}
-		if (hit.collider.gameObject.tag == "Spike")
-		{
-			Debug.Log ("Landed on spike. - DEATH");
-			Die();
-		}
-		if (hit.collider.gameObject.tag == "Grate")
-		{
-			Debug.Log ("On Grate. - NO EFFECT");
-		}
-		if (hit.collider.gameObject.tag == "IcyFloor")
-		{
-			Debug.Log ("Sliding on Ice. - Increased Velocity");
-			CharacterController controller = GetComponent<CharacterController>();
-        	Vector3 newVelocity = new Vector3(15.0f, 0.0f, 0.0f);
-			newVelocity *= Time.deltaTime;
-     		gameObject.transform.Translate(newVelocity);
-		}
-		if (hit.collider.gameObject.tag == "WindTunnel")
-		{
-			Debug.Log ("Hit Wind Tunnel - No Effect");
-		}
-		if (hit.collider.gameObject.tag == "FlamePillar")
-		{
-			Debug.Log ("Hit Flame Pillar - DEATH");
-			Die();
-		}
-		if (hit.collider.gameObject.tag == "Lava")
-		{
-			Debug.Log ("Hit Lava - DEATH");
-			Die();
-		}
-    }
-		
+	public override bool CheckpointCollisionResolution()
+	{
+		return false;
+	}
+	
+	//public override void FallingBouldersCollisionResolution()
+	//{
+	//}
+	
+	//public override void FlamePillarCollisionResolution()
+	//{	
+	//}
+	
+	//public override void GrateCollisionResolution()
+	//{
+	//}
+	
+	public override bool IceCeilingCollisionResolution()
+	{
+		// Shatters ice ceiling
+		return false;
+	}
+	
+	public override bool IcyFloorCollisionResolution()
+	{
+		// Slides on ice floor
+		BroadcastMessage("SpeedUp", 18.0f);
+		return false;
+	}
+	
+	//public override void LavaCollisionResolution()
+	//{
+	//}
+	
+	//public override void PitfallCollisionResolution()
+	//{	
+	//}
+	
+	//public override void SpikeCollisionResolution()
+	//{	
+	//}
+	
+	//public override void SwingingMaceCollisionResolution()
+	//{
+	//}
+	
+	//public override void WindTunnelCollisionResolution()
+	//{
+	//}
+	
 	public void Die ()
 	{
-		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-		g.death = true;
+		//GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+		//Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+		//g.mattySolidDeath = true;
 		
 		
     	Destroy(gameObject);

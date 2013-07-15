@@ -2,38 +2,43 @@ using UnityEngine;
 using System.Collections;
 
 public class Global_BegLev1 : MonoBehaviour {
-
-	public float timer;
-	public int checkpointHit;
+	
+	public int numCheckpoints;
+	public int hitCheckpoints;
 	public Vector3[] checkpointPos;
-	public Vector3 originInScreenCoords;
-	public GameObject character;
-	public bool death;
+	public GameObject mattySolid;
+	public bool mattySolidDeath;
 	
 	void Start ()
 	{
-		timer = 0;
-		checkpointHit = 0;
+		// Set number of checkpoints that are in the scene
+		numCheckpoints = 2;
 		
-		death = false;
+		// Since there is a checkpoint at the beginning of each level, set to 1
+		hitCheckpoints = 1;
 		
 		// Set checkpoint positions here
-		checkpointPos[0] = new Vector3(0.0f, 0.0f, 0.0f);
-		checkpointPos[1] = new Vector3(1.0f, 1.0f, 1.0f);
+		checkpointPos = new Vector3[2]; 
+		checkpointPos[0] = new Vector3(-8.523637f, 2.04423f, 3.322249f);
+		checkpointPos[1] = new Vector3(-4.563113f, 12.23711f, 3.322249f);
+		
+		mattySolidDeath = false;
 	}
 	
 	
 	void Update ()
-	{
-		timer += Time.deltaTime;
-		
+	{	
 		//checkpointHit += 1;
 		
-		if(death == true)
-		{
+		//if(mattySolidDeath == true)
+		//{
+			//Debug.Log ("Matty Solid Character was destroyed! Restoring...");
 			// Need to restor character to last checkpoint
-			Vector3 restorePos = checkpointPos[checkpointHit];
-			Instantiate(character, restorePos, Quaternion.identity );
-		}
+			//Vector3 restorePos = checkpointPos[(hitCheckpoints - 1)];
+			//Instantiate(mattySolid, restorePos, Quaternion.identity );
+			
+			// Reset boolean variable
+			//mattySolidDeath = false;
+		//}
 	}
 }

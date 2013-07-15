@@ -16,27 +16,33 @@ public class Checkpoint : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (hasCrossed)
-		{
-			Component checkFlag = gameObject.transform.Find ("CheckFlag");
-			// Check if green flag is visible and make it, if it isn't.
-			if (!(checkFlag.transform.eulerAngles [2] == -90f))
-				makeGreenFlagVisible ();
-		}
+//		if (hasCrossed)
+//		{
+//			Component checkFlag = gameObject.transform.Find ("CheckFlag");
+//			// Check if green flag is visible and make it, if it isn't.
+//			if (!(checkFlag.transform.localEulerAngles [2] == -90f) && !hasCrossed)
+//			{
+////				Vector3 angles = checkFlag.transform.eulerAngles;
+////				angles [1] = -90f;
+////				checkFlag.transform.eulerAngles = angles;
+//				checkFlag.transform.RotateAroundLocal (Vector3.up,-90f);
+//			}
+//		}
 //		else
 	}
 	
-	void OnCollisionEnter (Collision collisObj)
+	void OnTriggerEnter (Collider collObjCollider)
 	{
-		Collider collObjCollider = collisObj.collider;
-		
 		if (collObjCollider.CompareTag ("Player"))
 		{
+//			Debug.Log ("Player!");
 			if (!hasCrossed)
 			{	
 				hasCrossed = true;
 				saveGame ();
+				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,-90f);
 			}
+//			Physics.IgnoreCollision (GetComponent<Collider>(), collObjCollider);
 		}
 	}
 	

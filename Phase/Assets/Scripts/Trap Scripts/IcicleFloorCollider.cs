@@ -28,6 +28,6 @@ public class IcicleFloorCollider : MonoBehaviour
 				gameObject.transform.parent = null;
 			}
 		}
-		Debug.Log ("Buzzz!: "+aName);
+//		Debug.Log ("Buzzz!: "+aName);
 	}
 }

@@ -1,15 +1,21 @@
 using UnityEngine;
 using System.Collections;
 
-public class IcicleParticle : MonoBehaviour {
-
+public class IcicleParticle : MonoBehaviour 
+{
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnCollisionEnter (Collision collObj) 
+	{
+		Collider collObjCollider = collObj.collider;
+		if (collObjCollider.CompareTag ("Ground"))
+			rigidbody.useGravity = false;
+		
+		Debug.Log (collObjCollider.gameObject.name);
+		Debug.Log (collObjCollider.gameObject.tag);
 	}
 }

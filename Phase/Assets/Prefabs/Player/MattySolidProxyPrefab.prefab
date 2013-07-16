@@ -1524,7 +1524,7 @@ Animation:
   m_GameObject: {fileID: 100108}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: dec469392f64353458456b353d375182, type: 3}
+  m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: dec469392f64353458456b353d375182, type: 3}
   - {fileID: 7400002, guid: dec469392f64353458456b353d375182, type: 3}
@@ -1546,8 +1546,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d15fd1114c454f344837e2da5effc5bd, type: 3}
   m_Name: 
-  timer: 0
-  stopForceTime: 0
   facingRight_yDegrees: 0
   facingLeft_yDegrees: 0
 --- !u!137 &13700000

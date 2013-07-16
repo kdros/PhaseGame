@@ -1913,7 +1913,7 @@ MonoBehaviour:
   plasmaMatty: {fileID: 100000, guid: 25eccb617f10a9842a8dbbff09a92bf2, type: 2}
   gasMatty: {fileID: 100000, guid: 8f81b01eb2ca4974aa78a5aef7eda13b, type: 2}
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
-  solidMatty: {fileID: 100000, guid: 1cb1d82ec7182c54e9af34c53c0c7dc9, type: 2}
+  solidMatty: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
 --- !u!114 &192009987
 MonoBehaviour:
@@ -10216,6 +10216,10 @@ Prefab:
       propertyPath: defaultMatty
       value: 
       objectReference: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
+    - target: {fileID: 11400002, guid: 59ff8c63ba6dfb34f8f016ba31574727, type: 2}
+      propertyPath: solidMatty
+      value: 
+      objectReference: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59ff8c63ba6dfb34f8f016ba31574727, type: 2}
   m_RootGameObject: {fileID: 192009985}

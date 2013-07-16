@@ -203,8 +203,12 @@ public class MainPlayerScript : MonoBehaviour {
 		else if(m_currentState == (int)State.Plasma)
 			stateScript = m_plasmaMattyScript;
 
-		
-		if (collider.CompareTag("DeathPlane"))
+		if (collider.CompareTag("Platform"))
+		{
+			// do nothing
+			Debug.Log("Player on platform");
+		}
+		else if (collider.CompareTag("DeathPlane"))
 		{
 			Debug.Log("Fell off");
 			Die ();	

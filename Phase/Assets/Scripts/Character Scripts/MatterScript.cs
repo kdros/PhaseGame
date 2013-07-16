@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+/*
+ * Base class for each state of matter. Use for collision resolution.
+ * Each function will return true if the collision causes death, otherwise return false. 
+ */
 public class MatterScript : MonoBehaviour 
 {
 	public virtual bool CheckpointCollisionResolution()

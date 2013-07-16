@@ -144,9 +144,9 @@ public class MainPlayerScript : MonoBehaviour {
 	private void setStatePosition(int s)
 	{
 		if (m_currentState == (int)State.Default)
-			m_defaultMatty.transform.position = transform.position;	
+			m_defaultMatty.transform.position = new Vector3(transform.position.x,(transform.position.y-0.6f),transform.position.z);	
 		else if (m_currentState == (int)State.Solid)		
-			m_solidMatty.transform.position = transform.position;
+			m_solidMatty.transform.position = new Vector3(transform.position.x,(transform.position.y-0.6f),transform.position.z);
 		else if (m_currentState == (int)State.Liquid)
 			m_liquidMatty.transform.position = transform.position;
 		else if (m_currentState == (int)State.Gas)

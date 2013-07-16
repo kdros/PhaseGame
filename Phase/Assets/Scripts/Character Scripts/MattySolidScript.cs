@@ -3,17 +3,8 @@ using System.Collections;
 
 public class MattySolidScript : MatterScript 
 {
-	public MatterScript matter_solid;
-	
-	void Start()
-	{
-		matter_solid = new MatterScript();
-	}
-	
-    void Update()
-	{
-	
-    }
+	//public MatterScript matter_solid;
+
 	
 	// Functions that do not need to be overriden:
 	// FallingBoulders, FlamePillar, Grate, Lava, Pitfall

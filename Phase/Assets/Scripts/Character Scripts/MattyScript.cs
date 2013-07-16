@@ -3,13 +3,13 @@ using System.Collections;
 
 public class MattyScript : MatterScript {
 	
-	public MatterScript matter_matty;
+	//public MatterScript matter_matty;
 	public float facingRight_yDegrees;
 	public float facingLeft_yDegrees;
 	
 	void Start ()
 	{
-		matter_matty = new MatterScript();
+		//matter_matty = new MatterScript();
 		
 		facingRight_yDegrees = gameObject.transform.eulerAngles.y + 90;
 		facingLeft_yDegrees = gameObject.transform.eulerAngles.y - 90;

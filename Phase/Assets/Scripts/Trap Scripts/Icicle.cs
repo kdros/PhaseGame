@@ -28,6 +28,6 @@ public class Icicle : MonoBehaviour
 		
 		childObj.parent = null;
 		childObj.rigidbody.useGravity = true;
-		childObj.rigidbody.AddForce (Vector3.down * 10f);
+		childObj.rigidbody.AddForce (Vector3.down * 100f);
 	}
 }

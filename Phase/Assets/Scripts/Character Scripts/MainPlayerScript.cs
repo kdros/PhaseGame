@@ -44,6 +44,10 @@ public class MainPlayerScript : MonoBehaviour {
 	/// </summary>
 
 	protected MattySolidScript m_solidMattyScript;		// class associated with Solid Matty
+	protected MattyLiquidScript m_liquidMattyScript;	// class associated with Liquid Matty
+	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
+	protected MattyPlasmaScript m_plasmaMattyScript;	// class associated with Plasma Matty (place holder)
+	
 	private int m_currentState;							// keep track of the current state
 	
 	enum State {Default, Solid, Liquid, Gas, Plasma};
@@ -192,12 +196,12 @@ public class MainPlayerScript : MonoBehaviour {
 
 		if(m_currentState == (int)State.Solid)
 			stateScript = m_solidMattyScript;
-		//else if(m_currentState == (int)State.Liquid)
-			//stateScript = m_liquidMattyScript;
-		//else if(m_currentState == (int)State.Gas)
-			//stateScript = m_gasMattyScript;
-		//else if(m_currentState == (int)State.Plasma)
-			//stateScript = m_plasmaMattyScript;
+		else if(m_currentState == (int)State.Liquid)
+			stateScript = m_liquidMattyScript;
+		else if(m_currentState == (int)State.Gas)
+			stateScript = m_gasMattyScript;
+		else if(m_currentState == (int)State.Plasma)
+			stateScript = m_plasmaMattyScript;
 
 		
 		if (collider.CompareTag("DeathPlane"))
@@ -272,14 +276,18 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.WindTunnelCollisionResolution())
 				Die();
 		}
-		
+		else if (collider.CompareTag ("Icicle"))
+		{
+			Debug.Log("Player hit icicle");
+			if(stateScript.IceCeilingCollisionResolution())
+				Die();
+		}
 	}
 	
 	void Die() 
 	{
 		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion, 2);
-		
 		
 		Destroy (m_solidMatty);
 		Destroy (m_liquidMatty);

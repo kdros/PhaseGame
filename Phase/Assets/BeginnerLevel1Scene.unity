@@ -2858,7 +2858,7 @@ GameObject:
   - 114: {fileID: 395043745}
   m_Layer: 0
   m_Name: pCone1
-  m_TagString: Untagged
+  m_TagString: Icicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9055,6 +9055,10 @@ Prefab:
     - target: {fileID: 400008, guid: a8ecb5aa72a53624eb4c685063ced5ba, type: 2}
       propertyPath: m_LocalScale.z
       value: .556107759
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: a8ecb5aa72a53624eb4c685063ced5ba, type: 2}
+      propertyPath: m_TagString
+      value: Icicle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8ecb5aa72a53624eb4c685063ced5ba, type: 2}

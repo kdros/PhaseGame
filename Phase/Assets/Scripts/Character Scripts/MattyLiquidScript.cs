@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GasScript : MonoBehaviour {
+public class MattyLiquidScript : MatterScript {
 
 	// Use this for initialization
 	void Start () {

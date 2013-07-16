@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class MatterScript : MonoBehaviour {
-	
+public class MatterScript : MonoBehaviour 
+{
 	public virtual bool CheckpointCollisionResolution()
 	{
 		return false;

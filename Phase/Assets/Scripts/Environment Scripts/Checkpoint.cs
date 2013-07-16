@@ -42,7 +42,7 @@ public class Checkpoint : MonoBehaviour
 				saveGame ();
 				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,-90f);
 			}
-//			Physics.IgnoreCollision (GetComponent<Collider>(), collObjCollider);
+			Physics.IgnoreCollision (GetComponent<Collider>(), collObjCollider);
 		}
 	}
 	

@@ -5,7 +5,6 @@ public class MattyPlasmaScript : MatterScript
 {
 	public float lavaMaxTime = 10f;
 	
-	InteractiveCloth clothManip;
 	ParticleSystem	embers;
 	Light glow;
 	ClothRenderer clothRenderer;
@@ -18,7 +17,6 @@ public class MattyPlasmaScript : MatterScript
 	
 	void Start ()
 	{
-		clothManip = GetComponent<InteractiveCloth>();
 		clothRenderer = GetComponent<ClothRenderer>();
 		embers = GetComponent<ParticleSystem>();
 		glow = transform.Find ("Glow").GetComponent<Light>();
@@ -55,6 +53,13 @@ public class MattyPlasmaScript : MatterScript
 			if (!clothRenderer.material.GetColor ("_Color").Equals (glow.color))
 				clothRenderer.material.SetColor ("_Color", glow.color);
 		}
+	}
+	
+	public void NotOnLava ()
+	{
+			Debug.Log ("Exiting Lava!");
+			embers.loop = false;
+			isOnLava = false;
 	}
 
 	public override bool FallingBouldersCollisionResolution()
@@ -121,5 +126,4 @@ public class MattyPlasmaScript : MatterScript
 		// NO EFFECT
 		return false;
 	}
-
 }

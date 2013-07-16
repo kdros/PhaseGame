@@ -152,7 +152,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (m_currentState == (int)State.Gas)
 			m_gasMatty.transform.position = transform.position;
 		else if (m_currentState == (int)State.Plasma)
-			m_plasmaMatty.rigidbody.MovePosition(transform.position);
+			m_plasmaMatty.transform.position = transform.position;
 		else
 		{
 			// BLAHHHH!	SHOULD NEVER REACH THIS CASE!
@@ -232,10 +232,8 @@ public class MainPlayerScript : MonoBehaviour {
 		else if(m_currentState == (int)State.Gas)
 			stateScript = m_gasMattyScript;
 		else if(m_currentState == (int)State.Plasma)
-		{	
-			Debug.Log("Plasma State");
 			stateScript = m_plasmaMattyScript;
-		}
+		
 		if (collider.CompareTag("Platform"))
 		{
 			// do nothing
@@ -338,6 +336,19 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider collider)
 	{
+		MatterScript stateScript = m_defaultMattyScript;
+		
+		if(m_currentState == (int)State.Default)
+			stateScript = m_defaultMattyScript;
+		else if(m_currentState == (int)State.Solid)
+			stateScript = m_solidMattyScript;
+		else if(m_currentState == (int)State.Liquid)
+			stateScript = m_liquidMattyScript;
+		else if(m_currentState == (int)State.Gas)
+			stateScript = m_gasMattyScript;
+		else if(m_currentState == (int)State.Plasma)
+			stateScript = m_plasmaMattyScript;
+		
 		if (collider.CompareTag ("DarkCaveEnter"))
 		{
 			Debug.Log("Player is entering dark cave trigger");
@@ -349,7 +360,34 @@ public class MainPlayerScript : MonoBehaviour {
 			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
 				RenderSettings.ambientLight = originalAmbientColor;
 		}
+		
+		if (collider.CompareTag ("Lava"))
+		{
+			Debug.Log("Player hit lava");
+			if(stateScript.LavaCollisionResolution())
+				Die();
+		}
 			
+	}
+	
+	void OnTriggerExit (Collider collider)
+	{
+//		MatterScript stateScript = m_defaultMattyScript;
+//		
+//		if(m_currentState == (int)State.Default)
+//			stateScript = m_defaultMattyScript;
+//		else if(m_currentState == (int)State.Solid)
+//			stateScript = m_solidMattyScript;
+//		else if(m_currentState == (int)State.Liquid)
+//			stateScript = m_liquidMattyScript;
+//		else if(m_currentState == (int)State.Gas)
+//			stateScript = m_gasMattyScript;
+//		else if(m_currentState == (int)State.Plasma)
+		if (collider.CompareTag ("Lava"))
+		{
+//			stateScript = m_plasmaMattyScript;
+			m_plasmaMattyScript.NotOnLava ();
+		}
 	}
 	
 	void Die() 

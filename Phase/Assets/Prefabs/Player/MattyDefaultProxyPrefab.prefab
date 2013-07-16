@@ -1268,8 +1268,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .015048746, y: .015048746, z: .015048746}
+  m_LocalPosition: {x: -8.08436298, y: 1.09351015, z: -.626839399}
+  m_LocalScale: {x: .00690081529, y: .00690081529, z: .00690081529}
   m_Children:
   - {fileID: 400090}
   - {fileID: 400088}
@@ -1284,8 +1284,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 134.449997, y: 203.300003, z: 85.6100006}
-  m_Center: {x: .100000001, y: 102.800003, z: -7.0999999}
+  m_Size: {x: 127.5, y: 180.5, z: 67.5}
+  m_Center: {x: 0, y: 99.6999969, z: -5.51999998}
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
@@ -1294,8 +1294,10 @@ Animation:
   m_GameObject: {fileID: 100092}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
+  m_Animation: {fileID: 0}
   m_Animations:
+  - {fileID: 7400004, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
+  - {fileID: 7400002, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   - {fileID: 7400000, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
@@ -1315,6 +1317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dafbeab36da2b64085ab722c602db63, type: 3}
   m_Name: 
   matter_matty: {fileID: 0}
+  facingRight_yDegrees: 0
+  facingLeft_yDegrees: 0
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

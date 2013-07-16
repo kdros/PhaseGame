@@ -1,19 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class MattySolidScript : MatterScript {
-	
-	public MatterScript matter_solid;
-	
-	void Start()
-	{
-		matter_solid = new MatterScript();
-	}
-	
-    void Update()
-	{
-	
-    }
+public class MattySolidScript : MatterScript 
+{
+	//public MatterScript matter_solid;
+
 	
 	// Functions that do not need to be overriden:
 	// FallingBoulders, FlamePillar, Grate, Lava, Pitfall
@@ -28,6 +19,12 @@ public class MattySolidScript : MatterScript {
 	{
 		// No effect
 		return false;
+	}
+	
+	public override bool LavaCollisionResolution()
+	{
+		// DEATH
+		return true;
 	}
 	
 	public void Die ()

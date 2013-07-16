@@ -64,7 +64,7 @@ public class MotorScript : MonoBehaviour
 //		if ((grounded) && verticalMove > 0)
 //			rigidbody.AddForce (Vector3.up*jumpSpeed*8f);
 //		rigidbody.AddTorque (forwardTorque*sidewaysMove);
-		charControl.SimpleMove (forwardMove);
+//		charControl.SimpleMove (forwardMove);
 		if ((grounded) && verticalMove > 0)
 			charControl.SimpleMove (Vector3.up*jumpSpeed*8f);
 		clothManip.pressure = Mathf.Abs (sidewaysMove / speed) * 50.0f;

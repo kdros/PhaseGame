@@ -11,9 +11,10 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 111: {fileID: 11100000}
+  - 64: {fileID: 6400000}
   m_Layer: 0
   m_Name: Boulder3Prefab
-  m_TagString: Untagged
+  m_TagString: FallingBoulders
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -53,6 +54,19 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
+  m_Mesh: {fileID: 4300000, guid: cd4e202637727f548ab597eec0394427, type: 3}
+--- !u!64 &6400000
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: cd4e202637727f548ab597eec0394427, type: 3}
 --- !u!111 &11100000
 Animation:

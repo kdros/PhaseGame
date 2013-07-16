@@ -4,61 +4,62 @@ using System.Collections;
 public class MattyPlasmaScript : MatterScript 
 {
 
-	public virtual bool FallingBouldersCollisionResolution()
+	public override bool FallingBouldersCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool FlamePillarCollisionResolution()
+	public override bool FlamePillarCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool GrateCollisionResolution()
+	public override bool GrateCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool IceCeilingCollisionResolution()
+	public override bool IceCeilingCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool IcyFloorCollisionResolution()
+	public override bool IcyFloorCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool LavaCollisionResolution()
+	public override bool LavaCollisionResolution()
 	{
-		// DEATH
+		// NO EFFECT
+		Debug.Log("lava collision resolution called");
 		return false;
 	}
 	
-	public virtual bool PitfallCollisionResolution()
+	public override bool PitfallCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool SpikeCollisionResolution()
+	public override bool SpikeCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool SwingingMaceCollisionResolution()
+	public override bool SwingingMaceCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool WindTunnelCollisionResolution()
+	public override bool WindTunnelCollisionResolution()
 	{
 		// NO EFFECT
 		return false;

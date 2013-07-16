@@ -17,7 +17,8 @@ public class MainPlayerScript : MonoBehaviour {
 	/// <summary>
 	/// Public Variables: Need to be set up by using the inspector
 	/// </summary>	
-
+	public Transform spawnPoint;		// Spawn location
+	
 	public GameObject phaseEffect; 		// Particle effect for state transition
 	public GameObject deathExplosion; 	// Explosion prefab used for death animation
 	public GameObject plasmaMatty;
@@ -72,6 +73,9 @@ public class MainPlayerScript : MonoBehaviour {
 		// find the class associated with each state of matter
 		m_defaultMattyScript = m_defaultMatty.GetComponent<MattyScript>();
 		m_solidMattyScript = m_solidMatty.GetComponent<MattySolidScript>();
+		m_liquidMattyScript = m_liquidMatty.GetComponent<MattyLiquidScript>();
+		m_gasMattyScript = m_gasMatty.GetComponent<MattyGasScript>();
+		m_plasmaMattyScript = m_plasmaMatty.GetComponent<MattyPlasmaScript>();
 		
 		// Temp: Make sure this collider does not collide with each state of matter's colliders
 		Physics.IgnoreCollision(collider, m_defaultMatty.collider);
@@ -228,8 +232,10 @@ public class MainPlayerScript : MonoBehaviour {
 		else if(m_currentState == (int)State.Gas)
 			stateScript = m_gasMattyScript;
 		else if(m_currentState == (int)State.Plasma)
+		{	
+			Debug.Log("Plasma State");
 			stateScript = m_plasmaMattyScript;
-
+		}
 		if (collider.CompareTag("Platform"))
 		{
 			// do nothing
@@ -324,13 +330,18 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion, 2);
+
+		// Temporarily disabled to make testing easier
+//		Destroy (m_defaultMatty);
+//		Destroy (m_solidMatty);
+//		Destroy (m_liquidMatty);
+//		Destroy (m_gasMatty);
+//		Destroy (m_plasmaMatty);
+//		Destroy (gameObject);
 		
-		Destroy (m_defaultMatty);
-		Destroy (m_solidMatty);
-		Destroy (m_liquidMatty);
-		Destroy (m_gasMatty);
-		Destroy (m_plasmaMatty);
-		Destroy (gameObject);
+		
+		// Temp: Just put player back at the spawn point
+		transform.position = spawnPoint.position;
 		
 		// TODO: Respawn
 	}

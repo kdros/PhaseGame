@@ -55,6 +55,8 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
+	Color originalAmbientColor;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -82,6 +84,8 @@ public class MainPlayerScript : MonoBehaviour {
 		m_liquidMatty.SetActive(false);
 		m_gasMatty.SetActive(false);
 		m_plasmaMatty.SetActive(false);	
+		
+		originalAmbientColor = RenderSettings.ambientLight;
 	}
 	
 	// Update is called once per frame
@@ -309,6 +313,11 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
 		}
+		else if (collider.CompareTag ("DarkCaveEnter"))
+			RenderSettings.ambientLight = Color.black;
+		else if (collider.CompareTag ("DarkCaveExit"))
+			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
+				RenderSettings.ambientLight = originalAmbientColor;
 	}
 	
 	void Die() 

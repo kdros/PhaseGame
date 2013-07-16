@@ -294,7 +294,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: To Default
-    descriptiveName: Change to Liquid State
+    descriptiveName: Change to Default State
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: q

@@ -24,7 +24,7 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject gasMatty;			
 	public GameObject liquidMatty;
 	public GameObject solidMatty;
-	//public GameObject defaultMatty;
+	public GameObject defaultMatty;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -38,15 +38,18 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject m_solidMatty;
 	[System.NonSerialized]
 	public GameObject m_plasmaMatty;
+	[System.NonSerialized]
+	public GameObject m_defaultMatty;
 	
 	/// <summary>
 	/// Internal variables
 	/// </summary>
-
+	
+	protected MattyPlasmaScript m_plasmaMattyScript;	// class associated with Plasma Matty (place holder)
 	protected MattySolidScript m_solidMattyScript;		// class associated with Solid Matty
 	protected MattyLiquidScript m_liquidMattyScript;	// class associated with Liquid Matty
 	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
-	protected MattyPlasmaScript m_plasmaMattyScript;	// class associated with Plasma Matty (place holder)
+	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
 	
 	private int m_currentState;							// keep track of the current state
 	
@@ -55,23 +58,27 @@ public class MainPlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		m_currentState = (int)State.Solid;
+		m_currentState = (int)State.Default;
 		
 		// instantiate each state of matter
+		m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 		m_solidMatty = Instantiate (solidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 		m_liquidMatty = Instantiate (liquidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 		m_gasMatty = Instantiate (gasMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 		m_plasmaMatty = Instantiate (plasmaMatty, gameObject.transform.position, Quaternion.identity) as GameObject;		
 		
 		// find the class associated with each state of matter
+		m_defaultMattyScript = m_defaultMatty.GetComponent<MattyScript>();
 		m_solidMattyScript = m_solidMatty.GetComponent<MattySolidScript>();
 		
 		// Temp: Make sure this collider does not collide with each state of matter's colliders
+		Physics.IgnoreCollision(collider, m_defaultMatty.collider);
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 		
-		// Temp: Start out with soildMatty
-		//m_solidMatty.SetActive(false);		
+		// Temp: Start out with defaultMatty
+		//m_defaultMatty.SetActive(false);
+		m_solidMatty.SetActive(false);		
 		m_liquidMatty.SetActive(false);
 		m_gasMatty.SetActive(false);
 		m_plasmaMatty.SetActive(false);	
@@ -82,7 +89,14 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		bool stateChange = false;
 		
-		if (Input.GetButtonDown ("To Solid"))
+		if (Input.GetButtonDown ("To Default"))
+		{
+			if (m_currentState != (int)State.Default)
+				stateChange = true;
+			
+			m_currentState = (int)State.Default;
+		}
+		else if (Input.GetButtonDown ("To Solid"))
 		{
 			if (m_currentState != (int)State.Solid)
 				stateChange = true;
@@ -122,9 +136,7 @@ public class MainPlayerScript : MonoBehaviour {
 	private void setStatePosition(int s)
 	{
 		if (m_currentState == (int)State.Default)
-		{
-			// TODO: Fill this in	
-		}
+			m_defaultMatty.transform.position = transform.position;	
 		else if (m_currentState == (int)State.Solid)		
 			m_solidMatty.transform.position = transform.position;
 		else if (m_currentState == (int)State.Liquid)
@@ -145,10 +157,16 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		if (m_currentState == (int)State.Default)
 		{
-			// TODO: Fill this in	
+			m_defaultMatty.SetActive(true);
+			m_solidMatty.SetActive(false);		
+			m_liquidMatty.SetActive(false);
+			m_gasMatty.SetActive(false);
+			m_plasmaMatty.SetActive(false);
+			Physics.IgnoreCollision(collider, m_defaultMatty.collider);	
 		}
 		else if (m_currentState == (int)State.Solid)
 		{
+			m_defaultMatty.SetActive(false);
 			m_solidMatty.SetActive(true);		
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
@@ -157,6 +175,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (m_currentState == (int)State.Liquid)
 		{
+			m_defaultMatty.SetActive(false);
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(true);
 			m_gasMatty.SetActive(false);
@@ -164,6 +183,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (m_currentState == (int)State.Gas)
 		{
+			m_defaultMatty.SetActive(false);
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(true);
@@ -171,6 +191,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (m_currentState == (int)State.Plasma)
 		{
+			m_defaultMatty.SetActive(false);
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
@@ -192,9 +213,11 @@ public class MainPlayerScript : MonoBehaviour {
 		Debug.Log("called OnControllerColliderHit");
 		
 		// Assuming solid state as default for now (to initialize variable)
-		MatterScript stateScript = m_solidMattyScript;
-
-		if(m_currentState == (int)State.Solid)
+		MatterScript stateScript = m_defaultMattyScript;
+		
+		if(m_currentState == (int)State.Default)
+			stateScript = m_defaultMattyScript;
+		else if(m_currentState == (int)State.Solid)
 			stateScript = m_solidMattyScript;
 		else if(m_currentState == (int)State.Liquid)
 			stateScript = m_liquidMattyScript;
@@ -293,6 +316,7 @@ public class MainPlayerScript : MonoBehaviour {
 		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion, 2);
 		
+		Destroy (m_defaultMatty);
 		Destroy (m_solidMatty);
 		Destroy (m_liquidMatty);
 		Destroy (m_gasMatty);

@@ -197,7 +197,7 @@ GameObject:
   - 23: {fileID: 35418267}
   m_Layer: 8
   m_Name: RedFlag
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1693,7 +1693,7 @@ GameObject:
   - 23: {fileID: 147997244}
   m_Layer: 8
   m_Name: FlagBall
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1913,7 +1913,7 @@ MonoBehaviour:
   gasMatty: {fileID: 100000, guid: 8f81b01eb2ca4974aa78a5aef7eda13b, type: 2}
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
   solidMatty: {fileID: 100000, guid: 1cb1d82ec7182c54e9af34c53c0c7dc9, type: 2}
-  defaultMatty: {fileID: 100092, guid: 2a4dc978bfe68e04292acbea4b783962, type: 2}
+  defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
 --- !u!114 &192009987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2085,8 +2085,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 35, z: 20}
-  m_Center: {x: -36.4639015, y: 6.30999994, z: -40.3446007}
+  m_Size: {x: 20, y: 33.5999985, z: 20}
+  m_Center: {x: -36.4639015, y: 9.76000023, z: -40.3446007}
 --- !u!1 &263758449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,8 +2195,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 35, z: 20}
-  m_Center: {x: -36.4639015, y: 6.30999994, z: -40.3446007}
+  m_Size: {x: 20, y: 33.5999985, z: 20}
+  m_Center: {x: -36.4639015, y: 9.76000023, z: -40.3446007}
 --- !u!1001 &292869979
 Prefab:
   m_ObjectHideFlags: 0
@@ -2413,7 +2413,7 @@ GameObject:
   - 23: {fileID: 336885992}
   m_Layer: 8
   m_Name: RedFlag
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5489,7 +5489,7 @@ GameObject:
   - 23: {fileID: 599162387}
   m_Layer: 8
   m_Name: FlagBall
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5980,8 +5980,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 690449662}
   - 33: {fileID: 690449661}
-  - 136: {fileID: 690449660}
   - 23: {fileID: 690449659}
+  - 64: {fileID: 690449660}
   m_Layer: 8
   m_Name: CheckBase
   m_TagString: Checkpoint
@@ -6008,20 +6008,20 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!136 &690449660
-CapsuleCollider:
+--- !u!64 &690449660
+MeshCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86241d6123897cd4c9d3e6c68b2532e9,
+  m_PrefabParentObject: {fileID: 6400000, guid: 86241d6123897cd4c9d3e6c68b2532e9,
     type: 2}
   m_PrefabInternal: {fileID: 577750028}
   m_GameObject: {fileID: 690449658}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 1
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &690449661
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6037,7 +6037,7 @@ Transform:
   m_PrefabInternal: {fileID: 577750028}
   m_GameObject: {fileID: 690449658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.4638977, y: -6.67028999, z: -40.3446045}
+  m_LocalPosition: {x: -36.4638977, y: -2.1564045, z: -40.3446045}
   m_LocalScale: {x: 10, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 281972424}
@@ -7177,7 +7177,7 @@ GameObject:
   - 23: {fileID: 1289579767}
   m_Layer: 8
   m_Name: GreenFlag
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10214,7 +10214,7 @@ Prefab:
     - target: {fileID: 11400002, guid: 59ff8c63ba6dfb34f8f016ba31574727, type: 2}
       propertyPath: defaultMatty
       value: 
-      objectReference: {fileID: 100092, guid: 2a4dc978bfe68e04292acbea4b783962, type: 2}
+      objectReference: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59ff8c63ba6dfb34f8f016ba31574727, type: 2}
   m_RootGameObject: {fileID: 192009985}
@@ -10348,8 +10348,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1936384257}
   - 33: {fileID: 1936384260}
-  - 136: {fileID: 1936384259}
   - 23: {fileID: 1936384258}
+  - 64: {fileID: 1936384259}
   m_Layer: 8
   m_Name: CheckBase
   m_TagString: Checkpoint
@@ -10364,7 +10364,7 @@ Transform:
   m_PrefabInternal: {fileID: 1412775398}
   m_GameObject: {fileID: 1936384256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.4638977, y: -6.67028999, z: -40.3446045}
+  m_LocalPosition: {x: -36.4638977, y: -2.1564045, z: -40.3446045}
   m_LocalScale: {x: 10, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 248326279}
@@ -10387,20 +10387,20 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!136 &1936384259
-CapsuleCollider:
+--- !u!64 &1936384259
+MeshCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 13600000, guid: 86241d6123897cd4c9d3e6c68b2532e9,
+  m_PrefabParentObject: {fileID: 6400000, guid: 86241d6123897cd4c9d3e6c68b2532e9,
     type: 2}
   m_PrefabInternal: {fileID: 1412775398}
   m_GameObject: {fileID: 1936384256}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 1
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &1936384260
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10621,7 +10621,7 @@ GameObject:
   - 23: {fileID: 1988460313}
   m_Layer: 8
   m_Name: GreenFlag
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

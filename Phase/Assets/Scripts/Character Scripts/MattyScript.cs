@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MattyScript : MonoBehaviour {
+public class MattyScript : MatterScript {
 	
 	public MatterScript matter_matty;
 	

@@ -23,27 +23,15 @@ public class MattySolidScript : MatterScript {
 	{
 		return false;
 	}
-
-	public override bool IceCeilingCollisionResolution()
-	{
-		// Shatters ice ceiling
-		return false;
-	}
 	
 	public override bool IcyFloorCollisionResolution()
 	{
-		// Slides on ice floor
-		BroadcastMessage("SpeedUp", 18.0f);
+		// No effect
 		return false;
 	}
 	
 	public void Die ()
 	{
-		//GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-		//Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-		//g.mattySolidDeath = true;
-		
-		
     	Destroy(gameObject);
 	}
 }

@@ -1317,12 +1317,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4c71c38c9cb3d54a9d66e08a2336c83, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dafbeab36da2b64085ab722c602db63, type: 3}
   m_Name: 
-  timer: 0
-  stopForceTime: 0
-  facingRight_yDegrees: 0
-  facingLeft_yDegrees: 0
+  matter_matty: {fileID: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -1,17 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-/*
- * Base class for each state of matter. Use for collision resolution.
- * Each function will return true if the collision causes death, otherwise return false. 
- */
-public class MatterScript : MonoBehaviour 
+public class MattyPlasmaScript : MatterScript 
 {
-	public virtual bool CheckpointCollisionResolution()
-	{
-		return false;
-	}
-	
+
 	public virtual bool FallingBouldersCollisionResolution()
 	{
 		// DEATH
@@ -20,8 +12,8 @@ public class MatterScript : MonoBehaviour
 	
 	public virtual bool FlamePillarCollisionResolution()
 	{
-		// DEATH
-		return true;
+		// NO EFFECT
+		return false;
 	}
 	
 	public virtual bool GrateCollisionResolution()
@@ -45,7 +37,7 @@ public class MatterScript : MonoBehaviour
 	public virtual bool LavaCollisionResolution()
 	{
 		// DEATH
-		return true;
+		return false;
 	}
 	
 	public virtual bool PitfallCollisionResolution()
@@ -71,4 +63,5 @@ public class MatterScript : MonoBehaviour
 		// NO EFFECT
 		return false;
 	}
+
 }

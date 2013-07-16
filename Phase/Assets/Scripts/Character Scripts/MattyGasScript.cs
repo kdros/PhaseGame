@@ -1,21 +1,22 @@
 using UnityEngine;
 using System.Collections;
 
-/*
- * Base class for each state of matter. Use for collision resolution.
- * Each function will return true if the collision causes death, otherwise return false. 
- */
-public class MatterScript : MonoBehaviour 
+public class MattyGasScript : MatterScript 
 {
-	public virtual bool CheckpointCollisionResolution()
-	{
-		return false;
-	}
+	
+	//public GameObject waterDroplets; // used for condenstation effects
+	
+	// Will instantiate waterDroplets.
+	// Called by IceCeilingCollisionResolution()
+	//void Condenstation()
+	//{
+	//	
+	//}
 	
 	public virtual bool FallingBouldersCollisionResolution()
 	{
-		// DEATH
-		return true;
+		// No Effect
+		return false;
 	}
 	
 	public virtual bool FlamePillarCollisionResolution()
@@ -33,12 +34,18 @@ public class MatterScript : MonoBehaviour
 	public virtual bool IceCeilingCollisionResolution()
 	{
 		// DEATH
-		return true;
+		// TODO: Condensation
+		
+		Debug.Log("Gas-IcyFloor: Need to do condenstation effect");
+		return false;
 	}
 	
 	public virtual bool IcyFloorCollisionResolution()
 	{
 		// NO EFFECT
+		// TODO: Condensation
+		
+		Debug.Log("Gas-IcyFloor: Need to do condenstation effect");
 		return false;
 	}
 	
@@ -62,13 +69,15 @@ public class MatterScript : MonoBehaviour
 	
 	public virtual bool SwingingMaceCollisionResolution()
 	{
-		// DEATH
-		return true;
+		// No EFFECT
+		return false;
 	}
 	
 	public virtual bool WindTunnelCollisionResolution()
 	{
 		// NO EFFECT
+		// TODO: Gas will need to float in the direction
+		// of the wind.
 		return false;
 	}
 }

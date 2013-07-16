@@ -702,10 +702,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400092}
   - 111: {fileID: 11100000}
-  - 54: {fileID: 5400000}
+  - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: MattyProxyPrefab
+  m_Name: MattyDefaultProxyPrefab
   m_TagString: Matty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1269,26 +1269,23 @@ Transform:
   m_GameObject: {fileID: 100092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
+  m_LocalScale: {x: .015048746, y: .015048746, z: .015048746}
   m_Children:
   - {fileID: 400090}
   - {fileID: 400088}
   m_Father: {fileID: 0}
---- !u!54 &5400000
-Rigidbody:
+--- !u!65 &6500000
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 124
-  m_CollisionDetection: 0
+  m_Size: {x: 134.449997, y: 203.300003, z: 85.6100006}
+  m_Center: {x: .100000001, y: 102.800003, z: -7.0999999}
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
@@ -1297,18 +1294,16 @@ Animation:
   m_GameObject: {fileID: 100092}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
+  m_Animation: {fileID: 7400000, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   m_Animations:
-  - {fileID: 7400000, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
-  - {fileID: 7400002, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
-  - {fileID: 7400004, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
+  - {fileID: 7400000, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 1
   m_UserAABB:
-    m_Center: {x: 8.70605469, y: 144.488068, z: 20.6918259}
-    m_Extent: {x: 121.661728, y: 155.17038, z: 105.360367}
+    m_Center: {x: 8.70605469, y: 144.40036, z: 20.6912994}
+    m_Extent: {x: 121.661728, y: 155.082672, z: 105.359863}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1317,12 +1312,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4c71c38c9cb3d54a9d66e08a2336c83, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dafbeab36da2b64085ab722c602db63, type: 3}
   m_Name: 
-  timer: 0
-  stopForceTime: 0
-  facingRight_yDegrees: 0
-  facingLeft_yDegrees: 0
+  matter_matty: {fileID: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1335,8 +1327,8 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 522ea327c4141894b8b604c860a4d1a4, type: 2}
-  - {fileID: 2100000, guid: f52473b7e02751148ba76ca222d6aba5, type: 2}
+  - {fileID: 2100000, guid: cc718c5d4d3ab2e4794f22476adee6c0, type: 2}
+  - {fileID: 2100000, guid: 39d604ec981ed144f9dc4d80b8478cf0, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1345,7 +1337,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   m_Bones:
   - {fileID: 400008}
   - {fileID: 400056}
@@ -1360,8 +1352,8 @@ SkinnedMeshRenderer:
   - {fileID: 400064}
   m_RootBone: {fileID: 400064}
   m_AABB:
-    m_Center: {x: -.198505402, y: 83.3228683, z: -26.1579361}
-    m_Extent: {x: 42.8860092, y: 51.8018875, z: 71.5467148}
+    m_Center: {x: -.198505402, y: 86.0612335, z: -24.1794224}
+    m_Extent: {x: 42.886013, y: 49.0635185, z: 69.839653}
   m_DirtyAABB: 0
 --- !u!137 &13700002
 SkinnedMeshRenderer:
@@ -1375,7 +1367,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 88809776f14eb564cb031b0e50420a98, type: 2}
+  - {fileID: 2100000, guid: 83fc7c53bdf26044f9f7bd5475e78504, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1384,7 +1376,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300002, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   m_Bones:
   - {fileID: 400056}
   - {fileID: 400054}
@@ -1398,8 +1390,8 @@ SkinnedMeshRenderer:
   - {fileID: 400064}
   m_RootBone: {fileID: 400064}
   m_AABB:
-    m_Center: {x: 3.89734173, y: 89.065155, z: -5.45788383}
-    m_Extent: {x: 33.6309357, y: 23.3687019, z: 48.3606339}
+    m_Center: {x: 2.42835236, y: 88.9893188, z: 1.39680099}
+    m_Extent: {x: 35.1530685, y: 23.4445457, z: 41.7172089}
   m_DirtyAABB: 0
 --- !u!137 &13700004
 SkinnedMeshRenderer:
@@ -1413,7 +1405,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 522ea327c4141894b8b604c860a4d1a4, type: 2}
+  - {fileID: 2100000, guid: cc718c5d4d3ab2e4794f22476adee6c0, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1422,7 +1414,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300004, guid: ba81032b04bab6348a82e5a8f1c22aad, type: 3}
+  m_Mesh: {fileID: 4300004, guid: 4b8a21b4dd654df46b092e36f1d538cc, type: 3}
   m_Bones:
   - {fileID: 400066}
   - {fileID: 400068}
@@ -1462,8 +1454,8 @@ SkinnedMeshRenderer:
   - {fileID: 400090}
   m_RootBone: {fileID: 400090}
   m_AABB:
-    m_Center: {x: -1.65364075, y: 33.148674, z: 20.0398293}
-    m_Extent: {x: 111.298981, y: 95.9036789, z: 105.360367}
+    m_Center: {x: -1.65363693, y: 33.148674, z: 20.0393105}
+    m_Extent: {x: 111.298981, y: 95.9036789, z: 105.359863}
   m_DirtyAABB: 0
 --- !u!1001 &100100000
 Prefab:

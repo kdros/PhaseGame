@@ -1,21 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-/*
- * Base class for each state of matter. Use for collision resolution.
- * Each function will return true if the collision causes death, otherwise return false. 
- */
-public class MatterScript : MonoBehaviour 
+public class MattyLiquidScript : MatterScript 
 {
-	public virtual bool CheckpointCollisionResolution()
-	{
-		return false;
-	}
 	
 	public virtual bool FallingBouldersCollisionResolution()
 	{
-		// DEATH
-		return true;
+		// NO EFFECT
+		return false;
 	}
 	
 	public virtual bool FlamePillarCollisionResolution()
@@ -27,19 +19,22 @@ public class MatterScript : MonoBehaviour
 	public virtual bool GrateCollisionResolution()
 	{
 		// NO EFFECT
+		// TODO: Need to fall through
 		return false;
 	}
 	
 	public virtual bool IceCeilingCollisionResolution()
 	{
 		// DEATH
+		// TODO: Consider using a freezing death animation
 		return true;
 	}
 	
 	public virtual bool IcyFloorCollisionResolution()
 	{
-		// NO EFFECT
-		return false;
+		// DEATH
+		// TODO: Consider using a freezing death animation
+		return true;
 	}
 	
 	public virtual bool LavaCollisionResolution()
@@ -56,14 +51,14 @@ public class MatterScript : MonoBehaviour
 	
 	public virtual bool SpikeCollisionResolution()
 	{
-		// DEATH
-		return true;
+		// NO EFFECT
+		return false;
 	}
 	
 	public virtual bool SwingingMaceCollisionResolution()
 	{
-		// DEATH
-		return true;
+		// NO EFFECT
+		return false;
 	}
 	
 	public virtual bool WindTunnelCollisionResolution()

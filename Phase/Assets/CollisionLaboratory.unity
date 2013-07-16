@@ -125,8 +125,8 @@ GameObject:
   - 4: {fileID: 576893068}
   - 143: {fileID: 576893067}
   - 33: {fileID: 576893066}
-  - 114: {fileID: 576893065}
   - 114: {fileID: 576893064}
+  - 114: {fileID: 576893069}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -153,31 +153,6 @@ MonoBehaviour:
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
   solidMatty: {fileID: 100000, guid: 1cb1d82ec7182c54e9af34c53c0c7dc9, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
---- !u!114 &576893065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 267e007e3bdf0e640a17d6f04b63cc89,
-    type: 2}
-  m_PrefabInternal: {fileID: 1682390753}
-  m_GameObject: {fileID: 576893063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c384fdd58382bde40b710740679b3ad5, type: 3}
-  m_Name: 
-  canControl: 1
-  spawnPoint: {fileID: 1580913793}
-  movement:
-    walkSpeed: 10
-    runSpeed: 10
-    inAirControlAcceleration: 1
-    gravity: 60
-    maxFallSpeed: 20
-    speedSmoothing: 5
-    rotationSmoothing: 10
-  jump:
-    enabled: 1
-    height: 1
-    extraHeight: 4.0999999
 --- !u!33 &576893066
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -212,6 +187,29 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &576893069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 576893063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a79176bbb2cfb148ae09b9fb89a1677, type: 3}
+  m_Name: 
+  spawnPoint: {fileID: 1152087417}
+  movement:
+    walkSpeed: 10
+    runSpeed: 10
+    inAirControlAcceleration: 1
+    gravity: 60
+    maxFallSpeed: 20
+    speedSmoothing: 5
+    rotationSmoothing: 10
+  jump:
+    enabled: 1
+    height: 1
+    extraHeight: 4.0999999
 --- !u!1 &620326864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,11 +3058,21 @@ Prefab:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1580913793}
-    - target: {fileID: 11400000, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
+    - target: {fileID: 0}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1580913793}
-    m_RemovedComponents: []
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1152087417}
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 11400000, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
   m_RootGameObject: {fileID: 576893063}
   m_IsPrefabParent: 0

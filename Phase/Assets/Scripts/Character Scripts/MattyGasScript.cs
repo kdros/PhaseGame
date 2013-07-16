@@ -13,25 +13,25 @@ public class MattyGasScript : MatterScript
 	//	
 	//}
 	
-	public virtual bool FallingBouldersCollisionResolution()
+	public override bool FallingBouldersCollisionResolution()
 	{
 		// No Effect
 		return false;
 	}
 	
-	public virtual bool FlamePillarCollisionResolution()
+	public override bool FlamePillarCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool GrateCollisionResolution()
+	public override bool GrateCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool IceCeilingCollisionResolution()
+	public override bool IceCeilingCollisionResolution()
 	{
 		// DEATH
 		// TODO: Condensation
@@ -40,7 +40,7 @@ public class MattyGasScript : MatterScript
 		return false;
 	}
 	
-	public virtual bool IcyFloorCollisionResolution()
+	public override bool IcyFloorCollisionResolution()
 	{
 		// NO EFFECT
 		// TODO: Condensation
@@ -49,31 +49,31 @@ public class MattyGasScript : MatterScript
 		return false;
 	}
 	
-	public virtual bool LavaCollisionResolution()
+	public override bool LavaCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool PitfallCollisionResolution()
+	public override bool PitfallCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool SpikeCollisionResolution()
+	public override bool SpikeCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool SwingingMaceCollisionResolution()
+	public override bool SwingingMaceCollisionResolution()
 	{
 		// No EFFECT
 		return false;
 	}
 	
-	public virtual bool WindTunnelCollisionResolution()
+	public override bool WindTunnelCollisionResolution()
 	{
 		// NO EFFECT
 		// TODO: Gas will need to float in the direction

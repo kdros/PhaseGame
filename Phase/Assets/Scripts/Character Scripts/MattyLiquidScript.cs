@@ -4,64 +4,64 @@ using System.Collections;
 public class MattyLiquidScript : MatterScript 
 {
 	
-	public virtual bool FallingBouldersCollisionResolution()
+	public override bool FallingBouldersCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool FlamePillarCollisionResolution()
+	public override bool FlamePillarCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool GrateCollisionResolution()
+	public override bool GrateCollisionResolution()
 	{
 		// NO EFFECT
 		// TODO: Need to fall through
 		return false;
 	}
 	
-	public virtual bool IceCeilingCollisionResolution()
+	public override bool IceCeilingCollisionResolution()
 	{
 		// DEATH
 		// TODO: Consider using a freezing death animation
 		return true;
 	}
 	
-	public virtual bool IcyFloorCollisionResolution()
+	public override bool IcyFloorCollisionResolution()
 	{
 		// DEATH
 		// TODO: Consider using a freezing death animation
 		return true;
 	}
 	
-	public virtual bool LavaCollisionResolution()
+	public override bool LavaCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool PitfallCollisionResolution()
+	public override bool PitfallCollisionResolution()
 	{
 		// DEATH
 		return true;
 	}
 	
-	public virtual bool SpikeCollisionResolution()
+	public override bool SpikeCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool SwingingMaceCollisionResolution()
+	public override bool SwingingMaceCollisionResolution()
 	{
 		// NO EFFECT
 		return false;
 	}
 	
-	public virtual bool WindTunnelCollisionResolution()
+	public override bool WindTunnelCollisionResolution()
 	{
 		// NO EFFECT
 		return false;

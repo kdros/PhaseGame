@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class MattySolidScript : MatterScript {
-	
+public class MattySolidScript : MatterScript 
+{
 	public MatterScript matter_solid;
 	
 	void Start()
@@ -28,6 +28,12 @@ public class MattySolidScript : MatterScript {
 	{
 		// No effect
 		return false;
+	}
+	
+	public override bool LavaCollisionResolution()
+	{
+		// DEATH
+		return true;
 	}
 	
 	public void Die ()

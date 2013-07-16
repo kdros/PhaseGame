@@ -319,11 +319,35 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag ("DarkCaveEnter"))
+		
+		// Handle the below with OnTriggerEnter
+//		else if (collider.CompareTag ("DarkCaveEnter"))
+//		{
+//			Debug.Log("Player is entering dark cave");
+//			RenderSettings.ambientLight = Color.black;
+//		}
+//		else if (collider.CompareTag ("DarkCaveExit"))
+//		{
+//			Debug.Log("Player is exiting dark cave");
+//			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
+//				RenderSettings.ambientLight = originalAmbientColor;
+//		}
+	}
+	
+	void OnTriggerEnter (Collider collider)
+	{
+		if (collider.CompareTag ("DarkCaveEnter"))
+		{
+			Debug.Log("Player is entering dark cave trigger");
 			RenderSettings.ambientLight = Color.black;
+		}
 		else if (collider.CompareTag ("DarkCaveExit"))
+		{
+			Debug.Log("Player is exiting dark cave trigger");
 			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
 				RenderSettings.ambientLight = originalAmbientColor;
+		}
+			
 	}
 	
 	void Die() 

@@ -279,8 +279,10 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("IcyFloor"))
 		{
-			Debug.Log("Player hiit icy floor");
-			if(stateScript.IcyFloorCollisionResolution())
+			Debug.Log("Player hit icy floor");
+			if(m_currentState == (int)State.Solid)
+				gameObject.SendMessage("SpeedUp", 5.0f);
+			else if(stateScript.IcyFloorCollisionResolution())
 				Die();
 		}
 		else if (collider.CompareTag("Lava"))

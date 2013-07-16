@@ -55,25 +55,9 @@ public class MattySolidScript : MatterScript
 			gameObject.animation.Play("Idle", PlayMode.StopAll);
 	}
 	
-	// Functions that do not need to be overriden:
-	// FallingBoulders, FlamePillar, Grate, Lava, Pitfall
-	// Spike, SwingingMace, WindTunnel
-	
 	public override bool CheckpointCollisionResolution()
 	{
 		return false;
-	}
-	
-	public override bool IcyFloorCollisionResolution()
-	{
-		// No effect
-		return false;
-	}
-	
-	public override bool LavaCollisionResolution()
-	{
-		// DEATH
-		return true;
 	}
 	
 	public void Die ()

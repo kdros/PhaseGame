@@ -1887,8 +1887,8 @@ GameObject:
   - 4: {fileID: 192009990}
   - 143: {fileID: 192009989}
   - 33: {fileID: 192009988}
-  - 114: {fileID: 192009987}
   - 114: {fileID: 192009986}
+  - 114: {fileID: 192009987}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -1924,9 +1924,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 192009985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c384fdd58382bde40b710740679b3ad5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a79176bbb2cfb148ae09b9fb89a1677, type: 3}
   m_Name: 
-  canControl: 1
   spawnPoint: {fileID: 281972424}
   movement:
     walkSpeed: 10
@@ -2719,11 +2718,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: bb91502d9c6910c49910f45288e50f7a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -6.1766119
+      value: -6.21971893
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: bb91502d9c6910c49910f45288e50f7a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: .432773173
+      value: .29422766
       objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: bb91502d9c6910c49910f45288e50f7a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4145,7 +4144,7 @@ Transform:
   m_GameObject: {fileID: 520357432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.8810377, y: -6.83811569, z: .974896908}
-  m_LocalScale: {x: 9.32642174, y: 1, z: 4.01040125}
+  m_LocalScale: {x: 10.7184296, y: 1, z: 4.01040125}
   m_Children: []
   m_Father: {fileID: 39888022}
 --- !u!1 &551917087
@@ -9334,7 +9333,7 @@ Transform:
   m_PrefabInternal: {fileID: 400351832}
   m_GameObject: {fileID: 1696074247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.86096382, y: -6.1766119, z: .432773173}
+  m_LocalPosition: {x: -6.86096382, y: -6.21971893, z: .29422766}
   m_LocalScale: {x: 32.3370285, y: 32.3370285, z: 32.3370285}
   m_Children:
   - {fileID: 1799457159}

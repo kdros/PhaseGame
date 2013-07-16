@@ -380,5 +380,9 @@ public class PlatformerController : MonoBehaviour
 	void SetControllable ( bool controllable  ){
 		 canControl = controllable;
 	}
+	
+	void SpeedUp(float speed) {
+		movement.speed = movement.speed + speed;
+	}
 }
 

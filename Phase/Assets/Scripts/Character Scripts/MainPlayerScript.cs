@@ -59,7 +59,6 @@ public class MainPlayerScript : MonoBehaviour {
 	void Start () 
 	{
 		m_currentState = (int)State.Default;
-		//m_currentState = (int)State.Solid;
 		
 		// instantiate each state of matter
 		m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
@@ -77,7 +76,7 @@ public class MainPlayerScript : MonoBehaviour {
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 		
-		// Temp: Start out with soildMatty
+		// Temp: Start out with defaultMatty
 		//m_defaultMatty.SetActive(false);
 		m_solidMatty.SetActive(false);		
 		m_liquidMatty.SetActive(false);
@@ -95,7 +94,7 @@ public class MainPlayerScript : MonoBehaviour {
 			if (m_currentState != (int)State.Default)
 				stateChange = true;
 			
-			m_currentState = (int)State.Solid;
+			m_currentState = (int)State.Default;
 		}
 		else if (Input.GetButtonDown ("To Solid"))
 		{

@@ -42,7 +42,7 @@ public class Checkpoint : MonoBehaviour
 				saveGame ();
 				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,-90f);
 			}
-			Physics.IgnoreCollision (GetComponent<Collider>(), collObjCollider);
+//			Physics.IgnoreCollision (GetComponent<Collider>(), collObjCollider);
 		}
 	}
 	
@@ -55,10 +55,5 @@ public class Checkpoint : MonoBehaviour
 		sr.WriteLine ("{0}", gameObject.transform.position [1]);
 		sr.WriteLine ("{0}", gameObject.transform.position [2]);
 		sr.Close ();
-	}
-	
-	void makeGreenFlagVisible ()
-	{
-		;
 	}
 }

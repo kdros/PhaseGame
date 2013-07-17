@@ -279,7 +279,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 5.0f);
+				gameObject.SendMessage("SpeedUp", 3.0f);
 			else if(stateScript.IcyFloorCollisionResolution())
 				Die();
 		}

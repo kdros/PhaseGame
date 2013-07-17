@@ -73,8 +73,11 @@ public class CameraFollow : MonoBehaviour {
 		isPanning = true;
 		newPosition = newLookAtPosition;
 		normalizedError = (new Vector3 (newPosition.x, newPosition.y, 0) - camDist) - transform.position;
-		speed = normalizedError.magnitude / panTime;
-		normalizedError.Normalize ();
+		
+		// The below hack is to combine two vector length operations into one.
+		speed = normalizedError.magnitude;
+		normalizedError = normalizedError / speed;
+		speed /= panTime;
 //		Vector3 camDist = new Vector3(0,-height,distance);
 //		newPosition = newLookAtPosition - camDist;
 //		

@@ -8,6 +8,9 @@ public class Global_BegLev1 : MonoBehaviour {
 	public GameObject checkpoint_01;
 	public GameObject checkpoint_02;
 	public GameObject checkpoint_03;
+	public bool checkpoint_01_hit;
+	public bool checkpoint_02_hit;
+	public bool checkpoint_03_hit;
 	
 	void Start ()
 	{
@@ -16,6 +19,10 @@ public class Global_BegLev1 : MonoBehaviour {
 		
 		// Since there is a checkpoint at the beginning of each level, set to 1
 		hitCheckpoints = 0;
+		
+		checkpoint_01_hit = false;
+		checkpoint_02_hit = false;
+		checkpoint_03_hit = false;
 	}
 	
 	

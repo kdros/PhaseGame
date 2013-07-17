@@ -256,14 +256,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		
 		// testing
-		else if (collider.CompareTag("Checkpoint"))
-		{
-			Debug.Log("Player reached checkpoint!!!!!!");
-			
-			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-			g.hitCheckpoints = g.hitCheckpoints + 1;
-		}
+		
 		else if (collider.CompareTag("FallingBoulders"))
 		{
 			Debug.Log("Player got hit by falling boulders");
@@ -331,7 +324,7 @@ public class MainPlayerScript : MonoBehaviour {
 	}
 	
 	// Handle collision with game objects that are marked as triggers. Thees game objects will allow our player to pass through during collision.
-	void OnTriggerStay (Collider collider)
+	void OnTriggerEnter (Collider collider)
 	{
 		MatterScript stateScript = m_defaultMattyScript;
 		
@@ -363,7 +356,25 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("IcyFloor"))
+	}
+	
+	void OnTriggerStay (Collider collider)
+	{
+		MatterScript stateScript = m_defaultMattyScript;
+		
+		if(m_currentState == (int)State.Default)
+			stateScript = m_defaultMattyScript;
+		else if(m_currentState == (int)State.Solid)
+			stateScript = m_solidMattyScript;
+		else if(m_currentState == (int)State.Liquid)
+			stateScript = m_liquidMattyScript;
+		else if(m_currentState == (int)State.Gas)
+			stateScript = m_gasMattyScript;
+		else if(m_currentState == (int)State.Plasma)
+			stateScript = m_plasmaMattyScript;
+		
+
+		if (collider.CompareTag("IcyFloor"))
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
@@ -372,6 +383,38 @@ public class MainPlayerScript : MonoBehaviour {
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
 				Die();
+		}
+		else if (collider.CompareTag("Checkpoint"))
+		{
+			Debug.Log("Player reached checkpoint!!!!!!");
+			
+			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+			// Check to see if collider 
+			if (collider.gameObject.name == "Checkpoint_01")
+			{
+				if (g.checkpoint_01_hit == false)
+				{
+					g.checkpoint_01_hit = true;
+					g.hitCheckpoints = g.hitCheckpoints + 1;
+				}
+			}
+			if (collider.gameObject.name == "Checkpoint_02")
+			{
+				if (g.checkpoint_02_hit == false)
+				{
+					g.checkpoint_02_hit = true;
+					g.hitCheckpoints = g.hitCheckpoints + 1;
+				}
+			}
+			if (collider.gameObject.name == "Checkpoint_03")
+			{
+				if (g.checkpoint_03_hit == false)
+				{
+					g.checkpoint_03_hit = true;
+					g.hitCheckpoints = g.hitCheckpoints + 1;
+				}
+			}
 		}
 			
 	}

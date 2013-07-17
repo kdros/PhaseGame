@@ -10,7 +10,6 @@ public class MattyPlasmaScript : MatterScript
 	ClothRenderer clothRenderer;
 //	CharacterController charControl;
 	Color originalColour, origAmbient;
-	
 //	Vector3 center, r;
 	bool grounded, isOnLava;
 	float curTime;
@@ -102,13 +101,7 @@ public class MattyPlasmaScript : MatterScript
 		// NO EFFECT
 		return false;
 	}
-	
-	public override bool GrateCollisionResolution()
-	{
-		// NO EFFECT
-		return false;
-	}
-	
+		
 	public override bool IcyFloorCollisionResolution()
 	{
 		// NO EFFECT

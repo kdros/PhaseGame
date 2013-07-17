@@ -2,16 +2,20 @@ using UnityEngine;
 using System.Collections;
 
 public class MattyGasScript : MatterScript 
-{
+{	
+	public GameObject rain; // used for condenstation effects
+	private GameObject rainParticles;
 	
-	//public GameObject waterDroplets; // used for condenstation effects
 	
-	// Will instantiate waterDroplets.
-	// Called by IceCeilingCollisionResolution()
-	//void Condenstation()
-	//{
-	//	
-	//}
+	public void Condenstation()
+	{
+		rainParticles = Instantiate (rain, transform.position, Quaternion.identity) as GameObject;
+	}
+	
+	public void StopCondensation()
+	{
+		Destroy (rainParticles);
+	}
 	
 	public override bool FallingBouldersCollisionResolution()
 	{
@@ -25,18 +29,13 @@ public class MattyGasScript : MatterScript
 		return true;
 	}
 	
-	public override bool GrateCollisionResolution()
-	{
-		// NO EFFECT
-		return false;
-	}
-	
 	public override bool IceCeilingCollisionResolution()
 	{
 		// DEATH
 		// TODO: Condensation
 		
 		Debug.Log("Gas-IcyFloor: Need to do condenstation effect");
+		Condenstation ();
 		return false;
 	}
 	
@@ -46,6 +45,7 @@ public class MattyGasScript : MatterScript
 		// TODO: Condensation
 		
 		Debug.Log("Gas-IcyFloor: Need to do condenstation effect");
+		Condenstation ();
 		return false;
 	}
 	

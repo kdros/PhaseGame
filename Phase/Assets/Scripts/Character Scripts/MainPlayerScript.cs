@@ -52,8 +52,8 @@ public class MainPlayerScript : MonoBehaviour {
 	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
 	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
 	
-	private int m_currentState;							// keep track of the current state
-	
+	private int m_currentState;							// keep track of the current state	
+	private bool collidedWithGrates;					// set to true if liquid state collided with grates
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
@@ -92,8 +92,12 @@ public class MainPlayerScript : MonoBehaviour {
 		m_plasmaMatty.SetActive(false);	
 		
 		originalAmbientColor = RenderSettings.ambientLight;
+<<<<<<< HEAD
 		playerDead = false;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
+=======
+		collidedWithGrates = false;
+>>>>>>> 510b4adfa37df8a95ceed8e4315abdb5131f38d4
 	}
 	
 	// Update is called once per frame
@@ -153,6 +157,22 @@ public class MainPlayerScript : MonoBehaviour {
 				playerDead = false;
 			}		
 		}
+<<<<<<< HEAD
+=======
+
+		if (stateChange)
+			enableState (m_currentState);
+		
+		setStatePosition (m_currentState);
+		
+		if (collidedWithGrates && m_currentState != (int)State.Liquid)
+		{
+			Debug.Log ("Collision with grates restored");
+			Physics.IgnoreCollision(gameObject.collider, GameObject.FindGameObjectWithTag("Grate").collider, false);
+			collidedWithGrates = false;	
+		}
+		
+>>>>>>> 510b4adfa37df8a95ceed8e4315abdb5131f38d4
 	}
 	
 	
@@ -220,7 +240,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(true);
-			Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
+			//Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 		}
 		else
 		{
@@ -233,6 +253,7 @@ public class MainPlayerScript : MonoBehaviour {
 	// with a rigidbody component
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
+		
 		Collider collider = hit.collider;
 		Debug.Log("called OnControllerColliderHit");
 		
@@ -262,11 +283,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		
 		// testing
-		else if (collider.CompareTag("Checkpoint"))
-		{
-			Debug.Log("Player reached checkpoint");
-			//TODO - Not sure what should be returned since no death
-		}
+		
 		else if (collider.CompareTag("FallingBoulders"))
 		{
 			Debug.Log("Player got hit by falling boulders");
@@ -282,21 +299,17 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Grate"))
 		{
 			Debug.Log("Player reached grate");
-			if(stateScript.GrateCollisionResolution())
+			
+			if(m_currentState == (int)State.Liquid)
+				collidedWithGrates = true;
+			
+			if(stateScript.GrateCollisionResolution(gameObject.collider, collider))
 				Die();
 		}
 		else if (collider.CompareTag("IceCeiling"))
 		{
 			Debug.Log("Player got hit by ice ceiling");
 			if(stateScript.IceCeilingCollisionResolution())
-				Die();
-		}
-		else if (collider.CompareTag("IcyFloor"))
-		{
-			Debug.Log("Player hit icy floor");
-			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 5.0f);
-			else if(stateScript.IcyFloorCollisionResolution())
 				Die();
 		}
 		else if (collider.CompareTag("Lava"))
@@ -334,22 +347,10 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit icicle");
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
-		}
-		
-		// Handle the below with OnTriggerEnter
-//		else if (collider.CompareTag ("DarkCaveEnter"))
-//		{
-//			Debug.Log("Player is entering dark cave");
-//			RenderSettings.ambientLight = Color.black;
-//		}
-//		else if (collider.CompareTag ("DarkCaveExit"))
-//		{
-//			Debug.Log("Player is exiting dark cave");
-//			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
-//				RenderSettings.ambientLight = originalAmbientColor;
-//		}
+		}		
 	}
 	
+	// Handle collision with game objects that are marked as triggers. Thees game objects will allow our player to pass through during collision.
 	void OnTriggerEnter (Collider collider)
 	{
 		MatterScript stateScript = m_defaultMattyScript;
@@ -376,49 +377,95 @@ public class MainPlayerScript : MonoBehaviour {
 			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
 				RenderSettings.ambientLight = originalAmbientColor;
 		}
-		
-		if (collider.CompareTag ("Lava"))
+		else if (collider.CompareTag ("Lava"))
 		{
 			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
 				Die();
+		}
+	}
+	
+	void OnTriggerStay (Collider collider)
+	{
+		MatterScript stateScript = m_defaultMattyScript;
+		
+		if(m_currentState == (int)State.Default)
+			stateScript = m_defaultMattyScript;
+		else if(m_currentState == (int)State.Solid)
+			stateScript = m_solidMattyScript;
+		else if(m_currentState == (int)State.Liquid)
+			stateScript = m_liquidMattyScript;
+		else if(m_currentState == (int)State.Gas)
+			stateScript = m_gasMattyScript;
+		else if(m_currentState == (int)State.Plasma)
+			stateScript = m_plasmaMattyScript;
+		
+
+		if (collider.CompareTag("IcyFloor"))
+		{
+			Debug.Log("Player hit icy floor");
+			if(m_currentState == (int)State.Solid)
+				gameObject.SendMessage("SpeedUp", 16.0f);
+			else if(m_currentState == (int)State.Gas)
+				m_gasMattyScript.Condenstation();
+			else if(stateScript.IcyFloorCollisionResolution())
+				Die();
+		}
+		else if (collider.CompareTag("Checkpoint"))
+		{
+			Debug.Log("Player reached checkpoint!!!!!!");
+			
+			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+			// Check to see if collider 
+			if (collider.gameObject.name == "Checkpoint_01")
+			{
+				if (g.checkpoint_01_hit == false)
+				{
+					g.checkpoint_01_hit = true;
+					g.hitCheckpoints = g.hitCheckpoints + 1;
+				}
+			}
+			if (collider.gameObject.name == "Checkpoint_02")
+			{
+				if (g.checkpoint_02_hit == false)
+				{
+					g.checkpoint_02_hit = true;
+					g.hitCheckpoints = g.hitCheckpoints + 1;
+				}
+			}
+			if (collider.gameObject.name == "Checkpoint_03")
+			{
+				if (g.checkpoint_03_hit == false)
+				{
+					g.checkpoint_03_hit = true;
+					g.hitCheckpoints = g.hitCheckpoints + 1;
+				}
+			}
 		}
 			
 	}
 	
 	void OnTriggerExit (Collider collider)
 	{
-//		MatterScript stateScript = m_defaultMattyScript;
-//		
-//		if(m_currentState == (int)State.Default)
-//			stateScript = m_defaultMattyScript;
-//		else if(m_currentState == (int)State.Solid)
-//			stateScript = m_solidMattyScript;
-//		else if(m_currentState == (int)State.Liquid)
-//			stateScript = m_liquidMattyScript;
-//		else if(m_currentState == (int)State.Gas)
-//			stateScript = m_gasMattyScript;
-//		else if(m_currentState == (int)State.Plasma)
-		if (collider.CompareTag ("Lava"))
+		if (collider.CompareTag ("Lava") && m_currentState == (int)State.Plasma)
 		{
-//			stateScript = m_plasmaMattyScript;
 			m_plasmaMattyScript.NotOnLava ();
 		}
+		
+		if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
+		{
+			m_gasMattyScript.StopCondensation ();
+		}
+		
 	}
 	
 	void Die() 
 	{
 		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion, 2);
-
-		// Temporarily disabled to make testing easier
-//		Destroy (m_defaultMatty);
-//		Destroy (m_solidMatty);
-//		Destroy (m_liquidMatty);
-//		Destroy (m_gasMatty);
-//		Destroy (m_plasmaMatty);
-//		Destroy (gameObject);
 		
+<<<<<<< HEAD
 		playerDead = true;
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 			(new Vector2 (spawnPoint.position.x, spawnPoint.position.y));
@@ -428,8 +475,36 @@ public class MainPlayerScript : MonoBehaviour {
 //			transform.position = spawnPoint.position;
 ////			CameraInPosition = false;
 //		}
-		
+=======
 		// TODO: Respawn
+		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+		
+		Vector3 restorePos = new Vector3(0.0f, 0.0f, 0.0f);
+		if (g.hitCheckpoints == 0)
+			restorePos = g.checkpoint_01.transform.position;
+		if (g.hitCheckpoints == 1)
+			restorePos = g.checkpoint_01.transform.position;
+		else if (g.hitCheckpoints == 2)
+			restorePos = g.checkpoint_02.transform.position;
+		else if(g.hitCheckpoints == 3)
+			restorePos = g.checkpoint_03.transform.position;
+		transform.position = restorePos;
+		
+		// Temp: Just put player back at the spawn point
+		//transform.position = spawnPoint.position;
+		
+		// Temporarily disabled to make testing easier
+		//Destroy (m_defaultMatty);
+		//Destroy (m_solidMatty);
+		//Destroy (m_liquidMatty);
+		//Destroy (m_gasMatty);
+		//Destroy (m_plasmaMatty);
+		//Destroy (gameObject);
+		
+		
+>>>>>>> 510b4adfa37df8a95ceed8e4315abdb5131f38d4
+		
 	}
 	
 //	public void CameraInPosition ()

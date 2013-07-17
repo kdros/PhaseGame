@@ -216,8 +216,8 @@ GameObject:
   - 4: {fileID: 551173478}
   - 143: {fileID: 551173479}
   - 33: {fileID: 551173481}
-  - 114: {fileID: 551173482}
   - 114: {fileID: 551173483}
+  - 114: {fileID: 551173482}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -268,9 +268,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 551173477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c384fdd58382bde40b710740679b3ad5, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a79176bbb2cfb148ae09b9fb89a1677, type: 3}
   m_Name: 
-  canControl: 1
   spawnPoint: {fileID: 1870618094}
   movement:
     walkSpeed: 10
@@ -295,13 +294,13 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 25b84f4713ff71146a447a597653ebbd, type: 3}
   m_Name: 
-  spawnPoint: {fileID: 0}
+  spawnPoint: {fileID: 1870618094}
   phaseEffect: {fileID: 100000, guid: 9c78e1388504e5e4f87c50be74f7cd72, type: 2}
   deathExplosion: {fileID: 100000, guid: ca1ec2112f5658a47a656db4a9dfc97b, type: 2}
   plasmaMatty: {fileID: 100000, guid: 25eccb617f10a9842a8dbbff09a92bf2, type: 2}
   gasMatty: {fileID: 100000, guid: 8f81b01eb2ca4974aa78a5aef7eda13b, type: 2}
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
-  solidMatty: {fileID: 100000, guid: 1cb1d82ec7182c54e9af34c53c0c7dc9, type: 2}
+  solidMatty: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
 --- !u!1 &700095787
 GameObject:
@@ -723,6 +722,14 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1870618094}
+    - target: {fileID: 11400002, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
+      propertyPath: solidMatty
+      value: 
+      objectReference: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
+    - target: {fileID: 11400002, guid: 267e007e3bdf0e640a17d6f04b63cc89, type: 2}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1870618094}

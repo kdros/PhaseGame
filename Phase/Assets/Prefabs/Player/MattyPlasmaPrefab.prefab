@@ -156,7 +156,7 @@ InteractiveCloth:
   m_StretchingStiffness: .150000006
   m_Damping: .319999993
   m_Thickness: .25
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_SelfCollision: 0
   m_ExternalAcceleration: {x: 0, y: 0, z: 0}
   m_RandomAcceleration: {x: 0, y: 0, z: 0}
@@ -203,7 +203,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1

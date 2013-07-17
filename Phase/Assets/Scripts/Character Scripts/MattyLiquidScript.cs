@@ -16,10 +16,10 @@ public class MattyLiquidScript : MatterScript
 		return true;
 	}
 	
-	public override bool GrateCollisionResolution()
+	public override bool GrateCollisionResolution(Collider playerCollider, Collider grateCollider)
 	{
-		// NO EFFECT
-		// TODO: Need to fall through
+		//Need to fall through
+		Physics.IgnoreCollision(playerCollider, grateCollider);
 		return false;
 	}
 	

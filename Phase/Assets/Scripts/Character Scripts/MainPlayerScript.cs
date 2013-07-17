@@ -92,12 +92,9 @@ public class MainPlayerScript : MonoBehaviour {
 		m_plasmaMatty.SetActive(false);	
 		
 		originalAmbientColor = RenderSettings.ambientLight;
-<<<<<<< HEAD
 		playerDead = false;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
-=======
 		collidedWithGrates = false;
->>>>>>> 510b4adfa37df8a95ceed8e4315abdb5131f38d4
 	}
 	
 	// Update is called once per frame
@@ -147,6 +144,13 @@ public class MainPlayerScript : MonoBehaviour {
 				enableState (m_currentState);
 			
 			setStatePosition (m_currentState);
+			
+			if (collidedWithGrates && m_currentState != (int)State.Liquid)
+			{
+				Debug.Log ("Collision with grates restored");
+				Physics.IgnoreCollision(gameObject.collider, GameObject.FindGameObjectWithTag("Grate").collider, false);
+				collidedWithGrates = false;	
+			}
 		}
 		else
 		{
@@ -157,22 +161,11 @@ public class MainPlayerScript : MonoBehaviour {
 				playerDead = false;
 			}		
 		}
-<<<<<<< HEAD
-=======
-
-		if (stateChange)
-			enableState (m_currentState);
-		
-		setStatePosition (m_currentState);
-		
-		if (collidedWithGrates && m_currentState != (int)State.Liquid)
-		{
-			Debug.Log ("Collision with grates restored");
-			Physics.IgnoreCollision(gameObject.collider, GameObject.FindGameObjectWithTag("Grate").collider, false);
-			collidedWithGrates = false;	
-		}
-		
->>>>>>> 510b4adfa37df8a95ceed8e4315abdb5131f38d4
+// TODO: Resolve conflict.
+//		if (stateChange)
+//			enableState (m_currentState);
+//		
+//		setStatePosition (m_currentState);	
 	}
 	
 	
@@ -465,7 +458,6 @@ public class MainPlayerScript : MonoBehaviour {
 		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion, 2);
 		
-<<<<<<< HEAD
 		playerDead = true;
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 			(new Vector2 (spawnPoint.position.x, spawnPoint.position.y));
@@ -475,7 +467,6 @@ public class MainPlayerScript : MonoBehaviour {
 //			transform.position = spawnPoint.position;
 ////			CameraInPosition = false;
 //		}
-=======
 		// TODO: Respawn
 		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
 		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
@@ -501,9 +492,6 @@ public class MainPlayerScript : MonoBehaviour {
 		//Destroy (m_gasMatty);
 		//Destroy (m_plasmaMatty);
 		//Destroy (gameObject);
-		
-		
->>>>>>> 510b4adfa37df8a95ceed8e4315abdb5131f38d4
 		
 	}
 	

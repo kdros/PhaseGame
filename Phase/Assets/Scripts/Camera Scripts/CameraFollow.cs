@@ -23,7 +23,8 @@ public class CameraFollow : MonoBehaviour {
 		if (distance == 0.0f)
 			distance = 10.0f;
 		
-		panTime = 3f;
+		if (panTime == 0f)
+			panTime = 3f;
 		speed = 0f;
 		isPanning = false;
 		newPosition = Vector2.zero;

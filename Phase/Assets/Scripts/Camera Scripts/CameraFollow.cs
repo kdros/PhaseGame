@@ -12,7 +12,9 @@ public class CameraFollow : MonoBehaviour {
 	public Transform target;	// the target that we want to follow
 	public float distance; 		// the distance in the x-y plane to the target
 	public float height;		// the height we want the camera to be above the target
+	public float panTime;
 	
+	float speed;
 	bool isPanning;
 	Vector2 newPosition;
 	Vector3 normalizedError;
@@ -21,6 +23,8 @@ public class CameraFollow : MonoBehaviour {
 		if (distance == 0.0f)
 			distance = 10.0f;
 		
+		panTime = 3f;
+		speed = 0f;
 		isPanning = false;
 		newPosition = Vector2.zero;
 		normalizedError = Vector3.one;
@@ -49,7 +53,7 @@ public class CameraFollow : MonoBehaviour {
 				isPanning = false;
 			}
 			else
-				transform.position += (normalizedError*Time.deltaTime*4);
+				transform.position += (normalizedError*Time.deltaTime*speed);
 			
 			lookAtTarget = transform.position + camDist;
 //			Debug.Log ("Panning. Current Pos: " + transform.position.ToString());
@@ -68,6 +72,7 @@ public class CameraFollow : MonoBehaviour {
 		isPanning = true;
 		newPosition = newLookAtPosition;
 		normalizedError = (new Vector3 (newPosition.x, newPosition.y, 0) - camDist) - transform.position;
+		speed = normalizedError.magnitude / panTime;
 		normalizedError.Normalize ();
 //		Vector3 camDist = new Vector3(0,-height,distance);
 //		newPosition = newLookAtPosition - camDist;

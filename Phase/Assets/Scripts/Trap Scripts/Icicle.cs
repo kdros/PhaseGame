@@ -28,6 +28,7 @@ public class Icicle : MonoBehaviour
 		
 		childObj.parent = null;
 		childObj.rigidbody.useGravity = true;
+		childObj.rigidbody.isKinematic = false;
 		childObj.rigidbody.AddForce (Vector3.down * 100f);
 	}
 }

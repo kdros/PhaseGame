@@ -8,6 +8,7 @@ public class IcicleParticle : MonoBehaviour
 	void Start () 
 	{
 		curLife = 1.0f;
+		rigidbody.isKinematic = true;
 	}
 	
 	void Melt ()
@@ -31,7 +32,10 @@ public class IcicleParticle : MonoBehaviour
 	{
 		Collider collObjCollider = collObj.collider;
 		if (collObjCollider.CompareTag ("Ground") || collObjCollider.CompareTag ("Platform"))
+		{	
 			rigidbody.useGravity = false;
+			rigidbody.isKinematic = true;
+		}
 //		Debug.Log (collObjCollider.gameObject.name);
 //		Debug.Log (collObjCollider.gameObject.tag);
 	}

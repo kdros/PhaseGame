@@ -13,7 +13,6 @@ GameObject:
   - 23: {fileID: 2300000}
   - 143: {fileID: 14300000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: MattySolidProxyCubePrefab
   m_TagString: MattySolid
@@ -98,19 +97,6 @@ MonoBehaviour:
   rotateSpeed: 500
   trotAfterSeconds: 3
   canJump: 1
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d15fd1114c454f344837e2da5effc5bd, type: 3}
-  m_Name: 
-  deathFallingIntoPit: {fileID: 8300000, guid: 919286da91690434b87ecb9a4b4fdb64, type: 3}
-  speed: 0
-  direction: {x: 0, y: 0, z: 0}
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1

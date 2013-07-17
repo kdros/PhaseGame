@@ -52,7 +52,7 @@ public class MainPlayerScript : MonoBehaviour {
 	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
 	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
 	
-	private int m_currentState;							// keep track of the current state
+	private int m_currentState;							// keep track of the current state	
 	
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
@@ -204,7 +204,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(true);
-			Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
+			//Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 		}
 		else
 		{
@@ -275,14 +275,14 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("IcyFloor"))
-		{
-			Debug.Log("Player hit icy floor");
-			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 5.0f);
-			else if(stateScript.IcyFloorCollisionResolution())
-				Die();
-		}
+//		else if (collider.CompareTag("IcyFloor"))
+//		{
+//			Debug.Log("Player hit icy floor");
+//			if(m_currentState == (int)State.Solid)
+//				gameObject.SendMessage("SpeedUp", 5.0f);
+//			else if(stateScript.IcyFloorCollisionResolution())
+//				Die();
+//		}
 		else if (collider.CompareTag("Lava"))
 		{
 			Debug.Log("Player hit lava");
@@ -360,11 +360,20 @@ public class MainPlayerScript : MonoBehaviour {
 			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
 				RenderSettings.ambientLight = originalAmbientColor;
 		}
-		
-		if (collider.CompareTag ("Lava"))
+		else if (collider.CompareTag ("Lava"))
 		{
 			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
+				Die();
+		}
+		else if (collider.CompareTag("IcyFloor"))
+		{
+			Debug.Log("Player hit icy floor");
+			if(m_currentState == (int)State.Solid)
+				gameObject.SendMessage("SpeedUp", 15.0f);
+			else if(m_currentState == (int)State.Gas)
+				m_gasMattyScript.Condenstation();
+			else if(stateScript.IcyFloorCollisionResolution())
 				Die();
 		}
 			
@@ -372,22 +381,16 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	void OnTriggerExit (Collider collider)
 	{
-//		MatterScript stateScript = m_defaultMattyScript;
-//		
-//		if(m_currentState == (int)State.Default)
-//			stateScript = m_defaultMattyScript;
-//		else if(m_currentState == (int)State.Solid)
-//			stateScript = m_solidMattyScript;
-//		else if(m_currentState == (int)State.Liquid)
-//			stateScript = m_liquidMattyScript;
-//		else if(m_currentState == (int)State.Gas)
-//			stateScript = m_gasMattyScript;
-//		else if(m_currentState == (int)State.Plasma)
-		if (collider.CompareTag ("Lava"))
+		if (collider.CompareTag ("Lava") && m_currentState == (int)State.Plasma)
 		{
-//			stateScript = m_plasmaMattyScript;
 			m_plasmaMattyScript.NotOnLava ();
 		}
+		
+		if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
+		{
+			m_gasMattyScript.StopCondensation ();
+		}
+		
 	}
 	
 	void Die() 

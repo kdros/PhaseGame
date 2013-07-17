@@ -24,7 +24,9 @@ public class MatterScript : MonoBehaviour
 		return true;
 	}
 	
-	public virtual bool GrateCollisionResolution()
+	// The colliders will be used by MattyLiquidScript to make liquid fall through.
+	// The collision check is re-enabled in MainPlayerScript
+	public virtual bool GrateCollisionResolution(Collider playerCollider, Collider grateCollider)
 	{
 		// NO EFFECT
 		return false;

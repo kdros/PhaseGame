@@ -101,13 +101,7 @@ public class MattyPlasmaScript : MatterScript
 		// NO EFFECT
 		return false;
 	}
-	
-	public override bool GrateCollisionResolution()
-	{
-		// NO EFFECT
-		return false;
-	}
-	
+		
 	public override bool IcyFloorCollisionResolution()
 	{
 		// NO EFFECT

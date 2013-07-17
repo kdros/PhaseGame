@@ -29,12 +29,6 @@ public class MattyGasScript : MatterScript
 		return true;
 	}
 	
-	public override bool GrateCollisionResolution()
-	{
-		// NO EFFECT
-		return false;
-	}
-	
 	public override bool IceCeilingCollisionResolution()
 	{
 		// DEATH

@@ -53,7 +53,7 @@ public class MainPlayerScript : MonoBehaviour {
 	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
 	
 	private int m_currentState;							// keep track of the current state	
-	
+	private bool collidedWithGrates;					// set to true if liquid state collided with grates
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
@@ -90,6 +90,7 @@ public class MainPlayerScript : MonoBehaviour {
 		m_plasmaMatty.SetActive(false);	
 		
 		originalAmbientColor = RenderSettings.ambientLight;
+		collidedWithGrates = false;
 	}
 	
 	// Update is called once per frame
@@ -137,6 +138,14 @@ public class MainPlayerScript : MonoBehaviour {
 			enableState (m_currentState);
 		
 		setStatePosition (m_currentState);
+		
+		if (collidedWithGrates && m_currentState != (int)State.Liquid)
+		{
+			Debug.Log ("Collision with grates restored");
+			Physics.IgnoreCollision(gameObject.collider, GameObject.FindGameObjectWithTag("Grate").collider, false);
+			collidedWithGrates = false;	
+		}
+		
 	}
 	
 	
@@ -217,6 +226,7 @@ public class MainPlayerScript : MonoBehaviour {
 	// with a rigidbody component
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
+		
 		Collider collider = hit.collider;
 		Debug.Log("called OnControllerColliderHit");
 		
@@ -266,7 +276,11 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Grate"))
 		{
 			Debug.Log("Player reached grate");
-			if(stateScript.GrateCollisionResolution())
+			
+			if(m_currentState == (int)State.Liquid)
+				collidedWithGrates = true;
+			
+			if(stateScript.GrateCollisionResolution(gameObject.collider, collider))
 				Die();
 		}
 		else if (collider.CompareTag("IceCeiling"))
@@ -275,14 +289,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
 		}
-//		else if (collider.CompareTag("IcyFloor"))
-//		{
-//			Debug.Log("Player hit icy floor");
-//			if(m_currentState == (int)State.Solid)
-//				gameObject.SendMessage("SpeedUp", 5.0f);
-//			else if(stateScript.IcyFloorCollisionResolution())
-//				Die();
-//		}
 		else if (collider.CompareTag("Lava"))
 		{
 			Debug.Log("Player hit lava");
@@ -318,22 +324,10 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit icicle");
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
-		}
-		
-		// Handle the below with OnTriggerEnter
-//		else if (collider.CompareTag ("DarkCaveEnter"))
-//		{
-//			Debug.Log("Player is entering dark cave");
-//			RenderSettings.ambientLight = Color.black;
-//		}
-//		else if (collider.CompareTag ("DarkCaveExit"))
-//		{
-//			Debug.Log("Player is exiting dark cave");
-//			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
-//				RenderSettings.ambientLight = originalAmbientColor;
-//		}
+		}		
 	}
 	
+	// Handle collision with game objects that are marked as triggers. Thees game objects will allow our player to pass through during collision.
 	void OnTriggerEnter (Collider collider)
 	{
 		MatterScript stateScript = m_defaultMattyScript;

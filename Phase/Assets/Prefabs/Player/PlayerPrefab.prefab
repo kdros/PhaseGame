@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 143: {fileID: 14300000}
   - 33: {fileID: 3300000}
-  - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.0569448, y: 3.1173172, z: 0}
+  m_LocalPosition: {x: -15.0569448, y: 1.017519, z: .14978981}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,6 +38,24 @@ MeshFilter:
   m_GameObject: {fileID: 100000}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b84f4713ff71146a447a597653ebbd, type: 3}
+  m_Name: 
+  spawnPoint: {fileID: 0}
+  phaseEffect: {fileID: 100000, guid: 9c78e1388504e5e4f87c50be74f7cd72, type: 2}
+  deathExplosion: {fileID: 100000, guid: ca1ec2112f5658a47a656db4a9dfc97b, type: 2}
+  plasmaMatty: {fileID: 100000, guid: 25eccb617f10a9842a8dbbff09a92bf2, type: 2}
+  gasMatty: {fileID: 100000, guid: 8f81b01eb2ca4974aa78a5aef7eda13b, type: 2}
+  liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
+  solidMatty: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
+  defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
+--- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,24 +78,6 @@ MonoBehaviour:
     enabled: 1
     height: 1
     extraHeight: 4.0999999
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b84f4713ff71146a447a597653ebbd, type: 3}
-  m_Name: 
-  spawnPoint: {fileID: 0}
-  phaseEffect: {fileID: 100000, guid: 9c78e1388504e5e4f87c50be74f7cd72, type: 2}
-  deathExplosion: {fileID: 100000, guid: ca1ec2112f5658a47a656db4a9dfc97b, type: 2}
-  plasmaMatty: {fileID: 100000, guid: 25eccb617f10a9842a8dbbff09a92bf2, type: 2}
-  gasMatty: {fileID: 100000, guid: 8f81b01eb2ca4974aa78a5aef7eda13b, type: 2}
-  liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
-  solidMatty: {fileID: 100000, guid: 1cb1d82ec7182c54e9af34c53c0c7dc9, type: 2}
-  defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1

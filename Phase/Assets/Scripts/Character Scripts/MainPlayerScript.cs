@@ -258,8 +258,11 @@ public class MainPlayerScript : MonoBehaviour {
 		// testing
 		else if (collider.CompareTag("Checkpoint"))
 		{
-			Debug.Log("Player reached checkpoint");
-			//TODO - Not sure what should be returned since no death
+			Debug.Log("Player reached checkpoint!!!!!!");
+			
+			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+			g.hitCheckpoints = g.hitCheckpoints + 1;
 		}
 		else if (collider.CompareTag("FallingBoulders"))
 		{
@@ -328,7 +331,7 @@ public class MainPlayerScript : MonoBehaviour {
 	}
 	
 	// Handle collision with game objects that are marked as triggers. Thees game objects will allow our player to pass through during collision.
-	void OnTriggerEnter (Collider collider)
+	void OnTriggerStay (Collider collider)
 	{
 		MatterScript stateScript = m_defaultMattyScript;
 		
@@ -364,7 +367,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 15.0f);
+				gameObject.SendMessage("SpeedUp", 16.0f);
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
@@ -391,19 +394,34 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Destroy (explosion, 2);
-
-		// Temporarily disabled to make testing easier
-//		Destroy (m_defaultMatty);
-//		Destroy (m_solidMatty);
-//		Destroy (m_liquidMatty);
-//		Destroy (m_gasMatty);
-//		Destroy (m_plasmaMatty);
-//		Destroy (gameObject);
-		
-		
-		// Temp: Just put player back at the spawn point
-		transform.position = spawnPoint.position;
 		
 		// TODO: Respawn
+		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+		
+		Vector3 restorePos = new Vector3(0.0f, 0.0f, 0.0f);
+		if (g.hitCheckpoints == 0)
+			restorePos = g.checkpoint_01.transform.position;
+		if (g.hitCheckpoints == 1)
+			restorePos = g.checkpoint_01.transform.position;
+		else if (g.hitCheckpoints == 2)
+			restorePos = g.checkpoint_02.transform.position;
+		else if(g.hitCheckpoints == 3)
+			restorePos = g.checkpoint_03.transform.position;
+		transform.position = restorePos;
+		
+		// Temp: Just put player back at the spawn point
+		//transform.position = spawnPoint.position;
+		
+		// Temporarily disabled to make testing easier
+		//Destroy (m_defaultMatty);
+		//Destroy (m_solidMatty);
+		//Destroy (m_liquidMatty);
+		//Destroy (m_gasMatty);
+		//Destroy (m_plasmaMatty);
+		//Destroy (gameObject);
+		
+		
+		
 	}
 }

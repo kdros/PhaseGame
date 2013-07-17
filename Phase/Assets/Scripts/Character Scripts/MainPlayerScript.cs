@@ -57,6 +57,8 @@ public class MainPlayerScript : MonoBehaviour {
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
+	CameraFollow camera;
+	bool playerDead;
 	
 	// Use this for initialization
 	void Start () 
@@ -90,53 +92,67 @@ public class MainPlayerScript : MonoBehaviour {
 		m_plasmaMatty.SetActive(false);	
 		
 		originalAmbientColor = RenderSettings.ambientLight;
+		playerDead = false;
+		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		bool stateChange = false;
-		
-		if (Input.GetButtonDown ("To Default"))
+		if (!playerDead)
 		{
-			if (m_currentState != (int)State.Default)
-				stateChange = true;
+			bool stateChange = false;
 			
-			m_currentState = (int)State.Default;
+			if (Input.GetButtonDown ("To Default"))
+			{
+				if (m_currentState != (int)State.Default)
+					stateChange = true;
+				
+				m_currentState = (int)State.Default;
+			}
+			else if (Input.GetButtonDown ("To Solid"))
+			{
+				if (m_currentState != (int)State.Solid)
+					stateChange = true;
+				
+				m_currentState = (int)State.Solid;
+			}
+			else if(Input.GetButtonDown ("To Liquid"))
+			{
+				if (m_currentState != (int)State.Liquid)
+					stateChange = true;
+				
+				m_currentState = (int)State.Liquid;
+			}
+			else if(Input.GetButtonDown ("To Gas"))
+			{
+				if (m_currentState != (int)State.Gas)
+					stateChange = true;
+				
+				m_currentState = (int)State.Gas;
+			}
+			else if(Input.GetButtonDown ("To Plasma"))
+			{
+				if (m_currentState != (int)State.Plasma)
+					stateChange = true;
+				
+				m_currentState = (int)State.Plasma;
+			}
+	
+			if (stateChange)
+				enableState (m_currentState);
+			
+			setStatePosition (m_currentState);
 		}
-		else if (Input.GetButtonDown ("To Solid"))
+		else
 		{
-			if (m_currentState != (int)State.Solid)
-				stateChange = true;
-			
-			m_currentState = (int)State.Solid;
+			bool cameraInPosition = camera.isCameraInPosition ();
+			if (cameraInPosition)
+			{
+				transform.position = spawnPoint.position;
+				playerDead = false;
+			}		
 		}
-		else if(Input.GetButtonDown ("To Liquid"))
-		{
-			if (m_currentState != (int)State.Liquid)
-				stateChange = true;
-			
-			m_currentState = (int)State.Liquid;
-		}
-		else if(Input.GetButtonDown ("To Gas"))
-		{
-			if (m_currentState != (int)State.Gas)
-				stateChange = true;
-			
-			m_currentState = (int)State.Gas;
-		}
-		else if(Input.GetButtonDown ("To Plasma"))
-		{
-			if (m_currentState != (int)State.Plasma)
-				stateChange = true;
-			
-			m_currentState = (int)State.Plasma;
-		}
-
-		if (stateChange)
-			enableState (m_currentState);
-		
-		setStatePosition (m_currentState);
 	}
 	
 	
@@ -403,10 +419,21 @@ public class MainPlayerScript : MonoBehaviour {
 //		Destroy (m_plasmaMatty);
 //		Destroy (gameObject);
 		
-		
+		playerDead = true;
+		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
+			(new Vector2 (spawnPoint.position.x, spawnPoint.position.y));
 		// Temp: Just put player back at the spawn point
-		transform.position = spawnPoint.position;
+//		if (cameraInPosition)
+//		{
+//			transform.position = spawnPoint.position;
+////			CameraInPosition = false;
+//		}
 		
 		// TODO: Respawn
 	}
+	
+//	public void CameraInPosition ()
+//	{
+//		cameraInPosition = true;
+//	}
 }

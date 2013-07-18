@@ -14,7 +14,7 @@ public class IcicleFloorCollider : MonoBehaviour
 		string aName = gameObject.name;
 		if (collObj.CompareTag ("Player"))
 		{
-			Icicle.IcicleType type = new Icicle.IcicleType ();
+			IcicleBase.IcicleType type = new IcicleBase.IcicleType ();
 			if (aName == "IcicleFloorColliderCone")
 				type = Icicle.IcicleType.Cone;
 			else if (aName == "IcicleFloorColliderCube")
@@ -24,8 +24,8 @@ public class IcicleFloorCollider : MonoBehaviour
 			
 			if (gameObject.transform.parent != null)
 			{
-				gameObject.transform.parent.GetComponent<Icicle>().detachIcicle (type);
-				gameObject.transform.parent = null;
+				gameObject.transform.parent.GetComponent<IcicleBase>().detachIcicle (type);
+//				gameObject.transform.parent = null;
 			}
 		}
 //		Debug.Log ("Buzzz!: "+aName);

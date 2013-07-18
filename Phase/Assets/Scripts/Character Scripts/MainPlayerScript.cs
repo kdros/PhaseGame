@@ -60,6 +60,7 @@ public class MainPlayerScript : MonoBehaviour {
 	CameraFollow camera;
 	Vector3 spawnPosition;
 	bool playerDead;
+	System.Collections.Generic.List<IcicleBase> iciclesList;
 	
 	// Use this for initialization
 	void Start () 
@@ -95,6 +96,10 @@ public class MainPlayerScript : MonoBehaviour {
 		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
+		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
+		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
+		foreach (GameObject icicle in icicleBaseArray)
+			iciclesList.Add (icicle.GetComponent<IcicleBase>());
 		collidedWithGrates = false;
 		spawnPosition = spawnPoint.position;
 	}
@@ -169,8 +174,11 @@ public class MainPlayerScript : MonoBehaviour {
 //				if (System.IO.File.Exists ("Save/currentSave"))
 //					transform.position = spawnPosition;
 //				else
-					transform.position = spawnPosition;//spawnPoint.position;
+				transform.position = spawnPosition;//spawnPoint.position;
 				playerDead = false;
+				
+				foreach (IcicleBase icicle in iciclesList)
+					icicle.Reset ();
 			}		
 		}
 // TODO: Resolve conflict.

@@ -1,16 +1,27 @@
 using UnityEngine;
 using System.Collections;
 
-public class IcicleTwo : MonoBehaviour 
+public class IcicleTwo : IcicleBase 
 {
-	public enum IcicleType { Cone, Cube, Cylinder}
+//	public enum IcicleType { Cone, Cube, Cylinder}
+	
+//	Vector3[] particles;
 	// Use this for initialization
 	void Start () 
 	{
-	
+		particles = new Vector3 [3];
+		foreach (Transform child in transform)
+		{
+			if (child.name.Equals ("IcicleCone"))
+				particles [0] = child.transform.localPosition;
+			else if (child.name.Equals ("IcicleCube"))
+				particles [1] = child.transform.localPosition;
+			else if (child.name.Equals ("IcicleCylinder"))
+				particles [2] = child.transform.localPosition;
+		}
 	}
 	
-	public void detachIcicle (IcicleType iceType)
+	public override void detachIcicle (IcicleType iceType)
 	{
 		Transform childObj = gameObject.transform;
 		switch (iceType)
@@ -26,9 +37,22 @@ public class IcicleTwo : MonoBehaviour
 			break;
 		}
 		
-		childObj.parent = null;
+//		childObj.parent = null;
 		childObj.rigidbody.useGravity = true;
 		childObj.rigidbody.isKinematic = false;
 		childObj.rigidbody.AddForce (Vector3.down * 100f);
+	}
+	
+	public override void Reset ()
+	{
+		foreach (Transform child in transform)
+		{
+			if (child.name.Equals ("IcicleCone"))
+				child.transform.localPosition = particles [0];
+			else if (child.name.Equals ("IcicleCube"))
+				child.transform.localPosition = particles [1];
+			else if (child.name.Equals ("IcicleCylinder"))
+				child.transform.localPosition = particles [2];
+		}
 	}
 }

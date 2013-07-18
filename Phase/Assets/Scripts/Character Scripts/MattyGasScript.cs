@@ -1,20 +1,36 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MattyGasScript : MatterScript 
 {	
 	public GameObject rain; // used for condenstation effects
 	private GameObject rainParticles;
+	private bool rainActive;
+	
+	void Start()
+	{
+		rainActive = false;	
+	}
 	
 	
 	public void Condenstation()
 	{
-		rainParticles = Instantiate (rain, transform.position, Quaternion.identity) as GameObject;
+		if (!rainActive)
+		{
+			rainActive = true;
+			rainParticles = Instantiate (rain, transform.position, Quaternion.identity) as GameObject;
+		}
+		
 	}
 	
 	public void StopCondensation()
 	{
-		Destroy (rainParticles);
+		if (rainActive)
+		{
+			Destroy (rainParticles);
+			rainActive = false;
+		}
 	}
 	
 	public override bool FallingBouldersCollisionResolution()

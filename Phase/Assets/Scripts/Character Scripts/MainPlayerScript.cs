@@ -410,7 +410,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 16.0f);
+				gameObject.SendMessage("SpeedUp", 10.0f);
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
@@ -460,6 +460,7 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
 		{
+			Debug.Log("destroy rain");
 			m_gasMattyScript.StopCondensation ();
 		}
 		

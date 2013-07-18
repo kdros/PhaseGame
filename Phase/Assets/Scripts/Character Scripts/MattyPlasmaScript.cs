@@ -7,7 +7,8 @@ public class MattyPlasmaScript : MatterScript
 	
 	ParticleSystem	embers;
 	Light glow;
-	ClothRenderer clothRenderer;
+	MeshRenderer meshRenderer;
+//	ClothRenderer clothRenderer;
 //	CharacterController charControl;
 	Color originalColour, origAmbient;
 //	Vector3 center, r;
@@ -16,7 +17,8 @@ public class MattyPlasmaScript : MatterScript
 	
 	void Start ()
 	{
-		clothRenderer = GetComponent<ClothRenderer>();
+//		clothRenderer = GetComponent<ClothRenderer>();
+		meshRenderer = GetComponent<MeshRenderer>();
 		embers = GetComponent<ParticleSystem>();
 		glow = transform.Find ("Glow").GetComponent<Light>();
 
@@ -42,15 +44,15 @@ public class MattyPlasmaScript : MatterScript
 				curTime -= Time.deltaTime;
 			
 			glow.color = Color.Lerp (originalColour, Color.red, curTime/lavaMaxTime);
-			clothRenderer.material.SetColor ("_Color", glow.color);//.Lerp (originalMat, LavaMat, curTime/lavaMaxTime);
+			meshRenderer.material.SetColor ("_Color", glow.color);//.Lerp (originalMat, LavaMat, curTime/lavaMaxTime);
 		}
 		else
 		{
 			curTime = 0f;
 			if (!glow.color.Equals (originalColour))
 				glow.color = originalColour;
-			if (!clothRenderer.material.GetColor ("_Color").Equals (glow.color))
-				clothRenderer.material.SetColor ("_Color", glow.color);
+			if (!meshRenderer.material.GetColor ("_Color").Equals (glow.color))
+				meshRenderer.material.SetColor ("_Color", glow.color);
 		}
 	}
 	

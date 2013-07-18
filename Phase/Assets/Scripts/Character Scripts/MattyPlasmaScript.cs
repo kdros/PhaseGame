@@ -30,7 +30,7 @@ public class MattyPlasmaScript : MatterScript
 	
 	void Update ()
 	{
-		Color lightColour = glow.color;
+		//Color lightColour = glow.color;
 		if (curTime > 0f)
 		{
 			if (isOnLava)

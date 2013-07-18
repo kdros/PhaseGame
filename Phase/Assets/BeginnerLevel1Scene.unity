@@ -10162,14 +10162,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f68e085b612d3c49ab7f07a822a6442, type: 3}
   m_Name: 
-  numCheckpoints: 0
-  hitCheckpoints: 0
-  checkpoint_01: {fileID: 281972423}
-  checkpoint_02: {fileID: 248326278}
-  checkpoint_03: {fileID: 1845049085}
-  checkpoint_01_hit: 0
-  checkpoint_02_hit: 0
-  checkpoint_03_hit: 0
 --- !u!1 &690449658
 GameObject:
   m_ObjectHideFlags: 0

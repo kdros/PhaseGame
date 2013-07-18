@@ -58,6 +58,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	Color originalAmbientColor;
 	CameraFollow camera;
+	Vector3 spawnPosition;
 	bool playerDead;
 	
 	// Use this for initialization
@@ -95,6 +96,7 @@ public class MainPlayerScript : MonoBehaviour {
 		playerDead = false;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
 		collidedWithGrates = false;
+		spawnPosition = spawnPoint.position;
 	}
 	
 	// Update is called once per frame
@@ -164,7 +166,10 @@ public class MainPlayerScript : MonoBehaviour {
 			bool cameraInPosition = camera.isCameraInPosition ();
 			if (cameraInPosition)
 			{
-				transform.position = spawnPoint.position;
+//				if (System.IO.File.Exists ("Save/currentSave"))
+//					transform.position = spawnPosition;
+//				else
+					transform.position = spawnPosition;//spawnPoint.position;
 				playerDead = false;
 			}		
 		}
@@ -415,33 +420,33 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player reached checkpoint!!!!!!");
 			
-			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-			// Check to see if collider 
-			if (collider.gameObject.name == "Checkpoint_01")
-			{
-				if (g.checkpoint_01_hit == false)
-				{
-					g.checkpoint_01_hit = true;
-					g.hitCheckpoints = g.hitCheckpoints + 1;
-				}
-			}
-			if (collider.gameObject.name == "Checkpoint_02")
-			{
-				if (g.checkpoint_02_hit == false)
-				{
-					g.checkpoint_02_hit = true;
-					g.hitCheckpoints = g.hitCheckpoints + 1;
-				}
-			}
-			if (collider.gameObject.name == "Checkpoint_03")
-			{
-				if (g.checkpoint_03_hit == false)
-				{
-					g.checkpoint_03_hit = true;
-					g.hitCheckpoints = g.hitCheckpoints + 1;
-				}
-			}
+//			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+//			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+//			// Check to see if collider 
+//			if (collider.gameObject.name == "Checkpoint_01")
+//			{
+//				if (g.checkpoint_01_hit == false)
+//				{
+//					g.checkpoint_01_hit = true;
+//					g.hitCheckpoints = g.hitCheckpoints + 1;
+//				}
+//			}
+//			if (collider.gameObject.name == "Checkpoint_02")
+//			{
+//				if (g.checkpoint_02_hit == false)
+//				{
+//					g.checkpoint_02_hit = true;
+//					g.hitCheckpoints = g.hitCheckpoints + 1;
+//				}
+//			}
+//			if (collider.gameObject.name == "Checkpoint_03")
+//			{
+//				if (g.checkpoint_03_hit == false)
+//				{
+//					g.checkpoint_03_hit = true;
+//					g.hitCheckpoints = g.hitCheckpoints + 1;
+//				}
+//			}
 		}
 			
 	}
@@ -466,8 +471,15 @@ public class MainPlayerScript : MonoBehaviour {
 		Destroy (explosion, 2);
 		
 		playerDead = true;
+		if (System.IO.File.Exists ("Save/currentSave"))
+		{
+			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
+			for (int i = 0; i < 3; i ++)
+				spawnPosition [i] = float.Parse (sr.ReadLine ());
+			sr.Close ();
+		}
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
-			(new Vector2 (spawnPoint.position.x, spawnPoint.position.y));
+			(new Vector2 (spawnPosition.x, spawnPosition.y));
 		// Temp: Just put player back at the spawn point
 //		if (cameraInPosition)
 //		{
@@ -475,19 +487,19 @@ public class MainPlayerScript : MonoBehaviour {
 ////			CameraInPosition = false;
 //		}
 		// TODO: Respawn
-		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-		
-		Vector3 restorePos = new Vector3(0.0f, 0.0f, 0.0f);
-		if (g.hitCheckpoints == 0)
-			restorePos = g.checkpoint_01.transform.position;
-		if (g.hitCheckpoints == 1)
-			restorePos = g.checkpoint_01.transform.position;
-		else if (g.hitCheckpoints == 2)
-			restorePos = g.checkpoint_02.transform.position;
-		else if(g.hitCheckpoints == 3)
-			restorePos = g.checkpoint_03.transform.position;
-		transform.position = restorePos;
+//		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
+//		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
+//		
+//		Vector3 restorePos = new Vector3(0.0f, 0.0f, 0.0f);
+//		if (g.hitCheckpoints == 0)
+//			restorePos = g.checkpoint_01.transform.position;
+//		if (g.hitCheckpoints == 1)
+//			restorePos = g.checkpoint_01.transform.position;
+//		else if (g.hitCheckpoints == 2)
+//			restorePos = g.checkpoint_02.transform.position;
+//		else if(g.hitCheckpoints == 3)
+//			restorePos = g.checkpoint_03.transform.position;
+//		transform.position = restorePos;
 		
 		// Temp: Just put player back at the spawn point
 		//transform.position = spawnPoint.position;

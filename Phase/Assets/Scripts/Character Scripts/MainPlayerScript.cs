@@ -51,13 +51,14 @@ public class MainPlayerScript : MonoBehaviour {
 	protected MattyLiquidScript m_liquidMattyScript;	// class associated with Liquid Matty
 	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
 	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
+	protected PlatformerController m_platCtrlScript;	// class associated with PlatformerController
 	
 	private int m_currentState;							// keep track of the current state	
 	private bool collidedWithGrates;					// set to true if liquid state collided with grates
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
-	CameraFollow camera;
+	CameraFollow m_camera;
 	Vector3 spawnPosition;
 	bool playerDead;
 	
@@ -79,6 +80,7 @@ public class MainPlayerScript : MonoBehaviour {
 		m_liquidMattyScript = m_liquidMatty.GetComponent<MattyLiquidScript>();
 		m_gasMattyScript = m_gasMatty.GetComponent<MattyGasScript>();
 		m_plasmaMattyScript = m_plasmaMatty.GetComponent<MattyPlasmaScript>();
+		m_platCtrlScript = gameObject.GetComponent<PlatformerController>();
 		
 		// Temp: Make sure this collider does not collide with each state of matter's colliders
 		Physics.IgnoreCollision(collider, m_defaultMatty.collider);
@@ -94,7 +96,7 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
+		m_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
 		collidedWithGrates = false;
 		spawnPosition = spawnPoint.position;
 	}
@@ -163,7 +165,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else
 		{
-			bool cameraInPosition = camera.isCameraInPosition ();
+			bool cameraInPosition = m_camera.isCameraInPosition ();
 			if (cameraInPosition)
 			{
 //				if (System.IO.File.Exists ("Save/currentSave"))
@@ -410,7 +412,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 10.0f);
+				m_platCtrlScript.SpeedUp(15.0f);
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
@@ -481,6 +483,12 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 			(new Vector2 (spawnPosition.x, spawnPosition.y));
+		
+		// reset speed
+		m_platCtrlScript.ResetCharSpeed();
+		
+		
+		
 		// Temp: Just put player back at the spawn point
 //		if (cameraInPosition)
 //		{
@@ -514,9 +522,4 @@ public class MainPlayerScript : MonoBehaviour {
 		//Destroy (gameObject);
 		
 	}
-	
-//	public void CameraInPosition ()
-//	{
-//		cameraInPosition = true;
-//	}
 }

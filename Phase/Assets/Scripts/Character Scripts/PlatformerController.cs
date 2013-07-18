@@ -381,8 +381,14 @@ public class PlatformerController : MonoBehaviour
 		 canControl = controllable;
 	}
 	
-	void SpeedUp(float speed) {
+	public void SpeedUp(float speed) {
 		movement.speed = movement.speed + speed;
+	}
+	
+	public void ResetCharSpeed() {
+		// reset the character's speed
+		movement.verticalSpeed = 0.0f;
+		movement.speed = 0.0f;	
 	}
 }
 

@@ -13008,6 +13008,7 @@ MonoBehaviour:
   target: {fileID: 192009990}
   distance: 0
   height: 0
+  panTime: 0
 --- !u!1 &952401772
 GameObject:
   m_ObjectHideFlags: 0

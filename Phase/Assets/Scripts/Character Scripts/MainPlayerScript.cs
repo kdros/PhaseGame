@@ -148,7 +148,14 @@ public class MainPlayerScript : MonoBehaviour {
 			if (collidedWithGrates && m_currentState != (int)State.Liquid)
 			{
 				Debug.Log ("Collision with grates restored");
-				Physics.IgnoreCollision(gameObject.collider, GameObject.FindGameObjectWithTag("Grate").collider, false);
+				GameObject[] grateObjects;
+				grateObjects = GameObject.FindGameObjectsWithTag("Grate");
+				
+				foreach (GameObject grateObject in grateObjects)
+				{
+					Physics.IgnoreCollision(gameObject.collider, grateObject.collider, false);
+				}
+			
 				collidedWithGrates = false;	
 			}
 		}

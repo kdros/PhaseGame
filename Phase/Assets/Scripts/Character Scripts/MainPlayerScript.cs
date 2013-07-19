@@ -51,13 +51,14 @@ public class MainPlayerScript : MonoBehaviour {
 	protected MattyLiquidScript m_liquidMattyScript;	// class associated with Liquid Matty
 	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
 	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
+	protected PlatformerController m_platCtrlScript;	// class associated with PlatformerController
 	
 	private int m_currentState;							// keep track of the current state	
 	private bool collidedWithGrates;					// set to true if liquid state collided with grates
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
-	CameraFollow camera;
+	CameraFollow m_camera;
 	Vector3 spawnPosition;
 	bool playerDead;
 	System.Collections.Generic.List<IcicleBase> iciclesList;
@@ -80,6 +81,7 @@ public class MainPlayerScript : MonoBehaviour {
 		m_liquidMattyScript = m_liquidMatty.GetComponent<MattyLiquidScript>();
 		m_gasMattyScript = m_gasMatty.GetComponent<MattyGasScript>();
 		m_plasmaMattyScript = m_plasmaMatty.GetComponent<MattyPlasmaScript>();
+		m_platCtrlScript = gameObject.GetComponent<PlatformerController>();
 		
 		// Temp: Make sure this collider does not collide with each state of matter's colliders
 		Physics.IgnoreCollision(collider, m_defaultMatty.collider);
@@ -95,7 +97,7 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
+		m_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
 		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
 		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
 		foreach (GameObject icicle in icicleBaseArray)
@@ -168,7 +170,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else
 		{
-			bool cameraInPosition = camera.isCameraInPosition ();
+			bool cameraInPosition = m_camera.isCameraInPosition ();
 			if (cameraInPosition)
 			{
 //				if (System.IO.File.Exists ("Save/currentSave"))
@@ -418,7 +420,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 10.0f);
+				m_platCtrlScript.SpeedUp(15.0f);
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
@@ -427,34 +429,6 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Checkpoint"))
 		{
 			Debug.Log("Player reached checkpoint!!!!!!");
-			
-//			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-//			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-//			// Check to see if collider 
-//			if (collider.gameObject.name == "Checkpoint_01")
-//			{
-//				if (g.checkpoint_01_hit == false)
-//				{
-//					g.checkpoint_01_hit = true;
-//					g.hitCheckpoints = g.hitCheckpoints + 1;
-//				}
-//			}
-//			if (collider.gameObject.name == "Checkpoint_02")
-//			{
-//				if (g.checkpoint_02_hit == false)
-//				{
-//					g.checkpoint_02_hit = true;
-//					g.hitCheckpoints = g.hitCheckpoints + 1;
-//				}
-//			}
-//			if (collider.gameObject.name == "Checkpoint_03")
-//			{
-//				if (g.checkpoint_03_hit == false)
-//				{
-//					g.checkpoint_03_hit = true;
-//					g.hitCheckpoints = g.hitCheckpoints + 1;
-//				}
-//			}
 		}
 			
 	}
@@ -487,44 +461,16 @@ public class MainPlayerScript : MonoBehaviour {
 				spawnPosition [i] = float.Parse (sr.ReadLine ());
 			sr.Close ();
 		}
+		else
+		{
+			// Temp: used for web browser version as the above case would not work. TODO: Instead of using StreamReader/StreamWriter, use PlayerPrefs
+			transform.position = spawnPoint.transform.position;
+		}
+		
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 			(new Vector2 (spawnPosition.x, spawnPosition.y));
-		// Temp: Just put player back at the spawn point
-//		if (cameraInPosition)
-//		{
-//			transform.position = spawnPoint.position;
-////			CameraInPosition = false;
-//		}
-		// TODO: Respawn
-//		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-//		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-//		
-//		Vector3 restorePos = new Vector3(0.0f, 0.0f, 0.0f);
-//		if (g.hitCheckpoints == 0)
-//			restorePos = g.checkpoint_01.transform.position;
-//		if (g.hitCheckpoints == 1)
-//			restorePos = g.checkpoint_01.transform.position;
-//		else if (g.hitCheckpoints == 2)
-//			restorePos = g.checkpoint_02.transform.position;
-//		else if(g.hitCheckpoints == 3)
-//			restorePos = g.checkpoint_03.transform.position;
-//		transform.position = restorePos;
 		
-		// Temp: Just put player back at the spawn point
-		//transform.position = spawnPoint.position;
-		
-		// Temporarily disabled to make testing easier
-		//Destroy (m_defaultMatty);
-		//Destroy (m_solidMatty);
-		//Destroy (m_liquidMatty);
-		//Destroy (m_gasMatty);
-		//Destroy (m_plasmaMatty);
-		//Destroy (gameObject);
-		
+		// Reset speed
+		m_platCtrlScript.ResetCharSpeed();		
 	}
-	
-//	public void CameraInPosition ()
-//	{
-//		cameraInPosition = true;
-//	}
 }

@@ -55,8 +55,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
-  m_LocalPosition: {x: -57.1195412, y: -5.70195103, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.67833805, y: 4.9521389, z: .306103706}
   m_LocalScale: {x: 1.7538954, y: 5.95667791, z: 1.92573643}
   m_Children:
   - {fileID: 400002}
@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: .5, y: 1, z: .5}
+  m_Center: {x: 0, y: -.100000001, z: 0}
 --- !u!108 &10800000
 Light:
   m_ObjectHideFlags: 1
@@ -181,7 +181,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 2.75
+      scalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -380,8 +380,8 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 4
-    radius: .300000012
-    angle: 1.84000003
+    radius: .140000001
+    angle: 1.45000005
     length: 5
     boxX: 1
     boxY: 1
@@ -393,7 +393,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 100
+      scalar: 50
       maxCurve:
         serializedVersion: 2
         m_Curve:

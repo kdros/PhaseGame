@@ -55,12 +55,13 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	private int m_currentState;							// keep track of the current state	
 	private bool collidedWithGrates;					// set to true if liquid state collided with grates
+	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
 	CameraFollow m_camera;
 	Vector3 spawnPosition;
-	bool playerDead;
+	private bool playerDead;
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	
 	// Use this for initialization
@@ -87,14 +88,7 @@ public class MainPlayerScript : MonoBehaviour {
 		Physics.IgnoreCollision(collider, m_defaultMatty.collider);
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
-		
-		// Temp: Start out with defaultMatty
-		//m_defaultMatty.SetActive(false);
-		m_solidMatty.SetActive(false);		
-		m_liquidMatty.SetActive(false);
-		m_gasMatty.SetActive(false);
-		m_plasmaMatty.SetActive(false);	
-		
+				
 		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
 		m_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
@@ -104,6 +98,12 @@ public class MainPlayerScript : MonoBehaviour {
 			iciclesList.Add (icicle.GetComponent<IcicleBase>());
 		collidedWithGrates = false;
 		spawnPosition = spawnPoint.position;
+		reachedCheckPoint = false;
+		
+		
+		// Temp: Start out with defaultMatty
+		enableState ((int)State.Default);
+		
 	}
 	
 	// Update is called once per frame
@@ -207,7 +207,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else
 		{
 			// BLAHHHH!	SHOULD NEVER REACH THIS CASE!
-		}	
+		}
 	}
 	
 	// given the current state of matter s, set the appropriate game object to active
@@ -221,7 +221,15 @@ public class MainPlayerScript : MonoBehaviour {
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(false);
-			Physics.IgnoreCollision(collider, m_defaultMatty.collider);	
+			Physics.IgnoreCollision(collider, m_defaultMatty.collider);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In default state, Matty will walk slower compared to solid state
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 5;
+			m_platCtrlScript.jump.enabled = true;
+			m_platCtrlScript.jump.extraHeight = 1;
 		}
 		else if (m_currentState == (int)State.Solid)
 		{
@@ -231,6 +239,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(false);
 			Physics.IgnoreCollision(collider, m_solidMatty.collider);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In solid state, Matty will walk faster compared to default state
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 10;
+			m_platCtrlScript.jump.enabled = true;
+			m_platCtrlScript.jump.extraHeight = 4.1f;
 		}
 		else if (m_currentState == (int)State.Liquid)
 		{
@@ -238,7 +254,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(true);
 			m_gasMatty.SetActive(false);
-			m_plasmaMatty.SetActive(false);	
+			m_plasmaMatty.SetActive(false);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In liquid state, Matty will not be able to jump
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 10;
+			m_platCtrlScript.jump.enabled = false;
 		}
 		else if (m_currentState == (int)State.Gas)
 		{
@@ -246,7 +269,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(true);
-			m_plasmaMatty.SetActive(false);	
+			m_plasmaMatty.SetActive(false);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In gas state, Matty will walk slower compared to solid state
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 2;
+			m_platCtrlScript.jump.enabled = false;
 		}
 		else if (m_currentState == (int)State.Plasma)
 		{
@@ -255,7 +285,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(true);
-			//Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In plasma state, Matty will walk a bit faster than in solid state, but jump a little lower
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 14;
+			m_platCtrlScript.jump.enabled = true;
+			m_platCtrlScript.jump.extraHeight = 3.8f;
 		}
 		else
 		{
@@ -429,6 +466,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Checkpoint"))
 		{
 			Debug.Log("Player reached checkpoint!!!!!!");
+			reachedCheckPoint = true;
 		}
 			
 	}
@@ -454,7 +492,7 @@ public class MainPlayerScript : MonoBehaviour {
 		Destroy (explosion, 2);
 		
 		playerDead = true;
-		if (System.IO.File.Exists ("Save/currentSave"))
+		if (System.IO.File.Exists ("Save/currentSave") && reachedCheckPoint)
 		{
 			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
 			for (int i = 0; i < 3; i ++)

@@ -2345,6 +2345,7 @@ MonoBehaviour:
   solidMatty: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
   windTunnel: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
+  iceSliding: {fileID: 8300000, guid: 10a65ef32fa6f0c48aee047b84513b10, type: 3}
 --- !u!114 &192009987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9161,6 +9162,10 @@ Prefab:
       propertyPath: windTunnel
       value: 
       objectReference: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
+    - target: {fileID: 11400000, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
+      propertyPath: iceSliding
+      value: 
+      objectReference: {fileID: 8300000, guid: 10a65ef32fa6f0c48aee047b84513b10, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
   m_RootGameObject: {fileID: 192009985}

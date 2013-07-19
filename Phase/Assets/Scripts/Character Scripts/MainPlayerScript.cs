@@ -28,6 +28,7 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject defaultMatty;
 	
 	public AudioClip windTunnel;
+	public AudioClip iceSliding;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -453,7 +454,10 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
+			{
 				m_platCtrlScript.SpeedUp(15.0f);
+				AudioSource.PlayClipAtPoint(iceSliding, gameObject.transform.position);
+			}
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
@@ -461,7 +465,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("Checkpoint"))
 		{
-			Debug.Log("Player reached checkpoint!!!!!!");
+			Debug.Log("Player reached checkpoint!");
 			reachedCheckPoint = true;
 		}
 		else if (collider.CompareTag("WindTunnel"))

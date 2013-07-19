@@ -27,6 +27,8 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject solidMatty;
 	public GameObject defaultMatty;
 	
+	public AudioClip windTunnel;
+	
 	/// <summary>
 	/// Public Variables: Set upon initialization
 	/// </summary>
@@ -468,6 +470,11 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
 				Die();
 		}
+		else if (collider.CompareTag ("WindTunnelTracker"))
+		{
+			Debug.Log("Hit wind tunnel tracker");
+			AudioSource.PlayClipAtPoint(windTunnel, gameObject.transform.position);
+		}
 			
 	}
 	
@@ -487,7 +494,6 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit wind tunnel");
 			m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
 		}
-		
 	}
 	
 	void Die() 

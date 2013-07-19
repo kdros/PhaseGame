@@ -388,12 +388,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.SwingingMaceCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("WindTunnel"))
-		{
-			Debug.Log("Player hit wind tunnel");
-			if(stateScript.WindTunnelCollisionResolution())
-				Die();
-		}
 		else if (collider.CompareTag ("Icicle"))
 		{
 			Debug.Log("Player hit icicle");
@@ -468,6 +462,12 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player reached checkpoint!!!!!!");
 			reachedCheckPoint = true;
 		}
+		else if (collider.CompareTag("WindTunnel"))
+		{
+			Debug.Log("Player hit wind tunnel");
+			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
+				Die();
+		}
 			
 	}
 	
@@ -477,11 +477,15 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			m_plasmaMattyScript.NotOnLava ();
 		}
-		
-		if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
+		else if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
 		{
 			Debug.Log("destroy rain");
 			m_gasMattyScript.StopCondensation ();
+		}
+		else if (collider.CompareTag("WindTunnel") && m_currentState == (int)State.Gas)
+		{
+			Debug.Log("Player hit wind tunnel");
+			m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
 		}
 		
 	}

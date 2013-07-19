@@ -68,9 +68,10 @@ public class MatterScript : MonoBehaviour
 		return true;
 	}
 	
-	public virtual bool WindTunnelCollisionResolution()
+	public virtual bool WindTunnelCollisionResolution(PlatformerController pc)
 	{
 		// NO EFFECT
+		pc.externalAcc = Vector3.zero;
 		return false;
 	}
 }

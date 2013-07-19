@@ -7,10 +7,12 @@ public class MattyGasScript : MatterScript
 	public GameObject rain; // used for condenstation effects
 	private GameObject rainParticles;
 	private bool rainActive;
+	private Vector3 windTunnelAccel;
 	
 	void Start()
 	{
 		rainActive = false;	
+		windTunnelAccel = new Vector3(0,65,0);
 	}
 	
 	
@@ -89,11 +91,15 @@ public class MattyGasScript : MatterScript
 		return false;
 	}
 	
-	public override bool WindTunnelCollisionResolution()
+	public override bool WindTunnelCollisionResolution(PlatformerController pc)
 	{
 		// NO EFFECT
-		// TODO: Gas will need to float in the direction
-		// of the wind.
+		pc.externalAcc = windTunnelAccel;
 		return false;
+	}
+	
+	public void WindTunnelExit(PlatformerController pc)
+	{
+		pc.externalAcc = Vector3.zero;
 	}
 }

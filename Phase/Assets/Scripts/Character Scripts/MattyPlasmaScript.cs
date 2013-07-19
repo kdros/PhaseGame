@@ -115,10 +115,4 @@ public class MattyPlasmaScript : MatterScript
 		// DEATH
 		return true;
 	}
-	
-	public override bool WindTunnelCollisionResolution()
-	{
-		// NO EFFECT
-		return false;
-	}
 }

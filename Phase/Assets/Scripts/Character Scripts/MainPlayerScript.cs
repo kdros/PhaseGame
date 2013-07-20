@@ -27,6 +27,9 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject solidMatty;
 	public GameObject defaultMatty;
 	
+	public AudioClip windTunnel;
+	public AudioClip iceSliding;
+	
 	/// <summary>
 	/// Public Variables: Set upon initialization
 	/// </summary>
@@ -51,15 +54,17 @@ public class MainPlayerScript : MonoBehaviour {
 	protected MattyLiquidScript m_liquidMattyScript;	// class associated with Liquid Matty
 	protected MattyGasScript m_gasMattyScript;			// class associated with Gas Matty
 	protected MattyScript m_defaultMattyScript;			// class associated with default Matty
+	protected PlatformerController m_platCtrlScript;	// class associated with PlatformerController
 	
 	private int m_currentState;							// keep track of the current state	
 	private bool collidedWithGrates;					// set to true if liquid state collided with grates
+	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 	Color originalAmbientColor;
-	CameraFollow camera;
+	CameraFollow m_camera;
 	Vector3 spawnPosition;
-	bool playerDead;
+	private bool playerDead;
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	
 	// Use this for initialization
@@ -80,28 +85,28 @@ public class MainPlayerScript : MonoBehaviour {
 		m_liquidMattyScript = m_liquidMatty.GetComponent<MattyLiquidScript>();
 		m_gasMattyScript = m_gasMatty.GetComponent<MattyGasScript>();
 		m_plasmaMattyScript = m_plasmaMatty.GetComponent<MattyPlasmaScript>();
+		m_platCtrlScript = gameObject.GetComponent<PlatformerController>();
 		
 		// Temp: Make sure this collider does not collide with each state of matter's colliders
 		Physics.IgnoreCollision(collider, m_defaultMatty.collider);
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
-		
-		// Temp: Start out with defaultMatty
-		//m_defaultMatty.SetActive(false);
-		m_solidMatty.SetActive(false);		
-		m_liquidMatty.SetActive(false);
-		m_gasMatty.SetActive(false);
-		m_plasmaMatty.SetActive(false);	
-		
+				
 		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
+		m_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
 		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
 		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
 		foreach (GameObject icicle in icicleBaseArray)
 			iciclesList.Add (icicle.GetComponent<IcicleBase>());
 		collidedWithGrates = false;
 		spawnPosition = spawnPoint.position;
+		reachedCheckPoint = false;
+		
+		
+		// Temp: Start out with defaultMatty
+		enableState ((int)State.Default);
+		
 	}
 	
 	// Update is called once per frame
@@ -168,7 +173,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else
 		{
-			bool cameraInPosition = camera.isCameraInPosition ();
+			bool cameraInPosition = m_camera.isCameraInPosition ();
 			if (cameraInPosition)
 			{
 //				if (System.IO.File.Exists ("Save/currentSave"))
@@ -205,7 +210,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else
 		{
 			// BLAHHHH!	SHOULD NEVER REACH THIS CASE!
-		}	
+		}
 	}
 	
 	// given the current state of matter s, set the appropriate game object to active
@@ -219,7 +224,15 @@ public class MainPlayerScript : MonoBehaviour {
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(false);
-			Physics.IgnoreCollision(collider, m_defaultMatty.collider);	
+			Physics.IgnoreCollision(collider, m_defaultMatty.collider);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In default state, Matty will walk slower compared to solid state
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 5;
+			m_platCtrlScript.jump.enabled = true;
+			m_platCtrlScript.jump.extraHeight = 1;
 		}
 		else if (m_currentState == (int)State.Solid)
 		{
@@ -229,6 +242,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(false);
 			Physics.IgnoreCollision(collider, m_solidMatty.collider);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In solid state, Matty will walk faster compared to default state
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 10;
+			m_platCtrlScript.jump.enabled = true;
+			m_platCtrlScript.jump.extraHeight = 4.1f;
 		}
 		else if (m_currentState == (int)State.Liquid)
 		{
@@ -236,7 +257,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(true);
 			m_gasMatty.SetActive(false);
-			m_plasmaMatty.SetActive(false);	
+			m_plasmaMatty.SetActive(false);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In liquid state, Matty will not be able to jump
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 10;
+			m_platCtrlScript.jump.enabled = false;
 		}
 		else if (m_currentState == (int)State.Gas)
 		{
@@ -244,7 +272,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_solidMatty.SetActive(false);		
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(true);
-			m_plasmaMatty.SetActive(false);	
+			m_plasmaMatty.SetActive(false);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In gas state, Matty will walk slower compared to solid state
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 2;
+			m_platCtrlScript.jump.enabled = false;
 		}
 		else if (m_currentState == (int)State.Plasma)
 		{
@@ -253,7 +288,14 @@ public class MainPlayerScript : MonoBehaviour {
 			m_liquidMatty.SetActive(false);
 			m_gasMatty.SetActive(false);
 			m_plasmaMatty.SetActive(true);
-			//Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
+			
+			// Character control parameters
+			// TODO: Fine tune the following:
+			// In plasma state, Matty will walk a bit faster than in solid state, but jump a little lower
+			m_platCtrlScript.canControl = true;
+			m_platCtrlScript.movement.walkSpeed = 14;
+			m_platCtrlScript.jump.enabled = true;
+			m_platCtrlScript.jump.extraHeight = 3.8f;
 		}
 		else
 		{
@@ -349,12 +391,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.SwingingMaceCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("WindTunnel"))
-		{
-			Debug.Log("Player hit wind tunnel");
-			if(stateScript.WindTunnelCollisionResolution())
-				Die();
-		}
 		else if (collider.CompareTag ("Icicle"))
 		{
 			Debug.Log("Player hit icicle");
@@ -418,7 +454,10 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
-				gameObject.SendMessage("SpeedUp", 10.0f);
+			{
+				m_platCtrlScript.SpeedUp(15.0f);
+				AudioSource.PlayClipAtPoint(iceSliding, gameObject.transform.position);
+			}
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
@@ -426,35 +465,19 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("Checkpoint"))
 		{
-			Debug.Log("Player reached checkpoint!!!!!!");
-			
-//			GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-//			Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-//			// Check to see if collider 
-//			if (collider.gameObject.name == "Checkpoint_01")
-//			{
-//				if (g.checkpoint_01_hit == false)
-//				{
-//					g.checkpoint_01_hit = true;
-//					g.hitCheckpoints = g.hitCheckpoints + 1;
-//				}
-//			}
-//			if (collider.gameObject.name == "Checkpoint_02")
-//			{
-//				if (g.checkpoint_02_hit == false)
-//				{
-//					g.checkpoint_02_hit = true;
-//					g.hitCheckpoints = g.hitCheckpoints + 1;
-//				}
-//			}
-//			if (collider.gameObject.name == "Checkpoint_03")
-//			{
-//				if (g.checkpoint_03_hit == false)
-//				{
-//					g.checkpoint_03_hit = true;
-//					g.hitCheckpoints = g.hitCheckpoints + 1;
-//				}
-//			}
+			Debug.Log("Player reached checkpoint!");
+			reachedCheckPoint = true;
+		}
+		else if (collider.CompareTag("WindTunnel"))
+		{
+			Debug.Log("Player hit wind tunnel");
+			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
+				Die();
+		}
+		else if (collider.CompareTag ("WindTunnelTracker"))
+		{
+			Debug.Log("Hit wind tunnel tracker");
+			AudioSource.PlayClipAtPoint(windTunnel, gameObject.transform.position);
 		}
 			
 	}
@@ -465,13 +488,16 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			m_plasmaMattyScript.NotOnLava ();
 		}
-		
-		if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
+		else if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
 		{
 			Debug.Log("destroy rain");
 			m_gasMattyScript.StopCondensation ();
 		}
-		
+		else if (collider.CompareTag("WindTunnel") && m_currentState == (int)State.Gas)
+		{
+			Debug.Log("Player hit wind tunnel");
+			m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
+		}
 	}
 	
 	void Die() 
@@ -480,51 +506,23 @@ public class MainPlayerScript : MonoBehaviour {
 		Destroy (explosion, 2);
 		
 		playerDead = true;
-		if (System.IO.File.Exists ("Save/currentSave"))
+		if (System.IO.File.Exists ("Save/currentSave") && reachedCheckPoint)
 		{
 			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
 			for (int i = 0; i < 3; i ++)
 				spawnPosition [i] = float.Parse (sr.ReadLine ());
 			sr.Close ();
 		}
+		else
+		{
+			// Temp: used for web browser version as the above case would not work. TODO: Instead of using StreamReader/StreamWriter, use PlayerPrefs
+			transform.position = spawnPoint.transform.position;
+		}
+		
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 			(new Vector2 (spawnPosition.x, spawnPosition.y));
-		// Temp: Just put player back at the spawn point
-//		if (cameraInPosition)
-//		{
-//			transform.position = spawnPoint.position;
-////			CameraInPosition = false;
-//		}
-		// TODO: Respawn
-//		GameObject obj = GameObject.Find("GlobalObject_BegLev1");
-//		Global_BegLev1 g = obj.GetComponent<Global_BegLev1>();
-//		
-//		Vector3 restorePos = new Vector3(0.0f, 0.0f, 0.0f);
-//		if (g.hitCheckpoints == 0)
-//			restorePos = g.checkpoint_01.transform.position;
-//		if (g.hitCheckpoints == 1)
-//			restorePos = g.checkpoint_01.transform.position;
-//		else if (g.hitCheckpoints == 2)
-//			restorePos = g.checkpoint_02.transform.position;
-//		else if(g.hitCheckpoints == 3)
-//			restorePos = g.checkpoint_03.transform.position;
-//		transform.position = restorePos;
 		
-		// Temp: Just put player back at the spawn point
-		//transform.position = spawnPoint.position;
-		
-		// Temporarily disabled to make testing easier
-		//Destroy (m_defaultMatty);
-		//Destroy (m_solidMatty);
-		//Destroy (m_liquidMatty);
-		//Destroy (m_gasMatty);
-		//Destroy (m_plasmaMatty);
-		//Destroy (gameObject);
-		
+		// Reset speed
+		m_platCtrlScript.ResetCharSpeed();		
 	}
-	
-//	public void CameraInPosition ()
-//	{
-//		cameraInPosition = true;
-//	}
 }

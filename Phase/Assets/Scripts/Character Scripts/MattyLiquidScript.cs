@@ -60,10 +60,4 @@ public class MattyLiquidScript : MatterScript
 		// NO EFFECT
 		return false;
 	}
-	
-	public override bool WindTunnelCollisionResolution()
-	{
-		// NO EFFECT
-		return false;
-	}
 }

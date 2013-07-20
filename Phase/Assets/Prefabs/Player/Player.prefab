@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a79176bbb2cfb148ae09b9fb89a1677, type: 3}
   m_Name: 
+  canControl: 1
   spawnPoint: {fileID: 0}
   movement:
     walkSpeed: 10
@@ -60,6 +61,7 @@ MonoBehaviour:
     enabled: 1
     height: 1
     extraHeight: 4.0999999
+  externalAcc: {x: 0, y: 0, z: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,6 +80,7 @@ MonoBehaviour:
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
   solidMatty: {fileID: 100000, guid: 1cb1d82ec7182c54e9af34c53c0c7dc9, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
+  windTunnel: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
 --- !u!143 &14300000
 CharacterController:
   m_ObjectHideFlags: 1

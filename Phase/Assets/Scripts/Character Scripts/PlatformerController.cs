@@ -11,7 +11,7 @@ using System.Collections;
 public class PlatformerController : MonoBehaviour 
 {
 	// Does this script currently respond to Input?
-	bool canControl= true;
+	public bool canControl = true;
 	
 	// The character will spawn at spawnPoint's position when needed.  This could be changed via a script at runtime to implement, e.g. waypoints/savepoints.
 	public Transform spawnPoint;
@@ -122,6 +122,10 @@ public class PlatformerController : MonoBehaviour
 	private Vector3 activeGlobalPlatformPoint;
 	private Vector3 lastPlatformVelocity;
 	
+	
+	// External acceleration
+	public Vector3 externalAcc;
+	
 	// This is used to keep track of special effects in UpdateEffects ();
 	private bool areEmittersOn= false;
 	
@@ -129,6 +133,7 @@ public class PlatformerController : MonoBehaviour
 		movement.direction = transform.TransformDirection (Vector3.forward);
 		controller = GetComponent<CharacterController>();
 		Spawn ();
+		externalAcc = new Vector3(0,0,0);
 	}
 	
 	void  Spawn (){
@@ -291,6 +296,15 @@ public class PlatformerController : MonoBehaviour
 		
 		// Save lastPosition for velocity calculation.
 		Vector3 lastPosition = transform.position;
+		
+		// Temp: used for wind tunnel
+		Vector3 externalVel = externalAcc * Time.deltaTime;
+		movement.verticalSpeed = movement.verticalSpeed + externalVel[1];
+		
+		if (movement.verticalSpeed != 0)
+		{
+			double debug = 0;	
+		}
 		
 		// Calculate actual motion
 		Vector3 currentMovementOffset= movement.direction * movement.speed + new Vector3 (0, movement.verticalSpeed, 0) + movement.inAirVelocity;

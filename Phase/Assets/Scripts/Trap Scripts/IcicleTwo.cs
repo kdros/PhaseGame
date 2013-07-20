@@ -21,18 +21,18 @@ public class IcicleTwo : IcicleBase
 		}
 	}
 	
-	public override void detachIcicle (IcicleType iceType)
+	public override void detachIcicle (IcicleBase.IcicleType iceType)
 	{
 		Transform childObj = gameObject.transform;
 		switch (iceType)
 		{
-		case IcicleType.Cone:
+		case IcicleBase.IcicleType.Cone:
 			childObj = childObj.Find ("IcicleCone");
 			break;
-		case IcicleType.Cube:
+		case IcicleBase.IcicleType.Cube:
 			childObj = childObj.Find ("IcicleCube");
 			break;
-		case IcicleType.Cylinder:
+		case IcicleBase.IcicleType.Cylinder:
 			childObj = childObj.Find ("IcicleCylinder");
 			break;
 		}

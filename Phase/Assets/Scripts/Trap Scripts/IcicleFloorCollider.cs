@@ -16,11 +16,11 @@ public class IcicleFloorCollider : MonoBehaviour
 		{
 			IcicleBase.IcicleType type = new IcicleBase.IcicleType ();
 			if (aName == "IcicleFloorColliderCone")
-				type = Icicle.IcicleType.Cone;
+				type = IcicleBase.IcicleType.Cone;
 			else if (aName == "IcicleFloorColliderCube")
-				type = Icicle.IcicleType.Cube;
+				type = IcicleBase.IcicleType.Cube;
 			else if (aName == "IcicleFloorColliderCylinder")
-				type = Icicle.IcicleType.Cylinder;		
+				type = IcicleBase.IcicleType.Cylinder;		
 			
 			if (gameObject.transform.parent != null)
 			{

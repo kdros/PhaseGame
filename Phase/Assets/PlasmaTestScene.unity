@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 41294562}
   m_LocalRotation: {x: 0, y: .701543093, z: 0, w: .712627113}
-  m_LocalPosition: {x: 383.132385, y: -33.0152817, z: 0}
+  m_LocalPosition: {x: 408.257843, y: -33.0152817, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1980,6 +1980,7 @@ MonoBehaviour:
   target: {fileID: 438852053}
   distance: 0
   height: 0
+  panTime: 0
 --- !u!1 &713562214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,7 +2661,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092309277}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2027d57060fed004fb421c3822b9face, type: 3}
+  m_Script: {fileID: 11500000, guid: 28d470e18303c8d4c88854f53de5a944, type: 3}
   m_Name: 
 --- !u!65 &1092309280
 BoxCollider:
@@ -2964,7 +2965,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1348299343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2027d57060fed004fb421c3822b9face, type: 3}
+  m_Script: {fileID: 11500000, guid: 28d470e18303c8d4c88854f53de5a944, type: 3}
   m_Name: 
 --- !u!65 &1348299346
 BoxCollider:
@@ -3814,7 +3815,7 @@ MeshCollider:
   m_PrefabInternal: {fileID: 1474112754}
   m_GameObject: {fileID: 1873523103}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
@@ -3835,7 +3836,7 @@ Transform:
   m_PrefabInternal: {fileID: 1474112754}
   m_GameObject: {fileID: 1873523103}
   m_LocalRotation: {x: 0, y: .701543093, z: 0, w: .712627113}
-  m_LocalPosition: {x: 435.507874, y: -36.0994568, z: 3.00088501}
+  m_LocalPosition: {x: 435.507874, y: -36.2551956, z: 3.00088501}
   m_LocalScale: {x: 1.51707017, y: 1, z: 1.53967142}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4243,7 +4244,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2037758337}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2027d57060fed004fb421c3822b9face, type: 3}
+  m_Script: {fileID: 11500000, guid: 28d470e18303c8d4c88854f53de5a944, type: 3}
   m_Name: 
 --- !u!65 &2037758340
 BoxCollider:

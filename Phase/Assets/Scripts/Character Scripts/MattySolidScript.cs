@@ -7,6 +7,9 @@ public class MattySolidScript : MatterScript
 	public float facingRight_yDegrees;
 	public float facingLeft_yDegrees;
 	
+	// Sounds
+	public AudioClip swingingMaceHit;
+	
 	void Start ()
 	{
 		//matter_matty = new MatterScript();
@@ -55,9 +58,10 @@ public class MattySolidScript : MatterScript
 			gameObject.animation.Play("Idle", PlayMode.StopAll);
 	}
 	
-	public override bool CheckpointCollisionResolution()
+	public override bool SwingingMaceCollisionResolution()
 	{
-		return false;
+		AudioSource.PlayClipAtPoint(swingingMaceHit, gameObject.transform.position);
+		return true;
 	}
 	
 	public void Die ()

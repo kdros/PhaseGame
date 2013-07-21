@@ -1548,6 +1548,7 @@ MonoBehaviour:
   m_Name: 
   facingRight_yDegrees: 0
   facingLeft_yDegrees: 0
+  swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

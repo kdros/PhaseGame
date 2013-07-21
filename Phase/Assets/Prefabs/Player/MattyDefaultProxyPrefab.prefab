@@ -1320,6 +1320,7 @@ MonoBehaviour:
   facingLeft_yDegrees: 0
   swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
   spikeHit: {fileID: 8300000, guid: 88def61e55f6dba458a3797698ea2f16, type: 3}
+  pitfallHit: {fileID: 8300000, guid: 008e665a94c558742802093cc5ff00c6, type: 3}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -10,6 +10,7 @@ public class MattyScript : MatterScript {
 	// Sounds
 	public AudioClip swingingMaceHit;
 	public AudioClip spikeHit;
+	public AudioClip pitfallHit;
 	
 	void Start ()
 	{
@@ -64,6 +65,12 @@ public class MattyScript : MatterScript {
 	}
 	
 	// Collision Resolution Overrides
+	public override bool PitfallCollisionResolution()
+	{
+		AudioSource.PlayClipAtPoint(pitfallHit, gameObject.transform.position);
+		return true;
+	}
+	
 	public override bool SpikeCollisionResolution()
 	{
 		AudioSource.PlayClipAtPoint(spikeHit, gameObject.transform.position);

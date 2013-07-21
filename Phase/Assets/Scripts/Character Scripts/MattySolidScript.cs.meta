@@ -4,6 +4,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
+  - spikeHit: {fileID: 8300000, guid: 23306371e5dee5d4eaab023097822602, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

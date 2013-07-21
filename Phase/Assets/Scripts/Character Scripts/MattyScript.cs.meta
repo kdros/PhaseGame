@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 7dafbeab36da2b64085ab722c602db63
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
+  - spikeHit: {fileID: 8300000, guid: 88def61e55f6dba458a3797698ea2f16, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

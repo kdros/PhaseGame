@@ -1316,9 +1316,10 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dafbeab36da2b64085ab722c602db63, type: 3}
   m_Name: 
-  matter_matty: {fileID: 0}
   facingRight_yDegrees: 0
   facingLeft_yDegrees: 0
+  swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
+  spikeHit: {fileID: 8300000, guid: 88def61e55f6dba458a3797698ea2f16, type: 3}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

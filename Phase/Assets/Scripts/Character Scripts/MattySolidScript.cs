@@ -9,6 +9,7 @@ public class MattySolidScript : MatterScript
 	
 	// Sounds
 	public AudioClip swingingMaceHit;
+	public AudioClip spikeHit;
 	
 	void Start ()
 	{
@@ -56,6 +57,13 @@ public class MattySolidScript : MatterScript
 			gameObject.animation.Play("Jump", PlayMode.StopAll);
 		else
 			gameObject.animation.Play("Idle", PlayMode.StopAll);
+	}
+	
+	// Collision Resolution Overrides
+	public override bool SpikeCollisionResolution()
+	{
+		AudioSource.PlayClipAtPoint(spikeHit, gameObject.transform.position);
+		return true;
 	}
 	
 	public override bool SwingingMaceCollisionResolution()

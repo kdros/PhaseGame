@@ -7,6 +7,10 @@ public class MattyScript : MatterScript {
 	public float facingRight_yDegrees;
 	public float facingLeft_yDegrees;
 	
+	// Sounds
+	public AudioClip swingingMaceHit;
+	public AudioClip spikeHit;
+	
 	void Start ()
 	{
 		//matter_matty = new MatterScript();
@@ -58,13 +62,19 @@ public class MattyScript : MatterScript {
 		else
 			gameObject.animation.Play("Idle", PlayMode.StopAll);
 	}
-	// None of the functions, except for the checkpoint, need to be overriden
 	
-	// TODO: Figure out what goes here
-	//public override bool CheckpointCollisionResolution()
-	//{
-		//return false;
-	//}
+	// Collision Resolution Overrides
+	public override bool SpikeCollisionResolution()
+	{
+		AudioSource.PlayClipAtPoint(spikeHit, gameObject.transform.position);
+		return true;
+	}
+	
+	public override bool SwingingMaceCollisionResolution()
+	{
+		AudioSource.PlayClipAtPoint(swingingMaceHit, gameObject.transform.position);
+		return true;
+	}
 	
 	public void Die ()
 	{

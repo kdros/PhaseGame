@@ -1,0 +1,6 @@
+BegLev1_MainTitle
+Level 1 (Solid State Learning)
+BegLev1_Instructions
+Switch back and forth between Matty and his solid state to learn the power of the solid state!\nPress s to switch to solid.
+BegLev1_KeyInfo
+s: solid\n q: default

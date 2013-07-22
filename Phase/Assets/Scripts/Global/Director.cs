@@ -11,7 +11,7 @@ public class Director : MonoBehaviour
 	
 	public Transform spawnPosition;
 	
-	Transform player;
+	Transform camera;
 
 	Color originalAmbientColor;
 	bool darkCave;
@@ -29,7 +29,7 @@ public class Director : MonoBehaviour
 		
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
+		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>();
 		
 		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
 		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
@@ -59,18 +59,18 @@ public class Director : MonoBehaviour
 		{			
 			// Now figure out which door of the dark cave the user is close to
 			// and lerp the ambient to dark as he approaches the trigger spot.
-			if (player.position.x <= darknessTriggerSpots [0])
+			if (camera.position.x <= darknessTriggerSpots [0])
 			{
-				if (player.position.x <= darknessTriggerSpots [1])
+				if (camera.position.x <= darknessTriggerSpots [1])
 				{
 					float t = 0f;
-					if (Mathf.Abs (player.position.x - curDarkCave.Door1.x) < 
-						 Mathf.Abs (player.position.x - curDarkCave.Door2.x))
-						t = (player.position.x - curDarkCave.Door1.x) / 
+					if (Mathf.Abs (camera.position.x - curDarkCave.Door1.x) < 
+						 Mathf.Abs (camera.position.x - curDarkCave.Door2.x))
+						t = (camera.position.x - curDarkCave.Door1.x) / 
 									(darknessTriggerSpots [0] - curDarkCave.Door1.x);	
 						
 					else
-						t = (player.position.x - curDarkCave.Door2.x) / 
+						t = (camera.position.x - curDarkCave.Door2.x) / 
 									(darknessTriggerSpots [1] - curDarkCave.Door2.x);	
 				
 					if (t < 0f)
@@ -81,17 +81,17 @@ public class Director : MonoBehaviour
 					RenderSettings.ambientLight = Color.Lerp (originalAmbientColor, Color.black, t);
 				}
 			}
-			else if (player.position.x >= darknessTriggerSpots [0])
-				if (player.position.x >= darknessTriggerSpots [1])
+			else if (camera.position.x >= darknessTriggerSpots [0])
+				if (camera.position.x >= darknessTriggerSpots [1])
 				{
 					float t = 0f;
-					if (Mathf.Abs (player.position.x - curDarkCave.Door1.x) < 
-						 Mathf.Abs (player.position.x - curDarkCave.Door2.x))
-						t = (curDarkCave.Door1.x - player.position.x) / 
+					if (Mathf.Abs (camera.position.x - curDarkCave.Door1.x) < 
+						 Mathf.Abs (camera.position.x - curDarkCave.Door2.x))
+						t = (curDarkCave.Door1.x - camera.position.x) / 
 									(curDarkCave.Door1.x - darknessTriggerSpots [0]);	
 						
 					else
-						t = (curDarkCave.Door2.x - player.position.x) / 
+						t = (curDarkCave.Door2.x - camera.position.x) / 
 									(curDarkCave.Door2.x - darknessTriggerSpots [1]);
 					
 					if (t < 0f)

@@ -91,10 +91,13 @@ public class MattyPlasmaScript : MatterScript
 	{
 		// NO EFFECT
 		Debug.Log("lava collision resolution called");
-		embers.loop = true;
-		embers.Play ();
-		curTime += Time.deltaTime;
-		isOnLava = true;
+		if (!isOnLava)
+		{
+			embers.loop = true;
+			embers.Play ();
+			curTime += Time.deltaTime;
+			isOnLava = true;
+		}
 		return false;
 	}
 	

@@ -61,12 +61,13 @@ public class MainPlayerScript : MonoBehaviour {
 	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
-	Color originalAmbientColor;
+//	Color originalAmbientColor;
 	CameraFollow m_camera;
 	Vector3 spawnPosition;
 	private bool playerDead;
-	System.Collections.Generic.List<IcicleBase> iciclesList;
-	
+//	System.Collections.Generic.List<IcicleBase> iciclesList;
+	Director dir;
+	float origWalkSpeed, origExtraHeight;
 	// Use this for initialization
 	void Start () 
 	{
@@ -92,17 +93,20 @@ public class MainPlayerScript : MonoBehaviour {
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 				
-		originalAmbientColor = RenderSettings.ambientLight;
+//		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
 		m_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
-		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
-		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
-		foreach (GameObject icicle in icicleBaseArray)
-			iciclesList.Add (icicle.GetComponent<IcicleBase>());
+		dir = GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>();
+//		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
+//		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
+//		foreach (GameObject icicle in icicleBaseArray)
+//			iciclesList.Add (icicle.GetComponent<IcicleBase>());
 		collidedWithGrates = false;
 		spawnPosition = spawnPoint.position;
 		reachedCheckPoint = false;
 		
+		origWalkSpeed = m_platCtrlScript.movement.walkSpeed;
+		origExtraHeight = m_platCtrlScript.jump.extraHeight;
 		
 		// Temp: Start out with defaultMatty
 		enableState ((int)State.Default);
@@ -182,8 +186,9 @@ public class MainPlayerScript : MonoBehaviour {
 				transform.position = spawnPosition;//spawnPoint.position;
 				playerDead = false;
 				
-				foreach (IcicleBase icicle in iciclesList)
-					icicle.Reset ();
+				dir.ResetIcicles ();
+//				foreach (IcicleBase icicle in iciclesList)
+//					icicle.Reset ();
 			}		
 		}
 // TODO: Resolve conflict.
@@ -230,9 +235,13 @@ public class MainPlayerScript : MonoBehaviour {
 			// TODO: Fine tune the following:
 			// In default state, Matty will walk slower compared to solid state
 			m_platCtrlScript.canControl = true;
-			m_platCtrlScript.movement.walkSpeed = 5;
+			// Rohith's Note: The below line tripped me up for almost a day.
+			// Probably should have notified of such a change via email.
+			// I've changed it again so that the Inspector-set values are used
+			// instead of some hard-coded value.
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed/2f;
 			m_platCtrlScript.jump.enabled = true;
-			m_platCtrlScript.jump.extraHeight = 1;
+			m_platCtrlScript.jump.extraHeight = origExtraHeight / 4f;
 		}
 		else if (m_currentState == (int)State.Solid)
 		{
@@ -247,9 +256,11 @@ public class MainPlayerScript : MonoBehaviour {
 			// TODO: Fine tune the following:
 			// In solid state, Matty will walk faster compared to default state
 			m_platCtrlScript.canControl = true;
-			m_platCtrlScript.movement.walkSpeed = 10;
+			// Rohith's Note: Changed below code so that the Inspector-set 
+			// values are used instead of some hard-coded value.
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed;
 			m_platCtrlScript.jump.enabled = true;
-			m_platCtrlScript.jump.extraHeight = 4.1f;
+			m_platCtrlScript.jump.extraHeight = origExtraHeight;
 		}
 		else if (m_currentState == (int)State.Liquid)
 		{
@@ -263,7 +274,9 @@ public class MainPlayerScript : MonoBehaviour {
 			// TODO: Fine tune the following:
 			// In liquid state, Matty will not be able to jump
 			m_platCtrlScript.canControl = true;
-			m_platCtrlScript.movement.walkSpeed = 10;
+			// Rohith's Note: Changed below code so that the Inspector-set 
+			// values are used instead of some hard-coded value.
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed;
 			m_platCtrlScript.jump.enabled = false;
 		}
 		else if (m_currentState == (int)State.Gas)
@@ -278,7 +291,9 @@ public class MainPlayerScript : MonoBehaviour {
 			// TODO: Fine tune the following:
 			// In gas state, Matty will walk slower compared to solid state
 			m_platCtrlScript.canControl = true;
-			m_platCtrlScript.movement.walkSpeed = 2;
+			// Rohith's Note: Changed below code so that the Inspector-set 
+			// values are used instead of some hard-coded value.
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed/5f;
 			m_platCtrlScript.jump.enabled = false;
 		}
 		else if (m_currentState == (int)State.Plasma)
@@ -293,9 +308,11 @@ public class MainPlayerScript : MonoBehaviour {
 			// TODO: Fine tune the following:
 			// In plasma state, Matty will walk a bit faster than in solid state, but jump a little lower
 			m_platCtrlScript.canControl = true;
-			m_platCtrlScript.movement.walkSpeed = 14;
+			// Rohith's Note: Changed below code so that the Inspector-set 
+			// values are used instead of some hard-coded value.
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed*1.4f;
 			m_platCtrlScript.jump.enabled = true;
-			m_platCtrlScript.jump.extraHeight = 3.8f;
+			m_platCtrlScript.jump.extraHeight = origExtraHeight*0.927f;
 		}
 		else
 		{
@@ -418,13 +435,15 @@ public class MainPlayerScript : MonoBehaviour {
 		if (collider.CompareTag ("DarkCaveEnter"))
 		{
 			Debug.Log("Player is entering dark cave trigger");
-			RenderSettings.ambientLight = Color.black;
+			dir.OnEnterDarkCave (collider);
+//			RenderSettings.ambientLight = Color.black;
 		}
 		else if (collider.CompareTag ("DarkCaveExit"))
 		{
 			Debug.Log("Player is exiting dark cave trigger");
-			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
-				RenderSettings.ambientLight = originalAmbientColor;
+			dir.OnDarkCaveExit (collider);
+//			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
+//				RenderSettings.ambientLight = originalAmbientColor;
 		}
 		else if (collider.CompareTag ("Lava"))
 		{

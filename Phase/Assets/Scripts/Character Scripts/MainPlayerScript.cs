@@ -455,15 +455,6 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 	}
 	
-	void OnCollisionExit (Collision collision)
-	{
-		Collider collider = collision.collider;
-		if (collider.CompareTag ("Lava") && m_currentState == (int)State.Plasma)
-		{
-			m_plasmaMattyScript.NotOnLava ();
-		}
-	}
-	
 	void OnTriggerStay (Collider collider)
 	{
 		MatterScript stateScript = m_defaultMattyScript;
@@ -508,6 +499,12 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Hit wind tunnel tracker");
 			AudioSource.PlayClipAtPoint(windTunnel, gameObject.transform.position);
+		}
+		else if (collider.CompareTag ("Lava"))
+		{
+			Debug.Log("Player hit lava");
+			if(stateScript.LavaCollisionResolution())
+				Die();
 		}
 			
 	}

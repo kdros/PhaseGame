@@ -30,7 +30,6 @@ public class MattyPlasmaScript : MatterScript
 	
 	void Update ()
 	{
-		//Color lightColour = glow.color;
 		if (curTime > 0f)
 		{
 			if (isOnLava)
@@ -44,7 +43,7 @@ public class MattyPlasmaScript : MatterScript
 				curTime -= Time.deltaTime;
 			
 			glow.color = Color.Lerp (originalColour, Color.red, curTime/lavaMaxTime);
-			meshRenderer.material.SetColor ("_Color", glow.color);//.Lerp (originalMat, LavaMat, curTime/lavaMaxTime);
+			meshRenderer.material.SetColor ("_Color", glow.color);
 		}
 		else
 		{

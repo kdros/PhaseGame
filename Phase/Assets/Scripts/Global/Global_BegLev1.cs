@@ -3,10 +3,13 @@ using System.Collections;
 
 public class Global_BegLev1 : MonoBehaviour {
 	
-	public AudioClip jumpSound;
+	public float timer;
+	public GameObject PressS;
 	
 	void Start ()
 	{
+		timer = 0.0f;
+		
 		if (System.IO.File.Exists ("Save/currentSave"))
 			System.IO.File.Delete ("Save/currentSave");
 	
@@ -15,6 +18,9 @@ public class Global_BegLev1 : MonoBehaviour {
 	
 	void Update ()
 	{
-
+		timer += Time.deltaTime;
+		
+		if (timer > 1.75f)
+			Destroy(PressS);
 	}
 }

@@ -5,6 +5,7 @@ public class Global_BegLev1 : MonoBehaviour {
 	
 	public float timer;
 	public GameObject PressS;
+	public GameObject PressS_Bkgd;
 	
 	void Start ()
 	{
@@ -21,6 +22,9 @@ public class Global_BegLev1 : MonoBehaviour {
 		timer += Time.deltaTime;
 		
 		if (timer > 1.75f)
+		{
 			Destroy(PressS);
+			Destroy(PressS_Bkgd);
+		}
 	}
 }

@@ -3,6 +3,7 @@ guid: 7dafbeab36da2b64085ab722c602db63
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
+  - jumpSound: {fileID: 8300000, guid: 2e855eedcfa2f474ea86930e8d6a4373, type: 3}
   - swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
   - spikeHit: {fileID: 8300000, guid: 88def61e55f6dba458a3797698ea2f16, type: 3}
   - pitfallHit: {fileID: 8300000, guid: 008e665a94c558742802093cc5ff00c6, type: 3}

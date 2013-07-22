@@ -3,7 +3,6 @@ guid: 25b84f4713ff71146a447a597653ebbd
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - spawnPoint: {instanceID: 0}
   - phaseEffect: {instanceID: 0}
   - deathExplosion: {instanceID: 0}
   - plasmaMatty: {instanceID: 0}
@@ -12,7 +11,7 @@ MonoImporter:
   - solidMatty: {instanceID: 0}
   - defaultMatty: {instanceID: 0}
   - windTunnel: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
-  - iceSliding: {fileID: 8300000, guid: db58f9990b9ce05478e0560cf01ec390, type: 3}
+  - iceSliding: {fileID: 8300000, guid: 257387989ab5318459c6d76b4e03ba0f, type: 3}
   - m_gasMatty: {instanceID: 0}
   - m_liquidMatty: {instanceID: 0}
   - m_solidMatty: {instanceID: 0}

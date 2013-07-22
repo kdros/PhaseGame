@@ -9,8 +9,10 @@ public class Director : MonoBehaviour
 		public Vector2 Door2;
 	};
 	
-	Transform player;
+	public Transform spawnPosition;
 	
+	Transform player;
+
 	Color originalAmbientColor;
 	bool darkCave;
 	DarkCave curDarkCave;
@@ -53,7 +55,6 @@ public class Director : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		// Update logic goes here.
 		if (darkCave)
 		{			
 			// Now figure out which door of the dark cave the user is close to
@@ -99,9 +100,10 @@ public class Director : MonoBehaviour
 					 	t = 1f;
 				
 					RenderSettings.ambientLight = Color.Lerp (originalAmbientColor, Color.black, t);
-				}
-				
+				}	
 		}
+		
+		otherUpdateStuff ();
 	}
 	
 	public void OnEnterDarkCave (Collider collider)
@@ -117,7 +119,7 @@ public class Director : MonoBehaviour
 				break;
 			}	
 		}
-//		}
+
 		if (!found)
 			throw new UnityException ("DarkCaveEnter triggered on a DarkCave that doesn't exist!");
 		else
@@ -168,5 +170,58 @@ public class Director : MonoBehaviour
 	{
 		foreach (IcicleBase icicle in iciclesList)
 			icicle.Reset ();
+	}
+	
+	public Vector3 GetSpawnPoint ()
+	{
+		switch (Application.platform)
+		{
+		// You mean one cannot fall through a case label?
+		// NOT COOL, C#. :/
+		case RuntimePlatform.OSXEditor: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.OSXDashboardPlayer: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.OSXPlayer: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.WindowsEditor: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.WindowsPlayer:
+			if (System.IO.File.Exists ("Save/currentSave"))
+			{
+				Vector3 newPos = new Vector3 ();
+				System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
+				for (int i = 0; i < 3; i ++)
+					newPos [i] = float.Parse (sr.ReadLine ());
+				sr.Close ();
+				spawnPosition.position = newPos;
+			}
+			break;
+		}
+//		Vector3 thisIsStupid = new Vector3 ();
+//		thisIsStupid = spawnPosition.position;
+		return spawnPosition.position;//thisIsStupid;
+	}
+	
+	public void SaveSpawnPoint (Vector3 spawnPt)
+	{
+		switch (Application.platform)
+		{ 
+		case RuntimePlatform.OSXEditor: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.OSXDashboardPlayer: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.OSXPlayer: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.WindowsEditor: goto case RuntimePlatform.WindowsPlayer;
+		case RuntimePlatform.WindowsPlayer:
+			if (!System.IO.Directory.Exists ("Save"))
+				System.IO.Directory.CreateDirectory ("Save");
+			System.IO.StreamWriter sr = new System.IO.StreamWriter ("Save/currentSave");
+			sr.WriteLine ("{0}", spawnPt [0]);
+			sr.WriteLine ("{0}", spawnPt [1]);
+			sr.WriteLine ("{0}", spawnPt [2]);
+			sr.Close ();
+			break;
+		}
+		spawnPosition.position = spawnPt;
+	}
+		
+	void otherUpdateStuff ()
+	{
+		;
 	}
 }

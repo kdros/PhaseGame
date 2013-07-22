@@ -17,7 +17,7 @@ public class MainPlayerScript : MonoBehaviour {
 	/// <summary>
 	/// Public Variables: Need to be set up by using the inspector
 	/// </summary>	
-	public Transform spawnPoint;		// Spawn location
+	Vector3 spawnPoint;		// Spawn location
 	
 	public GameObject phaseEffect; 		// Particle effect for state transition
 	public GameObject deathExplosion; 	// Explosion prefab used for death animation
@@ -102,11 +102,15 @@ public class MainPlayerScript : MonoBehaviour {
 //		foreach (GameObject icicle in icicleBaseArray)
 //			iciclesList.Add (icicle.GetComponent<IcicleBase>());
 		collidedWithGrates = false;
-		spawnPosition = spawnPoint.position;
 		reachedCheckPoint = false;
 		
 		origWalkSpeed = m_platCtrlScript.movement.walkSpeed;
 		origExtraHeight = m_platCtrlScript.jump.extraHeight;
+
+//		spawnPosition = spawnPoint.position;
+		spawnPoint = new Vector3 ();
+		spawnPoint = dir.GetSpawnPoint ();
+		m_platCtrlScript.SetSpawnPoint (spawnPoint, true);
 		
 		// Temp: Start out with defaultMatty
 		enableState ((int)State.Default);
@@ -183,12 +187,10 @@ public class MainPlayerScript : MonoBehaviour {
 //				if (System.IO.File.Exists ("Save/currentSave"))
 //					transform.position = spawnPosition;
 //				else
-				transform.position = spawnPosition;//spawnPoint.position;
+				transform.position = spawnPoint;
 				playerDead = false;
 				
 				dir.ResetIcicles ();
-//				foreach (IcicleBase icicle in iciclesList)
-//					icicle.Reset ();
 			}		
 		}
 // TODO: Resolve conflict.
@@ -525,21 +527,23 @@ public class MainPlayerScript : MonoBehaviour {
 		Destroy (explosion, 2);
 		
 		playerDead = true;
-		if (System.IO.File.Exists ("Save/currentSave") && reachedCheckPoint)
-		{
-			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
-			for (int i = 0; i < 3; i ++)
-				spawnPosition [i] = float.Parse (sr.ReadLine ());
-			sr.Close ();
-		}
-		else
-		{
-			// Temp: used for web browser version as the above case would not work. TODO: Instead of using StreamReader/StreamWriter, use PlayerPrefs
-			transform.position = spawnPoint.transform.position;
-		}
+//		if (System.IO.File.Exists ("Save/currentSave") && reachedCheckPoint)
+//		{
+//			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
+//			for (int i = 0; i < 3; i ++)
+//				spawnPosition [i] = float.Parse (sr.ReadLine ());
+//			sr.Close ();
+//		}
+//		else
+//		{
+//			// Temp: used for web browser version as the above case would not work. TODO: Instead of using StreamReader/StreamWriter, use PlayerPrefs
+//			transform.position = spawnPoint.transform.position;
+//		}
+		spawnPoint = dir.GetSpawnPoint ();
+		m_platCtrlScript.SetSpawnPoint (spawnPoint);
 		
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
-			(new Vector2 (spawnPosition.x, spawnPosition.y));
+			(new Vector2 (spawnPoint.x, spawnPoint.y));
 		
 		// Reset speed
 		m_platCtrlScript.ResetCharSpeed();		

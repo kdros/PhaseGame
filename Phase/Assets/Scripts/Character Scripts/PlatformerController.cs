@@ -14,7 +14,7 @@ public class PlatformerController : MonoBehaviour
 	public bool canControl = true;
 	
 	// The character will spawn at spawnPoint's position when needed.  This could be changed via a script at runtime to implement, e.g. waypoints/savepoints.
-	public Transform spawnPoint;
+	Vector3 spawnPoint;
 	
 	[System.Serializable]
 	public class PlatformerControllerMovement 
@@ -142,7 +142,7 @@ public class PlatformerController : MonoBehaviour
 		movement.speed = 0.0f;
 		
 		// reset the character's position to the spawnPoint
-		transform.position = spawnPoint.position;
+		transform.position = spawnPoint;
 		
 	}
 	
@@ -403,6 +403,13 @@ public class PlatformerController : MonoBehaviour
 		// reset the character's speed
 		movement.verticalSpeed = 0.0f;
 		movement.speed = 0.0f;	
+	}
+	
+	public void SetSpawnPoint (Vector3 spawnPos, bool canSpawn = false)
+	{
+		spawnPoint = spawnPos;
+		if (canSpawn)
+			Spawn ();
 	}
 }
 

@@ -10,7 +10,6 @@ public class Checkpoint : MonoBehaviour
 	void Start () 
 	{
 		hasCrossed = false;
-//		identifier = 0;			// Identifier = 0 means the start of the level.
 	}
 	
 	// Update is called once per frame
@@ -35,25 +34,23 @@ public class Checkpoint : MonoBehaviour
 	{
 		if (collObjCollider.CompareTag ("Player"))
 		{
-//			Debug.Log ("Player!");
 			if (!hasCrossed)
 			{	
 				hasCrossed = true;
-				saveGame ();
+				GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>().SaveSpawnPoint (gameObject.transform.position);
 				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,-90f);
 			}
-//			Physics.IgnoreCollision (GetComponent<Collider>(), collObjCollider);
 		}
 	}
 	
-	void saveGame ()
-	{
-		if (!Directory.Exists ("Save"))
-			Directory.CreateDirectory ("Save");
-		StreamWriter sr = new StreamWriter ("Save/currentSave");
-		sr.WriteLine ("{0}", gameObject.transform.position [0]);
-		sr.WriteLine ("{0}", gameObject.transform.position [1]);
-		sr.WriteLine ("{0}", gameObject.transform.position [2]);
-		sr.Close ();
-	}
+//	void saveGame ()
+//	{
+//		if (!Directory.Exists ("Save"))
+//			Directory.CreateDirectory ("Save");
+//		StreamWriter sr = new StreamWriter ("Save/currentSave");
+//		sr.WriteLine ("{0}", gameObject.transform.position [0]);
+//		sr.WriteLine ("{0}", gameObject.transform.position [1]);
+//		sr.WriteLine ("{0}", gameObject.transform.position [2]);
+//		sr.Close ();
+//	}
 }

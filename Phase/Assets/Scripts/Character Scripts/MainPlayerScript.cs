@@ -329,7 +329,7 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		
 		Collider collider = hit.collider;
-		Debug.Log("called OnControllerColliderHit");
+		//Debug.Log("called OnControllerColliderHit");
 		
 		// Assuming solid state as default for now (to initialize variable)
 		MatterScript stateScript = m_defaultMattyScript;
@@ -348,7 +348,7 @@ public class MainPlayerScript : MonoBehaviour {
 		if (collider.CompareTag("Platform"))
 		{
 			// do nothing
-			Debug.Log("Player on platform");
+			//Debug.Log("Player on platform");
 		}
 		else if (collider.CompareTag("DeathPlane"))
 		{

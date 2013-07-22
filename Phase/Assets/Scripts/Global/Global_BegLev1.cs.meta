@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 0f68e085b612d3c49ab7f07a822a6442
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - backgroundMusic: {fileID: 8300000, guid: a41b2fd12a2fe87469bbb8ad1c187921, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

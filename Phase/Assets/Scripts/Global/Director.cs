@@ -105,6 +105,11 @@ public class Director : MonoBehaviour
 		
 		otherUpdateStuff ();
 	}
+		
+	void otherUpdateStuff ()
+	{
+		;
+	}
 	
 	public void OnEnterDarkCave (Collider collider)
 	{
@@ -219,9 +224,9 @@ public class Director : MonoBehaviour
 		}
 		spawnPosition.position = spawnPt;
 	}
-		
-	void otherUpdateStuff ()
+	
+	public void ShowTriggerText (Collider collider)
 	{
-		;
+ 		Debug.Log ("Soundcheck!");
 	}
 }

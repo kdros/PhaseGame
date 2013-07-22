@@ -416,7 +416,7 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit icicle");
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
-		}		
+		}
 	}
 	
 	// Handle collision with game objects that are marked as triggers. Thees game objects will allow our player to pass through during collision.
@@ -458,6 +458,8 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			AudioSource.PlayClipAtPoint(hitCheckpoint, gameObject.transform.position);
 		}
+		else if (collider.CompareTag ("TriggerText"))
+			dir.ShowTriggerText (collider);
 	}
 	
 	void OnTriggerStay (Collider collider)
@@ -511,7 +513,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
-			
 	}
 	
 	void OnTriggerExit (Collider collider)

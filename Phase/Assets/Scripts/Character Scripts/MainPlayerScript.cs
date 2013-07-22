@@ -29,6 +29,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	public AudioClip windTunnel;
 	public AudioClip iceSliding;
+	public AudioClip hitCheckpoint;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -452,6 +453,10 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
 				Die();
+		}
+		else if (collider.CompareTag("Checkpoint"))
+		{
+			AudioSource.PlayClipAtPoint(hitCheckpoint, gameObject.transform.position);
 		}
 	}
 	

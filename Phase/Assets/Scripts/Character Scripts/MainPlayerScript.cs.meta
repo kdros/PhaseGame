@@ -12,6 +12,7 @@ MonoImporter:
   - defaultMatty: {instanceID: 0}
   - windTunnel: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
   - iceSliding: {fileID: 8300000, guid: 257387989ab5318459c6d76b4e03ba0f, type: 3}
+  - hitCheckpoint: {fileID: 8300000, guid: 0a6db1c498e77d94aaa72fbb382cbabf, type: 3}
   - m_gasMatty: {instanceID: 0}
   - m_liquidMatty: {instanceID: 0}
   - m_solidMatty: {instanceID: 0}

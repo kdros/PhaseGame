@@ -5,24 +5,28 @@ Switch back and forth between Matty and his solid state to learn the power of th
 BegLev1_KeyInfo
 s: solid\n q: default
 BegLev3_Trigger1
-There's a pitfall up ahead. Change into plasma state now by pressing 'f' to get past it.
+There's a pitfall up ahead. Change into plasma state now by pressing 'F' and jump across it by pressing Space and the right arrow key.
 BegLev3_Trigger2
-We're entering a dark cave. But no worries. The plasma's glow enables Matty to see inside such caves.
+We're entering a dark cave, but worry not. The plasma's glow enables Matty to see inside such caves.
 BegLev3_Trigger3
-Oh.. A Swinging Mace is up ahead. Don't let it strike you!
+Oh! A Swinging Mace is up ahead. Don't let it strike you!
 BegLev3_Trigger4
 Yikes, Spikes! Jump right past them by pressing Space and the right arrow key.
 BegLev3_Trigger5
-Aha, a Checkpoint! It saves your progress till now. Jump up and touch it.
+Aha, a Checkpoint! It saves your progress till now. Go ahead and touch it.
 BegLev3_Trigger6
 Holy Smokes! A flame pillar! Thankfully, in his plasma state, Matty is immune to fire!
 BegLev3_Trigger7
 Watch out for those deadly icicles! Dart past them!
 BegLev3_Trigger8
-Oh boy, a flaming lava pit! What next? Fire breathing dragons? Never mind. Matty is immune to fire in his plasma state. Try jumping right in to see what happens. 
+Oh boy, a flaming lava pit! What next? Fire breathing dragons? Never mind. Matty is immune to fire in his plasma state. Jump right in and see what happens. 
 BegLev3_Trigger9
 He seems to enjoy it! He's picking up heat from the lava and is emitting embers. His color is changing as well! He's red hot now! 
 BegLev3_Trigger10
-What's this? An Ice-covered floor? That's nothing! Our hero marches past!
+What's this? An Ice-covered floor? Our hero scoffs at it and marches past!
 BegLev3_Trigger11
 That's the end. All's well that ends well.
+BegLev3_Trigger12
+You know you've crossed a Checkpoint when it shows a green flag instead of a red one. If you die at any point from here onward, you will respawn here.  
+BegLev3_Trigger13
+Welcome to the Plasma state tutorial level. In this level, we'll learn to use Matty's plasma state to get past various traps. 

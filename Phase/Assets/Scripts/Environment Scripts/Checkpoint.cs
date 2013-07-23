@@ -21,7 +21,7 @@ public class Checkpoint : MonoBehaviour
 			{	
 				hasCrossed = true;
 				GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>().SaveSpawnPoint (gameObject.transform.position);
-				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,-90f);
+				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,90f);
 				AudioSource.PlayClipAtPoint(hitCheckpoint, collObjCollider.transform.position);
 			}
 		}

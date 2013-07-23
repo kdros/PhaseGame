@@ -10,6 +10,7 @@ public class Director : MonoBehaviour
 	};
 	
 	public Transform spawnPosition;
+	public float tipDisplayTime = 0f;
 	
 	Transform sceneCamera;
 
@@ -34,6 +35,8 @@ public class Director : MonoBehaviour
 		displayMessage = false;
 		displayTime = 0f;
 		messageToBeDisplayed = "";
+		if (tipDisplayTime == 0f)
+			tipDisplayTime = 10f;
 		
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
@@ -111,6 +114,15 @@ public class Director : MonoBehaviour
 				}	
 		}
 		
+		if (displayMessage)
+		{
+			displayTime += Time.deltaTime;
+			if (displayTime > tipDisplayTime)
+			{
+				displayTime = 0f;
+				displayMessage = false;
+			}
+		}
 //		otherUpdateStuff ();
 	}
 		
@@ -139,8 +151,7 @@ public class Director : MonoBehaviour
 			GUI.Box (new Rect (boxStartingX, boxStartingY, boxWidth, boxHeight), messageToBeDisplayed, wordWrapStyle);
 			bool dismiss = GUI.Button (new Rect (buttonStartingX, buttonStartingY, buttonWidth, buttonHeight), "Dismiss");
 			
-			displayTime += Time.deltaTime;
-			if (dismiss || (displayTime > 10.0f))
+			if (dismiss)
 			{
 				displayTime = 0f;
 				displayMessage = false;

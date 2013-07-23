@@ -55,34 +55,52 @@ public class MattyPlasmaScript : MatterScript
 		}
 	}
 	
+	void Reset ()
+	{
+		if (embers.isPlaying)
+			embers.Stop ();
+		glow.color = originalColour;
+	}
+	
 	public void NotOnLava ()
 	{
 			Debug.Log ("Exiting Lava!");
 			embers.loop = false;
 			isOnLava = false;
 	}
-
+	
 	public override bool FallingBouldersCollisionResolution()
 	{
 		// DEATH
+		Reset ();
 		return true;
 	}
 	
 	public override bool IceCeilingCollisionResolution()
 	{
 		// DEATH
+		Reset ();
 		return true;
 	}
 	
 	public override bool SpikeCollisionResolution()
 	{
 		// DEATH
+		Reset ();
 		return true;
 	}
 	
 	public override bool SwingingMaceCollisionResolution()
 	{
 		// DEATH
+		Reset ();
+		return true;
+	}
+	
+	public override bool PitfallCollisionResolution()
+	{
+		// DEATH
+		Reset ();
 		return true;
 	}
 	
@@ -110,11 +128,5 @@ public class MattyPlasmaScript : MatterScript
 	{
 		// NO EFFECT
 		return false;
-	}
-	
-	public override bool PitfallCollisionResolution()
-	{
-		// DEATH
-		return true;
 	}
 }

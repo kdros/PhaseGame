@@ -11,12 +11,16 @@ public class Director : MonoBehaviour
 	
 	public Transform spawnPosition;
 	
-	Transform camera;
+	Transform sceneCamera;
 
 	Color originalAmbientColor;
 	bool darkCave;
 	DarkCave curDarkCave;
 	float[] darknessTriggerSpots;
+	
+	bool displayMessage = false;
+	float displayTime = 0f;
+	string messageToBeDisplayed;
 	
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	System.Collections.Generic.List<DarkCave> darkCavesList;
@@ -27,9 +31,13 @@ public class Director : MonoBehaviour
 		if (System.IO.File.Exists ("Save/currentSave"))
 			System.IO.File.Delete ("Save/currentSave");
 		
+		displayMessage = false;
+		displayTime = 0f;
+		messageToBeDisplayed = "";
+		
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>();
+		sceneCamera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>();
 		
 		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
 		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
@@ -59,18 +67,18 @@ public class Director : MonoBehaviour
 		{			
 			// Now figure out which door of the dark cave the user is close to
 			// and lerp the ambient to dark as he approaches the trigger spot.
-			if (camera.position.x <= darknessTriggerSpots [0])
+			if (sceneCamera.position.x <= darknessTriggerSpots [0])
 			{
-				if (camera.position.x <= darknessTriggerSpots [1])
+				if (sceneCamera.position.x <= darknessTriggerSpots [1])
 				{
 					float t = 0f;
-					if (Mathf.Abs (camera.position.x - curDarkCave.Door1.x) < 
-						 Mathf.Abs (camera.position.x - curDarkCave.Door2.x))
-						t = (camera.position.x - curDarkCave.Door1.x) / 
+					if (Mathf.Abs (sceneCamera.position.x - curDarkCave.Door1.x) < 
+						 Mathf.Abs (sceneCamera.position.x - curDarkCave.Door2.x))
+						t = (sceneCamera.position.x - curDarkCave.Door1.x) / 
 									(darknessTriggerSpots [0] - curDarkCave.Door1.x);	
 						
 					else
-						t = (camera.position.x - curDarkCave.Door2.x) / 
+						t = (sceneCamera.position.x - curDarkCave.Door2.x) / 
 									(darknessTriggerSpots [1] - curDarkCave.Door2.x);	
 				
 					if (t < 0f)
@@ -81,17 +89,17 @@ public class Director : MonoBehaviour
 					RenderSettings.ambientLight = Color.Lerp (originalAmbientColor, Color.black, t);
 				}
 			}
-			else if (camera.position.x >= darknessTriggerSpots [0])
-				if (camera.position.x >= darknessTriggerSpots [1])
+			else if (sceneCamera.position.x >= darknessTriggerSpots [0])
+				if (sceneCamera.position.x >= darknessTriggerSpots [1])
 				{
 					float t = 0f;
-					if (Mathf.Abs (camera.position.x - curDarkCave.Door1.x) < 
-						 Mathf.Abs (camera.position.x - curDarkCave.Door2.x))
-						t = (curDarkCave.Door1.x - camera.position.x) / 
+					if (Mathf.Abs (sceneCamera.position.x - curDarkCave.Door1.x) < 
+						 Mathf.Abs (sceneCamera.position.x - curDarkCave.Door2.x))
+						t = (curDarkCave.Door1.x - sceneCamera.position.x) / 
 									(curDarkCave.Door1.x - darknessTriggerSpots [0]);	
 						
 					else
-						t = (curDarkCave.Door2.x - camera.position.x) / 
+						t = (curDarkCave.Door2.x - sceneCamera.position.x) / 
 									(curDarkCave.Door2.x - darknessTriggerSpots [1]);
 					
 					if (t < 0f)
@@ -103,12 +111,41 @@ public class Director : MonoBehaviour
 				}	
 		}
 		
-		otherUpdateStuff ();
+//		otherUpdateStuff ();
 	}
 		
-	void otherUpdateStuff ()
+	void OnGUI ()
 	{
-		;
+		if (displayMessage)
+		{
+			int absoluteWidth = 300, absoluteHeight = 300;
+			int width = 1366, height = 768;
+			if (Screen.width < 1366)
+				width = Screen.width;
+			if (Screen.height < 768)
+				height = Screen.height;
+			int boxWidth = (int)(width * ((float)absoluteWidth/1366f)), 
+				boxHeight = (int)(height * ((float)absoluteHeight/768f));
+			int boxStartingX = Screen.width - (int)(absoluteWidth*1.5f), boxStartingY = 10;
+			int buttonWidth = (int)(boxWidth * 0.5f), buttonHeight = (int)(boxHeight * 0.1f);
+			int buttonStartingX = boxStartingX + (int)(boxWidth*0.25f), 
+				buttonStartingY = boxStartingY + boxHeight - (int)(buttonHeight*1.5f);
+			
+			GUIStyle wordWrapStyle = new GUIStyle ();
+			wordWrapStyle.wordWrap = true;
+			wordWrapStyle.normal.textColor = Color.white;
+			wordWrapStyle.alignment = TextAnchor.UpperCenter;
+			
+			GUI.Box (new Rect (boxStartingX, boxStartingY, boxWidth, boxHeight), messageToBeDisplayed, wordWrapStyle);
+			bool dismiss = GUI.Button (new Rect (buttonStartingX, buttonStartingY, buttonWidth, buttonHeight), "Dismiss");
+			
+			displayTime += Time.deltaTime;
+			if (dismiss || (displayTime > 10.0f))
+			{
+				displayTime = 0f;
+				displayMessage = false;
+			}
+		}
 	}
 	
 	public void OnEnterDarkCave (Collider collider)
@@ -225,8 +262,38 @@ public class Director : MonoBehaviour
 		spawnPosition.position = spawnPt;
 	}
 	
-	public void ShowTriggerText (Collider collider)
+	public void ShowTriggerText (string colliderName)
 	{
- 		Debug.Log ("Soundcheck!");
+//		string triggerName = collider.name;
+		int positionOfDelimiter = colliderName.IndexOf ('_');
+		if (positionOfDelimiter == -1)
+		{
+			Debug.Log ("Please name your trigger properly!");
+			return;
+		}
+		string levelID = colliderName.Remove (positionOfDelimiter);
+
+		// Web Player compatibility to be figured out later.
+		System.IO.StreamReader sr = new System.IO.StreamReader ("Assets/Text/TextInfo.txt");
+		string contents = sr.ReadToEnd ();
+		sr.Close ();
+		int position = contents.IndexOf (colliderName);
+		if (position == -1)
+		{
+			Debug.Log ("Specified trigger wasn't found in TextInfo.");
+			return;
+		}
+		position += colliderName.Length + 1;
+		int finishingPos = contents.IndexOf (levelID, position);
+		
+		string rawMessage = "Placeholder";
+		if (finishingPos != -1)
+			rawMessage = contents.Substring (position, finishingPos-position);
+		else
+			// This indicates that the current trigger is the last in the file.
+			rawMessage = contents.Substring (position);
+		messageToBeDisplayed = rawMessage.Trim ();
+		displayMessage = true;
+		displayTime = 0f;
 	}
 }

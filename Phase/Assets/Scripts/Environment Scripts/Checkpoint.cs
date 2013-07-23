@@ -4,30 +4,13 @@ using System.IO;
 
 public class Checkpoint : MonoBehaviour 
 {
+	public AudioClip hitCheckpoint;
+
 	bool hasCrossed;
-//	uint identifier;
-	// Use this for initialization
+	
 	void Start () 
 	{
 		hasCrossed = false;
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-//		if (hasCrossed)
-//		{
-//			Component checkFlag = gameObject.transform.Find ("CheckFlag");
-//			// Check if green flag is visible and make it, if it isn't.
-//			if (!(checkFlag.transform.localEulerAngles [2] == -90f) && !hasCrossed)
-//			{
-////				Vector3 angles = checkFlag.transform.eulerAngles;
-////				angles [1] = -90f;
-////				checkFlag.transform.eulerAngles = angles;
-//				checkFlag.transform.RotateAroundLocal (Vector3.up,-90f);
-//			}
-//		}
-//		else
 	}
 	
 	void OnTriggerEnter (Collider collObjCollider)
@@ -39,6 +22,7 @@ public class Checkpoint : MonoBehaviour
 				hasCrossed = true;
 				GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>().SaveSpawnPoint (gameObject.transform.position);
 				gameObject.transform.Find ("CheckFlag").transform.RotateAroundLocal (Vector3.up,-90f);
+				AudioSource.PlayClipAtPoint(hitCheckpoint, collObjCollider.transform.position);
 			}
 		}
 	}

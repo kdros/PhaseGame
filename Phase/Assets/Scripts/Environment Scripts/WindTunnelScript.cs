@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class WindTunnelScript : MonoBehaviour {
-
+public class WindTunnelScript : MonoBehaviour 
+{
 	// Use this for initialization
 	void Start () {
 	

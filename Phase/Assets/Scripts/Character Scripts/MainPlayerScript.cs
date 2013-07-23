@@ -29,7 +29,6 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	public AudioClip windTunnel;
 	public AudioClip iceSliding;
-	public AudioClip hitCheckpoint;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -454,12 +453,8 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("Checkpoint"))
-		{
-			AudioSource.PlayClipAtPoint(hitCheckpoint, gameObject.transform.position);
-		}
 		else if (collider.CompareTag ("TriggerText"))
-			dir.ShowTriggerText (collider);
+			dir.ShowTriggerText (collider.name);
 	}
 	
 	void OnTriggerStay (Collider collider)

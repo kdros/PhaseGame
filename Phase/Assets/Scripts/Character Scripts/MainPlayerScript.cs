@@ -58,7 +58,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	private int m_currentState;							// keep track of the current state	
 	private bool collidedWithGrates;					// set to true if liquid state collided with grates
-	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
+//	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
 //	Color originalAmbientColor;
@@ -102,7 +102,7 @@ public class MainPlayerScript : MonoBehaviour {
 //		foreach (GameObject icicle in icicleBaseArray)
 //			iciclesList.Add (icicle.GetComponent<IcicleBase>());
 		collidedWithGrates = false;
-		reachedCheckPoint = false;
+//		reachedCheckPoint = false;
 		
 		origWalkSpeed = m_platCtrlScript.movement.walkSpeed;
 		origExtraHeight = m_platCtrlScript.jump.extraHeight;
@@ -455,6 +455,12 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);
+		
+		else if (collider.CompareTag ("TriggerEvent"))
+		{
+			dir.EventTrigger (collider.name);
+			collider.gameObject.SetActive (false);
+		}
 	}
 	
 	void OnTriggerStay (Collider collider)
@@ -489,7 +495,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Checkpoint"))
 		{
 			Debug.Log("Player reached checkpoint!");
-			reachedCheckPoint = true;
+//			reachedCheckPoint = true;
 		}
 		else if (collider.CompareTag("WindTunnel"))
 		{

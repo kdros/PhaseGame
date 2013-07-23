@@ -13,7 +13,8 @@ public class Director : MonoBehaviour
 	public float tipDisplayTime = 0f;
 	
 	Transform sceneCamera;
-
+	LevelDirector ld;
+	
 	Color originalAmbientColor;
 	bool darkCave;
 	DarkCave curDarkCave;
@@ -60,6 +61,15 @@ public class Director : MonoBehaviour
 			newCave.Door1 = new Vector2 (dcEnter.x, dcEnter.y);
 			newCave.Door2 = new Vector2 (dcExit.x, dcExit.y);
 			darkCavesList.Add (newCave);
+		}
+		
+		try
+		{
+			ld = GameObject.FindGameObjectWithTag ("LevelDirector").GetComponent<LevelDirector>();
+		}
+		catch (System.Exception e)
+		{
+			;
 		}
 	}
 	
@@ -275,7 +285,6 @@ public class Director : MonoBehaviour
 	
 	public void ShowTriggerText (string colliderName)
 	{
-//		string triggerName = collider.name;
 		int positionOfDelimiter = colliderName.IndexOf ('_');
 		if (positionOfDelimiter == -1)
 		{
@@ -303,8 +312,22 @@ public class Director : MonoBehaviour
 		else
 			// This indicates that the current trigger is the last in the file.
 			rawMessage = contents.Substring (position);
-		messageToBeDisplayed = rawMessage.Trim ();
+//		messageToBeDisplayed = rawMessage.Trim ();
+//		displayMessage = true;
+//		displayTime = 0f;
+		DisplayMessage (rawMessage.Trim ()); 
+	}
+	
+	public void DisplayMessage (string message_in)
+	{
+		messageToBeDisplayed = message_in;
 		displayMessage = true;
 		displayTime = 0f;
+	}
+	
+	public void EventTrigger (string eventName)
+	{
+		if (ld != null)
+			ld.OnEventTrigger (eventName);
 	}
 }

@@ -1,17 +1,35 @@
+BegLev1_Trigger0
+Let's begin your training! Phase 1 -THE SOLID STATE. Change into solid state now by pressing 's'.
 BegLev1_Trigger1
-Let's begin your training! Phase 1 - THE SOLID STATE. Change into solid state now by pressing 's'.
-BegLev1_Trigger2
 Spikes up ahead! Jump over them using space to jump right arrow key.
-BegLev1_Trigger3
+BegLev1_Trigger2
 Nice job! Now you're going to want to avoid those swinging maces.
-BegLev1_Trigger4
+BegLev1_Trigger3
 Be careful - pitfall ahead! Make sure to pick up some speed and jump across.
+BegLev1_Trigger4
+Whew that was close! Now watch out for the flames - Solid Matty will combust!
 BegLev1_Trigger5
-Change into solid state now by pressing 's'. Spikes up ahead! Jump over them using space to jump right arrow key.
+Aweomse jumping! Careful of the swinging mace!
 BegLev1_Trigger6
-Change into solid state now by pressing 's'. Spikes up ahead! Jump over them using space to jump right arrow key.
+Check out that wind tunnel! Unfortunately, Matty is too heavy to float, so just keep going!
 BegLev1_Trigger7
-Change into solid state now by pressing 's'. Spikes up ahead! Jump over them using space to jump right arrow key.
+Congrats! You have reached your first checkpoint. Make sure you hit it, to save this spot.
+BegLev1_Trigger8
+Up ahead is some ice - use the left arrow key to move across it and see him slide past those deadly icicles!
+BegLev1_Trigger9
+Keep moving!
+BegLev1_Trigger10
+Great job! There's a grate up ahead, but no worries - just keep going!
+BegLev1_Trigger11
+Ahh watch out for that lava. Jump across!
+BegLev1_Trigger12
+Slide across the ice and avoid those deadly spikes!
+BegLev1_Trigger13
+Move quickly and watch out for the icicles!
+BegLev1_Trigger14
+Now risk using the ice to get past the maces or jump over it?! You decide!
+BegLev1_Trigger15
+Congratulations! Phase 1 of your training is complete!
 BegLev3_Trigger1
 There's a pitfall up ahead. Change into plasma state now by pressing 'F' and jump across it by pressing Space and the right arrow key.
 BegLev3_Trigger2

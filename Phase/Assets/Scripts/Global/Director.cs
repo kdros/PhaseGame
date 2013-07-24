@@ -310,8 +310,18 @@ public class Director : MonoBehaviour
 		if (finishingPos != -1)
 			rawMessage = contents.Substring (position, finishingPos-position);
 		else
-			// This indicates that the current trigger is the last in the file.
-			rawMessage = contents.Substring (position);
+		{	// This indicates that the current trigger is the last with the specified levelID.
+			
+			// Find index of last char in string.
+			finishingPos = contents.IndexOf (System.Environment.NewLine, position);
+			if (finishingPos == 0) // If current position in string = last char 
+			{	
+				position += System.Environment.NewLine.Length; // Move position to the next line.
+				finishingPos = contents.IndexOf (System.Environment.NewLine, position); 
+			}
+			// Read the whole line.
+			rawMessage = contents.Substring (position, finishingPos-position);
+		}
 //		messageToBeDisplayed = rawMessage.Trim ();
 //		displayMessage = true;
 //		displayTime = 0f;

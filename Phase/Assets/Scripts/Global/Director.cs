@@ -325,9 +325,10 @@ public class Director : MonoBehaviour
 		displayTime = 0f;
 	}
 	
-	public void EventTrigger (string eventName)
+	public bool EventTrigger (string eventName)
 	{
 		if (ld != null)
-			ld.OnEventTrigger (eventName);
+			return ld.OnEventTrigger (eventName);
+		return false;
 	}
 }

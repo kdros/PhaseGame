@@ -3,8 +3,5 @@ using System.Collections;
 
 public abstract class LevelDirector : MonoBehaviour 
 {
-	public virtual void OnEventTrigger (string triggerName) 
-	{
-	
-	}
+	public abstract bool OnEventTrigger (string triggerName);
 }

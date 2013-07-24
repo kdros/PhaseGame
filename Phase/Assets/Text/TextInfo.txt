@@ -21,7 +21,7 @@ Watch out for those deadly icicles! Dart past them!
 BegLev3_Trigger8
 Oh boy, a flaming lava pit! What next? Fire breathing dragons? Never mind. Matty is immune to fire in his plasma state. Jump right in and see what happens. 
 BegLev3_Trigger9
-He seems to enjoy it! He's picking up heat from the lava and is emitting embers. His color is changing as well! He's red hot now! 
+He seems to enjoy it! He's picking up the heat from the lava and is emitting embers. His color is changing as well! He's red hot now! 
 BegLev3_Trigger10
 What's this? An Ice-covered floor? Our hero scoffs at it and marches past!
 BegLev3_Trigger11
@@ -31,6 +31,6 @@ You know you've crossed a Checkpoint when it shows a green flag instead of a red
 BegLev3_Trigger13
 Welcome to the Plasma state tutorial level. In this level, we'll learn to use Matty's plasma state to get past various traps. 
 BegLev3_Trigger14
-Some text here.
+Ooh, some fancy trap sequences ahead. Use what you've learnt from this level, avoid them and dash to the finish!
 BegLev3_Trigger15
-Some text here.
+That seems to have done the trick!

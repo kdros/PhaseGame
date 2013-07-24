@@ -71,9 +71,14 @@ public class MattyPlasmaScript : MatterScript
 	
 	public override bool FallingBouldersCollisionResolution()
 	{
-		// DEATH
-		Reset ();
-		return true;
+		if ((curTime/lavaMaxTime) < 0.5f)
+		{
+		// DEATH if plasma is not hot
+			Reset ();
+			return true;
+		}
+		// Otherwise, destroy boulder.
+		return false;
 	}
 	
 	public override bool IceCeilingCollisionResolution()

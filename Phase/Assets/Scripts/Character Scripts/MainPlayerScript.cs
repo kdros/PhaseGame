@@ -363,6 +363,16 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player got hit by falling boulders");
 			if(stateScript.FallingBouldersCollisionResolution())
 				Die();
+			else
+			{
+				// If current state is plasma and it's hot, destroy boulder.
+				if (m_currentState == (int)State.Plasma)
+				{
+					GameObject explosion = Instantiate(deathExplosion, collider.transform.position, Quaternion.identity) as GameObject;
+					Destroy (explosion, 2);
+					Destroy (collider.gameObject);
+				}
+			}
 		}
 		else if (collider.CompareTag("FlamePillar"))
 		{
@@ -458,8 +468,8 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		else if (collider.CompareTag ("TriggerEvent"))
 		{
-			dir.EventTrigger (collider.name);
-			collider.gameObject.SetActive (false);
+			if (dir.EventTrigger (collider.name))
+				collider.gameObject.SetActive (false);
 		}
 	}
 	

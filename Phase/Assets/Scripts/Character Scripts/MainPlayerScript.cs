@@ -463,6 +463,12 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
+		else if (collider.CompareTag("FlamePillar"))
+		{
+			Debug.Log("Player got hit by flame pillar");
+			if(stateScript.FlamePillarCollisionResolution())
+				Die();
+		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);
 		

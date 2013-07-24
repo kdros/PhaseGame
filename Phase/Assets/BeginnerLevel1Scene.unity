@@ -2572,7 +2572,7 @@ GameObject:
   - 4: {fileID: 181829060}
   - 65: {fileID: 181829059}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger8
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4365,7 +4365,7 @@ GameObject:
   - 4: {fileID: 354740601}
   - 65: {fileID: 354740600}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger15
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6676,7 +6676,7 @@ GameObject:
   - 4: {fileID: 512076438}
   - 65: {fileID: 512076439}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger2
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11656,7 +11656,7 @@ GameObject:
   - 4: {fileID: 920977127}
   - 65: {fileID: 920977126}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger7
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12260,7 +12260,7 @@ GameObject:
   - 4: {fileID: 995895906}
   - 65: {fileID: 995895905}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger11
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13217,7 +13217,7 @@ GameObject:
   - 4: {fileID: 1099009933}
   - 65: {fileID: 1099009932}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger13
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13941,7 +13941,7 @@ GameObject:
   - 4: {fileID: 1217833605}
   - 65: {fileID: 1217833604}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger6
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14006,7 +14006,7 @@ GameObject:
   - 4: {fileID: 1225295792}
   - 65: {fileID: 1225295791}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger3
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14297,7 +14297,7 @@ GameObject:
   - 4: {fileID: 1272678321}
   - 65: {fileID: 1272678320}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger5
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14324,6 +14324,45 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 64.6448669, y: -1.00830746, z: -.155292511}
   m_LocalScale: {x: .863214195, y: .73661232, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!1 &1288372886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1288372888}
+  - 65: {fileID: 1288372887}
+  m_Layer: 0
+  m_Name: BegLev1_Trigger1
+  m_TagString: TriggerText
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1288372887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1288372886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 9.81000042, z: 5.86057186}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1288372888
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1288372886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.4822769, y: -1.00830746, z: -.155292511}
+  m_LocalScale: {x: 6.02602673, y: .73661232, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1288926361
@@ -14634,7 +14673,7 @@ GameObject:
   - 4: {fileID: 1342395018}
   - 65: {fileID: 1342395017}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger12
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16839,7 +16878,7 @@ GameObject:
   - 4: {fileID: 1458609159}
   - 65: {fileID: 1458609158}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger9
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17241,7 +17280,7 @@ GameObject:
   - 4: {fileID: 1477756971}
   - 65: {fileID: 1477756970}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger14
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20547,7 +20586,7 @@ GameObject:
   - 4: {fileID: 1610186315}
   - 65: {fileID: 1610186314}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger4
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27399,7 +27438,7 @@ GameObject:
   - 4: {fileID: 2042790016}
   - 65: {fileID: 2042790015}
   m_Layer: 0
-  m_Name: BegLev1_
+  m_Name: BegLev1_Trigger10
   m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,9 +1,17 @@
-BegLev1_MainTitle
-Level 1 (Solid State Learning)
-BegLev1_Instructions
-Switch back and forth between Matty and his solid state to learn the power of the solid state!\nPress s to switch to solid.
-BegLev1_KeyInfo
-s: solid\n q: default
+BegLev1_Trigger1
+Let's begin your training! Phase 1 - THE SOLID STATE. Change into solid state now by pressing 's'.
+BegLev1_Trigger2
+Spikes up ahead! Jump over them using space to jump right arrow key.
+BegLev1_Trigger3
+Nice job! Now you're going to want to avoid those swinging maces.
+BegLev1_Trigger4
+Be careful - pitfall ahead! Make sure to pick up some speed and jump across.
+BegLev1_Trigger5
+Change into solid state now by pressing 's'. Spikes up ahead! Jump over them using space to jump right arrow key.
+BegLev1_Trigger6
+Change into solid state now by pressing 's'. Spikes up ahead! Jump over them using space to jump right arrow key.
+BegLev1_Trigger7
+Change into solid state now by pressing 's'. Spikes up ahead! Jump over them using space to jump right arrow key.
 BegLev3_Trigger1
 There's a pitfall up ahead. Change into plasma state now by pressing 'F' and jump across it by pressing Space and the right arrow key.
 BegLev3_Trigger2

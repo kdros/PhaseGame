@@ -2572,8 +2572,8 @@ GameObject:
   - 4: {fileID: 181829060}
   - 65: {fileID: 181829059}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4365,8 +4365,8 @@ GameObject:
   - 4: {fileID: 354740601}
   - 65: {fileID: 354740600}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6676,8 +6676,8 @@ GameObject:
   - 4: {fileID: 512076438}
   - 65: {fileID: 512076439}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11656,8 +11656,8 @@ GameObject:
   - 4: {fileID: 920977127}
   - 65: {fileID: 920977126}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12260,8 +12260,8 @@ GameObject:
   - 4: {fileID: 995895906}
   - 65: {fileID: 995895905}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13217,8 +13217,8 @@ GameObject:
   - 4: {fileID: 1099009933}
   - 65: {fileID: 1099009932}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13941,8 +13941,8 @@ GameObject:
   - 4: {fileID: 1217833605}
   - 65: {fileID: 1217833604}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14006,8 +14006,8 @@ GameObject:
   - 4: {fileID: 1225295792}
   - 65: {fileID: 1225295791}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14297,8 +14297,8 @@ GameObject:
   - 4: {fileID: 1272678321}
   - 65: {fileID: 1272678320}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14634,8 +14634,8 @@ GameObject:
   - 4: {fileID: 1342395018}
   - 65: {fileID: 1342395017}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16839,8 +16839,8 @@ GameObject:
   - 4: {fileID: 1458609159}
   - 65: {fileID: 1458609158}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17241,8 +17241,8 @@ GameObject:
   - 4: {fileID: 1477756971}
   - 65: {fileID: 1477756970}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20547,8 +20547,8 @@ GameObject:
   - 4: {fileID: 1610186315}
   - 65: {fileID: 1610186314}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27399,8 +27399,8 @@ GameObject:
   - 4: {fileID: 2042790016}
   - 65: {fileID: 2042790015}
   m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
+  m_Name: BegLev1_
+  m_TagString: TriggerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

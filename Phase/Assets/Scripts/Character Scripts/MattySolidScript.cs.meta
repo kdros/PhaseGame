@@ -3,9 +3,8 @@ guid: d15fd1114c454f344837e2da5effc5bd
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - swingingMaceHit: {fileID: 8300000, guid: f3eebf4177875f74ea3d3509a49cec57, type: 3}
-  - spikeHit: {fileID: 8300000, guid: 23306371e5dee5d4eaab023097822602, type: 3}
-  - pitfallHit: {fileID: 8300000, guid: a8453602331246b42b31fd6890691fd7, type: 3}
+  - swingingMaceHit: {fileID: 8300000, guid: e33826f700d1dbf4698266097dc6606d, type: 3}
+  - spikeHit: {fileID: 8300000, guid: c6833e5d79348cd429beefdc08d29f40, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

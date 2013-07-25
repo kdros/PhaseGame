@@ -548,17 +548,17 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			if (collider.CompareTag ("IcyFloor"))
 			{
-				Debug.Log("destroy rain");
+				Debug.Log("Gas-Matty exits IcyFloor, destroy rain");
 				m_gasMattyScript.StopCondensation ();
 			}
 			else if (collider.CompareTag("WindTunnel"))
 			{
-				Debug.Log("Player exits wind tunnel");
+				Debug.Log("Gas-Matty exits wind tunnel");
 				m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
 			}
 			else if (collider.CompareTag("Icicle"))
 			{
-				Debug.Log("Player exits icicle, stopping rain");
+				Debug.Log("Gas-Matty exits icicle, stopping rain");
 				m_gasMattyScript.StopCondensation ();
 				collider.isTrigger = false; // Set collider back to normal.
 			}

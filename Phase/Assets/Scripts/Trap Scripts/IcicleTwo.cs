@@ -48,11 +48,23 @@ public class IcicleTwo : IcicleBase
 		foreach (Transform child in transform)
 		{
 			if (child.name.Equals ("IcicleCone"))
+			{	
+				child.rigidbody.useGravity = false;
+				child.rigidbody.isKinematic = true;
 				child.transform.localPosition = particles [0];
+			}
 			else if (child.name.Equals ("IcicleCube"))
+			{
+				child.rigidbody.useGravity = false;
+				child.rigidbody.isKinematic = true;
 				child.transform.localPosition = particles [1];
+			}
 			else if (child.name.Equals ("IcicleCylinder"))
+			{
+				child.rigidbody.useGravity = false;
+				child.rigidbody.isKinematic = true;
 				child.transform.localPosition = particles [2];
+			}
 		}
 	}
 }

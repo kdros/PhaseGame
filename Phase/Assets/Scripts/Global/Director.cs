@@ -69,7 +69,7 @@ public class Director : MonoBehaviour
 		}
 		catch (System.Exception e)
 		{
-			;
+			Debug.LogWarning ("A Level Director was not found for this level!");
 		}
 	}
 	

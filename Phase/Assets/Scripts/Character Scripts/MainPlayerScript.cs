@@ -29,6 +29,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	public AudioClip windTunnel;
 	public AudioClip iceSliding;
+	public AudioClip pitfall;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -402,12 +403,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("Pitfall"))
-		{
-			Debug.Log("Player fell into pitfall");
-			if(stateScript.PitfallCollisionResolution())
-				Die();
-		}
 		else if (collider.CompareTag("Spike"))
 		{
 			Debug.Log("Player got hit spike");
@@ -468,6 +463,12 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player got hit by flame pillar");
 			if(stateScript.FlamePillarCollisionResolution())
 				Die();
+		}
+		else if (collider.CompareTag("Pitfall"))
+		{
+			Debug.Log("Player fell into pitfall");
+
+			AudioSource.PlayClipAtPoint(pitfall, gameObject.transform.position);
 		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);
@@ -542,6 +543,21 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("destroy rain");
 			m_gasMattyScript.StopCondensation ();
+		}
+		else if (collider.CompareTag("Pitfall"))
+		{
+			Debug.Log("Player fell into pitfall");
+			// Want to kill player but don't want there to be an explosion, so re-use some Die() code
+			playerDead = true;
+
+			spawnPoint = dir.GetSpawnPoint ();
+			m_platCtrlScript.SetSpawnPoint (spawnPoint);
+		
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
+			(new Vector2 (spawnPoint.x, spawnPoint.y));
+		
+			// Reset speed
+			m_platCtrlScript.ResetCharSpeed();
 		}
 		else if (collider.CompareTag("WindTunnel") && m_currentState == (int)State.Gas)
 		{

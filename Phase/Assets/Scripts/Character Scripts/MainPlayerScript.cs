@@ -27,7 +27,7 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject solidMatty;
 	public GameObject defaultMatty;
 	
-	public AudioClip windTunnel;
+	public AudioClip slidingSound;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -493,6 +493,7 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
 			{
+				AudioSource.PlayClipAtPoint(slidingSound, gameObject.transform.position);
 				m_platCtrlScript.SpeedUp(15.0f);
 			}
 			else if(m_currentState == (int)State.Gas)
@@ -510,11 +511,6 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit wind tunnel");
 			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
 				Die();
-		}
-		else if (collider.CompareTag ("WindTunnelTracker"))
-		{
-			Debug.Log("Hit wind tunnel tracker");
-			AudioSource.PlayClipAtPoint(windTunnel, gameObject.transform.position);
 		}
 		else if (collider.CompareTag ("Lava"))
 		{

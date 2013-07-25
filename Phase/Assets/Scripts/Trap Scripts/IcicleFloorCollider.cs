@@ -3,11 +3,10 @@ using System.Collections;
 
 public class IcicleFloorCollider : MonoBehaviour 
 {
-	public AudioClip slidingSound;
+	
 	// Use this for initialization
 	void Start () 
 	{
-
 	}
 	
 	void OnTriggerEnter (Collider collObj) 
@@ -32,8 +31,4 @@ public class IcicleFloorCollider : MonoBehaviour
 //		Debug.Log ("Buzzz!: "+aName);
 	}
 	
-	public void playSlidingSound()
-	{
-		AudioSource.PlayClipAtPoint(slidingSound, gameObject.transform.position);
-	}
 }

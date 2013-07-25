@@ -26,7 +26,6 @@ GameObject:
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
   - 136: {fileID: 13600000}
-  - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
   - 75: {fileID: 7500000}
   m_Layer: 0
@@ -47,6 +46,7 @@ GameObject:
   - 33: {fileID: 3300000}
   - 64: {fileID: 6400000}
   - 23: {fileID: 2300000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: WindTunnelTracker
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
+  m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de141a1b8c47def49bb69daa0ea49304, type: 3}

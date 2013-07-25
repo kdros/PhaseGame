@@ -27,6 +27,11 @@ public class Director : MonoBehaviour
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	System.Collections.Generic.List<DarkCave> darkCavesList;
 	
+	// For displaying message boxes:
+	int absoluteWidth, absoluteHeight, width, height;
+	int boxWidth, boxHeight, boxStartingX, boxStartingY;
+	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -62,6 +67,8 @@ public class Director : MonoBehaviour
 			newCave.Door2 = new Vector2 (dcExit.x, dcExit.y);
 			darkCavesList.Add (newCave);
 		}
+		
+		GUIDimensionSetup ();
 		
 		try
 		{
@@ -133,26 +140,13 @@ public class Director : MonoBehaviour
 				displayMessage = false;
 			}
 		}
-//		otherUpdateStuff ();
+
 	}
 		
 	void OnGUI ()
 	{
 		if (displayMessage)
 		{
-			int absoluteWidth = 300, absoluteHeight = 300;
-			int width = 1366, height = 768;
-			if (Screen.width < 1366)
-				width = Screen.width;
-			if (Screen.height < 768)
-				height = Screen.height;
-			int boxWidth = (int)(width * ((float)absoluteWidth/1366f)), 
-				boxHeight = (int)(height * ((float)absoluteHeight/768f));
-			int boxStartingX = Screen.width - (int)(absoluteWidth*1.5f), boxStartingY = 10;
-			int buttonWidth = (int)(boxWidth * 0.5f), buttonHeight = (int)(boxHeight * 0.1f);
-			int buttonStartingX = boxStartingX + (int)(boxWidth*0.25f), 
-				buttonStartingY = boxStartingY + boxHeight - (int)(buttonHeight*1.5f);
-			
 			GUIStyle wordWrapStyle = new GUIStyle ();
 			wordWrapStyle.wordWrap = true;
 			wordWrapStyle.normal.textColor = Color.white;
@@ -169,10 +163,40 @@ public class Director : MonoBehaviour
 		}
 	}
 	
+	void GUIDimensionSetup ()
+	{
+		// Box dimensions are 300x300 for a 1366x768 screen.
+		absoluteWidth = 300; absoluteHeight = 300;
+		width = 1366; height = 768;
+		
+		// Scale box in accordance with resolution. Do not scale if resolution higher than 1366x768. 
+		if (Screen.width < 1366)
+			width = Screen.width;
+		if (Screen.height < 768)
+			height = Screen.height;
+		
+		// Scaling logic.
+		boxWidth = (int)(width * ((float)absoluteWidth/1366f)); 
+		boxHeight = (int)(height * ((float)absoluteHeight/768f));
+		
+		// Position the box at upper right corner, padded to the left by
+		// 1.5 times the width of the box at the current resolution.
+		boxStartingX = Screen.width - (int)(absoluteWidth*1.5f); 
+		boxStartingY = 10;
+		
+		// Button's width specified as half the width of the box. Height is 10% of box's height.
+		buttonWidth = (int)(boxWidth * 0.5f);
+		buttonHeight = (int)(boxHeight * 0.1f);
+		
+		// Centre the button in the box.
+		buttonStartingX = boxStartingX + (int)(boxWidth*0.25f); 
+		buttonStartingY = boxStartingY + boxHeight - (int)(buttonHeight*1.5f);
+	}
+	
 	public void OnEnterDarkCave (Collider collider)
 	{
 		bool found = false;
-		for (int i = 0; i < darkCavesList.Count; i ++)//DarkCave darkCave in )
+		for (int i = 0; i < darkCavesList.Count; i ++)
 		{
 			Vector2 darkCaveDoor = new Vector2 (collider.transform.position.x, collider.transform.position.y);
 			if (darkCaveDoor.Equals (darkCavesList [i].Door1) || darkCaveDoor.Equals (darkCavesList [i].Door2))
@@ -257,9 +281,7 @@ public class Director : MonoBehaviour
 			}
 			break;
 		}
-//		Vector3 thisIsStupid = new Vector3 ();
-//		thisIsStupid = spawnPosition.position;
-		return spawnPosition.position;//thisIsStupid;
+		return spawnPosition.position;
 	}
 	
 	public void SaveSpawnPoint (Vector3 spawnPt)
@@ -322,9 +344,7 @@ public class Director : MonoBehaviour
 			// Read the whole line.
 			rawMessage = contents.Substring (position, finishingPos-position);
 		}
-//		messageToBeDisplayed = rawMessage.Trim ();
-//		displayMessage = true;
-//		displayTime = 0f;
+		
 		DisplayMessage (rawMessage.Trim ()); 
 	}
 	
@@ -335,10 +355,19 @@ public class Director : MonoBehaviour
 		displayTime = 0f;
 	}
 	
+	// Handles event triggers when player collides with them
 	public bool EventTrigger (string eventName)
 	{
 		if (ld != null)
 			return ld.OnEventTrigger (eventName);
+		return false;
+	}
+	
+	// Handles event triggers when other objects collide with them
+	public bool EventTrigger (string eventName, string colliderName)
+	{
+		if (ld != null)
+			return ld.OnEventTrigger (eventName, colliderName);
 		return false;
 	}
 }

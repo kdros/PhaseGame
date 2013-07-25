@@ -45,6 +45,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400040}
   - 65: {fileID: 6500004}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Pitfall
   m_TagString: Pitfall
@@ -75,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: -.244958416, w: .969533622}
-  m_LocalPosition: {x: .190111309, y: -.0215496719, z: .0227483343}
+  m_LocalPosition: {x: .182524309, y: -.0285401698, z: .0227483343}
   m_LocalScale: {x: .112933837, y: .0713100657, z: .127846673}
   m_Children: []
   m_Father: {fileID: 400046}
@@ -86,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: .218863457, w: .975755513}
-  m_LocalPosition: {x: -.0752628446, y: -.0196909178, z: .0210583154}
+  m_LocalPosition: {x: -.0567305386, y: -.0212610234, z: .0210583154}
   m_LocalScale: {x: .170264781, y: .0709125176, z: .123279013}
   m_Children: []
   m_Father: {fileID: 400046}
@@ -97,8 +98,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
-  m_LocalPosition: {x: .0379038379, y: -.220729962, z: .0180082992}
-  m_LocalScale: {x: 1.84652734, y: 1.97470021, z: 1}
+  m_LocalPosition: {x: .0580523573, y: -.206287488, z: .0180082992}
+  m_LocalScale: {x: 2.22781253, y: 7.03699398, z: 2.11662602}
   m_Children: []
   m_Father: {fileID: 400046}
 --- !u!4 &400046
@@ -127,7 +128,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 512fef08b1c8dac4e8e67976bd4cf9c9, type: 2}
+  - {fileID: 2100000, guid: ebc81a80844611242b0fa525ef50ea6e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -145,7 +146,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 512fef08b1c8dac4e8e67976bd4cf9c9, type: 2}
+  - {fileID: 2100000, guid: ebc81a80844611242b0fa525ef50ea6e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -196,7 +197,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: .100000001, y: .0399999991, z: .100000001}
@@ -213,6 +214,17 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c1474805567964cbdc7d3958e42cdd, type: 3}
+  m_Name: 
+  fallingSound: {fileID: 8300000, guid: e366f6adfd4829b4fb2abca81457d00e, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -54,9 +54,7 @@ MonoBehaviour:
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
   solidMatty: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
-  windTunnel: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
-  iceSliding: {fileID: 8300000, guid: 257387989ab5318459c6d76b4e03ba0f, type: 3}
-  hitCheckpoint: {fileID: 8300000, guid: 0a6db1c498e77d94aaa72fbb382cbabf, type: 3}
+  slidingSound: {fileID: 8300000, guid: 257387989ab5318459c6d76b4e03ba0f, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

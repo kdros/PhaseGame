@@ -3,10 +3,10 @@ using System.Collections;
 
 public class IcicleFloorCollider : MonoBehaviour 
 {
+	
 	// Use this for initialization
 	void Start () 
 	{
-	
 	}
 	
 	void OnTriggerEnter (Collider collObj) 
@@ -30,4 +30,5 @@ public class IcicleFloorCollider : MonoBehaviour
 		}
 //		Debug.Log ("Buzzz!: "+aName);
 	}
+	
 }

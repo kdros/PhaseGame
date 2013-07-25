@@ -27,8 +27,7 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject solidMatty;
 	public GameObject defaultMatty;
 	
-	public AudioClip windTunnel;
-	public AudioClip iceSliding;
+	public AudioClip slidingSound;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -402,12 +401,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("Pitfall"))
-		{
-			Debug.Log("Player fell into pitfall");
-			if(stateScript.PitfallCollisionResolution())
-				Die();
-		}
 		else if (collider.CompareTag("Spike"))
 		{
 			Debug.Log("Player got hit spike");
@@ -503,8 +496,8 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
 			{
+				AudioSource.PlayClipAtPoint(slidingSound, gameObject.transform.position);
 				m_platCtrlScript.SpeedUp(15.0f);
-				AudioSource.PlayClipAtPoint(iceSliding, gameObject.transform.position);
 			}
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
@@ -522,11 +515,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
 				Die();
 		}
-		else if (collider.CompareTag ("WindTunnelTracker"))
-		{
-			Debug.Log("Hit wind tunnel tracker");
-			AudioSource.PlayClipAtPoint(windTunnel, gameObject.transform.position);
-		}
 		else if (collider.CompareTag ("Lava"))
 		{
 			Debug.Log("Player hit lava");
@@ -540,6 +528,21 @@ public class MainPlayerScript : MonoBehaviour {
 		if (collider.CompareTag ("Lava") && m_currentState == (int)State.Plasma)
 		{
 			m_plasmaMattyScript.NotOnLava ();
+		}
+		else if (collider.CompareTag("Pitfall"))
+		{
+			Debug.Log("Player fell into pitfall");
+			// Want to kill player but don't want there to be an explosion, so re-use some Die() code
+			playerDead = true;
+
+			spawnPoint = dir.GetSpawnPoint ();
+			m_platCtrlScript.SetSpawnPoint (spawnPoint);
+		
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
+			(new Vector2 (spawnPoint.x, spawnPoint.y));
+		
+			// Reset speed
+			m_platCtrlScript.ResetCharSpeed();
 		}
 		if (m_currentState == (int)State.Gas)
 		{

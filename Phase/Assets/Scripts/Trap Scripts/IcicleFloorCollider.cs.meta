@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 28d470e18303c8d4c88854f53de5a944
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - slidingSound: {fileID: 8300000, guid: 257387989ab5318459c6d76b4e03ba0f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

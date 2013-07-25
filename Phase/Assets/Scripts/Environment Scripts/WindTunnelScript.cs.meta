@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: de141a1b8c47def49bb69daa0ea49304
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - whooshSound: {fileID: 8300000, guid: 49a643ee25a3bb94387424e4907dda7c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

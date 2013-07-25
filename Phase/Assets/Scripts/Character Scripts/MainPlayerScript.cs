@@ -28,8 +28,6 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject defaultMatty;
 	
 	public AudioClip windTunnel;
-	public AudioClip iceSliding;
-	public AudioClip pitfall;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -464,12 +462,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.FlamePillarCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("Pitfall"))
-		{
-			Debug.Log("Player fell into pitfall");
-
-			AudioSource.PlayClipAtPoint(pitfall, gameObject.transform.position);
-		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);
 		
@@ -502,7 +494,6 @@ public class MainPlayerScript : MonoBehaviour {
 			if(m_currentState == (int)State.Solid)
 			{
 				m_platCtrlScript.SpeedUp(15.0f);
-				AudioSource.PlayClipAtPoint(iceSliding, gameObject.transform.position);
 			}
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();

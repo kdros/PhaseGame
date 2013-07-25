@@ -1,7 +1,7 @@
 BegLev1_Trigger0
 Let's begin your training! Phase 1 -THE SOLID STATE. Change into solid state now by pressing 's'.
 BegLev1_Trigger1
-Spikes up ahead! Jump over them using space to jump right arrow key.
+Spikes up ahead! Jump over them using SPACE and the RIGHT ARROW keys.
 BegLev1_Trigger2
 Nice job! Now you're going to want to avoid those swinging maces.
 BegLev1_Trigger3
@@ -9,15 +9,15 @@ Be careful - pitfall ahead! Make sure to pick up some speed and jump across.
 BegLev1_Trigger4
 Whew that was close! Now watch out for the flames - Solid Matty will combust!
 BegLev1_Trigger5
-Aweomse jumping! Careful of the swinging mace!
+Awesome jumping! Careful of the swinging mace!
 BegLev1_Trigger6
 Check out that wind tunnel! Unfortunately, Matty is too heavy to float, so just keep going!
 BegLev1_Trigger7
-Congrats! You have reached your first checkpoint. Make sure you hit it, to save this spot.
+Congrats! You have reached your first checkpoint. If you die, you will now re-start here!
 BegLev1_Trigger8
-Up ahead is some ice - use the left arrow key to move across it and see him slide past those deadly icicles!
+Up ahead is some ice - use the LEFT ARROW key to move across it and see him slide past those deadly icicles!
 BegLev1_Trigger9
-Keep moving!
+KEEP MOVING!
 BegLev1_Trigger10
 Great job! There's a grate up ahead, but no worries - just keep going!
 BegLev1_Trigger11

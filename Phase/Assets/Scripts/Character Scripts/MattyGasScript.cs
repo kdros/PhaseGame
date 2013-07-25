@@ -51,7 +51,6 @@ public class MattyGasScript : MatterScript
 	{
 		// DEATH
 		// TODO: Condensation
-		
 		Debug.Log("Gas-IcyFloor: Need to do condenstation effect");
 		Condenstation ();
 		return false;

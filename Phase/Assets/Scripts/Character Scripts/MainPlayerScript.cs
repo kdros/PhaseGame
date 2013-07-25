@@ -416,6 +416,9 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag ("Icicle"))
 		{
 			Debug.Log("Player hit icicle");
+			if (m_currentState == (int)State.Gas) 	// If current state is gas, change icicle collider to trigger
+				collider.isTrigger = true;			// we'll set it back to normal once it exits the collider.
+			// The above was done to correctly handle condensation when gas hits icicle (it didn't stop before).
 			if(stateScript.IceCeilingCollisionResolution())
 				Die();
 		}
@@ -526,11 +529,6 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			m_plasmaMattyScript.NotOnLava ();
 		}
-		else if (collider.CompareTag ("IcyFloor") && m_currentState == (int)State.Gas)
-		{
-			Debug.Log("destroy rain");
-			m_gasMattyScript.StopCondensation ();
-		}
 		else if (collider.CompareTag("Pitfall"))
 		{
 			Debug.Log("Player fell into pitfall");
@@ -546,10 +544,24 @@ public class MainPlayerScript : MonoBehaviour {
 			// Reset speed
 			m_platCtrlScript.ResetCharSpeed();
 		}
-		else if (collider.CompareTag("WindTunnel") && m_currentState == (int)State.Gas)
+		if (m_currentState == (int)State.Gas)
 		{
-			Debug.Log("Player hit wind tunnel");
-			m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
+			if (collider.CompareTag ("IcyFloor"))
+			{
+				Debug.Log("destroy rain");
+				m_gasMattyScript.StopCondensation ();
+			}
+			else if (collider.CompareTag("WindTunnel"))
+			{
+				Debug.Log("Player exits wind tunnel");
+				m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
+			}
+			else if (collider.CompareTag("Icicle"))
+			{
+				Debug.Log("Player exits icicle, stopping rain");
+				m_gasMattyScript.StopCondensation ();
+				collider.isTrigger = false; // Set collider back to normal.
+			}
 		}
 	}
 	

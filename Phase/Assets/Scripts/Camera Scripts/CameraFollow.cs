@@ -47,12 +47,13 @@ public class CameraFollow : MonoBehaviour {
 		if (isPanning)
 		{	
 			Vector3 error = new Vector3 (newPosition.x, newPosition.y, 0) - camDist - transform.position;
-			if (error.sqrMagnitude < 0.25f)
+			if ((error.sqrMagnitude < 0.25f)||(Vector3.Dot (error, normalizedError) < 0))
 			{
 				transform.position = new Vector3 (newPosition.x, newPosition.y, 0) - camDist;
 				newPosition = Vector2.zero;
 				isPanning = false;
 			}
+				
 			else
 				transform.position += (normalizedError*Time.deltaTime*speed);
 			

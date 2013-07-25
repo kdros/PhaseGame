@@ -299,15 +299,21 @@ public class PlatformerController : MonoBehaviour
 		
 		// Temp: used for wind tunnel
 		Vector3 externalVel = externalAcc * Time.deltaTime;
-		movement.verticalSpeed = movement.verticalSpeed + externalVel[1];
+//		movement.verticalSpeed = movement.verticalSpeed + externalVel[1];
 		
 		if (movement.verticalSpeed != 0)
 		{
 			double debug = 0;	
 		}
 		
+		// Modification to get desired behaviour on non-vertical Wind Tunnels.
+		float vSpeed = movement.verticalSpeed;
+		if (externalVel [1] > 0.1f)
+			vSpeed = externalVel [1];
+		
 		// Calculate actual motion
-		Vector3 currentMovementOffset= movement.direction * movement.speed + new Vector3 (0, movement.verticalSpeed, 0) + movement.inAirVelocity;
+		Vector3 currentMovementOffset= movement.direction * (movement.speed + externalVel [0]) + 
+										new Vector3 (0, vSpeed/*movement.verticalSpeed*/, 0) + movement.inAirVelocity;
 		
 		// We always want the movement to be framerate independent.  Multiplying by Time.deltaTime does this.
 		currentMovementOffset *= Time.deltaTime;

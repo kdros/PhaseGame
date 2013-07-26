@@ -27,7 +27,14 @@ public class LDBegLev4 : LevelDirector
 	
 	public override bool OnEventTrigger (string triggerName)
 	{
+		switch (triggerName)
+		{
+		case "GrateCollision_Trigger":
+//			Physics.IgnoreCollision (
 		return false;
+		}
+		
+		return false;				
 	}
 	
 	public override bool OnEventTrigger (string triggerName, string colliderName)

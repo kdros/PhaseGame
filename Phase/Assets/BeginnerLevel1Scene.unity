@@ -4419,7 +4419,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 354740599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.0178757, y: 17.5074291, z: -8.58297729}
+  m_LocalPosition: {x: 12.1182175, y: 17.5074291, z: -8.58297729}
   m_LocalScale: {x: .863214195, y: .877209365, z: 1}
   m_Children: []
   m_Father: {fileID: 1214624454}
@@ -17572,6 +17572,8 @@ MonoBehaviour:
   m_Name: 
   spawnPosition: {fileID: 152468162}
   tipDisplayTime: 0
+  currentLevel: 
+  currentLevelNum: 0
 --- !u!4 &1506896658
 Transform:
   m_ObjectHideFlags: 0

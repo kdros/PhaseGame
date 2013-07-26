@@ -32,11 +32,18 @@ public class Director : MonoBehaviour
 	int boxWidth, boxHeight, boxStartingX, boxStartingY;
 	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
 	
+	// Get the current scene
+	public string currentLevel;
+	public int currentLevelNum;
+	
 	// Use this for initialization
 	void Start () 
 	{
 		if (System.IO.File.Exists ("Save/currentSave"))
 			System.IO.File.Delete ("Save/currentSave");
+		
+		// Get and set the current scene
+		setCurrentLevel();
 		
 		displayMessage = false;
 		displayTime = 0f;
@@ -345,6 +352,7 @@ public class Director : MonoBehaviour
 				finishingPos = contents.Length;
 			// Read the whole line.
 			rawMessage = contents.Substring (position, finishingPos-position);
+			Application.LoadLevel((currentLevelNum + 1));
 		}
 		
 		DisplayMessage (rawMessage.Trim ()); 
@@ -371,5 +379,20 @@ public class Director : MonoBehaviour
 		if (ld != null)
 			return ld.OnEventTrigger (eventName, colliderName);
 		return false;
+	}
+	
+	public void setCurrentLevel()
+	{
+		currentLevelNum = 0;
+		
+		currentLevel = Application.loadedLevelName;
+		if (currentLevel == "BeginnerLevel1Scene")
+			currentLevelNum = 1;
+		if (currentLevel == "BeginnerLevel2")
+			currentLevelNum = 2;
+		if (currentLevel == "BeginnerLevel3")
+			currentLevelNum = 3;
+		if (currentLevel == "BeginnerLevel4")
+			currentLevelNum = 4;
 	}
 }

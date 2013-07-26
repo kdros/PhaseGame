@@ -341,6 +341,8 @@ public class Director : MonoBehaviour
 				position += System.Environment.NewLine.Length; // Move position to the next line.
 				finishingPos = contents.IndexOf (System.Environment.NewLine, position); 
 			}
+			else if (finishingPos == -1) // If current trigger is the very last in the file.
+				finishingPos = contents.Length;
 			// Read the whole line.
 			rawMessage = contents.Substring (position, finishingPos-position);
 		}

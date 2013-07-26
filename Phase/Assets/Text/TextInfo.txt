@@ -60,3 +60,31 @@ BegLev3_Trigger14
 Ooh, some fancy trap sequences ahead. Use what you've learnt from this level, avoid them and dash to the finish!
 BegLev3_Trigger15
 That seems to have done the trick!
+BegLev4_MessageWelcome
+Welcome to the Gas state tutorial level. In this level, we'll learn the features of Matty's plasma state and how to use them to get past various traps. Switch to the gas state by pressing 'D'.
+BegLev4_MessageSpikes
+There are spikes ahead, and Gas Matty cannot jump! Hmm.. Will the gust of wind be beneficial?
+BegLev4_MessageAfterSpikes
+Oh yeah, that helped! These Wind Tunnels should turn out to be extremely useful to Gas Matty. 
+BegLev4_MessageMace
+A swinging mace up ahead. But can it harm such an amorphous form as Gas Matty's?
+BegLev4_MessageWindTunnel
+We need to move up to the platform above, and conveniently there's another Wind Tunnel. Step into it.
+BegLev4_MessageIcicles
+Icicles are beneficial to Gas Matty since they allow him to condense and create water droplets, which you can use to your advantage.
+BegLev4_MessageIcyFloor
+Icy Floors and Ceilings, like Icicles allow you to use condensation as a tool to get past certain traps.
+BegLev4_MessageCheckpoint
+Checkpoint! Save your progress by touching it. A visible green flag indicates that a checkpoint has been cleared.
+BegLev4_MessageFlamePillar
+Watch out for that Flame Pillar! It can kill Matty by dissipating him.
+BegLev4_MessageLavaPit
+Gas Matty hates flames. Lava Pit can kill him, just like Flame Pillars. Fortunately, there's a Wind Tunnel to help you get past. But you won't find one everytime.
+BegLev4_MessagePitfall
+Avoid pitfalls at all costs! Matty will sink to an unrecoverable abyss otherwise. 
+BegLev4_MessageBoulders
+Boulders right where we're gonna land! Worry not, since Gas Matty's amorphous form makes him invulnerable to these.
+BegLev4_MessageFlamePillarTrap
+Holy smokes, we're being swept right towards a flame pillar! Avoid it by swerving to the side!
+BegLev4_MessageEnd
+That's the end of the Gas state tutorial. Remember to use your learnings about Matty's interactions with the various traps here to solve more difficult puzzles in other levels.

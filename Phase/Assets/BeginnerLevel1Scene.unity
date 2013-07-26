@@ -9135,7 +9135,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.34000003
+      scalar: .889999986
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9168,7 +9168,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 5.28999996
+      scalar: 5.4000001
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9295,7 +9295,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 11.4099998
+      scalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -9357,7 +9357,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: -.119999997
     inheritVelocity: .0900000036
-    maxNumParticles: 150
+    maxNumParticles: 72
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -11855,6 +11855,22 @@ Prefab:
     - target: {fileID: 400000, guid: 45fda9665a798a143a242739eb5bdccc, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 45fda9665a798a143a242739eb5bdccc, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: .889999986
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 45fda9665a798a143a242739eb5bdccc, type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 45fda9665a798a143a242739eb5bdccc, type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 45fda9665a798a143a242739eb5bdccc, type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5.4000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45fda9665a798a143a242739eb5bdccc, type: 2}

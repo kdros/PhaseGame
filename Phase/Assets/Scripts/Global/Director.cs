@@ -352,7 +352,12 @@ public class Director : MonoBehaviour
 				finishingPos = contents.Length;
 			// Read the whole line.
 			rawMessage = contents.Substring (position, finishingPos-position);
-			Application.LoadLevel((currentLevelNum + 1));
+			
+			// Check if player reached Winner Level
+			if (currentLevelNum == 9)
+				Application.LoadLevel(1); // Load GameMenu scene
+			else
+				Application.LoadLevel((currentLevelNum + 1)); // Load the next level
 		}
 		
 		DisplayMessage (rawMessage.Trim ()); 
@@ -386,13 +391,23 @@ public class Director : MonoBehaviour
 		currentLevelNum = 0;
 		
 		currentLevel = Application.loadedLevelName;
+		
+		// Level scenes start at "2", because GameIntro is 0 and GameMenu is 1
 		if (currentLevel == "BeginnerLevel1Scene")
-			currentLevelNum = 1;
-		if (currentLevel == "BeginnerLevel2")
 			currentLevelNum = 2;
-		if (currentLevel == "BeginnerLevel3")
+		if (currentLevel == "BeginnerLevel2")
 			currentLevelNum = 3;
-		if (currentLevel == "BeginnerLevel4")
+		if (currentLevel == "BeginnerLevel3")
 			currentLevelNum = 4;
+		if (currentLevel == "BeginnerLevel4")
+			currentLevelNum = 5;
+		if (currentLevel == "IntermediateLevel1")
+			currentLevelNum = 6;
+		if (currentLevel == "IntermediateLevel2")
+			currentLevelNum = 7;
+		if (currentLevel == "AdvancedLevel1")
+			currentLevelNum = 8;
+		if (currentLevel == "Winner")
+			currentLevelNum = 9;
 	}
 }

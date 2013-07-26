@@ -32,9 +32,14 @@ public class Director : MonoBehaviour
 	int boxWidth, boxHeight, boxStartingX, boxStartingY;
 	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
 	
+	// Scene timer
+	public float timer;
+	
 	// Get the current scene
 	public string currentLevel;
 	public int currentLevelNum;
+	public bool lastTextTrigger;
+	public float moveTimer;
 	
 	// Use this for initialization
 	void Start () 
@@ -42,8 +47,12 @@ public class Director : MonoBehaviour
 		if (System.IO.File.Exists ("Save/currentSave"))
 			System.IO.File.Delete ("Save/currentSave");
 		
+		timer = 0.0f;
+		
 		// Get and set the current scene
 		setCurrentLevel();
+		lastTextTrigger = false;
+		moveTimer = 0.0f;
 		
 		displayMessage = false;
 		displayTime = 0f;
@@ -90,6 +99,13 @@ public class Director : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		// Check if player reached last text trigger
+		timer += Time.deltaTime;
+		if (lastTextTrigger)
+		{
+			if (timer >= (moveTimer + 1.5f))
+				moveToNextLevel();
+		}
 		if (darkCave)
 		{			
 			// Now figure out which door of the dark cave the user is close to
@@ -353,11 +369,9 @@ public class Director : MonoBehaviour
 			// Read the whole line.
 			rawMessage = contents.Substring (position, finishingPos-position);
 			
-			// Check if player reached Winner Level
-			if (currentLevelNum == 9)
-				Application.LoadLevel(1); // Load GameMenu scene
-			else
-				Application.LoadLevel((currentLevelNum + 1)); // Load the next level
+			// After slight time delay, will now move to next level!
+			lastTextTrigger = true;
+			moveTimer = timer;
 		}
 		
 		DisplayMessage (rawMessage.Trim ()); 
@@ -409,5 +423,16 @@ public class Director : MonoBehaviour
 			currentLevelNum = 8;
 		if (currentLevel == "Winner")
 			currentLevelNum = 9;
+	}
+	
+	public void moveToNextLevel()
+	{
+		// Reset (though shouldn't be necessary)
+		lastTextTrigger = false;
+		
+		if (currentLevelNum == 9)
+			Application.LoadLevel(1); // Load GameMenu scene
+		else
+			Application.LoadLevel((currentLevelNum + 1)); // Load the next level	
 	}
 }

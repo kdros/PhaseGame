@@ -3568,7 +3568,7 @@ Prefab:
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: spawnPosition
       value: 
-      objectReference: {fileID: 1116414829}
+      objectReference: {fileID: 1310118595}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
   m_RootGameObject: {fileID: 1969174613}
@@ -4021,6 +4021,7 @@ Transform:
   m_LocalPosition: {x: -3.57938957, y: 2.52466536, z: 0}
   m_LocalScale: {x: .275474876, y: 4.05237961, z: 2.41144085}
   m_Children:
+  - {fileID: 1924851391}
   - {fileID: 1336369583}
   - {fileID: 1455243595}
   - {fileID: 81295269}
@@ -4028,7 +4029,6 @@ Transform:
   - {fileID: 1607184834}
   - {fileID: 2134088382}
   - {fileID: 410490277}
-  - {fileID: 384059943}
   - {fileID: 530519112}
   - {fileID: 190978008}
   - {fileID: 429613702}
@@ -5831,8 +5831,8 @@ GameObject:
   - 4: {fileID: 384059943}
   - 65: {fileID: 384059944}
   m_Layer: 0
-  m_Name: BegLev4_MessageEnd
-  m_TagString: TriggerText
+  m_Name: Level_End
+  m_TagString: TriggerEvent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5844,10 +5844,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 384059942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.87781334, y: 4.29237127, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.208848, y: .60849762, z: -3.99511147}
+  m_LocalScale: {x: .275474876, y: 4.05237961, z: 2.41144085}
   m_Children: []
-  m_Father: {fileID: 283293712}
+  m_Father: {fileID: 2143689545}
 --- !u!65 &384059944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14364,7 +14364,7 @@ Transform:
   m_PrefabInternal: {fileID: 1335427619}
   m_GameObject: {fileID: 848229612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.6538925, y: 18.0154877, z: .00779402256}
+  m_LocalPosition: {x: -59.639946, y: 18.0154877, z: .00779402256}
   m_LocalScale: {x: .385773987, y: .560893416, z: .292336971}
   m_Children: []
   m_Father: {fileID: 0}
@@ -20010,7 +20010,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1f7aa04c4c4642844bb2f7ee960bf512, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -45.6538925
+      value: -59.639946
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f7aa04c4c4642844bb2f7ee960bf512, type: 2}
       propertyPath: m_LocalPosition.y
@@ -26229,7 +26229,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: .00424781861, g: .00667514279, b: .0104895104, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -28712,6 +28712,45 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1921277899}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1924851390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1924851391}
+  - 65: {fileID: 1924851392}
+  m_Layer: 0
+  m_Name: BegLev4_MessageEnd
+  m_TagString: TriggerText
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1924851391
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924851390}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.87781334, y: 4.29237127, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 283293712}
+--- !u!65 &1924851392
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924851390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1927903872
 GameObject:
   m_ObjectHideFlags: 0
@@ -29086,8 +29125,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
-  spawnPosition: {fileID: 1116414829}
+  spawnPosition: {fileID: 1310118595}
   tipDisplayTime: 0
+  waitBeforeNextLevel: 5
+  currentLevel: 
+  currentLevelNum: 0
+  moveTimer: 0
 --- !u!4 &1969174615
 Transform:
   m_ObjectHideFlags: 0
@@ -32103,6 +32146,33 @@ Transform:
   m_LocalScale: {x: 1.7538954, y: 3.58496332, z: 1.92573643}
   m_Children:
   - {fileID: 651113188}
+  m_Father: {fileID: 0}
+--- !u!1 &2143689544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2143689545}
+  m_Layer: 0
+  m_Name: EventTriggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2143689545
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2143689544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.55679512, y: 19.3104858, z: 3.99511147}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 384059943}
   m_Father: {fileID: 0}
 --- !u!1001 &2143846153
 Prefab:

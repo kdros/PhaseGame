@@ -29,9 +29,10 @@ public class LDBegLev4 : LevelDirector
 	{
 		switch (triggerName)
 		{
-		case "GrateCollision_Trigger":
+		case "Level_End":
+			GameObject.Find ("Director").GetComponent<Director>().MoveToNextLevel ();
 //			Physics.IgnoreCollision (
-		return false;
+		return true;
 		}
 		
 		return false;				

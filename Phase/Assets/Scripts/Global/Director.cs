@@ -22,7 +22,7 @@ public class Director : MonoBehaviour
 	
 	bool displayMessage = false;
 	float displayTime = 0f;
-	string messageToBeDisplayed;
+	string triggerMessages, messageToBeDisplayed;
 	
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	System.Collections.Generic.List<DarkCave> darkCavesList;
@@ -31,14 +31,10 @@ public class Director : MonoBehaviour
 	int absoluteWidth, absoluteHeight, width, height;
 	int boxWidth, boxHeight, boxStartingX, boxStartingY;
 	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
-	
-	// Scene timer
-	public float timer;
-	
+		
 	// Get the current scene
 	public string currentLevel;
 	public int currentLevelNum;
-	public bool lastTextTrigger;
 	public float moveTimer;
 	
 	// Use this for initialization
@@ -46,13 +42,6 @@ public class Director : MonoBehaviour
 	{
 		if (System.IO.File.Exists ("Save/currentSave"))
 			System.IO.File.Delete ("Save/currentSave");
-		
-		timer = 0.0f;
-		
-		// Get and set the current scene
-		setCurrentLevel();
-		lastTextTrigger = false;
-		moveTimer = 0.0f;
 		
 		displayMessage = false;
 		displayTime = 0f;
@@ -84,7 +73,9 @@ public class Director : MonoBehaviour
 			darkCavesList.Add (newCave);
 		}
 		
+		LoadTriggerMessagesFromFile ();
 		GUIDimensionSetup ();
+		SetCurrentLevel();
 		
 		try
 		{
@@ -99,13 +90,6 @@ public class Director : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		// Check if player reached last text trigger
-		timer += Time.deltaTime;
-		if (lastTextTrigger)
-		{
-			if (timer >= (moveTimer + 1.5f))
-				moveToNextLevel();
-		}
 		if (darkCave)
 		{			
 			// Now figure out which door of the dark cave the user is close to
@@ -214,6 +198,13 @@ public class Director : MonoBehaviour
 		// Centre the button in the box.
 		buttonStartingX = boxStartingX + (int)(boxWidth*0.25f); 
 		buttonStartingY = boxStartingY + boxHeight - (int)(buttonHeight*1.5f);
+	}
+	
+	void LoadTriggerMessagesFromFile ()
+	{
+		System.IO.StreamReader sr = new System.IO.StreamReader ("Assets/Text/TextInfo.txt");
+		triggerMessages = sr.ReadToEnd ();
+		sr.Close ();
 	}
 	
 	public void OnEnterDarkCave (Collider collider)
@@ -339,39 +330,32 @@ public class Director : MonoBehaviour
 		string levelID = colliderName.Remove (positionOfDelimiter);
 
 		// Web Player compatibility to be figured out later.
-		System.IO.StreamReader sr = new System.IO.StreamReader ("Assets/Text/TextInfo.txt");
-		string contents = sr.ReadToEnd ();
-		sr.Close ();
-		int position = contents.IndexOf (colliderName);
+		int position = triggerMessages.IndexOf (colliderName);
 		if (position == -1)
 		{
 			Debug.Log ("Specified trigger wasn't found in TextInfo.");
 			return;
 		}
 		position += colliderName.Length + 1;
-		int finishingPos = contents.IndexOf (levelID, position);
+		int finishingPos = triggerMessages.IndexOf (levelID, position);
 		
 		string rawMessage = "Placeholder";
 		if (finishingPos != -1)
-			rawMessage = contents.Substring (position, finishingPos-position);
+			rawMessage = triggerMessages.Substring (position, finishingPos-position);
 		else
 		{	// This indicates that the current trigger is the last with the specified levelID.
 			
 			// Find index of last char in string.
-			finishingPos = contents.IndexOf (System.Environment.NewLine, position);
+			finishingPos = triggerMessages.IndexOf (System.Environment.NewLine, position);
 			if (finishingPos == 0) // If current position in string = last char 
 			{	
 				position += System.Environment.NewLine.Length; // Move position to the next line.
-				finishingPos = contents.IndexOf (System.Environment.NewLine, position); 
+				finishingPos = triggerMessages.IndexOf (System.Environment.NewLine, position); 
 			}
 			else if (finishingPos == -1) // If current trigger is the very last in the file.
-				finishingPos = contents.Length;
+				finishingPos = triggerMessages.Length;
 			// Read the whole line.
-			rawMessage = contents.Substring (position, finishingPos-position);
-			
-			// After slight time delay, will now move to next level!
-			lastTextTrigger = true;
-			moveTimer = timer;
+			rawMessage = triggerMessages.Substring (position, finishingPos-position);
 		}
 		
 		DisplayMessage (rawMessage.Trim ()); 
@@ -400,7 +384,7 @@ public class Director : MonoBehaviour
 		return false;
 	}
 	
-	public void setCurrentLevel()
+	public void SetCurrentLevel()
 	{
 		currentLevelNum = 0;
 		
@@ -425,11 +409,8 @@ public class Director : MonoBehaviour
 			currentLevelNum = 9;
 	}
 	
-	public void moveToNextLevel()
+	public void MoveToNextLevel()
 	{
-		// Reset (though shouldn't be necessary)
-		lastTextTrigger = false;
-		
 		if (currentLevelNum == 9)
 			Application.LoadLevel(1); // Load GameMenu scene
 		else

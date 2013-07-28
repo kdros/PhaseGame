@@ -204,8 +204,11 @@ public class Director : MonoBehaviour
 	
 	void LoadTriggerMessagesFromFile ()
 	{
-		System.IO.StreamReader sr = new System.IO.StreamReader ("Assets/Text/TextInfo.txt");
-		triggerMessages = sr.ReadToEnd ();
+		System.IO.StreamReader sr = new System.IO.StreamReader (Application.dataPath + "/Text/TextInfo.txt");
+		if (sr != null)
+			triggerMessages = sr.ReadToEnd ();
+		else
+			triggerMessages = "Phase (c)2013 The Phase Team."; 
 		sr.Close ();
 	}
 	

@@ -23,8 +23,9 @@ public class LDIntLev1 : LevelDirector {
 		switch (triggerName)
 		{
 			case "IntLev1_EventTrigger1":
-				for (int i = 0; i < 4; i++)
-					Invoke ("makeRockFallDown", 1+i);
+				Debug.Log ("First trigger hit!");
+				for (int i = 0; i < 14; i++)
+					Invoke ("makeRockFallDown", (i*0.35f));
 				return true;
 			//case "IntLev1_EventTrigger2":
 				//int boulderCount = 0;
@@ -43,9 +44,9 @@ public class LDIntLev1 : LevelDirector {
 				
 				//return false;
 				
-			//case "Level_End":
-				//dir.MoveToNextLevel ();
-				//return true;
+			case "Level_End":
+				dir.MoveToNextLevel ();
+				return true;
 		}
 		
 		return false;

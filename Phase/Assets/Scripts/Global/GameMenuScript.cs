@@ -26,23 +26,23 @@ public class GameMenuScript : MonoBehaviour {
 		}
 		if(GUILayout.Button("Let's Play!"))
 		{
-			Application.LoadLevel("BeginnerLevel1Scene");
+			Application.LoadLevel(2);
 		}
 		if(GUILayout.Button("Beginner Level 1"))
 		{
-			Application.LoadLevel("BeginnerLevel1Scene");
+			Application.LoadLevel(2);
 		}
 		if(GUILayout.Button("Beginner Level 2"))
 		{
-			Application.LoadLevel("BeginnerLevel2");
+			Application.LoadLevel(3);
 		}
 		if(GUILayout.Button("Beginner Level 3"))
 		{
-			Application.LoadLevel("BeginnerLevel3");
+			Application.LoadLevel(4);
 		}
 		if(GUILayout.Button("Beginner Level 4"))
 		{
-			Application.LoadLevel("BeginnerLevel4");
+			Application.LoadLevel(5);
 		}
 		if(GUILayout.Button("Exit"))
 		{

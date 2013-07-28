@@ -8399,6 +8399,18 @@ Prefab:
       propertyPath: pitfall
       value: 
       objectReference: {fileID: 8300000, guid: e366f6adfd4829b4fb2abca81457d00e, type: 3}
+    - target: {fileID: 11400002, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
+      propertyPath: jump.extraHeight
+      value: 4.0999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
+      propertyPath: movement.walkSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
+      propertyPath: movement.runSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
   m_RootGameObject: {fileID: 192009985}
@@ -11970,7 +11982,7 @@ MonoBehaviour:
   target: {fileID: 192009990}
   distance: 0
   height: 0
-  panTime: 0
+  panTime: 3
 --- !u!1001 &962987479
 Prefab:
   m_ObjectHideFlags: 0

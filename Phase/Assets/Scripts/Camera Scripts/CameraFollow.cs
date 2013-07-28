@@ -95,5 +95,5 @@ public class CameraFollow : MonoBehaviour {
 	}
 	
 	public bool isCameraInPosition ()
-	{	return isPanning;	}
+	{	return !isPanning;	}
 }

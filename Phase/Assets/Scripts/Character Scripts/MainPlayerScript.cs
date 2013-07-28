@@ -186,10 +186,9 @@ public class MainPlayerScript : MonoBehaviour {
 //				if (System.IO.File.Exists ("Save/currentSave"))
 //					transform.position = spawnPosition;
 //				else
-				transform.position = spawnPoint;
 				playerDead = false;
-				
-				dir.ResetIcicles ();
+				m_platCtrlScript.canControl = true;
+				enableState (m_currentState);
 			}		
 		}
 // TODO: Resolve conflict.
@@ -259,7 +258,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_platCtrlScript.canControl = true;
 			// Rohith's Note: Changed below code so that the Inspector-set 
 			// values are used instead of some hard-coded value.
-			m_platCtrlScript.movement.walkSpeed = origWalkSpeed;
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed*1.5f;
 			m_platCtrlScript.jump.enabled = true;
 			m_platCtrlScript.jump.extraHeight = origExtraHeight;
 		}
@@ -311,7 +310,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_platCtrlScript.canControl = true;
 			// Rohith's Note: Changed below code so that the Inspector-set 
 			// values are used instead of some hard-coded value.
-			m_platCtrlScript.movement.walkSpeed = origWalkSpeed*1.4f;
+			m_platCtrlScript.movement.walkSpeed = origWalkSpeed*1.6f;
 			m_platCtrlScript.jump.enabled = true;
 			m_platCtrlScript.jump.extraHeight = origExtraHeight*0.927f;
 		}
@@ -532,17 +531,18 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("Pitfall"))
 		{
 			Debug.Log("Player fell into pitfall");
-			// Want to kill player but don't want there to be an explosion, so re-use some Die() code
-			playerDead = true;
-
-			spawnPoint = dir.GetSpawnPoint ();
-			m_platCtrlScript.SetSpawnPoint (spawnPoint);
-		
-			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
-			(new Vector2 (spawnPoint.x, spawnPoint.y));
-		
-			// Reset speed
-			m_platCtrlScript.ResetCharSpeed();
+			Die (false);
+//			// Want to kill player but don't want there to be an explosion, so re-use some Die() code
+//			playerDead = true;
+//
+//			spawnPoint = dir.GetSpawnPoint ();
+//			m_platCtrlScript.SetSpawnPoint (spawnPoint);
+//		
+//			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
+//			(new Vector2 (spawnPoint.x, spawnPoint.y));
+//		
+//			// Reset speed
+//			m_platCtrlScript.ResetCharSpeed();
 		}
 		if (m_currentState == (int)State.Gas)
 		{
@@ -565,12 +565,21 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 	}
 	
-	void Die() 
+	void Die(bool explode = true) 
 	{
-		GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
-		Destroy (explosion, 2);
+		if (explode)
+		{	
+			GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
+			Destroy (explosion, 2);
+		}
 		
 		playerDead = true;
+
+		m_defaultMatty.SetActive(false);
+		m_solidMatty.SetActive(false);		
+		m_liquidMatty.SetActive(false);
+		m_gasMatty.SetActive(false);
+		m_plasmaMatty.SetActive(false);
 //		if (System.IO.File.Exists ("Save/currentSave") && reachedCheckPoint)
 //		{
 //			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
@@ -585,11 +594,15 @@ public class MainPlayerScript : MonoBehaviour {
 //		}
 		spawnPoint = dir.GetSpawnPoint ();
 		m_platCtrlScript.SetSpawnPoint (spawnPoint);
+		m_platCtrlScript.canControl = false;
+		transform.position = spawnPoint;
 		
 		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 			(new Vector2 (spawnPoint.x, spawnPoint.y));
 		
 		// Reset speed
-		m_platCtrlScript.ResetCharSpeed();		
+		m_platCtrlScript.ResetCharSpeed();
+
+		dir.ResetIcicles ();
 	}
 }

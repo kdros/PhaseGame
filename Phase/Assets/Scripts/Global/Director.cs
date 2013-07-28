@@ -12,6 +12,8 @@ public class Director : MonoBehaviour
 	public Transform spawnPosition;
 	public float tipDisplayTime = 0f;
 	
+	public int lastLevel = 5;
+	
 	Transform sceneCamera;
 	LevelDirector ld;
 	
@@ -33,9 +35,9 @@ public class Director : MonoBehaviour
 	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
 		
 	// Get the current scene
-	public string currentLevel;
-	public int currentLevelNum;
-	public float moveTimer;
+//	public string currentLevel;
+//	public int currentLevelNum;
+//	public float moveTimer;
 	
 	// Use this for initialization
 	void Start () 
@@ -47,7 +49,7 @@ public class Director : MonoBehaviour
 		displayTime = 0f;
 		messageToBeDisplayed = "";
 		if (tipDisplayTime == 0f)
-			tipDisplayTime = 10f;
+			tipDisplayTime = 5f;
 		
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
@@ -386,32 +388,33 @@ public class Director : MonoBehaviour
 	
 	public void SetCurrentLevel()
 	{
-		currentLevelNum = 0;
+//		currentLevelNum = 0;
 		
-		currentLevel = Application.loadedLevelName;
-		
-		// Level scenes start at "2", because GameIntro is 0 and GameMenu is 1
-		if (currentLevel == "BeginnerLevel1Scene")
-			currentLevelNum = 2;
-		if (currentLevel == "BeginnerLevel2")
-			currentLevelNum = 3;
-		if (currentLevel == "BeginnerLevel3")
-			currentLevelNum = 4;
-		if (currentLevel == "BeginnerLevel4")
-			currentLevelNum = 5;
-		if (currentLevel == "IntermediateLevel1")
-			currentLevelNum = 6;
-		if (currentLevel == "IntermediateLevel2")
-			currentLevelNum = 7;
-		if (currentLevel == "AdvancedLevel1")
-			currentLevelNum = 8;
-		if (currentLevel == "Winner")
-			currentLevelNum = 9;
+//		currentLevel = Application.l//Application.loadedLevelName;
+//		
+//		// Level scenes start at "2", because GameIntro is 0 and GameMenu is 1
+//		if (currentLevel == "BeginnerLevel1Scene")
+//			currentLevelNum = 2;
+//		if (currentLevel == "BeginnerLevel2")
+//			currentLevelNum = 3;
+//		if (currentLevel == "BeginnerLevel3")
+//			currentLevelNum = 4;
+//		if (currentLevel == "BeginnerLevel4")
+//			currentLevelNum = 5;
+//		if (currentLevel == "IntermediateLevel1")
+//			currentLevelNum = 6;
+//		if (currentLevel == "IntermediateLevel2")
+//			currentLevelNum = 7;
+//		if (currentLevel == "AdvancedLevel1")
+//			currentLevelNum = 8;
+//		if (currentLevel == "Winner")
+//			currentLevelNum = 9;
 	}
 	
 	public void MoveToNextLevel()
 	{
-		if (currentLevelNum == 9)
+		int currentLevelNum = Application.loadedLevel;
+		if (currentLevelNum == lastLevel)
 			Application.LoadLevel(1); // Load GameMenu scene
 		else
 			Application.LoadLevel((currentLevelNum + 1)); // Load the next level	

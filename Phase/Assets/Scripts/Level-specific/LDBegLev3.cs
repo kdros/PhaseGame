@@ -50,6 +50,10 @@ public class LDBegLev3 : LevelDirector
 			}
 			
 			return false;
+			
+		case "Level_End":
+			dir.MoveToNextLevel ();
+			return true;
 		}
 		
 		return false;

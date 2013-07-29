@@ -22,6 +22,10 @@ public class Director : MonoBehaviour
 	DarkCave curDarkCave;
 	float[] darknessTriggerSpots;
 	
+	Light[] lights;
+	float[] origLightIntensities;
+	Material origSkybox;
+	
 	bool displayMessage = false;
 	float displayTime = 0f;
 	string triggerMessages, messageToBeDisplayed;
@@ -79,6 +83,22 @@ public class Director : MonoBehaviour
 		GUIDimensionSetup ();
 		SetCurrentLevel();
 		
+		// Creates a backup of the light intensities of all the lights in the scene.
+		// This is needed since we need to lerp the light intensities to zero when player
+		// enters dark caves.
+		lights = GameObject.FindSceneObjectsOfType (typeof(Light)) as Light[];
+		origLightIntensities = new float [lights.Length];
+		for (int i = 0; i < lights.Length; i ++)
+			origLightIntensities [i] = lights [i].intensity;
+		
+		// Creates a backup of the skybox assigned to the scene.
+		// This is needed since we blank the skybox as the player enters dark caves.
+		origSkybox = RenderSettings.skybox;
+		
+		// Needed for dark caves. If background colour is not set to black, dark caves
+		// won't be "dark" anymore.
+		sceneCamera.gameObject.GetComponent<Camera>().backgroundColor = Color.black;
+		
 		try
 		{
 			ld = GameObject.FindGameObjectWithTag ("LevelDirector").GetComponent<LevelDirector>();
@@ -116,6 +136,8 @@ public class Director : MonoBehaviour
 					 	t = 1f;
 				
 					RenderSettings.ambientLight = Color.Lerp (originalAmbientColor, Color.black, t);
+					for (int i = 0; i < lights.Length; i ++)
+						lights [i].intensity = Mathf.Lerp (origLightIntensities [i], 0, t);
 				}
 			}
 			else if (sceneCamera.position.x >= darknessTriggerSpots [0])
@@ -137,6 +159,8 @@ public class Director : MonoBehaviour
 					 	t = 1f;
 				
 					RenderSettings.ambientLight = Color.Lerp (originalAmbientColor, Color.black, t);
+					for (int i = 0; i < lights.Length; i ++)
+						lights [i].intensity = Mathf.Lerp (origLightIntensities [i], 0, t);
 				}	
 		}
 		
@@ -255,6 +279,8 @@ public class Director : MonoBehaviour
 				darknessTriggerSpots [0] += curDarkCave.Door1.x;
 				darknessTriggerSpots [1] = curDarkCave.Door2.x - darknessTriggerSpots [1];
 			}
+			
+			RenderSettings.skybox = null;
 		}
 	}
 	
@@ -266,9 +292,9 @@ public class Director : MonoBehaviour
 		{
 			darkCave = false;
 			RenderSettings.ambientLight = originalAmbientColor;
+			RenderSettings.skybox = origSkybox;
 			curDarkCave.Door1 = Vector2.zero;
 			curDarkCave.Door2 = Vector2.zero;
-
 		}
 	}
 	

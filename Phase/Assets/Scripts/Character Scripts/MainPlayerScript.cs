@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /*
  * Central Player Script.
@@ -60,13 +61,15 @@ public class MainPlayerScript : MonoBehaviour {
 //	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
 	enum State {Default, Solid, Liquid, Gas, Plasma};
 	
-//	Color originalAmbientColor;
 	CameraFollow m_camera;
 	Vector3 spawnPosition;
 	private bool playerDead;
-//	System.Collections.Generic.List<IcicleBase> iciclesList;
 	Director dir;
 	float origWalkSpeed, origExtraHeight;
+	
+	// keep track of boulder colliders that are being ignored
+	List<Collider> ignoredBoulders;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -92,28 +95,20 @@ public class MainPlayerScript : MonoBehaviour {
 		Physics.IgnoreCollision(collider, m_solidMatty.collider);
 		Physics.IgnoreCollision(collider, m_plasmaMatty.collider);
 				
-//		originalAmbientColor = RenderSettings.ambientLight;
 		playerDead = false;
 		m_camera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>();
 		dir = GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>();
-//		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
-//		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
-//		foreach (GameObject icicle in icicleBaseArray)
-//			iciclesList.Add (icicle.GetComponent<IcicleBase>());
+
 		collidedWithGrates = false;
-//		reachedCheckPoint = false;
 		
 		origWalkSpeed = m_platCtrlScript.movement.walkSpeed;
 		origExtraHeight = m_platCtrlScript.jump.extraHeight;
-
-//		spawnPosition = spawnPoint.position;
 		spawnPoint = new Vector3 ();
 		spawnPoint = dir.GetSpawnPoint ();
 		m_platCtrlScript.SetSpawnPoint (spawnPoint, true);
 		
-		// Temp: Start out with defaultMatty
 		enableState ((int)State.Default);
-		
+		ignoredBoulders = new List<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -177,25 +172,26 @@ public class MainPlayerScript : MonoBehaviour {
 			
 				collidedWithGrates = false;	
 			}
+			
+			if (ignoredBoulders.Count != 0 && m_currentState != (int)State.Gas)
+			{
+				for (int i = ignoredBoulders.Count - 1 ; i >= 0 ; --i)
+				{
+					Physics.IgnoreCollision (gameObject.collider, ignoredBoulders[i], false);
+					ignoredBoulders.RemoveAt(i);
+				}
+			}
 		}
 		else
 		{
 			bool cameraInPosition = m_camera.isCameraInPosition ();
 			if (cameraInPosition)
 			{
-//				if (System.IO.File.Exists ("Save/currentSave"))
-//					transform.position = spawnPosition;
-//				else
 				playerDead = false;
 				m_platCtrlScript.canControl = true;
 				enableState (m_currentState);
 			}		
 		}
-// TODO: Resolve conflict.
-//		if (stateChange)
-//			enableState (m_currentState);
-//		
-//		setStatePosition (m_currentState);	
 	}
 	
 	
@@ -242,6 +238,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_platCtrlScript.movement.walkSpeed = origWalkSpeed/2f;
 			m_platCtrlScript.jump.enabled = true;
 			m_platCtrlScript.jump.extraHeight = origExtraHeight / 4f;
+			m_platCtrlScript.movement.gravity = 60;
 		}
 		else if (m_currentState == (int)State.Solid)
 		{
@@ -261,6 +258,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_platCtrlScript.movement.walkSpeed = origWalkSpeed*1.5f;
 			m_platCtrlScript.jump.enabled = true;
 			m_platCtrlScript.jump.extraHeight = origExtraHeight;
+			m_platCtrlScript.movement.gravity = 60;
 		}
 		else if (m_currentState == (int)State.Liquid)
 		{
@@ -278,6 +276,7 @@ public class MainPlayerScript : MonoBehaviour {
 			// values are used instead of some hard-coded value.
 			m_platCtrlScript.movement.walkSpeed = origWalkSpeed;
 			m_platCtrlScript.jump.enabled = false;
+			m_platCtrlScript.movement.gravity = 60;
 		}
 		else if (m_currentState == (int)State.Gas)
 		{
@@ -295,6 +294,7 @@ public class MainPlayerScript : MonoBehaviour {
 			// values are used instead of some hard-coded value.
 			m_platCtrlScript.movement.walkSpeed = origWalkSpeed/5f;
 			m_platCtrlScript.jump.enabled = false;
+			m_platCtrlScript.movement.gravity = 10;
 		}
 		else if (m_currentState == (int)State.Plasma)
 		{
@@ -313,6 +313,7 @@ public class MainPlayerScript : MonoBehaviour {
 			m_platCtrlScript.movement.walkSpeed = origWalkSpeed*1.6f;
 			m_platCtrlScript.jump.enabled = true;
 			m_platCtrlScript.jump.extraHeight = origExtraHeight*0.927f;
+			m_platCtrlScript.movement.gravity = 60;
 		}
 		else
 		{
@@ -359,6 +360,7 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag("FallingBoulders"))
 		{
 			Debug.Log("Player got hit by falling boulders");
+			
 			if(stateScript.FallingBouldersCollisionResolution())
 				Die();
 			else
@@ -370,6 +372,12 @@ public class MainPlayerScript : MonoBehaviour {
 					Destroy (explosion, 2);
 					Destroy (collider.gameObject);
 				}
+				else if (m_currentState == (int)State.Gas)
+				{
+					Physics.IgnoreCollision(gameObject.collider,collider);
+					ignoredBoulders.Add (collider);
+				}
+				
 			}
 		}
 		else if (collider.CompareTag("FlamePillar"))

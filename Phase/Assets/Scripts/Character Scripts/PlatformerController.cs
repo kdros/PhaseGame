@@ -213,7 +213,7 @@ public class PlatformerController : MonoBehaviour
 	
 	void  ApplyGravity (){
 		// Apply gravity
-		bool jumpButton= Input.GetButton ("Jump");
+		bool jumpButton= (Input.GetButton ("Jump") || Input.GetAxis("Vertical") > 0);
 		
 		if (!canControl)
 			jumpButton = false;
@@ -269,7 +269,7 @@ public class PlatformerController : MonoBehaviour
 	
 	void  Update ()
 	{
-		if (Input.GetButtonDown ("Jump") && canControl) {
+		if ( (Input.GetButtonDown ("Jump") || Input.GetAxis ("Vertical") > 0) && canControl) {
 			jump.lastButtonTime = Time.time;
 		}
 	

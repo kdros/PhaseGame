@@ -6688,7 +6688,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1213011793}
   m_GameObject: {fileID: 443046059}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: .5, y: 1, z: .5}
@@ -21389,7 +21389,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1699271408}
   m_GameObject: {fileID: 1455747109}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -27209,8 +27209,8 @@ MonoBehaviour:
   m_Name: 
   canControl: 1
   movement:
-    walkSpeed: 10
-    runSpeed: 10
+    walkSpeed: 6.5
+    runSpeed: 6.5
     inAirControlAcceleration: 1
     gravity: 60
     maxFallSpeed: 20
@@ -29433,7 +29433,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1245814225}
   m_GameObject: {fileID: 1988120480}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -30051,7 +30051,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1164812860}
   m_GameObject: {fileID: 2022005521}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -30735,7 +30735,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 149664129}
   m_GameObject: {fileID: 2097819756}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -32238,7 +32238,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 352864455}
   m_GameObject: {fileID: 2138991612}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: .5, y: 1, z: .5}

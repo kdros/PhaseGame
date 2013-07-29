@@ -29839,7 +29839,7 @@ MonoBehaviour:
   jump:
     enabled: 1
     height: 1
-    extraHeight: 1
+    extraHeight: 4
   externalAcc: {x: 0, y: 0, z: 0}
 --- !u!114 &1144799165
 MonoBehaviour:
@@ -32094,7 +32094,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
       propertyPath: jump.extraHeight
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}

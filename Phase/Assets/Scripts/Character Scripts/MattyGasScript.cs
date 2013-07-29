@@ -12,7 +12,7 @@ public class MattyGasScript : MatterScript
 	void Start()
 	{
 		rainActive = false;	
-		windTunnelAccel = new Vector3(0,65,0);
+		windTunnelAccel = new Vector3(0,180,0);
 	}
 	
 	

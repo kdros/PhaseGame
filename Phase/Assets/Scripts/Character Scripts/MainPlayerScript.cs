@@ -496,7 +496,7 @@ public class MainPlayerScript : MonoBehaviour {
 			if(m_currentState == (int)State.Solid)
 			{
 				AudioSource.PlayClipAtPoint(slidingSound, gameObject.transform.position);
-				m_platCtrlScript.SpeedUp(15.0f);
+				m_platCtrlScript.SpeedUp(10.0f);
 			}
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();

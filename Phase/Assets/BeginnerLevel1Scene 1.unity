@@ -2709,8 +2709,8 @@ MonoBehaviour:
   m_Name: 
   canControl: 1
   movement:
-    walkSpeed: 10
-    runSpeed: 10
+    walkSpeed: 6.5
+    runSpeed: 6.5
     inAirControlAcceleration: 1
     gravity: 60
     maxFallSpeed: 20
@@ -8405,11 +8405,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
       propertyPath: movement.walkSpeed
-      value: 10
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}
       propertyPath: movement.runSpeed
-      value: 10
+      value: 6.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090f41025054cfe419dffbb96f608bd1, type: 2}

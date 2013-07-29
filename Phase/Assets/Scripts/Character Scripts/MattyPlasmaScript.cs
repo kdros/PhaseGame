@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MattyPlasmaScript : MatterScript 
 {
-	public float lavaMaxTime = 10f;
+	public float lavaMaxTime = 7f;
 	
 	ParticleSystem	embers;
 	Light glow;
@@ -12,8 +12,8 @@ public class MattyPlasmaScript : MatterScript
 //	CharacterController charControl;
 	Color originalColour, origAmbient;
 //	Vector3 center, r;
-	bool grounded, isOnLava;
-	float curTime;
+	bool grounded, isOnLava, startedPlaying;
+	float curTime, lavaMaxTimeBy2;
 	
 	void Start ()
 	{
@@ -23,9 +23,10 @@ public class MattyPlasmaScript : MatterScript
 		glow = transform.Find ("Glow").GetComponent<Light>();
 
 		originalColour = glow.color;
-		isOnLava = false;
+		isOnLava = false; startedPlaying = false;
 		embers.Stop ();
 		curTime = 0f;
+		lavaMaxTimeBy2 = lavaMaxTime/2f;
 	}
 	
 	void Update ()
@@ -35,17 +36,29 @@ public class MattyPlasmaScript : MatterScript
 			if (isOnLava)
 			{
 				if (curTime < lavaMaxTime)
+				{	
 					curTime += Time.deltaTime;
+					if (Mathf.Abs (curTime - lavaMaxTimeBy2) < 0.1f)
+						embers.Play ();
+				}
 				else
+				{
 					curTime = lavaMaxTime;
+					if (!embers.isPlaying)
+						embers.Play ();
+				}
 			}
 			else
+			{
 				curTime -= Time.deltaTime;
+//				if (Mathf.Abs (curTime - lavaMaxTimeBy2) < 0.1f)
+//					embers.loop = false;
+			}
 			
 			glow.color = Color.Lerp (originalColour, Color.red, curTime/lavaMaxTime);
 			meshRenderer.material.SetColor ("_Color", glow.color);
 		}
-		else
+		else if (curTime < 0f)
 		{
 			curTime = 0f;
 			if (!glow.color.Equals (originalColour))
@@ -59,7 +72,9 @@ public class MattyPlasmaScript : MatterScript
 	{
 		if (embers.isPlaying)
 			embers.Stop ();
+		embers.Clear ();
 		glow.color = originalColour;
+		curTime = 0f;
 	}
 	
 	public void NotOnLava ()
@@ -116,7 +131,6 @@ public class MattyPlasmaScript : MatterScript
 		if (!isOnLava)
 		{
 			embers.loop = true;
-			embers.Play ();
 			curTime += Time.deltaTime;
 			isOnLava = true;
 		}

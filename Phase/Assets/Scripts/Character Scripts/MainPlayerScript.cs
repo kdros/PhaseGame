@@ -173,7 +173,7 @@ public class MainPlayerScript : MonoBehaviour {
 				collidedWithGrates = false;	
 			}
 			
-			if (ignoredBoulders.Count != 0 && m_currentState != (int)State.Gas)
+			if (ignoredBoulders.Count != 0 && (m_currentState != (int)State.Gas || m_currentState != (int)State.Liquid))
 			{
 				for (int i = ignoredBoulders.Count - 1 ; i >= 0 ; --i)
 				{
@@ -372,7 +372,7 @@ public class MainPlayerScript : MonoBehaviour {
 					Destroy (explosion, 2);
 					Destroy (collider.gameObject);
 				}
-				else if (m_currentState == (int)State.Gas)
+				else if ((m_currentState == (int)State.Gas) || (m_currentState == (int)State.Liquid))
 				{
 					Physics.IgnoreCollision(gameObject.collider,collider);
 					ignoredBoulders.Add (collider);
@@ -472,6 +472,10 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.FlamePillarCollisionResolution())
 				Die();
 		}
+		else if (collider.CompareTag ("IcyFloor"))
+		{
+			Debug.Log ("In IcyFloor");
+		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);
 		
@@ -552,6 +556,11 @@ public class MainPlayerScript : MonoBehaviour {
 //			// Reset speed
 //			m_platCtrlScript.ResetCharSpeed();
 		}
+		else if (collider.CompareTag ("IcyFloor"))
+		{
+			Debug.Log ("Out of IcyFloor");
+		}
+			
 		if (m_currentState == (int)State.Gas)
 		{
 			if (collider.CompareTag ("IcyFloor"))

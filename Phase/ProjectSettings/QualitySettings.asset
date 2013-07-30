@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 3
+  m_CurrentQuality: 1
   m_QualitySettings:
   - serializedVersion: 2
     name: Fastest
@@ -61,7 +61,7 @@ QualitySettings:
     vSyncCount: 0
     lodBias: .699999988
     maximumLODLevel: 0
-    particleRaycastBudget: 64
+    particleRaycastBudget: 150
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Good
@@ -120,4 +120,7 @@ QualitySettings:
     maximumLODLevel: 0
     particleRaycastBudget: 4096
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality: {}
+  m_PerPlatformDefaultQuality:
+    Android: 2
+    Standalone: 2
+    Web: 2

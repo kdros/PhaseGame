@@ -9604,7 +9604,7 @@ Prefab:
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: spawnPosition
       value: 
-      objectReference: {fileID: 502824811}
+      objectReference: {fileID: 621821562}
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: tipDisplayTime
       value: 10
@@ -30126,7 +30126,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
-  spawnPosition: {fileID: 502824811}
+  spawnPosition: {fileID: 621821562}
   tipDisplayTime: 10
   lastLevel: 5
 --- !u!4 &1146371180

@@ -11,6 +11,9 @@ public class LDBegLev3 : LevelDirector
 	void Start ()
 	{
 		dir = GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>();
+		
+		MainPlayerScript mpRef = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
+		mpRef.CanChange (MainPlayerScript.State.Gas, false);
 	}
 	
 	public override bool OnEventTrigger (string triggerName)

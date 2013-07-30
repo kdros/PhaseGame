@@ -44,7 +44,9 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject m_plasmaMatty;
 	[System.NonSerialized]
 	public GameObject m_defaultMatty;
-	
+
+	public enum State {Default, Solid, Liquid, Gas, Plasma};
+
 	/// <summary>
 	/// Internal variables
 	/// </summary>
@@ -58,8 +60,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	private int m_currentState;							// keep track of the current state	
 	private bool collidedWithGrates;					// set to true if liquid state collided with grates
-//	private bool reachedCheckPoint;						// check if player has ever collided with a checkpoint. If not, do not use the coordinates stored in file
-	enum State {Default, Solid, Liquid, Gas, Plasma};
+	private bool[] changeFlags;
 	
 	CameraFollow m_camera;
 	Vector3 spawnPosition;
@@ -70,11 +71,20 @@ public class MainPlayerScript : MonoBehaviour {
 	// keep track of boulder colliders that are being ignored
 	List<Collider> ignoredBoulders;
 	
+	void Awake ()
+	{
+		changeFlags = new bool [5];
+		for (int i = 0; i < 5; i ++)
+			changeFlags [i] = true;
+
+		ignoredBoulders = new List<Collider>();
+	}
+	
 	// Use this for initialization
 	void Start () 
 	{
 		m_currentState = (int)State.Default;
-		
+				
 		// instantiate each state of matter
 		m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 		m_solidMatty = Instantiate (solidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
@@ -108,7 +118,6 @@ public class MainPlayerScript : MonoBehaviour {
 		m_platCtrlScript.SetSpawnPoint (spawnPoint, true);
 		
 		enableState ((int)State.Default);
-		ignoredBoulders = new List<Collider>();
 	}
 	
 	// Update is called once per frame
@@ -120,33 +129,33 @@ public class MainPlayerScript : MonoBehaviour {
 			
 			if (Input.GetButtonDown ("To Default"))
 			{
-				if (m_currentState != (int)State.Default)
+				if ((m_currentState != (int)State.Default) && changeFlags [0])
 					stateChange = true;
 				
 				m_currentState = (int)State.Default;
 			}
-			else if (Input.GetButtonDown ("To Solid"))
+			else if ((Input.GetButtonDown ("To Solid")) && changeFlags [1])
 			{
 				if (m_currentState != (int)State.Solid)
 					stateChange = true;
 				
 				m_currentState = (int)State.Solid;
 			}
-			else if(Input.GetButtonDown ("To Liquid"))
+			else if ((Input.GetButtonDown ("To Liquid")) && changeFlags [2])
 			{
 				if (m_currentState != (int)State.Liquid)
 					stateChange = true;
 				
 				m_currentState = (int)State.Liquid;
 			}
-			else if(Input.GetButtonDown ("To Gas"))
+			else if ((Input.GetButtonDown ("To Gas")) && changeFlags [3])
 			{
 				if (m_currentState != (int)State.Gas)
 					stateChange = true;
 				
 				m_currentState = (int)State.Gas;
 			}
-			else if(Input.GetButtonDown ("To Plasma"))
+			else if ((Input.GetButtonDown ("To Plasma")) && changeFlags [4])
 			{
 				if (m_currentState != (int)State.Plasma)
 					stateChange = true;
@@ -173,7 +182,7 @@ public class MainPlayerScript : MonoBehaviour {
 				collidedWithGrates = false;	
 			}
 			
-			if (ignoredBoulders.Count != 0 && (m_currentState != (int)State.Gas || m_currentState != (int)State.Liquid))
+			if (ignoredBoulders.Count != 0 && (m_currentState != (int)State.Gas && m_currentState != (int)State.Liquid))
 			{
 				for (int i = ignoredBoulders.Count - 1 ; i >= 0 ; --i)
 				{
@@ -188,7 +197,11 @@ public class MainPlayerScript : MonoBehaviour {
 			if (cameraInPosition)
 			{
 				playerDead = false;
+				
+				m_platCtrlScript.SetSpawnPoint (spawnPoint);
+//				transform.position = spawnPoint;
 				m_platCtrlScript.canControl = true;
+				
 				enableState (m_currentState);
 			}		
 		}
@@ -585,8 +598,9 @@ public class MainPlayerScript : MonoBehaviour {
 	void Die(bool explode = true) 
 	{
 		if (explode)
-		{	
-			GameObject explosion = Instantiate(deathExplosion, gameObject.transform.position, Quaternion.identity) as GameObject;
+		{
+			Vector3 explosionPos = transform.position;
+			GameObject explosion = Instantiate(deathExplosion, explosionPos, Quaternion.identity) as GameObject;
 			Destroy (explosion, 2);
 		}
 		
@@ -610,16 +624,38 @@ public class MainPlayerScript : MonoBehaviour {
 //			transform.position = spawnPoint.transform.position;
 //		}
 		spawnPoint = dir.GetSpawnPoint ();
-		m_platCtrlScript.SetSpawnPoint (spawnPoint);
-		m_platCtrlScript.canControl = false;
 		transform.position = spawnPoint;
+		m_platCtrlScript.canControl = false;
 		
-		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
-			(new Vector2 (spawnPoint.x, spawnPoint.y));
+//		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
+			
+		m_camera.panTo (new Vector2 (spawnPoint.x, spawnPoint.y));
 		
 		// Reset speed
 		m_platCtrlScript.ResetCharSpeed();
 
 		dir.ResetIcicles ();
+	}
+	
+	public void CanChange (State state, bool ableToChange)
+	{
+		int i = 0;
+		switch (state)
+		{
+		case State.Solid:
+			i = 1;
+			break;
+		case State.Liquid:
+			i = 2;
+			break;
+		case State.Gas:	
+			i = 3;
+			break;
+		case State.Plasma:	
+			i = 4;
+			break;
+		}
+		
+		changeFlags [i] = ableToChange;
 	}
 }

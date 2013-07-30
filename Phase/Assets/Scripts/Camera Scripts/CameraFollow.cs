@@ -18,6 +18,8 @@ public class CameraFollow : MonoBehaviour {
 	bool isPanning;
 	Vector2 newPosition;
 	Vector3 normalizedError;
+	
+	Vector3 camDist;
 	void Start()
 	{
 		if (distance == 0.0f)
@@ -29,6 +31,8 @@ public class CameraFollow : MonoBehaviour {
 		isPanning = false;
 		newPosition = Vector2.zero;
 		normalizedError = Vector3.one;
+		
+		camDist = new Vector3(0,-height,distance);
 	}
 	
 	
@@ -37,15 +41,11 @@ public class CameraFollow : MonoBehaviour {
 		if (!target)
 			return;
 		
-		Vector3 camDist = new Vector3(0,-height,distance);
 		Vector3 lookAtTarget = target.position;
-//		transform.position = target.position - camDist;
-		
-//		Vector3 camDist = new Vector3(0,-height,distance);
-//		newPosition = newLookAtPosition - camDist;
 		
 		if (isPanning)
 		{	
+			camDist = new Vector3(0,-height,distance);
 			Vector3 error = new Vector3 (newPosition.x, newPosition.y, 0) - camDist - transform.position;
 			if ((error.sqrMagnitude < 0.25f)||(Vector3.Dot (error, normalizedError) < 0))
 			{
@@ -58,12 +58,28 @@ public class CameraFollow : MonoBehaviour {
 				transform.position += (normalizedError*Time.deltaTime*speed);
 			
 			lookAtTarget = transform.position + camDist;
-//			Debug.Log ("Panning. Current Pos: " + transform.position.ToString());
 		}
 		else
+		{
+//			Vector3 camPos = transform.position;
+			
+			float h = Input.GetAxis ("CameraHeight");
+			camDist.y -= (h*Time.deltaTime);
+			if (h < 0)
+				camDist.y = Mathf.Min (camDist.y, -height);
+			else if (h > 0)
+				camDist.y = Mathf.Max (camDist.y, -(height+3f));
+			
+			float z = Input.GetAxis ("CameraZoom");
+			camDist.z += (z*Time.deltaTime);
+			if (z < 0)
+				camDist.z = Mathf.Max (camDist.z, distance);
+			else if (z > 0)
+				camDist.z = Mathf.Min (camDist.z, (distance+10f));
+			
 			transform.position = target.position - camDist;
+		}
 
-//		transform.LookAt (target);
 		transform.LookAt (lookAtTarget);
 	}
 	
@@ -79,19 +95,6 @@ public class CameraFollow : MonoBehaviour {
 		speed = normalizedError.magnitude;
 		normalizedError = normalizedError / speed;
 		speed /= panTime;
-//		Vector3 camDist = new Vector3(0,-height,distance);
-//		newPosition = newLookAtPosition - camDist;
-//		
-//		Vector3 error = newPosition - transform.position;
-//		while (error.sqrMagnitude >= 1.0f)
-//		{			
-////			transform.LookAt (target);
-//			
-//			error = newPosition - transform.position;
-//		}
-//		
-//		transform.position = newPosition;
-//		transform.LookAt (target);
 	}
 	
 	public bool isCameraInPosition ()

@@ -549,6 +549,19 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	void OnTriggerExit (Collider collider)
 	{
+		MatterScript stateScript = m_defaultMattyScript;
+		
+		if(m_currentState == (int)State.Default)
+			stateScript = m_defaultMattyScript;
+		else if(m_currentState == (int)State.Solid)
+			stateScript = m_solidMattyScript;
+		else if(m_currentState == (int)State.Liquid)
+			stateScript = m_liquidMattyScript;
+		else if(m_currentState == (int)State.Gas)
+			stateScript = m_gasMattyScript;
+		else if(m_currentState == (int)State.Plasma)
+			stateScript = m_plasmaMattyScript;
+		
 		if (collider.CompareTag ("Lava") && m_currentState == (int)State.Plasma)
 		{
 			m_plasmaMattyScript.NotOnLava ();
@@ -573,6 +586,10 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log ("Out of IcyFloor");
 		}
+		else if (collider.CompareTag ("WindTunnel"))
+		{
+			stateScript.WindTunnelExit(m_platCtrlScript);
+		}
 			
 		if (m_currentState == (int)State.Gas)
 		{
@@ -581,11 +598,11 @@ public class MainPlayerScript : MonoBehaviour {
 				Debug.Log("Gas-Matty exits IcyFloor, destroy rain");
 				m_gasMattyScript.StopCondensation ();
 			}
-			else if (collider.CompareTag("WindTunnel"))
-			{
-				Debug.Log("Gas-Matty exits wind tunnel");
-				m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
-			}
+//			else if (collider.CompareTag("WindTunnel"))
+//			{
+//				Debug.Log("Gas-Matty exits wind tunnel");
+//				m_gasMattyScript.WindTunnelExit (m_platCtrlScript);
+//			}
 			else if (collider.CompareTag("Icicle"))
 			{
 				Debug.Log("Gas-Matty exits icicle, stopping rain");

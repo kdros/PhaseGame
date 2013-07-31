@@ -279,8 +279,9 @@ public class PlatformerController : MonoBehaviour
 		// - extra power jump modifies gravity
 		ApplyGravity ();
 	
-		// Apply jumping logic
-		ApplyJumping ();
+		// Apply jumping logic (Jump later. Do active platform calculations first. If we do jump first, there this weird bug
+		// where the character flys away!)
+//		ApplyJumping ();
 		
 		// Moving platform support
 		if (activePlatform != null) {
@@ -301,11 +302,9 @@ public class PlatformerController : MonoBehaviour
 		Vector3 externalVel = externalAcc * Time.deltaTime;
 //		movement.verticalSpeed = movement.verticalSpeed + externalVel[1];
 		
-		if (movement.verticalSpeed != 0)
-		{
-			double debug = 0;	
-		}
-		
+		// Apply jumping logic
+		ApplyJumping ();
+
 		// Modification to get desired behaviour on non-vertical Wind Tunnels.
 		float vSpeed = movement.verticalSpeed;
 		if (externalVel [1] > 0.1f)
@@ -417,5 +416,7 @@ public class PlatformerController : MonoBehaviour
 		if (canSpawn)
 			Spawn ();
 	}
+	
+	
 }
 

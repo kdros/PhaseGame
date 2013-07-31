@@ -74,4 +74,9 @@ public class MatterScript : MonoBehaviour
 		pc.externalAcc = Vector3.zero;
 		return false;
 	}
+	
+	public void WindTunnelExit(PlatformerController pc)
+	{
+		pc.externalAcc = Vector3.zero;
+	}
 }

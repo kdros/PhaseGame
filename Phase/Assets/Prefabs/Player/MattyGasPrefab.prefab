@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176a96cbdd36b794c92f49c4a9d68db8, type: 3}
   m_Name: 
   rain: {fileID: 100000, guid: a184ec9f02c2642caacb01fa5dc77ea8, type: 2}
+  windTunnelAccel: {x: 0, y: 500, z: 0}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

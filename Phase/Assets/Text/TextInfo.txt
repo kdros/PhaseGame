@@ -108,3 +108,7 @@ BegLev2_Spikes
 Spikes can't harm Matty in his liquid form. In fact, this is the only form that is unharmed by spikes!
 BegLev2_Welcome
 Welcome to the Liquid State tutorial level. Here we will learn how the various traps affect Liquid Matty and therefore, how to use this state to successfully clear traps in advanced levels.  
+IntLev3_IceJump
+There is a platform far away. I will need to pick up enough speed for the jump!
+IntLev3_LongJump
+Almost there! I can see the exit in the distance. There are some platforms ahead of me, but they are too far. If only there is a way to make my body lighter during my jumps!"

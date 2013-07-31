@@ -88,3 +88,23 @@ BegLev4_MessageFlamePillarTrap
 Holy smokes, we're being swept right towards a flame pillar! Avoid it by swerving to the side!
 BegLev4_MessageEnd
 That's the end of the Gas state tutorial. Remember to use your learnings about Matty's interactions with the various traps here to solve more difficult puzzles in other levels.
+BegLev2_Boulders
+QUICK, PRESS 'A' TO CHANGE BACK TO LIQUID and avoid a collision with those boulders!
+BegLev2_Checkpoint
+Ah, a Checkpoint! It saves your progress in the level and respawns you here once you die from this point forth. A visible green flag indicates that you cleared it.
+BegLev2_FlamePillar
+Liquid Matty hates flames, and with good reason - they can vaporize him. Watch out for that flame pillar!
+BegLev2_Grate
+What's this? A Lava Pit ahead guarded by long spikes? It seems it isn't possible to jump over it. Would these grates be useful? Let's find out. Step onto it and press 'A' to change into Liquid Matty.
+BegLev2_Icicle
+Icicles and Icy Floors can freeze Liquid Matty to death. Do not touch them at any cost!
+BegLev2_IcyPitfall
+A long pitfall up ahead and Liquid Matty can't jump! Besides, the Icy Floor would kill him. Could he transition to Solid state to make use of this? 
+BegLev2_Mace
+Hah, a mace can't stop Liquid Matty! Onward bound!
+BegLev2_PastBoulders
+That's the way to go! So, Matty really needs to use his different forms in unison to get past traps. Drop down to the platform below to complete your training.
+BegLev2_Spikes
+Spikes can't harm Matty in his liquid form. In fact, this is the only form that is unharmed by spikes!
+BegLev2_Welcome
+Welcome to the Liquid State tutorial level. Here we will learn how the various traps affect Liquid Matty and therefore, how to use this state to successfully clear traps in advanced levels.  

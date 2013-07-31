@@ -20,7 +20,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .29020977, g: .29020977, b: .29020977, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5aab239cac7fe8a4c931693a7535da5c, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_HaloTexture: {fileID: 0}
@@ -30125,11 +30125,11 @@ MonoBehaviour:
   spawnPosition: {fileID: 621821562}
   tipDisplayTime: 0
   lastLevel: 5
-  defaultIcon: {fileID: 2800000, guid: 0763f6b655370614bbf9d1270522d07e, type: 3}
-  solidIcon: {fileID: 2800000, guid: cfc106ab950704f41b5a058dad53ea85, type: 3}
-  liquidIcon: {fileID: 2800000, guid: ccfafa8f85e9fa84b95d42e1aa9e6eed, type: 3}
-  gasIcon: {fileID: 2800000, guid: 8f7bb7b12bd8d404eae09d7024c90fe4, type: 3}
-  plasmaIcon: {fileID: 2800000, guid: 6b92bba05e1cfc44d99741a19f10f8a3, type: 3}
+  defaultIcon: {fileID: 2800000, guid: d413da5d52cb79b4294ddf5e716b4265, type: 3}
+  solidIcon: {fileID: 2800000, guid: 8cdc327c44d474649b818bf6c2ca8cc1, type: 3}
+  liquidIcon: {fileID: 2800000, guid: 849b680024556844290dc1db6f219ea7, type: 3}
+  gasIcon: {fileID: 2800000, guid: 259ab2934ef9d3947b961d1e87089ea6, type: 3}
+  plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
 --- !u!4 &1146371180
 Transform:
   m_ObjectHideFlags: 0

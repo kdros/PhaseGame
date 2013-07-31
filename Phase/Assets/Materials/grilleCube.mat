@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: grille
+  m_Name: grilleCube
   m_Shader: {fileID: 4, guid: 0000000000000000e000000000000000, type: 0}
   m_ShaderKeywords: []
   m_SavedProperties:
@@ -17,14 +17,14 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000, guid: 9e50f9fef8e53f345ba12d779397597d, type: 3}
-          m_Scale: {x: 3, y: 3}
+          m_Scale: {x: 3, y: .699999988}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
           m_Texture: {fileID: 2800000, guid: 80a339e142f7e4142a79a40d60079117, type: 3}
-          m_Scale: {x: 3, y: 3}
+          m_Scale: {x: 3, y: .699999988}
           m_Offset: {x: 0, y: 0}
       data:
         first:

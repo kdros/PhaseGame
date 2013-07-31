@@ -197,7 +197,7 @@ public class MainPlayerScript : MonoBehaviour {
 			if (cameraInPosition)
 			{
 				playerDead = false;
-				
+				dir.ResetDarkCave ();
 				m_platCtrlScript.SetSpawnPoint (spawnPoint);
 //				transform.position = spawnPoint;
 				m_platCtrlScript.canControl = true;

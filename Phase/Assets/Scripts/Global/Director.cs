@@ -157,6 +157,7 @@ public class Director : MonoBehaviour
 				}
 			}
 			else if (sceneCamera.position.x >= darknessTriggerSpots [0])
+			{	
 				if (sceneCamera.position.x >= darknessTriggerSpots [1])
 				{
 					float t = 0f;
@@ -177,7 +178,13 @@ public class Director : MonoBehaviour
 					RenderSettings.ambientLight = Color.Lerp (originalAmbientColor, Color.black, t);
 					for (int i = 0; i < lights.Length; i ++)
 						lights [i].intensity = Mathf.Lerp (origLightIntensities [i], 0, t);
-				}	
+				}
+			}
+			
+			if (RenderSettings.ambientLight == originalAmbientColor)
+				RenderSettings.skybox = origSkybox;
+			else
+				RenderSettings.skybox = null;
 		}
 		
 		if (displayMessage)
@@ -300,49 +307,55 @@ public class Director : MonoBehaviour
 	
 	public void OnEnterDarkCave (Collider collider)
 	{
-		bool found = false;
-		for (int i = 0; i < darkCavesList.Count; i ++)
-		{
-			Vector2 darkCaveDoor = new Vector2 (collider.transform.position.x, collider.transform.position.y);
-			if (darkCaveDoor.Equals (darkCavesList [i].Door1) || darkCaveDoor.Equals (darkCavesList [i].Door2))
-			{	
-				found = darkCave = true;
-				curDarkCave = darkCavesList [i];
-				break;
-			}	
-		}
-
-		if (!found)
-			throw new UnityException ("DarkCaveEnter triggered on a DarkCave that doesn't exist!");
+		if (darkCave)
+			OnDarkCaveExit (collider);
+		
 		else
 		{
-			// Find centre of the Cave.
-			float darkCaveCentreX = Mathf.Abs(curDarkCave.Door1.x - curDarkCave.Door2.x)/2f;
-			if (curDarkCave.Door1.x > curDarkCave.Door2.x)
-				darkCaveCentreX += curDarkCave.Door2.x;
-			else
-				darkCaveCentreX += curDarkCave.Door1.x;
-			
-			// Find spots at which the ambient should completely be black.
-			// That is, when player reaches any of these points from outside the cave,
-			// the ambient should have completely transitioned to darkness.
-			// If instead, the player reaches these points from inside the cave, 
-			// the ambient slowly starts transitioning to original colour as he makes
-			// his way out of the cave.
-			darknessTriggerSpots [0] = Mathf.Abs(darkCaveCentreX - curDarkCave.Door1.x)/4f;
-			darknessTriggerSpots [1] = Mathf.Abs(darkCaveCentreX - curDarkCave.Door2.x)/4f;
-			if (curDarkCave.Door1.x > curDarkCave.Door2.x)
+			bool found = false;
+			for (int i = 0; i < darkCavesList.Count; i ++)
 			{
-				darknessTriggerSpots [1] += curDarkCave.Door2.x;
-				darknessTriggerSpots [0] = curDarkCave.Door1.x - darknessTriggerSpots [0];
+				Vector2 darkCaveDoor = new Vector2 (collider.transform.position.x, collider.transform.position.y);
+				if (darkCaveDoor.Equals (darkCavesList [i].Door1) || darkCaveDoor.Equals (darkCavesList [i].Door2))
+				{	
+					found = darkCave = true;
+					curDarkCave = darkCavesList [i];
+					break;
+				}	
 			}
+	
+			if (!found)
+				throw new UnityException ("DarkCaveEnter triggered on a DarkCave that doesn't exist!");
 			else
 			{
-				darknessTriggerSpots [0] += curDarkCave.Door1.x;
-				darknessTriggerSpots [1] = curDarkCave.Door2.x - darknessTriggerSpots [1];
+				// Find centre of the Cave.
+				float darkCaveCentreX = Mathf.Abs(curDarkCave.Door1.x - curDarkCave.Door2.x)/2f;
+				if (curDarkCave.Door1.x > curDarkCave.Door2.x)
+					darkCaveCentreX += curDarkCave.Door2.x;
+				else
+					darkCaveCentreX += curDarkCave.Door1.x;
+				
+				// Find spots at which the ambient should completely be black.
+				// That is, when player reaches any of these points from outside the cave,
+				// the ambient should have completely transitioned to darkness.
+				// If instead, the player reaches these points from inside the cave, 
+				// the ambient slowly starts transitioning to original colour as he makes
+				// his way out of the cave.
+				darknessTriggerSpots [0] = Mathf.Abs(darkCaveCentreX - curDarkCave.Door1.x)/4f;
+				darknessTriggerSpots [1] = Mathf.Abs(darkCaveCentreX - curDarkCave.Door2.x)/4f;
+				if (curDarkCave.Door1.x > curDarkCave.Door2.x)
+				{
+					darknessTriggerSpots [1] += curDarkCave.Door2.x;
+					darknessTriggerSpots [0] = curDarkCave.Door1.x - darknessTriggerSpots [0];
+				}
+				else
+				{
+					darknessTriggerSpots [0] += curDarkCave.Door1.x;
+					darknessTriggerSpots [1] = curDarkCave.Door2.x - darknessTriggerSpots [1];
+				}
+				
+				RenderSettings.skybox = null;
 			}
-			
-			RenderSettings.skybox = null;
 		}
 	}
 	
@@ -351,19 +364,22 @@ public class Director : MonoBehaviour
 		if (!darkCave)
 			OnEnterDarkCave (collider);
 		else
-		{
-			darkCave = false;
-			RenderSettings.ambientLight = originalAmbientColor;
-			RenderSettings.skybox = origSkybox;
-			curDarkCave.Door1 = Vector2.zero;
-			curDarkCave.Door2 = Vector2.zero;
-		}
+			ResetDarkCave ();
 	}
 	
 	public void ResetIcicles ()
 	{
 		foreach (IcicleBase icicle in iciclesList)
 			icicle.Reset ();
+	}
+	
+	public void ResetDarkCave ()
+	{
+		darkCave = false;
+		RenderSettings.ambientLight = originalAmbientColor;
+		RenderSettings.skybox = origSkybox;
+		curDarkCave.Door1 = Vector2.zero;
+		curDarkCave.Door2 = Vector2.zero;
 	}
 	
 	public Vector3 GetSpawnPoint ()

@@ -26,7 +26,7 @@ public class LDIntLev1 : LevelDirector {
 				Debug.Log ("First trigger hit!");
 				for (int i = 0; i < 14; i++)
 					Invoke ("makeRockFallDown", (i*0.35f));
-				return true;
+				return false;
 			//case "IntLev1_EventTrigger2":
 				//int boulderCount = 0;
 				//GameObject[] boulders = GameObject.FindGameObjectsWithTag ("FallingBoulders");

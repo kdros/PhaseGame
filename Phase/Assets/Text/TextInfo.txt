@@ -11,7 +11,7 @@ Whew that was close! Now watch out for the flames - Solid Matty will combust!
 BegLev1_Trigger5
 Awesome jumping! Careful of the swinging mace!
 BegLev1_Trigger6
-Check out that wind tunnel! Unfortunately, Matty is too heavy to float, so just keep going!
+Check out that wind tunnel! Unfortunately, Solid Matty is too heavy to float, so just keep going!
 BegLev1_Trigger7
 Congrats! You have reached your first checkpoint. If you die, you will now re-start here!
 BegLev1_Trigger8

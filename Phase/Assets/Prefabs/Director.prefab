@@ -38,6 +38,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
   spawnPosition: {fileID: 0}
+  tipDisplayTime: 0
+  lastLevel: 5
+  defaultIcon: {fileID: 2800000, guid: 0763f6b655370614bbf9d1270522d07e, type: 3}
+  solidIcon: {fileID: 2800000, guid: cfc106ab950704f41b5a058dad53ea85, type: 3}
+  liquidIcon: {fileID: 2800000, guid: ccfafa8f85e9fa84b95d42e1aa9e6eed, type: 3}
+  gasIcon: {fileID: 2800000, guid: 8f7bb7b12bd8d404eae09d7024c90fe4, type: 3}
+  plasmaIcon: {fileID: 2800000, guid: 6b92bba05e1cfc44d99741a19f10f8a3, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

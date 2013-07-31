@@ -11,8 +11,13 @@ public class Director : MonoBehaviour
 	
 	public Transform spawnPosition;
 	public float tipDisplayTime = 0f;
-	
 	public int lastLevel = 5;
+	
+	public Texture2D defaultIcon;
+	public Texture2D solidIcon;
+	public Texture2D liquidIcon;
+	public Texture2D gasIcon;
+	public Texture2D plasmaIcon;
 	
 	Transform sceneCamera;
 	LevelDirector ld;
@@ -34,9 +39,12 @@ public class Director : MonoBehaviour
 	System.Collections.Generic.List<DarkCave> darkCavesList;
 	
 	// For displaying message boxes:
-	int absoluteWidth, absoluteHeight, width, height;
+	int absoluteWidth, absoluteHeight, width, height, screenWidthBy2, screenHeightBy2;
 	int boxWidth, boxHeight, boxStartingX, boxStartingY;
 	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
+	
+	GUIStyle stateInfoBox;
+	MainPlayerScript player;
 		
 	// Get the current scene
 //	public string currentLevel;
@@ -98,6 +106,14 @@ public class Director : MonoBehaviour
 		// Needed for dark caves. If background colour is not set to black, dark caves
 		// won't be "dark" anymore.
 		sceneCamera.gameObject.GetComponent<Camera>().backgroundColor = Color.black;
+		
+		stateInfoBox = new GUIStyle ();
+		stateInfoBox.name = "StateInfoBox";
+		stateInfoBox.alignment = TextAnchor.LowerRight;
+		stateInfoBox.fontStyle = FontStyle.Bold;
+		stateInfoBox.normal.textColor = Color.white;
+		
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
 		
 		try
 		{
@@ -188,12 +204,55 @@ public class Director : MonoBehaviour
 			GUI.Box (new Rect (boxStartingX, boxStartingY, boxWidth, boxHeight), messageToBeDisplayed, wordWrapStyle);
 			bool dismiss = GUI.Button (new Rect (buttonStartingX, buttonStartingY, buttonWidth, buttonHeight), "Dismiss");
 			
-			if (dismiss)
+			if ((dismiss) || (Input.GetKeyUp (KeyCode.Escape)))
 			{
 				displayTime = 0f;
 				displayMessage = false;
 			}
 		}
+		
+		// Display boxes to show possible transitions.
+		for (int i = 0; i < 5; i++)
+		{
+			GUI.enabled = player.IsStateEnabled (i);
+			GUIContent content = new GUIContent ();
+			switch (i)
+			{
+			case 0:
+				stateInfoBox.normal.background = defaultIcon;
+				content.text = "Z";
+				break;
+			case 1:
+				stateInfoBox.normal.background = solidIcon;
+				content.text = "S";
+				break;
+			case 2:
+				stateInfoBox.normal.background = liquidIcon;
+				content.text = "A";
+				break;
+			case 3:
+				stateInfoBox.normal.background = gasIcon;
+				content.text = "D";
+				break;
+			case 4:
+				stateInfoBox.normal.background = plasmaIcon;
+				content.text = "F";
+				break;
+			}
+			
+			if (i == player.CurrentState ())
+				stateInfoBox.normal.textColor = Color.green;
+			else if (!GUI.enabled)
+				stateInfoBox.normal.textColor = Color.red;
+			else
+				stateInfoBox.normal.textColor = Color.white;
+				
+			GUI.Box (new Rect ((float)screenWidthBy2 + ((float)i - 2.5f)*70f, 
+								Screen.height - 64f - 5f, 64f, 64f), content, stateInfoBox);
+		}
+		
+		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
+		GUI.enabled = true;
 	}
 	
 	void GUIDimensionSetup ()
@@ -209,12 +268,12 @@ public class Director : MonoBehaviour
 			height = Screen.height;
 		
 		// Scaling logic.
-		boxWidth = (int)(width * ((float)absoluteWidth/1366f)); 
-		boxHeight = (int)(height * ((float)absoluteHeight/768f));
+		boxWidth = (int)((float)(width/1366f) * (float)absoluteWidth); 
+		boxHeight = (int)((float)(height/768f) * (float)absoluteHeight);
 		
 		// Position the box at upper right corner, padded to the left by
-		// 1.5 times the width of the box at the current resolution.
-		boxStartingX = Screen.width - (int)(absoluteWidth*1.5f); 
+		// 1.1 times the width of the box at the current resolution.
+		boxStartingX = Screen.width - (int)(absoluteWidth*1.1f); 
 		boxStartingY = 10;
 		
 		// Button's width specified as half the width of the box. Height is 10% of box's height.
@@ -224,6 +283,9 @@ public class Director : MonoBehaviour
 		// Centre the button in the box.
 		buttonStartingX = boxStartingX + (int)(boxWidth*0.25f); 
 		buttonStartingY = boxStartingY + boxHeight - (int)(buttonHeight*1.5f);
+			
+		screenWidthBy2 = Screen.width/2;
+		screenHeightBy2 = Screen.height/2;
 	}
 	
 	void LoadTriggerMessagesFromFile ()

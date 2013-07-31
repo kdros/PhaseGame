@@ -675,4 +675,14 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		changeFlags [i] = ableToChange;
 	}
+	
+	public bool IsStateEnabled (int stateIndex)
+	{	// 0: default, 1: Solid, 2: Liquid, 3: Gas, 4: Plasma.
+		return changeFlags [stateIndex];
+	}
+	
+	public int CurrentState ()
+	{
+		return m_currentState;
+	}
 }

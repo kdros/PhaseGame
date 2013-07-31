@@ -9605,10 +9605,6 @@ Prefab:
       propertyPath: spawnPosition
       value: 
       objectReference: {fileID: 621821562}
-    - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
-      propertyPath: tipDisplayTime
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
   m_RootGameObject: {fileID: 1146371178}
@@ -19343,7 +19339,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 714047054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .546981812, y: -2.57945824, z: -21.7212868}
+  m_LocalPosition: {x: 1.43215942, y: -2.57945824, z: -21.7212868}
   m_LocalScale: {x: 1, y: 7.08536196, z: 5.24593306}
   m_Children: []
   m_Father: {fileID: 1533464169}
@@ -23255,7 +23251,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 200
   ShapeModule:
     serializedVersion: 2
     enabled: 1
@@ -29115,8 +29111,8 @@ MonoBehaviour:
   m_Name: 
   target: {fileID: 1144799168}
   distance: 0
-  height: 0
-  panTime: 5
+  height: 1
+  panTime: 3
 --- !u!1 &1079350405
 GameObject:
   m_ObjectHideFlags: 0
@@ -30127,8 +30123,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
   spawnPosition: {fileID: 621821562}
-  tipDisplayTime: 10
+  tipDisplayTime: 0
   lastLevel: 5
+  defaultIcon: {fileID: 2800000, guid: 0763f6b655370614bbf9d1270522d07e, type: 3}
+  solidIcon: {fileID: 2800000, guid: cfc106ab950704f41b5a058dad53ea85, type: 3}
+  liquidIcon: {fileID: 2800000, guid: ccfafa8f85e9fa84b95d42e1aa9e6eed, type: 3}
+  gasIcon: {fileID: 2800000, guid: 8f7bb7b12bd8d404eae09d7024c90fe4, type: 3}
+  plasmaIcon: {fileID: 2800000, guid: 6b92bba05e1cfc44d99741a19f10f8a3, type: 3}
 --- !u!4 &1146371180
 Transform:
   m_ObjectHideFlags: 0
@@ -48711,7 +48712,7 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 500
   ShapeModule:
     serializedVersion: 2
     enabled: 1

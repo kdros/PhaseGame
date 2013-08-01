@@ -6377,7 +6377,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1190075132}
   m_GameObject: {fileID: 454185059}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -11981,7 +11981,7 @@ MonoBehaviour:
   m_Name: 
   target: {fileID: 192009990}
   distance: 0
-  height: 0
+  height: 1
   panTime: 3
 --- !u!1001 &962987479
 Prefab:
@@ -17669,6 +17669,11 @@ MonoBehaviour:
   spawnPosition: {fileID: 152468162}
   tipDisplayTime: 0
   lastLevel: 5
+  defaultIcon: {fileID: 2800000, guid: d413da5d52cb79b4294ddf5e716b4265, type: 3}
+  solidIcon: {fileID: 2800000, guid: 8cdc327c44d474649b818bf6c2ca8cc1, type: 3}
+  liquidIcon: {fileID: 2800000, guid: 849b680024556844290dc1db6f219ea7, type: 3}
+  gasIcon: {fileID: 2800000, guid: 259ab2934ef9d3947b961d1e87089ea6, type: 3}
+  plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
 --- !u!4 &1506896658
 Transform:
   m_ObjectHideFlags: 0
@@ -22355,7 +22360,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 236891575}
   m_GameObject: {fileID: 1651993952}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -22422,7 +22427,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1814431921}
   m_GameObject: {fileID: 1667013839}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -22626,7 +22631,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 1338599941}
   m_GameObject: {fileID: 1699042196}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

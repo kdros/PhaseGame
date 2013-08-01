@@ -19,43 +19,43 @@ public class GameMenuScript : MonoBehaviour {
 		
 		//Load the main scene
 		//The scene needs to be added into build setting to be loaded!
-		//if(GUILayout.Button("Instructions"))
-		//{
-			//Debug.Log ("No Instructions Yet!");
-			//Application.LoadLevel("");
-		//}
+		if(GUILayout.Button("Instructions"))
+		{
+//			Debug.Log ("No Instructions Yet!");
+			Application.LoadLevel(2);
+		}
 		if(GUILayout.Button("Let's Play!"))
-		{
-			Application.LoadLevel(2);
-		}
-		if(GUILayout.Button("Beginner Level 1"))
-		{
-			Application.LoadLevel(2);
-		}
-		if(GUILayout.Button("Beginner Level 2"))
 		{
 			Application.LoadLevel(3);
 		}
-		if(GUILayout.Button("Beginner Level 3"))
+		if(GUILayout.Button("Beginner Level 1"))
+		{
+			Application.LoadLevel(3);
+		}
+		if(GUILayout.Button("Beginner Level 2"))
 		{
 			Application.LoadLevel(4);
 		}
-		if(GUILayout.Button("Beginner Level 4"))
+		if(GUILayout.Button("Beginner Level 3"))
 		{
 			Application.LoadLevel(5);
 		}
-		if(GUILayout.Button("Intermediate Level 1"))
+		if(GUILayout.Button("Beginner Level 4"))
 		{
 			Application.LoadLevel(6);
 		}
-		if(GUILayout.Button("Intermediate Level 2"))
+		if(GUILayout.Button("Intermediate Level 1"))
 		{
 			Application.LoadLevel(7);
 		}
-		if(GUILayout.Button("Intermediate Level 3"))
+		if(GUILayout.Button("Intermediate Level 2"))
 		{
 			Application.LoadLevel(8);
 		}
+//		if(GUILayout.Button("Intermediate Level 3"))
+//		{
+//			Application.LoadLevel(8);
+//		}
 		if(GUILayout.Button("Exit"))
 		{
 			Application.Quit ();

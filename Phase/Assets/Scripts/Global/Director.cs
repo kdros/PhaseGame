@@ -455,14 +455,19 @@ public class Director : MonoBehaviour
 		{	// This indicates that the current trigger is the last with the specified levelID.
 			
 			// Find index of last char in string.
-			finishingPos = triggerMessages.IndexOf (System.Environment.NewLine, position);
-			if (finishingPos == 0) // If current position in string = last char 
+			finishingPos = triggerMessages.IndexOf ("\n", position);
+			if (finishingPos-position == 0) // If current position in string = last char 
 			{	
-				position += System.Environment.NewLine.Length; // Move position to the next line.
-				finishingPos = triggerMessages.IndexOf (System.Environment.NewLine, position); 
+				position ++; // Move position to the next line.
+				finishingPos = triggerMessages.IndexOf ("\n", position);
 			}
 			else if (finishingPos == -1) // If current trigger is the very last in the file.
 				finishingPos = triggerMessages.Length;
+			
+			// Hack to handle inconsistent line endings across platforms.
+			if (triggerMessages [finishingPos-1] == '\r')
+				finishingPos --;
+				
 			// Read the whole line.
 			rawMessage = triggerMessages.Substring (position, finishingPos-position);
 		}

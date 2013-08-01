@@ -107,7 +107,19 @@ That's the way to go! So, Matty really needs to use his different forms in uniso
 BegLev2_Spikes
 Spikes can't harm Matty in his liquid form. In fact, this is the only form that is unharmed by spikes!
 BegLev2_Welcome
-Welcome to the Liquid State tutorial level. Here we will learn how the various traps affect Liquid Matty and therefore, how to use this state to successfully clear traps in advanced levels.  
+Welcome to the Liquid State tutorial level. Here we will learn how the various traps affect Liquid Matty and therefore, how to use this state to successfully clear traps in advanced levels.
+Intro_Message1
+Before we start, let's learn a little bit about controls in this game.
+Intro_Message2
+Excellent! Now press Space to jump.
+Intro_Message3
+You can zoom the camera in/out.
+Intro_Message4
+You can also pan the camera vertically.
+Intro_Message5
+You can dismiss messages like these by clicking on the "Dismiss" button or by pressing 'Esc'. When you're ready to start playing, go and touch the next beacon.
+Intro_Message6
+Remember: You may not be able to jump in all the states. Continue on to the next beacon. 
 IntLev3_IceJump
 There is a platform far away. I will need to pick up enough speed for the jump!
 IntLev3_LongJump

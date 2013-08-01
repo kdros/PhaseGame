@@ -10,16 +10,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameMenu.unity
   - enabled: 1
+    path: Assets/Introductory.unity
+  - enabled: 1
     path: Assets/BeginnerLevel1Scene 1.unity
   - enabled: 1
     path: Assets/BeginnerLevel2.unity
   - enabled: 1
-    path: Assets/BeginnerLevel3.unity
-  - enabled: 1
     path: Assets/BeginnerLevel4.unity
   - enabled: 1
-    path: Assets/IntermediateLevel1.unity
+    path: Assets/BeginnerLevel3.unity
   - enabled: 1
-    path: Assets/IntermediateLevel2.unity
+    path: Assets/IntermediateLevel1.unity
   - enabled: 1
     path: Assets/IntermediateLevel3.unity

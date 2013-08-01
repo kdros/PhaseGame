@@ -29,6 +29,7 @@ public class MainPlayerScript : MonoBehaviour {
 	public GameObject defaultMatty;
 	
 	public AudioClip slidingSound;
+	public AudioClip deathSound;
 	
 	/// <summary>
 	/// Public Variables: Set upon initialization
@@ -617,6 +618,7 @@ public class MainPlayerScript : MonoBehaviour {
 		if (explode)
 		{
 			Vector3 explosionPos = transform.position;
+			AudioSource.PlayClipAtPoint(deathSound, gameObject.transform.position);
 			GameObject explosion = Instantiate(deathExplosion, explosionPos, Quaternion.identity) as GameObject;
 			Destroy (explosion, 2);
 		}

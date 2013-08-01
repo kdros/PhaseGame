@@ -11,7 +11,7 @@ public class Director : MonoBehaviour
 	
 	public Transform spawnPosition;
 	public float tipDisplayTime = 0f;
-	public int lastLevel = 5;
+	public int lastLevel = 7;
 	
 	public Texture2D defaultIcon;
 	public Texture2D solidIcon;
@@ -100,7 +100,7 @@ public class Director : MonoBehaviour
 			origLightIntensities [i] = lights [i].intensity;
 		
 		// Creates a backup of the skybox assigned to the scene.
-		// This is needed since we blank the skybox as the player enters dark caves.
+		// This is needed since we set the skybox to null as the player enters dark caves.
 		origSkybox = RenderSettings.skybox;
 		
 		// Needed for dark caves. If background colour is not set to black, dark caves
@@ -495,27 +495,7 @@ public class Director : MonoBehaviour
 	
 	public void SetCurrentLevel()
 	{
-//		currentLevelNum = 0;
-		
-//		currentLevel = Application.l//Application.loadedLevelName;
-//		
-//		// Level scenes start at "2", because GameIntro is 0 and GameMenu is 1
-//		if (currentLevel == "BeginnerLevel1Scene")
-//			currentLevelNum = 2;
-//		if (currentLevel == "BeginnerLevel2")
-//			currentLevelNum = 3;
-//		if (currentLevel == "BeginnerLevel3")
-//			currentLevelNum = 4;
-//		if (currentLevel == "BeginnerLevel4")
-//			currentLevelNum = 5;
-//		if (currentLevel == "IntermediateLevel1")
-//			currentLevelNum = 6;
-//		if (currentLevel == "IntermediateLevel2")
-//			currentLevelNum = 7;
-//		if (currentLevel == "AdvancedLevel1")
-//			currentLevelNum = 8;
-//		if (currentLevel == "Winner")
-//			currentLevelNum = 9;
+
 	}
 	
 	public void MoveToNextLevel()

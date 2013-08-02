@@ -15,7 +15,7 @@ public class IcicleParticle : MonoBehaviour
 	{
 		if (curLife > 0.1f)
 		{
-			curLife -= 0.1f;
+			curLife -=Time.deltaTime*0.1f;
 //			float originalY = transform.position.y;
 			transform.localScale *= curLife;
 //				transform.position = new Vector3 (transform.position.x, originalY, transform.position.z);

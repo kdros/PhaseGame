@@ -201,6 +201,7 @@ public class Director : MonoBehaviour
 		
 	void OnGUI ()
 	{
+		bool displayMenu = false;
 		if (displayMessage)
 		{
 			GUIStyle wordWrapStyle = new GUIStyle ();
@@ -215,7 +216,21 @@ public class Director : MonoBehaviour
 			{
 				displayTime = 0f;
 				displayMessage = false;
+				displayMenu = true;
 			}
+		}
+		else if (!displayMenu)
+		{
+//			Event currentEvent = Event.current;
+//			if (currentEvent.isKey)
+//				if (currentEvent.keyCode == KeyCode.Escape)
+			if (Input.GetKeyDown (KeyCode.Escape))
+					Application.LoadLevel (1);
+		}
+		
+		if (displayMenu)
+		{
+			;
 		}
 		
 		// Display boxes to show possible transitions.

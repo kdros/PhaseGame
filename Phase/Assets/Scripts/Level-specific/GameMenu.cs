@@ -8,7 +8,17 @@ using System.Collections.Generic;
  *							 GameMode - [Normal, SpeedRun] 					
  */
 public class GameMenu : MonoBehaviour 
-{	
+{
+	public Transform HideAnchorRight;
+	public Transform HideAnchorLeft;
+	public Transform DisplayCol1Anchor;
+	public Transform DisplayCol2Anchor;
+	public Transform DisplayCol3Anchor;
+	
+	public GameObject[] MainMenuOptions;
+	public GameObject[] ContinueMenuOptions;
+	public GameObject[] ModeMenuOptions;
+	
 	public GameObject NewGameText;						// game object representing "New Game"
 	public GameObject ContinueText;						// game object representing "Continue"
 	public GameObject ModeText;							// game object representing "Mode"
@@ -140,6 +150,8 @@ public class GameMenu : MonoBehaviour
 	// set up speed and distances for each text
 	private void initTransitionValues()
 	{
+		//float c1HideLeft = Mathf.Abs (HideAnchorLeft.position.x - )
+		
 		newGameScript.setDistance(2.0f);
 		newGameScript.setSpeed(6.5f);
 		

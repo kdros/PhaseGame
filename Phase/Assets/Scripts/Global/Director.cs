@@ -39,6 +39,7 @@ public class Director : MonoBehaviour
 	bool displayMessage = false;
 	bool displayPauseMenu = false;
 	float displayTime = 0f;
+	float one = 1f;
 	string triggerMessages, messageToBeDisplayed;
 	
 	System.Collections.Generic.List<IcicleBase> iciclesList;
@@ -66,6 +67,7 @@ public class Director : MonoBehaviour
 		displayMessage = false;
 		displayPauseMenu = false;
 		displayTime = 0f;
+		one = 1f;
 		messageToBeDisplayed = "";
 		if (tipDisplayTime == 0f)
 			tipDisplayTime = 5f;
@@ -203,22 +205,13 @@ public class Director : MonoBehaviour
 				displayMessage = false;
 			}
 		}
+		
 		if (Input.GetButtonDown ("LoadPauseMenu"))
-		{
-			displayPauseMenu = true;
-			Debug.Log ("P pressed!");
-		}
-
+			PauseGame ();
 	}
 		
 	void OnGUI ()
-	{
-		bool displayMenu = false;
-		if (displayPauseMenu)
-		{
-			loadPauseMenu ();
-		}
-		
+	{		
 		if (displayMessage)
 		{
 			GUIStyle wordWrapStyle = new GUIStyle ();
@@ -233,22 +226,12 @@ public class Director : MonoBehaviour
 			{
 				displayTime = 0f;
 				displayMessage = false;
-				displayMenu = true;
 			}
 		}
-		else if (!displayMenu)
-		{
-//			Event currentEvent = Event.current;
-//			if (currentEvent.isKey)
-//				if (currentEvent.keyCode == KeyCode.Escape)
-			if (Input.GetKeyDown (KeyCode.Escape))
-					Application.LoadLevel (1);
-		}
 		
-		if (displayMenu)
-		{
-			;
-		}
+		if (displayPauseMenu)
+			loadPauseMenu ();
+
 		
 		// Display boxes to show possible transitions.
 		for (int i = 0; i < 5; i++)
@@ -307,18 +290,16 @@ public class Director : MonoBehaviour
 		
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), resumeTexture))
 		{
-			displayPauseMenu = false;
-			Time.timeScale = 1.0f;
+			PauseGame ();
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
 		{
-			displayPauseMenu = false;
-			Time.timeScale = 1.0f;
+			PauseGame ();
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))
 		{
-			displayPauseMenu = false;
+			PauseGame ();
 			Application.LoadLevel(1);
 		}
 		
@@ -366,6 +347,14 @@ public class Director : MonoBehaviour
 		else
 			triggerMessages = "Phase (c)2013 The Phase Team."; 
 		sr.Close ();
+	}
+	
+	void PauseGame ()
+	{
+		displayPauseMenu = !displayPauseMenu;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!displayPauseMenu);
 	}
 	
 	public void OnEnterDarkCave (Collider collider)

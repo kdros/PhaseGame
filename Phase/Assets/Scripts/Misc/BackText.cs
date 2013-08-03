@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ModeText : TextScript 
+public class BackText : TextScript 
 {
 	public override void respondToClick ()
 	{
@@ -10,7 +10,7 @@ public class ModeText : TextScript
 			Debug.Log("need to switch to mode menu");
 			GameObject gm = GameObject.FindGameObjectWithTag ("GameMenu");
 			GameMenu gameMenu = gm.GetComponent<GameMenu>();
-			gameMenu.toModeOptions();
+			gameMenu.toMainMenu();
 		}
 	}
 }

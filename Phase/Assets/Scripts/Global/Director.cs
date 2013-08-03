@@ -22,6 +22,8 @@ public class Director : MonoBehaviour
 	public Texture2D resumeTexture;
 	public Texture2D restartTexture;
 	public Texture2D quitTexture;
+	public Texture2D pauseBkgdTexture;
+	//public Texture2D pauseFillTexture;
 	
 	Transform sceneCamera;
 	LevelDirector ld;
@@ -280,31 +282,35 @@ public class Director : MonoBehaviour
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
 		
+		loadPauseMenu ();
+		
 		if (Input.GetButtonDown ("LoadPauseMenu"))
 		{
-			Debug.Log ("Hit button!");
-            loadPauseMenu ();
 		}
 
 	}
 	
 	void loadPauseMenu()
 	{
-		GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
-		GUI.Box(new Rect(0, 0, 300, 250), "");
+		Time.timeScale = 0.0f;
 		
-		GUI.Label(new Rect(15, 10, 300, 68), logoTexture);
+		//GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
+		GUI.BeginGroup(new Rect(0.0f, 0.0f, Screen.width, Screen.height));
+		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
+		GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
 		
-		if(GUI.Button(new Rect(55, 100, 180, 40), resumeTexture))
+		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), logoTexture);
+		
+		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), resumeTexture))
 		{
 			Time.timeScale = 1.0f;
 			Destroy(this);
 		}
-		if(GUI.Button(new Rect(55, 150, 180, 40), restartTexture))
+		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
 		{
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect(55, 200, 180, 40), quitTexture))
+		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))
 		{
 			Application.LoadLevel(1);
 		}

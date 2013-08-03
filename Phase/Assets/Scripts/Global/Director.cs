@@ -206,6 +206,7 @@ public class Director : MonoBehaviour
 		if (Input.GetButtonDown ("LoadPauseMenu"))
 		{
 			displayPauseMenu = true;
+			Debug.Log ("P pressed!");
 		}
 
 	}
@@ -213,6 +214,11 @@ public class Director : MonoBehaviour
 	void OnGUI ()
 	{
 		bool displayMenu = false;
+		if (displayPauseMenu)
+		{
+			loadPauseMenu ();
+		}
+		
 		if (displayMessage)
 		{
 			GUIStyle wordWrapStyle = new GUIStyle ();
@@ -286,10 +292,6 @@ public class Director : MonoBehaviour
 		
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
-		
-		if (displayPauseMenu)
-			loadPauseMenu ();
-
 	}
 	
 	void loadPauseMenu()
@@ -305,13 +307,13 @@ public class Director : MonoBehaviour
 		
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), resumeTexture))
 		{
-			Time.timeScale = 1.0f;
-			Destroy(this);
 			displayPauseMenu = false;
+			Time.timeScale = 1.0f;
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
 		{
 			displayPauseMenu = false;
+			Time.timeScale = 1.0f;
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))
@@ -322,6 +324,7 @@ public class Director : MonoBehaviour
 		
 		GUI.EndGroup();	
 	}
+	
 	void GUIDimensionSetup ()
 	{
 		// Box dimensions are 300x300 for a 1366x768 screen.

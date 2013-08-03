@@ -271,7 +271,7 @@ public class GameMenu : MonoBehaviour
 	{
 		// TODO: ensure that the transforms of all texts start from the appropriate column coordinates
 		// right now, this is done by manual positioning.
-		
+
 		// MainMenuOptions are initially in display. Therefore, need to compute distance to hiding point
 		float mainMenuBaseSpeed = 6.5f;
 		int textIndex = 0;
@@ -287,7 +287,7 @@ public class GameMenu : MonoBehaviour
 		
 		// Mode Menu Optinos are initially hiding. Therefore, need to compute distance to display point
 		// Mode Menu Options are all in column one.
-		float modeMenuBaseSpeed = 8.0f;
+		float modeMenuBaseSpeed = 12.0f;
 		textIndex = 0;
 		foreach (TextScript ts in ModeMenuOptionScripts)
 		{

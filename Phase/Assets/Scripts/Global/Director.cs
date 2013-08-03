@@ -313,6 +313,7 @@ public class Director : MonoBehaviour
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
 		{
 			displayPauseMenu = false;
+			Time.timeScale = 1.0f;
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))

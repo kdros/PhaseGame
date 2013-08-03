@@ -12,7 +12,7 @@ public class MattyPlasmaScript : MatterScript
 //	CharacterController charControl;
 	Color originalColour, origAmbient;
 //	Vector3 center, r;
-	bool grounded, isOnLava, startedPlaying;
+	bool grounded, isOnLava;
 	float curTime, lavaMaxTimeBy2;
 	
 	void Start ()
@@ -23,7 +23,7 @@ public class MattyPlasmaScript : MatterScript
 		glow = transform.Find ("Glow").GetComponent<Light>();
 
 		originalColour = glow.color;
-		isOnLava = false; startedPlaying = false;
+		isOnLava = false;
 		embers.Stop ();
 		curTime = 0f;
 		lavaMaxTimeBy2 = lavaMaxTime/2f;

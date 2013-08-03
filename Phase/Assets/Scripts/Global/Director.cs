@@ -18,12 +18,11 @@ public class Director : MonoBehaviour
 	public Texture2D liquidIcon;
 	public Texture2D gasIcon;
 	public Texture2D plasmaIcon;
-	public Texture2D logoTexture;
+	public Texture2D pausedTexture;
 	public Texture2D resumeTexture;
 	public Texture2D restartTexture;
 	public Texture2D quitTexture;
 	public Texture2D pauseBkgdTexture;
-	//public Texture2D pauseFillTexture;
 	
 	Transform sceneCamera;
 	LevelDirector ld;
@@ -302,7 +301,7 @@ public class Director : MonoBehaviour
 		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
 		GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
 		
-		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), logoTexture);
+		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), pausedTexture);
 		
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), resumeTexture))
 		{

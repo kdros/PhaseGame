@@ -376,7 +376,7 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player got hit by falling boulders");
 			
 			if(stateScript.FallingBouldersCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 			else
 			{
 				// If current state is plasma and it's hot, destroy boulder.
@@ -398,7 +398,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player got hit by flame pillar");
 			if(stateScript.FlamePillarCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("Grate"))
 		{
@@ -408,31 +408,31 @@ public class MainPlayerScript : MonoBehaviour {
 				collidedWithGrates = true;
 			
 			if(stateScript.GrateCollisionResolution(gameObject.collider, collider))
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("IceCeiling"))
 		{
 			Debug.Log("Player got hit by ice ceiling");
 			if(stateScript.IceCeilingCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("Lava"))
 		{
 			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		//else if (collider.CompareTag("Spike"))
 		//{
 			//Debug.Log("Player got hit spike");
 			//if(stateScript.SpikeCollisionResolution())
-				//Die();
+				//if(playerDead != true) Die();
 		//}
 		else if (collider.CompareTag("SwingingMace"))
 		{
 			Debug.Log("Player got hit by mace");
 			if(stateScript.SwingingMaceCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("Icicle"))
 		{
@@ -441,7 +441,7 @@ public class MainPlayerScript : MonoBehaviour {
 				collider.isTrigger = true;			// we'll set it back to normal once it exits the collider.
 			// The above was done to correctly handle condensation when gas hits icicle (it didn't stop before).
 			if(stateScript.IceCeilingCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 	}
 	
@@ -478,13 +478,13 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("FlamePillar"))
 		{
 			Debug.Log("Player got hit by flame pillar");
 			if(stateScript.FlamePillarCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("IcyFloor"))
 		{
@@ -494,7 +494,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player got hit by spike");
 			if(stateScript.SpikeCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);
@@ -533,7 +533,7 @@ public class MainPlayerScript : MonoBehaviour {
 			else if(m_currentState == (int)State.Gas)
 				m_gasMattyScript.Condenstation();
 			else if(stateScript.IcyFloorCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("Checkpoint"))
 		{
@@ -544,13 +544,13 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			Debug.Log("Player hit wind tunnel");
 			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
-				Die();
+				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("Lava"))
 		{
 			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
-				Die();
+				if(playerDead != true) Die();
 		}
 	}
 	
@@ -621,6 +621,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	void Die(bool explode = true) 
 	{
+		Debug.Log ("Player Die function called");
 		if (explode)
 		{
 			Vector3 explosionPos = transform.position;

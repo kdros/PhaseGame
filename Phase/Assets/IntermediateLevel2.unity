@@ -6659,6 +6659,11 @@ MonoBehaviour:
   liquidIcon: {fileID: 2800000, guid: 849b680024556844290dc1db6f219ea7, type: 3}
   gasIcon: {fileID: 2800000, guid: 259ab2934ef9d3947b961d1e87089ea6, type: 3}
   plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
+  logoTexture: {fileID: 0}
+  resumeTexture: {fileID: 0}
+  restartTexture: {fileID: 0}
+  quitTexture: {fileID: 0}
+  pauseBkgdTexture: {fileID: 0}
 --- !u!4 &1506799940
 Transform:
   m_ObjectHideFlags: 0

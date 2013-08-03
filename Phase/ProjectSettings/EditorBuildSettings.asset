@@ -22,4 +22,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/IntermediateLevel1.unity
   - enabled: 1
+    path: Assets/IntermediateLevel2.unity
+  - enabled: 1
     path: Assets/IntermediateLevel3.unity

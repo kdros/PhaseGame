@@ -9,15 +9,24 @@ using System.Collections.Generic;
  */
 public class GameMenu : MonoBehaviour 
 {
+	
+	/// <summary>
+	/// Things to set in the inspector panel
+	/// </summary>
+	
 	public Transform HideAnchorRight;
 	public Transform HideAnchorLeft;
 	public Transform DisplayCol1Anchor;
 	public Transform DisplayCol2Anchor;
 	public Transform DisplayCol3Anchor;
 	
-	public GameObject[] MainMenuOptions;
+	public GameObject[] MainMenuOptions;			
 	public GameObject[] ContinueMenuOptions;
 	public GameObject[] ModeMenuOptions;
+	
+	/// <summary>
+	/// Private member variables
+	/// </summary>
 	
 	private List<TextScript> MainMenuOptionScripts;
 	private List<string> MainMenuNames;
@@ -49,7 +58,7 @@ public class GameMenu : MonoBehaviour
 	private bool transitionDone;						// whether all menu options are done transitioning or not
 	private int fromSubMenu;							// keep track of which back button was clicked
 	
-	private Dictionary<string,bool> textTransStat; 		// see if transitioning of a particular text is done or not
+	private Dictionary<string,bool> isDoneTransition; 	// see if transitioning of a particular text is done or not
 														// use the name of the text as key and true for done, false otherwise
 	
 	private enum MenuState {MainMenuOptions, ModeOptions, ContinueOptions};
@@ -94,7 +103,7 @@ public class GameMenu : MonoBehaviour
 //		backScript = BackText.GetComponent<BackText>();
 		
 		initTransitionValues();
-		initTextTransStat();
+		initIsDoneTransition();
 	}
 	
 	// Update is called once per frame
@@ -110,21 +119,21 @@ public class GameMenu : MonoBehaviour
 					// to begin transition process
 					foreach (string name in MainMenuNames)
 					{
-						textTransStat[name] = false;	
+						isDoneTransition[name] = false;	
 					}
 					
 					foreach (string name in ModeMenuNames)
 					{
-						textTransStat[name] = false;	
+						isDoneTransition[name] = false;	
 					}
 					
-//					textTransStat["NewGameText"] = false;
-//					textTransStat["ContinueText"] = false;
-//					textTransStat["ModeText"] = false;
-//					textTransStat["ExitText"] = false;
-//					textTransStat["NormalText"] = false;
-//					textTransStat["SpeedRunText"] = false;
-//					textTransStat["BackText"] = false;
+//					isDoneTransition["NewGameText"] = false;
+//					isDoneTransition["ContinueText"] = false;
+//					isDoneTransition["ModeText"] = false;
+//					isDoneTransition["ExitText"] = false;
+//					isDoneTransition["NormalText"] = false;
+//					isDoneTransition["SpeedRunText"] = false;
+//					isDoneTransition["BackText"] = false;
 					
 					// disable the texts that causes transitions
 					foreach (TextScript ts in MainMenuOptionScripts)
@@ -147,6 +156,34 @@ public class GameMenu : MonoBehaviour
 					// back button in Mode Options and Continue
 					fromSubMenu = (int)MenuState.ModeOptions;
 				}
+				else if (display != last && last == (int)MenuState.ContinueOptions)
+				{
+					// to begin transition process
+					foreach (string name in MainMenuNames)
+					{
+						isDoneTransition[name] = false;	
+					}
+					
+					foreach (string name in ContinueMenuNames)
+					{
+						isDoneTransition[name] = false;	
+					}
+					
+					// disable the texts that causes transitions
+					foreach (TextScript ts in MainMenuOptionScripts)
+					{
+						if (ts.isTransitionText)	
+							ts.enabled = false;
+					}
+					
+					foreach (TextScript ts in ContinueMenuOptionScripts)
+					{
+						if (ts.isTransitionText)
+							ts.enabled = false;
+					}
+					
+					fromSubMenu = (int)MenuState.ContinueOptions;
+				}
 				
 				// transitioning from Mode Options
 				if (fromSubMenu == (int)MenuState.ModeOptions)
@@ -156,6 +193,13 @@ public class GameMenu : MonoBehaviour
 				
 					transitionDone = hideModeDone && showMainMenuOptionsDone;
 				}
+				else if (fromSubMenu == (int)MenuState.ContinueOptions)
+				{
+					bool hideContinueDone = hideContinueOptions();
+					bool showMainMenuOptionsDone = showMainMenuOptions();
+					
+					transitionDone = hideContinueDone && showMainMenuOptionsDone;
+				}
 			}
 			else if (display == (int)MenuState.ModeOptions)
 			{
@@ -163,15 +207,14 @@ public class GameMenu : MonoBehaviour
 				if (display != last)
 				{
 					// to begin transition process
-					
 					foreach (string name in MainMenuNames)
 					{
-						textTransStat[name] = false;	
+						isDoneTransition[name] = false;	
 					}
 					
 					foreach (string name in ModeMenuNames)
 					{
-						textTransStat[name] = false;	
+						isDoneTransition[name] = false;	
 					}
 					
 					foreach (TextScript ts in MainMenuOptionScripts)
@@ -186,13 +229,13 @@ public class GameMenu : MonoBehaviour
 							ts.enabled = false;
 					}
 					
-//					textTransStat["NewGameText"] = false;
-//					textTransStat["ContinueText"] = false;
-//					textTransStat["ModeText"] = false;
-//					textTransStat["ExitText"] = false;
-//					textTransStat["NormalText"] = false;
-//					textTransStat["SpeedRunText"] = false;
-//					textTransStat["BackText"] = false;
+//					isDoneTransition["NewGameText"] = false;
+//					isDoneTransition["ContinueText"] = false;
+//					isDoneTransition["ModeText"] = false;
+//					isDoneTransition["ExitText"] = false;
+//					isDoneTransition["NormalText"] = false;
+//					isDoneTransition["SpeedRunText"] = false;
+//					isDoneTransition["BackText"] = false;
 					
 					// disable the texts that causes transitions
 //					backScript.enabled = false;
@@ -208,6 +251,37 @@ public class GameMenu : MonoBehaviour
 			else if (display == (int)MenuState.ContinueOptions)
 			{
 				Debug.Log ("Go back to Continue Options");
+				
+				if (display != last)
+				{
+					// to begin transition process
+					foreach (string name in MainMenuNames)
+					{
+						isDoneTransition[name] = false;	
+					}
+					
+					foreach (string name in ContinueMenuNames)
+					{
+						isDoneTransition[name] = false;	
+					}
+					
+					foreach (TextScript ts in MainMenuOptionScripts)
+					{
+						if (ts.isTransitionText)	
+							ts.enabled = false;
+					}
+					
+					foreach (TextScript ts in ContinueMenuOptionScripts)
+					{
+						if (ts.isTransitionText)
+							ts.enabled = false;
+					}
+				}
+				
+				bool showContinueDone = showContinueOptions();
+				bool hideMainMenuOptionsDone = hideMainMenuOptions();
+				
+				transitionDone = showContinueDone && hideMainMenuOptionsDone;
 			}
 			else 
 			{
@@ -234,6 +308,11 @@ public class GameMenu : MonoBehaviour
 					ts.enabled = true;
 			}
 			
+			foreach (TextScript ts in ContinueMenuOptionScripts)
+			{
+				if (ts.isTransitionText)
+					ts.enabled = true;
+			}	
 		}
 		
 		last = display;
@@ -271,6 +350,38 @@ public class GameMenu : MonoBehaviour
 			textIndex++;
 		}
 		
+		float continueMenuBaseSpeed1 = 15.0f;
+		float continueMenuBaseSpeed2 = 12.0f;
+		float continueMenuBaseSpeed3 = 9.0f;
+		textIndex = 0;
+		foreach (TextScript ts in ContinueMenuOptionScripts)
+		{
+			if (ts.columnNumber == 1)
+			{
+				ts.setDistance(Mathf.Abs (DisplayCol1Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x));
+				ts.setSpeed (continueMenuBaseSpeed1);
+				continueMenuBaseSpeed1 = continueMenuBaseSpeed1 - 1.0f;
+			}
+			else if (ts.columnNumber == 2)
+			{
+				ts.setDistance(Mathf.Abs (DisplayCol2Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x));
+				ts.setSpeed (continueMenuBaseSpeed2);
+				continueMenuBaseSpeed1 = continueMenuBaseSpeed2 - 1.0f;				
+			}
+			else if (ts.columnNumber == 3)
+			{
+				ts.setDistance(Mathf.Abs (DisplayCol3Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x));
+				ts.setSpeed (continueMenuBaseSpeed3);
+				continueMenuBaseSpeed1 = continueMenuBaseSpeed3 - 1.0f;
+			}
+			else
+			{
+				Debug.LogWarning("GameMenu.cs: Invalid column number received");
+			}
+			
+			textIndex++;
+		}
+		
 		
 		
 //		newGameScript.setDistance(2.0f);
@@ -298,33 +409,33 @@ public class GameMenu : MonoBehaviour
 //		backScript.setSpeed (6.0f);
 	}
 	
-	private void initTextTransStat ()
+	private void initIsDoneTransition ()
 	{
-		textTransStat = new Dictionary<string, bool>();
-//		textTransStat.Add ("NewGameText", true);
-//		textTransStat.Add ("ContinueText", true);
-//		textTransStat.Add ("ModeText", true);
-//		textTransStat.Add ("ExitText", true);
-//		textTransStat.Add ("SpeedRunText", true);
-//		textTransStat.Add ("NormalText", true);
-//		textTransStat.Add ("BackText", true);
+		isDoneTransition = new Dictionary<string, bool>();
+//		isDoneTransition.Add ("NewGameText", true);
+//		isDoneTransition.Add ("ContinueText", true);
+//		isDoneTransition.Add ("ModeText", true);
+//		isDoneTransition.Add ("ExitText", true);
+//		isDoneTransition.Add ("SpeedRunText", true);
+//		isDoneTransition.Add ("NormalText", true);
+//		isDoneTransition.Add ("BackText", true);
 		
 		foreach (TextScript ts in MainMenuOptionScripts)
 		{
 			MainMenuNames.Add (ts.textName);
-			textTransStat.Add (ts.textName, true);
+			isDoneTransition.Add (ts.textName, true);
 		}
 		
 		foreach (TextScript ts in ContinueMenuOptionScripts)
 		{
 			ContinueMenuNames.Add (ts.textName);
-			textTransStat.Add (ts.textName, true);	
+			isDoneTransition.Add (ts.textName, true);	
 		}
 		
 		foreach (TextScript ts in ModeMenuOptionScripts)
 		{
 			ModeMenuNames.Add (ts.textName);
-			textTransStat.Add (ts.textName, true);
+			isDoneTransition.Add (ts.textName, true);
 		}
 	}
 	
@@ -362,10 +473,10 @@ public class GameMenu : MonoBehaviour
 		int index = 0;
 		foreach (string name in MainMenuNames)
 		{
-			if (!textTransStat[name])
+			if (!isDoneTransition[name])
 			{
-				textTransStat[name] = MainMenuOptionScripts[index].translateText(showDirection);
-				ret = ret && textTransStat[name];
+				isDoneTransition[name] = MainMenuOptionScripts[index].translateText(showDirection);
+				ret = ret && isDoneTransition[name];
 			}
 			
 			index++;
@@ -373,16 +484,16 @@ public class GameMenu : MonoBehaviour
 		
 		return ret;
 		
-//		if (!textTransStat["NewGameText"])
-//			textTransStat["NewGameText"] = newGameScript.translateText(showDirection);
-//		if (!textTransStat["ContinueText"])
-//			textTransStat["ContinueText"] = continueScript.translateText(showDirection);
-//		if (!textTransStat["ModeText"])
-//			textTransStat["ModeText"] = modeScript.translateText(showDirection);
-//		if (!textTransStat["ExitText"])
-//			textTransStat["ExitText"] = exitScript.translateText(showDirection);
+//		if (!isDoneTransition["NewGameText"])
+//			isDoneTransition["NewGameText"] = newGameScript.translateText(showDirection);
+//		if (!isDoneTransition["ContinueText"])
+//			isDoneTransition["ContinueText"] = continueScript.translateText(showDirection);
+//		if (!isDoneTransition["ModeText"])
+//			isDoneTransition["ModeText"] = modeScript.translateText(showDirection);
+//		if (!isDoneTransition["ExitText"])
+//			isDoneTransition["ExitText"] = exitScript.translateText(showDirection);
 //						
-//		return textTransStat["NewGameText"] && textTransStat["ContinueText"] && textTransStat["ModeText"] && textTransStat["ExitText"];
+//		return isDoneTransition["NewGameText"] && isDoneTransition["ContinueText"] && isDoneTransition["ModeText"] && isDoneTransition["ExitText"];
 	}
 	
 	public bool hideMainMenuOptions ()
@@ -393,10 +504,10 @@ public class GameMenu : MonoBehaviour
 		int index = 0;
 		foreach (string name in MainMenuNames)
 		{
-			if (!textTransStat[name])
+			if (!isDoneTransition[name])
 			{
-				textTransStat[name] = MainMenuOptionScripts[index].translateText(hideDirection);
-				ret = ret && textTransStat[name];
+				isDoneTransition[name] = MainMenuOptionScripts[index].translateText(hideDirection);
+				ret = ret && isDoneTransition[name];
 			}
 			
 			index++;
@@ -404,16 +515,16 @@ public class GameMenu : MonoBehaviour
 		
 		return ret;
 		
-//		if (!textTransStat["NewGameText"])
-//			textTransStat["NewGameText"] = newGameScript.translateText(hideDirection);
-//		if (!textTransStat["ContinueText"])
-//			textTransStat["ContinueText"] = continueScript.translateText(hideDirection);
-//		if (!textTransStat["ModeText"])
-//			textTransStat["ModeText"] = modeScript.translateText(hideDirection);
-//		if (!textTransStat["ExitText"])
-//			textTransStat["ExitText"] = exitScript.translateText(hideDirection);
+//		if (!isDoneTransition["NewGameText"])
+//			isDoneTransition["NewGameText"] = newGameScript.translateText(hideDirection);
+//		if (!isDoneTransition["ContinueText"])
+//			isDoneTransition["ContinueText"] = continueScript.translateText(hideDirection);
+//		if (!isDoneTransition["ModeText"])
+//			isDoneTransition["ModeText"] = modeScript.translateText(hideDirection);
+//		if (!isDoneTransition["ExitText"])
+//			isDoneTransition["ExitText"] = exitScript.translateText(hideDirection);
 //						
-//		return textTransStat["NewGameText"] && textTransStat["ContinueText"] && textTransStat["ModeText"] && textTransStat["ExitText"];
+//		return isDoneTransition["NewGameText"] && isDoneTransition["ContinueText"] && isDoneTransition["ModeText"] && isDoneTransition["ExitText"];
 	}
 	
 	public bool showModeOptions ()
@@ -424,10 +535,10 @@ public class GameMenu : MonoBehaviour
 		int index = 0;
 		foreach (string name in ModeMenuNames)
 		{
-			if (!textTransStat[name])
+			if (!isDoneTransition[name])
 			{
-				textTransStat[name] = ModeMenuOptionScripts[index].translateText(showDirection);
-				ret = ret && textTransStat[name];
+				isDoneTransition[name] = ModeMenuOptionScripts[index].translateText(showDirection);
+				ret = ret && isDoneTransition[name];
 			}
 			
 			index++;
@@ -435,14 +546,14 @@ public class GameMenu : MonoBehaviour
 		
 		return ret;
 		
-//		if (!textTransStat["NormalText"])
-//			textTransStat["NormalText"] = normalScript.translateText(showDirection);
-//		if (!textTransStat["SpeedRunText"])
-//			textTransStat["SpeedRunText"] = speedRunScript.translateText(showDirection);
-//		if (!textTransStat["BackText"])
-//			textTransStat["BackText"] = backScript.translateText(showDirection);
+//		if (!isDoneTransition["NormalText"])
+//			isDoneTransition["NormalText"] = normalScript.translateText(showDirection);
+//		if (!isDoneTransition["SpeedRunText"])
+//			isDoneTransition["SpeedRunText"] = speedRunScript.translateText(showDirection);
+//		if (!isDoneTransition["BackText"])
+//			isDoneTransition["BackText"] = backScript.translateText(showDirection);
 //		
-//		return textTransStat["NormalText"] && textTransStat["SpeedRunText"] && textTransStat["BackText"];
+//		return isDoneTransition["NormalText"] && isDoneTransition["SpeedRunText"] && isDoneTransition["BackText"];
 	}
 	
 	public bool hideModeOptions ()
@@ -453,10 +564,10 @@ public class GameMenu : MonoBehaviour
 		int index = 0;
 		foreach (string name in ModeMenuNames)
 		{
-			if (!textTransStat[name])
+			if (!isDoneTransition[name])
 			{
-				textTransStat[name] = ModeMenuOptionScripts[index].translateText(hideDirection);
-				ret = ret && textTransStat[name];
+				isDoneTransition[name] = ModeMenuOptionScripts[index].translateText(hideDirection);
+				ret = ret && isDoneTransition[name];
 			}
 			
 			index++;
@@ -464,23 +575,53 @@ public class GameMenu : MonoBehaviour
 		
 		return ret;
 		
-//		if (!textTransStat["NormalText"])
-//			textTransStat["NormalText"] = normalScript.translateText(hideDirection);
-//		if (!textTransStat["SpeedRunText"])
-//			textTransStat["SpeedRunText"] = speedRunScript.translateText(hideDirection);
-//		if (!textTransStat["BackText"])
-//			textTransStat["BackText"] = backScript.translateText(hideDirection);
+//		if (!isDoneTransition["NormalText"])
+//			isDoneTransition["NormalText"] = normalScript.translateText(hideDirection);
+//		if (!isDoneTransition["SpeedRunText"])
+//			isDoneTransition["SpeedRunText"] = speedRunScript.translateText(hideDirection);
+//		if (!isDoneTransition["BackText"])
+//			isDoneTransition["BackText"] = backScript.translateText(hideDirection);
 //		
-//		return textTransStat["NormalText"] && textTransStat["SpeedRunText"] && textTransStat["BackText"];
+//		return isDoneTransition["NormalText"] && isDoneTransition["SpeedRunText"] && isDoneTransition["BackText"];
 	}
 	
 	public bool showContinueOptions ()
 	{
-		return true;
+		Vector3 showDirection = new Vector3(-1,0,0);
+		bool ret = true;
+		
+		int index = 0;
+		foreach (string name in ContinueMenuNames)
+		{
+			if (!isDoneTransition[name])
+			{
+				isDoneTransition[name] = ContinueMenuOptionScripts[index].translateText(showDirection);
+				ret = ret && isDoneTransition[name];
+			}
+			
+			index++;
+		}
+		
+		return ret;
 	}
 	
 	public bool hideContinueOptions ()
 	{
-		return true;
+		Vector3 hideDirection = new Vector3(1,0,0);
+		bool ret = true;
+		
+		int index = 0;
+		foreach (string name in ContinueMenuNames)
+		{
+			if (!isDoneTransition[name])
+			{
+				isDoneTransition[name] = ContinueMenuOptionScripts[index].translateText(hideDirection);
+				ret = ret && isDoneTransition[name];
+			}
+			
+			index++;
+		}
+		
+		return ret;
 	}
 }

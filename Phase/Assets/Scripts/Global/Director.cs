@@ -38,6 +38,7 @@ public class Director : MonoBehaviour
 	Material origSkybox;
 	
 	bool displayMessage = false;
+	bool displayPauseMenu = false;
 	float displayTime = 0f;
 	string triggerMessages, messageToBeDisplayed;
 	
@@ -64,6 +65,7 @@ public class Director : MonoBehaviour
 			System.IO.File.Delete ("Save/currentSave");
 		
 		displayMessage = false;
+		displayPauseMenu = false;
 		displayTime = 0f;
 		messageToBeDisplayed = "";
 		if (tipDisplayTime == 0f)
@@ -202,6 +204,10 @@ public class Director : MonoBehaviour
 				displayMessage = false;
 			}
 		}
+		if (Input.GetButtonDown ("LoadPauseMenu"))
+		{
+			displayPauseMenu = true;
+		}
 
 	}
 		
@@ -282,11 +288,8 @@ public class Director : MonoBehaviour
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
 		
-		loadPauseMenu ();
-		
-		if (Input.GetButtonDown ("LoadPauseMenu"))
-		{
-		}
+		if (displayPauseMenu)
+			loadPauseMenu ();
 
 	}
 	
@@ -305,13 +308,16 @@ public class Director : MonoBehaviour
 		{
 			Time.timeScale = 1.0f;
 			Destroy(this);
+			displayPauseMenu = false;
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
 		{
+			displayPauseMenu = false;
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))
 		{
+			displayPauseMenu = false;
 			Application.LoadLevel(1);
 		}
 		

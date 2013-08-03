@@ -422,12 +422,12 @@ public class MainPlayerScript : MonoBehaviour {
 			if(stateScript.LavaCollisionResolution())
 				Die();
 		}
-		else if (collider.CompareTag("Spike"))
-		{
-			Debug.Log("Player got hit spike");
-			if(stateScript.SpikeCollisionResolution())
-				Die();
-		}
+		//else if (collider.CompareTag("Spike"))
+		//{
+			//Debug.Log("Player got hit spike");
+			//if(stateScript.SpikeCollisionResolution())
+				//Die();
+		//}
 		else if (collider.CompareTag("SwingingMace"))
 		{
 			Debug.Log("Player got hit by mace");
@@ -489,6 +489,12 @@ public class MainPlayerScript : MonoBehaviour {
 		else if (collider.CompareTag ("IcyFloor"))
 		{
 			Debug.Log ("In IcyFloor");
+		}
+		else if (collider.CompareTag("Spike"))
+		{
+			Debug.Log("Player got hit by spike");
+			if(stateScript.SpikeCollisionResolution())
+				Die();
 		}
 		else if (collider.CompareTag ("TriggerText"))
 			dir.ShowTriggerText (collider.name);

@@ -18,6 +18,10 @@ public class Director : MonoBehaviour
 	public Texture2D liquidIcon;
 	public Texture2D gasIcon;
 	public Texture2D plasmaIcon;
+	public Texture2D logoTexture;
+	public Texture2D resumeTexture;
+	public Texture2D restartTexture;
+	public Texture2D quitTexture;
 	
 	Transform sceneCamera;
 	LevelDirector ld;
@@ -275,8 +279,38 @@ public class Director : MonoBehaviour
 		
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
+		
+		if (Input.GetButtonDown ("LoadPauseMenu"))
+		{
+			Debug.Log ("Hit button!");
+            loadPauseMenu ();
+		}
+
 	}
 	
+	void loadPauseMenu()
+	{
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
+		GUI.Box(new Rect(0, 0, 300, 250), "");
+		
+		GUI.Label(new Rect(15, 10, 300, 68), logoTexture);
+		
+		if(GUI.Button(new Rect(55, 100, 180, 40), resumeTexture))
+		{
+			Time.timeScale = 1.0f;
+			Destroy(this);
+		}
+		if(GUI.Button(new Rect(55, 150, 180, 40), restartTexture))
+		{
+			Application.LoadLevel(Application.loadedLevel);
+		}
+		if(GUI.Button(new Rect(55, 200, 180, 40), quitTexture))
+		{
+			Application.LoadLevel(1);
+		}
+		
+		GUI.EndGroup();	
+	}
 	void GUIDimensionSetup ()
 	{
 		// Box dimensions are 300x300 for a 1366x768 screen.

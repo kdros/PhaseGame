@@ -2,14 +2,16 @@ using UnityEngine;
 using System.Collections;
 
 public class ContinueText : TextScript {
-
-	// Use this for initialization
-	void Start () {
 	
+	public override void respondToClick ()
+	{
+		if (this.enabled)
+		{
+			Debug.Log("need to switch to continue menu");
+			GameObject gm = GameObject.FindGameObjectWithTag ("GameMenu");
+			GameMenu gameMenu = gm.GetComponent<GameMenu>();
+			gameMenu.toContinueOptions();
+		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

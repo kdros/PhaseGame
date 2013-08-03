@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NormalText : TextScript
 {
-	public virtual void respondToClick()
+	public override virtual void respondToClick()
 	{
 		PlayerPrefs.SetString ("GameMode","Normal");
 	}

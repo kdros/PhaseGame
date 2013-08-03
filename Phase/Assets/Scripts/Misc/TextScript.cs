@@ -11,14 +11,11 @@ public class TextScript : MonoBehaviour
 	// Used by GameMenu Script
 	private float travelDistance; // distance traveled in the +x or -x direction in order for the text to be shown or hidden
 	private float moveSpeed;      // speed at which the text will travel with
-//	private Vector3 hideTarget;
-//	private Vector3 showTarget;
 	private float currentDistance;
 		
 	void Start ()
 	{
 		currentDistance = 0.0f;
-		//hideTarget = transform.position;
 	}
 	
 	

@@ -19,21 +19,30 @@ public class GameMenu : MonoBehaviour
 	public GameObject[] ContinueMenuOptions;
 	public GameObject[] ModeMenuOptions;
 	
-	public GameObject NewGameText;						// game object representing "New Game"
-	public GameObject ContinueText;						// game object representing "Continue"
-	public GameObject ModeText;							// game object representing "Mode"
-	public GameObject ExitText;							// game object representing "Exit"
-	public GameObject SpeedRunText;						// game object representing "Mode-Speed Run"
-	public GameObject NormalText;						// game object representing "Mode-Normal"
-	public GameObject BackText;							// game object representing "Mode-Back"
+	private List<TextScript> MainMenuOptionScripts;
+	private List<string> MainMenuNames;
 	
-	private LoadLevelText newGameScript;
-	private ContinueText continueScript;
-	private ModeText modeScript;
-	private ExitText exitScript;
-	private NormalText normalScript;
-	private SpeedRunText speedRunScript;
-	private BackText backScript;
+	private List<TextScript> ContinueMenuOptionScripts;
+	private List<string> ContinueMenuNames;
+	
+	private List<TextScript> ModeMenuOptionScripts;	
+	private List<string> ModeMenuNames;
+	
+//	public GameObject NewGameText;						// game object representing "New Game"
+//	public GameObject ContinueText;						// game object representing "Continue"
+//	public GameObject ModeText;							// game object representing "Mode"
+//	public GameObject ExitText;							// game object representing "Exit"
+//	public GameObject SpeedRunText;						// game object representing "Mode-Speed Run"
+//	public GameObject NormalText;						// game object representing "Mode-Normal"
+//	public GameObject BackText;							// game object representing "Mode-Back"
+//	
+//	private LoadLevelText newGameScript;
+//	private ContinueText continueScript;
+//	private ModeText modeScript;
+//	private ExitText exitScript;
+//	private NormalText normalScript;
+//	private SpeedRunText speedRunScript;
+//	private BackText backScript;
 	
 	private int display;								// current menu that is being displayed
 	private int last;									// last menu that was displayed
@@ -52,13 +61,37 @@ public class GameMenu : MonoBehaviour
 		last = display;
 		transitionDone = true;
 		
-		newGameScript = NewGameText.GetComponent<LoadLevelText>();
-		continueScript = ContinueText.GetComponent<ContinueText>();
-		modeScript = ModeText.GetComponent<ModeText>();
-		exitScript = ExitText.GetComponent<ExitText>();
-		normalScript = NormalText.GetComponent<NormalText>();
-		speedRunScript = SpeedRunText.GetComponent<SpeedRunText>();
-		backScript = BackText.GetComponent<BackText>();
+		MainMenuOptionScripts = new List<TextScript>();
+		ContinueMenuOptionScripts = new List<TextScript>();
+		ModeMenuOptionScripts = new List<TextScript>();
+		
+		MainMenuNames = new List<string>();
+		ContinueMenuNames = new List<string>();
+		ModeMenuNames = new List<string>();
+		
+		// retrieve classes associated with each text
+		for (int i = 0 ; i < MainMenuOptions.Length ; i++)
+		{			
+			MainMenuOptionScripts.Add(MainMenuOptions[i].GetComponent<TextScript>());	
+		}
+		
+		for (int i = 0 ; i < ContinueMenuOptions.Length ; i++)
+		{
+			ContinueMenuOptionScripts.Add(ContinueMenuOptions[i].GetComponent<TextScript>());	
+		}
+		
+		for (int i = 0 ; i < ModeMenuOptions.Length ; i++)
+		{
+			ModeMenuOptionScripts.Add (ModeMenuOptions[i].GetComponent<TextScript>());
+		}
+		
+//		newGameScript = NewGameText.GetComponent<LoadLevelText>();
+//		continueScript = ContinueText.GetComponent<ContinueText>();
+//		modeScript = ModeText.GetComponent<ModeText>();
+//		exitScript = ExitText.GetComponent<ExitText>();
+//		normalScript = NormalText.GetComponent<NormalText>();
+//		speedRunScript = SpeedRunText.GetComponent<SpeedRunText>();
+//		backScript = BackText.GetComponent<BackText>();
 		
 		initTransitionValues();
 		initTextTransStat();
@@ -75,18 +108,40 @@ public class GameMenu : MonoBehaviour
 				if (display != last && last == (int)MenuState.ModeOptions)
 				{
 					// to begin transition process
-					textTransStat["NewGameText"] = false;
-					textTransStat["ContinueText"] = false;
-					textTransStat["ModeText"] = false;
-					textTransStat["ExitText"] = false;
-					textTransStat["NormalText"] = false;
-					textTransStat["SpeedRunText"] = false;
-					textTransStat["BackText"] = false;
+					foreach (string name in MainMenuNames)
+					{
+						textTransStat[name] = false;	
+					}
+					
+					foreach (string name in ModeMenuNames)
+					{
+						textTransStat[name] = false;	
+					}
+					
+//					textTransStat["NewGameText"] = false;
+//					textTransStat["ContinueText"] = false;
+//					textTransStat["ModeText"] = false;
+//					textTransStat["ExitText"] = false;
+//					textTransStat["NormalText"] = false;
+//					textTransStat["SpeedRunText"] = false;
+//					textTransStat["BackText"] = false;
 					
 					// disable the texts that causes transitions
-					backScript.enabled = false;
-					continueScript.enabled = false;
-					modeScript.enabled = false;	
+					foreach (TextScript ts in MainMenuOptionScripts)
+					{
+						if (ts.isTransitionText)	
+							ts.enabled = false;
+					}
+					
+					foreach (TextScript ts in ModeMenuOptionScripts)
+					{
+						if (ts.isTransitionText)
+							ts.enabled = false;
+					}					
+					
+//					backScript.enabled = false;
+//					continueScript.enabled = false;
+//					modeScript.enabled = false;	
 					
 					// since back text was used to return to main menu, need to distinguish between the 
 					// back button in Mode Options and Continue
@@ -108,18 +163,41 @@ public class GameMenu : MonoBehaviour
 				if (display != last)
 				{
 					// to begin transition process
-					textTransStat["NewGameText"] = false;
-					textTransStat["ContinueText"] = false;
-					textTransStat["ModeText"] = false;
-					textTransStat["ExitText"] = false;
-					textTransStat["NormalText"] = false;
-					textTransStat["SpeedRunText"] = false;
-					textTransStat["BackText"] = false;
+					
+					foreach (string name in MainMenuNames)
+					{
+						textTransStat[name] = false;	
+					}
+					
+					foreach (string name in ModeMenuNames)
+					{
+						textTransStat[name] = false;	
+					}
+					
+					foreach (TextScript ts in MainMenuOptionScripts)
+					{
+						if (ts.isTransitionText)	
+							ts.enabled = false;
+					}
+					
+					foreach (TextScript ts in ModeMenuOptionScripts)
+					{
+						if (ts.isTransitionText)
+							ts.enabled = false;
+					}
+					
+//					textTransStat["NewGameText"] = false;
+//					textTransStat["ContinueText"] = false;
+//					textTransStat["ModeText"] = false;
+//					textTransStat["ExitText"] = false;
+//					textTransStat["NormalText"] = false;
+//					textTransStat["SpeedRunText"] = false;
+//					textTransStat["BackText"] = false;
 					
 					// disable the texts that causes transitions
-					backScript.enabled = false;
-					continueScript.enabled = false;
-					modeScript.enabled = false;		
+//					backScript.enabled = false;
+//					continueScript.enabled = false;
+//					modeScript.enabled = false;		
 				}
 				
 				bool showModeDone = showModeOptions();
@@ -139,9 +217,23 @@ public class GameMenu : MonoBehaviour
 		
 		if (transitionDone)
 		{
-			backScript.enabled = true;
-			continueScript.enabled = true;
-			modeScript.enabled = true;	
+			// re-enable texts that causes transitions
+//			backScript.enabled = true;
+//			continueScript.enabled = true;
+//			modeScript.enabled = true;
+			
+			foreach (TextScript ts in MainMenuOptionScripts)
+			{
+				if (ts.isTransitionText)	
+					ts.enabled = true;
+			}
+					
+			foreach (TextScript ts in ModeMenuOptionScripts)
+			{
+				if (ts.isTransitionText)
+					ts.enabled = true;
+			}
+			
 		}
 		
 		last = display;
@@ -150,43 +242,90 @@ public class GameMenu : MonoBehaviour
 	// set up speed and distances for each text
 	private void initTransitionValues()
 	{
-		//float c1HideLeft = Mathf.Abs (HideAnchorLeft.position.x - )
+		// TODO: ensure that the transforms of all texts start from the appropriate column coordinates
+		// right now, this is done by manual positioning.
 		
-		newGameScript.setDistance(2.0f);
-		newGameScript.setSpeed(6.5f);
+		// MainMenuOptions are initially in display. Therefore, need to compute distance to hiding point
+		float mainMenuBaseSpeed = 6.5f;
+		int textIndex = 0;
+		foreach (TextScript ts in MainMenuOptionScripts)
+		{
+			// assume that MainMenuOptions hides to the left
+			ts.setDistance(Mathf.Abs(HideAnchorLeft.position.x - MainMenuOptions[textIndex].transform.position.x));
+			ts.setSpeed(mainMenuBaseSpeed);
+			
+			mainMenuBaseSpeed = mainMenuBaseSpeed - 1.0f;
+			textIndex++;
+		}
 		
-		continueScript.setDistance(2.0f);
-		continueScript.setSpeed(5.5f);
+		// Mode Menu Optinos are initially hiding. Therefore, need to compute distance to display point
+		// Mode Menu Options are all in column one.
+		float modeMenuBaseSpeed = 8.0f;
+		textIndex = 0;
+		foreach (TextScript ts in ModeMenuOptionScripts)
+		{
+			ts.setDistance(Mathf.Abs(DisplayCol1Anchor.position.x - ModeMenuOptions[textIndex].transform.position.x));
+			ts.setSpeed(modeMenuBaseSpeed);
+			
+			modeMenuBaseSpeed = modeMenuBaseSpeed - 1.0f;
+			textIndex++;
+		}
 		
-		modeScript.setDistance(2.0f);
-		modeScript.setSpeed(4.5f);
 		
-		exitScript.setDistance(2.0f);
-		exitScript.setSpeed(3.5f);
 		
-		// Mode - Normal & New Game are aligned
-		normalScript.setDistance(NormalText.transform.position.x - NewGameText.transform.position.x);
-		normalScript.setSpeed (8.0f);
-		
-		// Mode - Speed Run & Continue are aligned
-		speedRunScript.setDistance(SpeedRunText.transform.position.x - ContinueText.transform.position.x);
-		speedRunScript.setSpeed(7.0f);
-		
-		// Mode - Back & Mode are aligned
-		backScript.setDistance(BackText.transform.position.x - ModeText.transform.position.x);
-		backScript.setSpeed (6.0f);
+//		newGameScript.setDistance(2.0f);
+//		newGameScript.setSpeed(6.5f);
+//		
+//		continueScript.setDistance(2.0f);
+//		continueScript.setSpeed(5.5f);
+//		
+//		modeScript.setDistance(2.0f);
+//		modeScript.setSpeed(4.5f);
+//		
+//		exitScript.setDistance(2.0f);
+//		exitScript.setSpeed(3.5f);
+//		
+//		// Mode - Normal & New Game are aligned
+//		normalScript.setDistance(NormalText.transform.position.x - NewGameText.transform.position.x);
+//		normalScript.setSpeed (8.0f);
+//		
+//		// Mode - Speed Run & Continue are aligned
+//		speedRunScript.setDistance(SpeedRunText.transform.position.x - ContinueText.transform.position.x);
+//		speedRunScript.setSpeed(7.0f);
+//		
+//		// Mode - Back & Mode are aligned
+//		backScript.setDistance(BackText.transform.position.x - ModeText.transform.position.x);
+//		backScript.setSpeed (6.0f);
 	}
 	
 	private void initTextTransStat ()
 	{
 		textTransStat = new Dictionary<string, bool>();
-		textTransStat.Add ("NewGameText", true);
-		textTransStat.Add ("ContinueText", true);
-		textTransStat.Add ("ModeText", true);
-		textTransStat.Add ("ExitText", true);
-		textTransStat.Add ("SpeedRunText", true);
-		textTransStat.Add ("NormalText", true);
-		textTransStat.Add ("BackText", true);
+//		textTransStat.Add ("NewGameText", true);
+//		textTransStat.Add ("ContinueText", true);
+//		textTransStat.Add ("ModeText", true);
+//		textTransStat.Add ("ExitText", true);
+//		textTransStat.Add ("SpeedRunText", true);
+//		textTransStat.Add ("NormalText", true);
+//		textTransStat.Add ("BackText", true);
+		
+		foreach (TextScript ts in MainMenuOptionScripts)
+		{
+			MainMenuNames.Add (ts.textName);
+			textTransStat.Add (ts.textName, true);
+		}
+		
+		foreach (TextScript ts in ContinueMenuOptionScripts)
+		{
+			ContinueMenuNames.Add (ts.textName);
+			textTransStat.Add (ts.textName, true);	
+		}
+		
+		foreach (TextScript ts in ModeMenuOptionScripts)
+		{
+			ModeMenuNames.Add (ts.textName);
+			textTransStat.Add (ts.textName, true);
+		}
 	}
 	
 	/////////////
@@ -215,62 +354,124 @@ public class GameMenu : MonoBehaviour
 	
 	public bool showMainMenuOptions ()
 	{
+		// TODO: Generalize this.
+		// For now, assume main menu will show if we move it to the right.
 		Vector3 showDirection = new Vector3(1,0,0);
+		bool ret = true;
 		
-		if (!textTransStat["NewGameText"])
-			textTransStat["NewGameText"] = newGameScript.translateText(showDirection);
-		if (!textTransStat["ContinueText"])
-			textTransStat["ContinueText"] = continueScript.translateText(showDirection);
-		if (!textTransStat["ModeText"])
-			textTransStat["ModeText"] = modeScript.translateText(showDirection);
-		if (!textTransStat["ExitText"])
-			textTransStat["ExitText"] = exitScript.translateText(showDirection);
-						
-		return textTransStat["NewGameText"] && textTransStat["ContinueText"] && textTransStat["ModeText"] && textTransStat["ExitText"];
+		int index = 0;
+		foreach (string name in MainMenuNames)
+		{
+			if (!textTransStat[name])
+			{
+				textTransStat[name] = MainMenuOptionScripts[index].translateText(showDirection);
+				ret = ret && textTransStat[name];
+			}
+			
+			index++;
+		}
+		
+		return ret;
+		
+//		if (!textTransStat["NewGameText"])
+//			textTransStat["NewGameText"] = newGameScript.translateText(showDirection);
+//		if (!textTransStat["ContinueText"])
+//			textTransStat["ContinueText"] = continueScript.translateText(showDirection);
+//		if (!textTransStat["ModeText"])
+//			textTransStat["ModeText"] = modeScript.translateText(showDirection);
+//		if (!textTransStat["ExitText"])
+//			textTransStat["ExitText"] = exitScript.translateText(showDirection);
+//						
+//		return textTransStat["NewGameText"] && textTransStat["ContinueText"] && textTransStat["ModeText"] && textTransStat["ExitText"];
 	}
 	
 	public bool hideMainMenuOptions ()
 	{
 		Vector3 hideDirection = new Vector3(-1,0,0);
+		bool ret = true;
 		
-		if (!textTransStat["NewGameText"])
-			textTransStat["NewGameText"] = newGameScript.translateText(hideDirection);
-		if (!textTransStat["ContinueText"])
-			textTransStat["ContinueText"] = continueScript.translateText(hideDirection);
-		if (!textTransStat["ModeText"])
-			textTransStat["ModeText"] = modeScript.translateText(hideDirection);
-		if (!textTransStat["ExitText"])
-			textTransStat["ExitText"] = exitScript.translateText(hideDirection);
-						
-		return textTransStat["NewGameText"] && textTransStat["ContinueText"] && textTransStat["ModeText"] && textTransStat["ExitText"];
+		int index = 0;
+		foreach (string name in MainMenuNames)
+		{
+			if (!textTransStat[name])
+			{
+				textTransStat[name] = MainMenuOptionScripts[index].translateText(hideDirection);
+				ret = ret && textTransStat[name];
+			}
+			
+			index++;
+		}
+		
+		return ret;
+		
+//		if (!textTransStat["NewGameText"])
+//			textTransStat["NewGameText"] = newGameScript.translateText(hideDirection);
+//		if (!textTransStat["ContinueText"])
+//			textTransStat["ContinueText"] = continueScript.translateText(hideDirection);
+//		if (!textTransStat["ModeText"])
+//			textTransStat["ModeText"] = modeScript.translateText(hideDirection);
+//		if (!textTransStat["ExitText"])
+//			textTransStat["ExitText"] = exitScript.translateText(hideDirection);
+//						
+//		return textTransStat["NewGameText"] && textTransStat["ContinueText"] && textTransStat["ModeText"] && textTransStat["ExitText"];
 	}
 	
 	public bool showModeOptions ()
 	{
 		Vector3 showDirection = new Vector3(-1,0,0);
+		bool ret = true;
 		
-		if (!textTransStat["NormalText"])
-			textTransStat["NormalText"] = normalScript.translateText(showDirection);
-		if (!textTransStat["SpeedRunText"])
-			textTransStat["SpeedRunText"] = speedRunScript.translateText(showDirection);
-		if (!textTransStat["BackText"])
-			textTransStat["BackText"] = backScript.translateText(showDirection);
+		int index = 0;
+		foreach (string name in ModeMenuNames)
+		{
+			if (!textTransStat[name])
+			{
+				textTransStat[name] = ModeMenuOptionScripts[index].translateText(showDirection);
+				ret = ret && textTransStat[name];
+			}
+			
+			index++;
+		}
 		
-		return textTransStat["NormalText"] && textTransStat["SpeedRunText"] && textTransStat["BackText"];
+		return ret;
+		
+//		if (!textTransStat["NormalText"])
+//			textTransStat["NormalText"] = normalScript.translateText(showDirection);
+//		if (!textTransStat["SpeedRunText"])
+//			textTransStat["SpeedRunText"] = speedRunScript.translateText(showDirection);
+//		if (!textTransStat["BackText"])
+//			textTransStat["BackText"] = backScript.translateText(showDirection);
+//		
+//		return textTransStat["NormalText"] && textTransStat["SpeedRunText"] && textTransStat["BackText"];
 	}
 	
 	public bool hideModeOptions ()
 	{
 		Vector3 hideDirection = new Vector3(1,0,0);
+		bool ret = true;
 		
-		if (!textTransStat["NormalText"])
-			textTransStat["NormalText"] = normalScript.translateText(hideDirection);
-		if (!textTransStat["SpeedRunText"])
-			textTransStat["SpeedRunText"] = speedRunScript.translateText(hideDirection);
-		if (!textTransStat["BackText"])
-			textTransStat["BackText"] = backScript.translateText(hideDirection);
+		int index = 0;
+		foreach (string name in ModeMenuNames)
+		{
+			if (!textTransStat[name])
+			{
+				textTransStat[name] = ModeMenuOptionScripts[index].translateText(hideDirection);
+				ret = ret && textTransStat[name];
+			}
+			
+			index++;
+		}
 		
-		return textTransStat["NormalText"] && textTransStat["SpeedRunText"] && textTransStat["BackText"];
+		return ret;
+		
+//		if (!textTransStat["NormalText"])
+//			textTransStat["NormalText"] = normalScript.translateText(hideDirection);
+//		if (!textTransStat["SpeedRunText"])
+//			textTransStat["SpeedRunText"] = speedRunScript.translateText(hideDirection);
+//		if (!textTransStat["BackText"])
+//			textTransStat["BackText"] = backScript.translateText(hideDirection);
+//		
+//		return textTransStat["NormalText"] && textTransStat["SpeedRunText"] && textTransStat["BackText"];
 	}
 	
 	public bool showContinueOptions ()

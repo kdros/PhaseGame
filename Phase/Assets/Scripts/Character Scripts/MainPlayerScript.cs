@@ -693,4 +693,9 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		return m_currentState;
 	}
+	
+	public void SetPlayerControl (bool isControllable)
+	{
+		m_platCtrlScript.canControl = isControllable;
+	}
 }

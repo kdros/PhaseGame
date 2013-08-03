@@ -18,12 +18,11 @@ public class Director : MonoBehaviour
 	public Texture2D liquidIcon;
 	public Texture2D gasIcon;
 	public Texture2D plasmaIcon;
-	public Texture2D logoTexture;
+	public Texture2D pausedTexture;
 	public Texture2D resumeTexture;
 	public Texture2D restartTexture;
 	public Texture2D quitTexture;
 	public Texture2D pauseBkgdTexture;
-	//public Texture2D pauseFillTexture;
 	
 	Transform sceneCamera;
 	LevelDirector ld;
@@ -38,7 +37,9 @@ public class Director : MonoBehaviour
 	Material origSkybox;
 	
 	bool displayMessage = false;
+	bool displayPauseMenu = false;
 	float displayTime = 0f;
+	float one = 1f;
 	string triggerMessages, messageToBeDisplayed;
 	
 	System.Collections.Generic.List<IcicleBase> iciclesList;
@@ -64,7 +65,9 @@ public class Director : MonoBehaviour
 			System.IO.File.Delete ("Save/currentSave");
 		
 		displayMessage = false;
+		displayPauseMenu = false;
 		displayTime = 0f;
+		one = 1f;
 		messageToBeDisplayed = "";
 		if (tipDisplayTime == 0f)
 			tipDisplayTime = 5f;
@@ -202,12 +205,13 @@ public class Director : MonoBehaviour
 				displayMessage = false;
 			}
 		}
-
+		
+		if (Input.GetButtonDown ("LoadPauseMenu"))
+			PauseGame ();
 	}
 		
 	void OnGUI ()
-	{
-		bool displayMenu = false;
+	{		
 		if (displayMessage)
 		{
 			GUIStyle wordWrapStyle = new GUIStyle ();
@@ -222,22 +226,12 @@ public class Director : MonoBehaviour
 			{
 				displayTime = 0f;
 				displayMessage = false;
-				displayMenu = true;
 			}
 		}
-		else if (!displayMenu)
-		{
-//			Event currentEvent = Event.current;
-//			if (currentEvent.isKey)
-//				if (currentEvent.keyCode == KeyCode.Escape)
-			if (Input.GetKeyDown (KeyCode.Escape))
-					Application.LoadLevel (1);
-		}
 		
-		if (displayMenu)
-		{
-			;
-		}
+		if (displayPauseMenu)
+			loadPauseMenu ();
+
 		
 		// Display boxes to show possible transitions.
 		for (int i = 0; i < 5; i++)
@@ -281,13 +275,6 @@ public class Director : MonoBehaviour
 		
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
-		
-		loadPauseMenu ();
-		
-		if (Input.GetButtonDown ("LoadPauseMenu"))
-		{
-		}
-
 	}
 	
 	void loadPauseMenu()
@@ -299,24 +286,26 @@ public class Director : MonoBehaviour
 		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
 		GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
 		
-		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), logoTexture);
+		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), pausedTexture);
 		
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), resumeTexture))
 		{
-			Time.timeScale = 1.0f;
-			Destroy(this);
+			PauseGame ();
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
 		{
+			PauseGame ();
 			Application.LoadLevel(Application.loadedLevel);
 		}
 		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))
 		{
+			PauseGame ();
 			Application.LoadLevel(1);
 		}
 		
 		GUI.EndGroup();	
 	}
+	
 	void GUIDimensionSetup ()
 	{
 		// Box dimensions are 300x300 for a 1366x768 screen.
@@ -358,6 +347,14 @@ public class Director : MonoBehaviour
 		else
 			triggerMessages = "Phase (c)2013 The Phase Team."; 
 		sr.Close ();
+	}
+	
+	void PauseGame ()
+	{
+		displayPauseMenu = !displayPauseMenu;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!displayPauseMenu);
 	}
 	
 	public void OnEnterDarkCave (Collider collider)

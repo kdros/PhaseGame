@@ -124,16 +124,9 @@ MonoBehaviour:
   - {fileID: 1529132832}
   ContinueMenuOptions: []
   ModeMenuOptions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  NewGameText: {fileID: 1973344631}
-  ContinueText: {fileID: 507280622}
-  ModeText: {fileID: 2146843064}
-  ExitText: {fileID: 1529132832}
-  SpeedRunText: {fileID: 1016037701}
-  NormalText: {fileID: 893123515}
-  BackText: {fileID: 1836734827}
+  - {fileID: 893123515}
+  - {fileID: 1016037701}
+  - {fileID: 1836734827}
 --- !u!114 &280105653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   textName: Continue
   columnNumber: 1
+  isTransitionText: 1
 --- !u!1 &800998083
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   textName: Normal
   columnNumber: 1
+  isTransitionText: 0
 --- !u!65 &893123517
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -435,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   textName: SpeedRun
   columnNumber: 1
+  isTransitionText: 0
 --- !u!65 &1016037703
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -842,6 +838,7 @@ MonoBehaviour:
   m_Name: 
   textName: Exit
   columnNumber: 1
+  isTransitionText: 0
 --- !u!1 &1713215150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   textName: Back
   columnNumber: 1
+  isTransitionText: 1
 --- !u!65 &1836734829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1184,6 +1182,7 @@ MonoBehaviour:
   m_Name: 
   textName: NewGame
   columnNumber: 1
+  isTransitionText: 0
   LevelToLoad: 2
 --- !u!1 &2146843064
 GameObject:
@@ -1275,3 +1274,4 @@ MonoBehaviour:
   m_Name: 
   textName: Mode
   columnNumber: 1
+  isTransitionText: 1

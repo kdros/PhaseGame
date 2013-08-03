@@ -10,6 +10,7 @@ public class TextScript : MonoBehaviour
 {
 	public string textName;
 	public int columnNumber; // number from 1 to 3
+	public bool isTransitionText;
 	
 	[System.NonSerialized]
 	public AudioClip hoverSound;

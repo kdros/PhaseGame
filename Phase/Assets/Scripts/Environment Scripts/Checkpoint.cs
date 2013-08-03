@@ -26,7 +26,6 @@ public class Checkpoint : MonoBehaviour
 			}
 		}
 	}
-	
 //	void saveGame ()
 //	{
 //		if (!Directory.Exists ("Save"))

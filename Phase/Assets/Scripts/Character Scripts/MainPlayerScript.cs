@@ -507,6 +507,11 @@ public class MainPlayerScript : MonoBehaviour {
 			if (dir.EventTrigger (collider.name))
 				collider.gameObject.SetActive (false);
 		}
+		else if (collider.CompareTag("DeathPlane"))
+		{
+			Debug.Log("Fell off");
+			Die ();	
+		}
 	}
 	
 	void OnTriggerStay (Collider collider)

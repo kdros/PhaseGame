@@ -36,7 +36,7 @@ public class GameMenu : MonoBehaviour
 	
 	private List<TextScript> ModeMenuOptionScripts;	
 	private List<string> ModeMenuNames;
-		
+
 	private int display;								// current menu that is being displayed
 	private int last;									// last menu that was displayed
 	private bool transitionDone;						// whether all menu options are done transitioning or not

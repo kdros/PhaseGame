@@ -61,6 +61,8 @@ public class Director : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		cacheCurrentLevelIndex();
+		
 		if (System.IO.File.Exists ("Save/currentSave"))
 			System.IO.File.Delete ("Save/currentSave");
 		
@@ -585,5 +587,12 @@ public class Director : MonoBehaviour
 			Application.LoadLevel(1); // Load GameMenu scene
 		else
 			Application.LoadLevel((currentLevelNum + 1)); // Load the next level	
+	}
+	
+	// used to keep track of the index of the scene that is currently loaded. This will tell Main Menu how many items to display 
+	// in the Continue Submenu.
+	public void cacheCurrentLevelIndex()
+	{
+		PlayerPrefs.SetInt("LevelToLoad", Application.loadedLevel);	
 	}
 }

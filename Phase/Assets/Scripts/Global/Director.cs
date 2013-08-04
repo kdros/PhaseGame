@@ -304,22 +304,23 @@ public class Director : MonoBehaviour
 		Time.timeScale = 0.0f;
 		
 		//GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
-		GUI.BeginGroup(new Rect(0.0f, 0.0f, Screen.width, Screen.height));
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 260, 50, 609, 609), pauseBkgdTexture);
 		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
-		GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
+		//GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
+		//GUI.DrawTexture(new Rect(new Rect(Screen.width / 2 - 150, 50, 609, 609)), pauseBkgdTexture);
 		
-		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), pausedTexture);
+		//GUI.Label(new Rect(Screen.width / 2 - 150, 80, 300, 68), pausedTexture);
 		
-		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), "Resume Game"))//resumeTexture))
+		if(GUI.Button(new Rect(180.0f, 178.0f, 160, 30), "Resume Game"))//resumeTexture))
 		{
 			PauseGame ();
 		}
-		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), "Restart Game"))//restartTexture))
+		if(GUI.Button(new Rect(180.0f, 250.0f, 160, 30), "Restart Game"))//restartTexture))
 		{
 			PauseGame ();
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), "Exit to Main Menu"))//quitTexture))
+		if(GUI.Button(new Rect(180.0f, 322.0f, 160, 30), "Exit to Main Menu"))//quitTexture))
 		{
 			PauseGame ();
 			Application.LoadLevel(1);

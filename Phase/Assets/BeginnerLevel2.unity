@@ -32643,6 +32643,10 @@ Prefab:
       propertyPath: spawnPosition
       value: 
       objectReference: {fileID: 1613676850}
+    - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
+      propertyPath: pauseBkgdTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 5a4836bea4a75a147a2c8eca060e2cbf, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
   m_RootGameObject: {fileID: 1591665588}
@@ -37111,16 +37115,15 @@ MonoBehaviour:
   spawnPosition: {fileID: 1613676850}
   tipDisplayTime: 0
   lastLevel: 8
-  displayFont: {fileID: 12800000, guid: 9b146fa23b702d742a88c41070c05c25, type: 3}
+  messageFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}
+  menuFont: {fileID: 12800000, guid: f821af49cfa277e4eaf7ba90cc98f189, type: 3}
   defaultIcon: {fileID: 2800000, guid: d413da5d52cb79b4294ddf5e716b4265, type: 3}
   solidIcon: {fileID: 2800000, guid: 8cdc327c44d474649b818bf6c2ca8cc1, type: 3}
   liquidIcon: {fileID: 2800000, guid: 849b680024556844290dc1db6f219ea7, type: 3}
   gasIcon: {fileID: 2800000, guid: 259ab2934ef9d3947b961d1e87089ea6, type: 3}
   plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
-  logoTexture: {fileID: 0}
-  resumeTexture: {fileID: 0}
-  restartTexture: {fileID: 0}
-  quitTexture: {fileID: 0}
+  pausedTexture: {fileID: 2800000, guid: 1506f8179d95b1e47b896121572b86b2, type: 3}
+  pauseBkgdTexture: {fileID: 2800000, guid: 5a4836bea4a75a147a2c8eca060e2cbf, type: 3}
 --- !u!4 &1591665590
 Transform:
   m_ObjectHideFlags: 0

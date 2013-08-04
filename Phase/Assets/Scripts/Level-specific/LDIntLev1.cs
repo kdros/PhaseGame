@@ -7,6 +7,7 @@ public class LDIntLev1 : LevelDirector {
 	public GameObject boulder;
 
 	Director dir;
+	bool reachedExitTrigger;
 	
 	void Start ()
 	{
@@ -15,7 +16,7 @@ public class LDIntLev1 : LevelDirector {
 	
 	void Update ()
 	{
-	
+		reachedExitTrigger = false;
 	}
 	
 	public override bool OnEventTrigger (string triggerName)
@@ -24,7 +25,7 @@ public class LDIntLev1 : LevelDirector {
 		{
 			case "IntLev1_EventTrigger1":
 				Debug.Log ("First trigger hit!");
-				for (int i = 0; i < 14; i++)
+				for (int i = 0; i < 30; i++)
 					Invoke ("makeRockFallDown", (i*0.35f));
 				return false;
 			//case "IntLev1_EventTrigger2":

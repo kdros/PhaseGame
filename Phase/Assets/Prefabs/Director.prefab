@@ -48,7 +48,7 @@ MonoBehaviour:
   gasIcon: {fileID: 2800000, guid: 259ab2934ef9d3947b961d1e87089ea6, type: 3}
   plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
   pausedTexture: {fileID: 2800000, guid: 1506f8179d95b1e47b896121572b86b2, type: 3}
-  pauseBkgdTexture: {fileID: 2800000, guid: 9c065680439e33a409daf016ae9ed225, type: 3}
+  pauseBkgdTexture: {fileID: 2800000, guid: e5275fb5a0a8fec4c9b03b321b878a53, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -17,17 +17,7 @@ Platform assembly: C:\Users\Kristen\Documents\PhaseGame\Phase\Phase_Data\Managed
 Loading C:\Users\Kristen\Documents\PhaseGame\Phase\Phase_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\Kristen\Documents\PhaseGame\Phase\Phase_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\Kristen\Documents\PhaseGame\Phase\Phase_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.072 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 334.
-Total: 1.102718 ms (FindLiveObjects: 0.014444 ms CreateObjectMapping: 0.009122 ms MarkObjects: 0.532923 ms  DeleteObjects: 0.004941 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 748.
-Total: 1.373361 ms (FindLiveObjects: 0.030409 ms CreateObjectMapping: 0.011783 ms MarkObjects: 0.495672 ms  DeleteObjects: 0.385818 ms)
-

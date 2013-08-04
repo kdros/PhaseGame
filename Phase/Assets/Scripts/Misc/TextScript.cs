@@ -18,12 +18,14 @@ public class TextScript : MonoBehaviour
 	public AudioClip clickSound;
 	
 	// Used by GameMenu Script
+	private Vector3 originalPosition;
 	private float travelDistance; // distance traveled in the +x or -x direction in order for the text to be shown or hidden
 	private float moveSpeed;      // speed at which the text will travel with
 	private float currentDistance;
 		
 	void Start ()
 	{
+		originalPosition = transform.position;
 		currentDistance = 0.0f;
 		if (textName == null)
 		{
@@ -65,21 +67,17 @@ public class TextScript : MonoBehaviour
 	{
 		Vector3 deltaPos = direction * moveSpeed * Time.deltaTime;
 		currentDistance += deltaPos.magnitude;
-		
-		transform.position = transform.position + deltaPos;
-		
+			
 		if (currentDistance >= travelDistance)
 		{
-			// get rid of overshooting
-			float offset = currentDistance - travelDistance;
-			float newX = (float)Math.Round (Math.Abs (transform.position.x) - offset, 3);
-			Vector3 newP = new Vector3(newX * Math.Sign(transform.position.x), transform.position.y, transform.position.z);
-			transform.position = newP;			
+			transform.position = originalPosition + direction * travelDistance;
+			originalPosition = transform.position;
 			currentDistance = 0.0f;
 			return true;
 		}
-		else 
+		else
 		{
+			transform.position = transform.position + deltaPos;
 			return false;	
 		}
 	}

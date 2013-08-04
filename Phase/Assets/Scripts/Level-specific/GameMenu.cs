@@ -104,17 +104,7 @@ public class GameMenu : MonoBehaviour
 					}
 					
 					// disable the texts that causes transitions
-					foreach (TextScript ts in MainMenuOptionScripts)
-					{
-						if (ts.isTransitionText)	
-							ts.enabled = false;
-					}
-					
-					foreach (TextScript ts in ModeMenuOptionScripts)
-					{
-						if (ts.isTransitionText)
-							ts.enabled = false;
-					}					
+					disableTranslationTexts();				
 					
 					// since back text was used to return to main menu, need to distinguish between the 
 					// back button in Mode Options and Continue
@@ -134,17 +124,7 @@ public class GameMenu : MonoBehaviour
 					}
 					
 					// disable the texts that causes transitions
-					foreach (TextScript ts in MainMenuOptionScripts)
-					{
-						if (ts.isTransitionText)	
-							ts.enabled = false;
-					}
-					
-					foreach (TextScript ts in ContinueMenuOptionScripts)
-					{
-						if (ts.isTransitionText)
-							ts.enabled = false;
-					}
+					disableTranslationTexts();
 					
 					fromSubMenu = (int)MenuState.ContinueOptions;
 				}
@@ -182,17 +162,7 @@ public class GameMenu : MonoBehaviour
 					}
 					
 					// disable the texts that causes transitions					
-					foreach (TextScript ts in MainMenuOptionScripts)
-					{
-						if (ts.isTransitionText)	
-							ts.enabled = false;
-					}
-					
-					foreach (TextScript ts in ModeMenuOptionScripts)
-					{
-						if (ts.isTransitionText)
-							ts.enabled = false;
-					}	
+					disableTranslationTexts();
 				}
 				
 				bool showModeDone = showModeOptions();
@@ -217,17 +187,8 @@ public class GameMenu : MonoBehaviour
 						isDoneTransition[name] = false;	
 					}
 					
-					foreach (TextScript ts in MainMenuOptionScripts)
-					{
-						if (ts.isTransitionText)	
-							ts.enabled = false;
-					}
-					
-					foreach (TextScript ts in ContinueMenuOptionScripts)
-					{
-						if (ts.isTransitionText)
-							ts.enabled = false;
-					}
+					// disable the texts that causes transitions					
+					disableTranslationTexts();
 				}
 				
 				bool showContinueDone = showContinueOptions();
@@ -312,15 +273,16 @@ public class GameMenu : MonoBehaviour
 			}
 			else if (ts.columnNumber == 2)
 			{
-				ts.setDistance(Mathf.Abs (DisplayCol2Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x));
+				float distance = Mathf.Abs (DisplayCol2Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x);
+				ts.setDistance(distance);
 				ts.setSpeed (continueMenuBaseSpeed2);
-				continueMenuBaseSpeed1 = continueMenuBaseSpeed2 - 1.0f;				
+				continueMenuBaseSpeed2 = continueMenuBaseSpeed2 - 1.0f;				
 			}
 			else if (ts.columnNumber == 3)
 			{
 				ts.setDistance(Mathf.Abs (DisplayCol3Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x));
 				ts.setSpeed (continueMenuBaseSpeed3);
-				continueMenuBaseSpeed1 = continueMenuBaseSpeed3 - 1.0f;
+				continueMenuBaseSpeed3 = continueMenuBaseSpeed3 - 1.0f;
 			}
 			else
 			{
@@ -331,6 +293,28 @@ public class GameMenu : MonoBehaviour
 		}
 	}
 	
+	private void disableTranslationTexts()
+	{
+		// re-enable texts that causes transitions		
+		foreach (TextScript ts in MainMenuOptionScripts)
+		{
+			if (ts.isTransitionText)	
+				ts.enabled = false;
+		}
+				
+		foreach (TextScript ts in ModeMenuOptionScripts)
+		{
+			if (ts.isTransitionText)
+				ts.enabled = false;
+		}
+		
+		foreach (TextScript ts in ContinueMenuOptionScripts)
+		{
+			if (ts.isTransitionText)
+				ts.enabled = false;
+		}	
+	}
+		
 	private void initIsDoneTransition ()
 	{
 		isDoneTransition = new Dictionary<string, bool>();

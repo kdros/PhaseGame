@@ -507,6 +507,11 @@ public class MainPlayerScript : MonoBehaviour {
 			if (dir.EventTrigger (collider.name))
 				collider.gameObject.SetActive (false);
 		}
+		else if (collider.CompareTag ("DeathPlane"))
+		{
+			Debug.Log("Fell off");
+			Die ();	
+		}
 	}
 	
 	void OnTriggerStay (Collider collider)
@@ -600,7 +605,11 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			stateScript.WindTunnelExit(m_platCtrlScript);
 		}
-			
+		else if (collider.CompareTag("Icicle"))
+		{
+			collider.isTrigger = false; // Set collider back to normal.
+		}
+		
 		if (m_currentState == (int)State.Gas)
 		{
 			if (collider.CompareTag ("IcyFloor"))
@@ -617,7 +626,6 @@ public class MainPlayerScript : MonoBehaviour {
 			{
 				Debug.Log("Gas-Matty exits icicle, stopping rain");
 				m_gasMattyScript.StopCondensation ();
-				collider.isTrigger = false; // Set collider back to normal.
 			}
 		}
 	}
@@ -701,5 +709,10 @@ public class MainPlayerScript : MonoBehaviour {
 	public void SetPlayerControl (bool isControllable)
 	{
 		m_platCtrlScript.canControl = isControllable;
+	}
+	
+	public void ResetSpeed ()
+	{
+		m_platCtrlScript.ResetCharSpeed ();
 	}
 }

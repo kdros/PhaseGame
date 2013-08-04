@@ -11,7 +11,7 @@ public class Director : MonoBehaviour
 	
 	public Transform spawnPosition;
 	public float tipDisplayTime = 0f;
-	public int lastLevel = 7;
+	public int lastLevel = 9;
 	
 	public Font messageFont;
 	public Font menuFont;

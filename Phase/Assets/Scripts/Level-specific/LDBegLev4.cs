@@ -9,7 +9,10 @@ public class LDBegLev4 : LevelDirector
 	// Use this for initialization
 	void Start () 
 	{
-		curTime = 0f;	
+		curTime = 0f;
+		
+		MainPlayerScript mpRef = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
+		mpRef.CanChange (MainPlayerScript.State.Plasma, false);
 	}
 	
 	// Update is called once per frame

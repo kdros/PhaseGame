@@ -3,7 +3,10 @@ using System.Collections;
 
 public class LDIntLev1 : LevelDirector {
 	
-	public Transform boulderSpawn;
+	public Transform boulderSpawn1;
+	public Transform boulderSpawn2;
+	public Transform boulderSpawn3;
+	public Transform boulderSpawn4;
 	public GameObject boulder;
 
 	Director dir;
@@ -25,8 +28,8 @@ public class LDIntLev1 : LevelDirector {
 		{
 			case "IntLev1_EventTrigger1":
 				Debug.Log ("First trigger hit!");
-				for (int i = 0; i < 30; i++)
-					Invoke ("makeRockFallDown", (i*0.35f));
+				for (int i = 0; i < 70; i++)
+					Invoke ("makeRockFallDown", (i*0.5f));
 				return false;
 			//case "IntLev1_EventTrigger2":
 				//int boulderCount = 0;
@@ -55,8 +58,13 @@ public class LDIntLev1 : LevelDirector {
 	
 	void makeRockFallDown ()
 	{
-		GameObject aRock = Instantiate (boulder, boulderSpawn.position, Quaternion.identity) as GameObject;
-		//aRock.rigidbody.AddForce (Vector3.left*400f);
+		GameObject aRock = Instantiate (boulder, boulderSpawn1.position, Quaternion.identity) as GameObject;
+		aRock.rigidbody.AddForce (Vector3.down*100f);
+		GameObject bRock = Instantiate (boulder, boulderSpawn2.position, Quaternion.identity) as GameObject;
+		aRock.rigidbody.AddForce (Vector3.down*100f);
+		GameObject cRock = Instantiate (boulder, boulderSpawn3.position, Quaternion.identity) as GameObject;
+		aRock.rigidbody.AddForce (Vector3.down*100f);
+		GameObject dRock = Instantiate (boulder, boulderSpawn4.position, Quaternion.identity) as GameObject;
 		aRock.rigidbody.AddForce (Vector3.down*100f);
 	}
 }

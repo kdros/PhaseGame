@@ -376,7 +376,10 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Player got hit by falling boulders");
 			
 			if(stateScript.FallingBouldersCollisionResolution())
-				if(playerDead != true) Die();
+			{	
+				if(playerDead != true) 
+					Die();
+			}
 			else
 			{
 				// If current state is plasma and it's hot, destroy boulder.

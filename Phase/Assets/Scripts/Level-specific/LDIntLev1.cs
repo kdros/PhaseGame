@@ -8,7 +8,8 @@ public class LDIntLev1 : LevelDirector {
 	public Transform boulderSpawn3;
 	public Transform boulderSpawn4;
 	public GameObject boulder;
-	bool hitBoulderExit;
+	bool bouldersCanSpawn;
+	public float timer;
 	
 
 	Director dir;
@@ -16,10 +17,23 @@ public class LDIntLev1 : LevelDirector {
 	void Start ()
 	{
 		dir = GameObject.FindGameObjectWithTag ("Director").GetComponent<Director>();
+		
+		bouldersCanSpawn = false;
+		timer = 0.0f;
 	}
 	
 	void Update ()
 	{
+		timer += Time.deltaTime;
+		if ((bouldersCanSpawn == true) && (timer >= 0.5f))
+		{
+    		Instantiate (boulder, boulderSpawn1.position, Quaternion.identity);
+			Instantiate (boulder, boulderSpawn2.position, Quaternion.identity);
+			Instantiate (boulder, boulderSpawn3.position, Quaternion.identity);
+			Instantiate (boulder, boulderSpawn4.position, Quaternion.identity);
+			timer = 0.0f;
+		}
+			
 	}
 	
 	public override bool OnEventTrigger (string triggerName)
@@ -28,43 +42,20 @@ public class LDIntLev1 : LevelDirector {
 		{
 			case "IntLev1_EventTrigger1":
 				Debug.Log ("First trigger hit!");
-				for(int i = 0; i <70; i++)
-					Invoke ("makeRockFallDown", (i*0.5f));
+				bouldersCanSpawn = true;
 				return false;
-			//case "IntLev1_EventTrigger2":
-				//int boulderCount = 0;
-				//GameObject[] boulders = GameObject.FindGameObjectsWithTag ("FallingBoulders");
-				//GameObject player = GameObject.FindGameObjectWithTag ("Player");
-				//foreach (GameObject rock in boulders)
-					//if ((rock.transform.position.y >= player.transform.position.y-1.5f) &&
-						//(rock.transform.position.y <= player.transform.position.y+1.0f))
-						//boulderCount ++;
-				//if (boulderCount == 4)
-				//{
-					//dir.DisplayMessage ("Whew.. That was close! Oh no, it seems the boulders have blocked our path." +
-						//"Could they be destroyed by extreme heat from the lava?");
-					//return true;
-				//}
-				
-				//return false;
-				
+			case "IntLev1_EventTrigger2":
+				Debug.Log ("Second trigger hit!");
+				if(bouldersCanSpawn == false)
+					bouldersCanSpawn = true;
+				else
+					bouldersCanSpawn = false;
+			
+				return false;
 			case "Level_End":
 				dir.MoveToNextLevel ();
 				return true;
 		}
-		
 		return false;
-	}
-	
-	void makeRockFallDown ()
-	{
-		GameObject aRock = Instantiate (boulder, boulderSpawn1.position, Quaternion.identity) as GameObject;
-		aRock.rigidbody.AddForce (Vector3.down*100f);
-		GameObject bRock = Instantiate (boulder, boulderSpawn2.position, Quaternion.identity) as GameObject;
-		aRock.rigidbody.AddForce (Vector3.down*100f);
-		GameObject cRock = Instantiate (boulder, boulderSpawn3.position, Quaternion.identity) as GameObject;
-		aRock.rigidbody.AddForce (Vector3.down*100f);
-		GameObject dRock = Instantiate (boulder, boulderSpawn4.position, Quaternion.identity) as GameObject;
-		aRock.rigidbody.AddForce (Vector3.down*100f);
 	}
 }

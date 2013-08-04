@@ -13,15 +13,15 @@ public class Director : MonoBehaviour
 	public float tipDisplayTime = 0f;
 	public int lastLevel = 7;
 	
+	public Font messageFont;
+	public Font menuFont;
+	
 	public Texture2D defaultIcon;
 	public Texture2D solidIcon;
 	public Texture2D liquidIcon;
 	public Texture2D gasIcon;
 	public Texture2D plasmaIcon;
 	public Texture2D pausedTexture;
-	public Texture2D resumeTexture;
-	public Texture2D restartTexture;
-	public Texture2D quitTexture;
 	public Texture2D pauseBkgdTexture;
 	
 	Transform sceneCamera;
@@ -116,10 +116,12 @@ public class Director : MonoBehaviour
 		// won't be "dark" anymore.
 		sceneCamera.gameObject.GetComponent<Camera>().backgroundColor = Color.black;
 		
+		// Define the GUIStyle to be used in the State Info Box at the bottom of the screen.
 		stateInfoBox = new GUIStyle ();
 		stateInfoBox.name = "StateInfoBox";
 		stateInfoBox.alignment = TextAnchor.LowerRight;
-		stateInfoBox.fontStyle = FontStyle.Bold;
+		stateInfoBox.font = menuFont;
+//		stateInfoBox.fontStyle = FontStyle.Bold;
 		stateInfoBox.normal.textColor = Color.white;
 		
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
@@ -211,16 +213,36 @@ public class Director : MonoBehaviour
 	}
 		
 	void OnGUI ()
-	{		
+	{
+		GUIStyle newStyle = new GUIStyle ();		
+		newStyle = GUI.skin.button;
+		newStyle.font = menuFont;
+		newStyle.alignment = TextAnchor.MiddleCenter;
+		GUI.skin.button = newStyle;
+		
 		if (displayMessage)
 		{
 			GUIStyle wordWrapStyle = new GUIStyle ();
 			wordWrapStyle.wordWrap = true;
 			wordWrapStyle.normal.textColor = Color.white;
 			wordWrapStyle.alignment = TextAnchor.UpperCenter;
+			wordWrapStyle.font = messageFont;
 			
-			GUI.Box (new Rect (boxStartingX, boxStartingY, boxWidth, boxHeight), messageToBeDisplayed, wordWrapStyle);
-			bool dismiss = GUI.Button (new Rect (buttonStartingX, buttonStartingY, buttonWidth, buttonHeight), "Dismiss");
+			GUILayout.BeginArea (new Rect (boxStartingX, boxStartingY, boxWidth, boxHeight));
+			GUILayout.BeginVertical ();
+				GUILayout.Box (messageToBeDisplayed, wordWrapStyle);
+				GUILayout.BeginHorizontal ();
+					// Left pad the Button with an empty box so that it ends up in the centre.
+					GUILayout.Box ("", wordWrapStyle, GUILayout.MaxWidth (buttonWidth/2f), 
+									GUILayout.MaxHeight (buttonHeight));
+					bool dismiss = GUILayout.Button ("Dismiss", GUILayout.MaxWidth (buttonWidth), 
+														GUILayout.MaxHeight (buttonHeight));
+					// Right pad the Button with an empty box so that it ends up in the centre.
+					GUILayout.Box ("", wordWrapStyle, GUILayout.MaxWidth (buttonWidth/2f), 
+									GUILayout.MaxHeight (buttonHeight));
+				GUILayout.EndHorizontal ();
+			GUILayout.EndVertical ();
+			GUILayout.EndArea ();
 			
 			if ((dismiss) || (Input.GetKeyUp (KeyCode.Escape)))
 			{
@@ -288,16 +310,16 @@ public class Director : MonoBehaviour
 		
 		GUI.Label(new Rect(Screen.width / 2 - 150, 50, 300, 68), pausedTexture);
 		
-		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), resumeTexture))
+		if(GUI.Button(new Rect(Screen.width / 2 - 110, 150, 180, 40), "Resume Game"))//resumeTexture))
 		{
 			PauseGame ();
 		}
-		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), restartTexture))
+		if(GUI.Button(new Rect(Screen.width / 2 - 110, 225, 180, 40), "Restart Game"))//restartTexture))
 		{
 			PauseGame ();
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), quitTexture))
+		if(GUI.Button(new Rect(Screen.width / 2 - 110, 300, 180, 40), "Exit to Main Menu"))//quitTexture))
 		{
 			PauseGame ();
 			Application.LoadLevel(1);

@@ -306,7 +306,7 @@ public class Director : MonoBehaviour
 		Time.timeScale = 0.0f;
 		
 		//GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
-		GUI.BeginGroup(new Rect(Screen.width / 2 - 260, 50, 609, 609), pauseBkgdTexture);
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 260, Screen.height / 2 -290, 609, 609), pauseBkgdTexture);
 		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
 		//GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
 		//GUI.DrawTexture(new Rect(new Rect(Screen.width / 2 - 150, 50, 609, 609)), pauseBkgdTexture);

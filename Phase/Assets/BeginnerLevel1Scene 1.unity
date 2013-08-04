@@ -10346,7 +10346,7 @@ Prefab:
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: pauseBkgdTexture
       value: 
-      objectReference: {fileID: 2800000, guid: 5a4836bea4a75a147a2c8eca060e2cbf, type: 3}
+      objectReference: {fileID: 2800000, guid: e5275fb5a0a8fec4c9b03b321b878a53, type: 3}
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: pausedTexture
       value: 
@@ -17702,7 +17702,7 @@ MonoBehaviour:
   gasIcon: {fileID: 2800000, guid: 259ab2934ef9d3947b961d1e87089ea6, type: 3}
   plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
   pausedTexture: {fileID: 2800000, guid: 1506f8179d95b1e47b896121572b86b2, type: 3}
-  pauseBkgdTexture: {fileID: 2800000, guid: 5a4836bea4a75a147a2c8eca060e2cbf, type: 3}
+  pauseBkgdTexture: {fileID: 2800000, guid: e5275fb5a0a8fec4c9b03b321b878a53, type: 3}
 --- !u!4 &1506896658
 Transform:
   m_ObjectHideFlags: 0

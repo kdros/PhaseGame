@@ -512,6 +512,12 @@ public class MainPlayerScript : MonoBehaviour {
 			Debug.Log("Fell off");
 			Die ();	
 		}
+		else if (collider.CompareTag("SwingingMace"))
+		{
+			Debug.Log("Player got hit by mace");
+			if(stateScript.SwingingMaceCollisionResolution())
+				if(playerDead != true) Die();
+		}
 	}
 	
 	void OnTriggerStay (Collider collider)

@@ -1,15 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-public class LDIntLev2 : MonoBehaviour {
+public class LDIntLev2 : LevelDirector 
+{
 
-	// Use this for initialization
-	void Start () {
-	
+	public override bool OnEventTrigger (string triggerName)
+	{
+		switch (triggerName)
+		{
+			case "Level_End":
+				GameObject.Find ("Director").GetComponent<Director>().MoveToNextLevel ();
+			return true;
+		}
+		
+		return false;				
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	public override bool OnEventTrigger (string triggerName, string colliderName)
+	{
+		return false;
 	}
 }

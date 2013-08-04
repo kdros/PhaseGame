@@ -7,8 +7,8 @@ public class LoadLevelText : TextScript
 	
 	public override void respondToClick ()
 	{
-		int startLevel = LevelToLoad;		
-		PlayerPrefs.SetInt("LevelToLoad",LevelToLoad);
-		Application.LoadLevel(LevelToLoad);		
+		int startLevel = LevelToLoad;
+		//PlayerPrefs.SetInt("LevelToLoad",LevelToLoad);
+		Application.LoadLevel(LevelToLoad);
 	}
 }

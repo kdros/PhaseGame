@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level7
+  textName: 9
   columnNumber: 2
   isTransitionText: 0
   LevelToLoad: 9
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level2
+  textName: 4
   columnNumber: 1
   isTransitionText: 0
   LevelToLoad: 4
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level5
+  textName: 7
   columnNumber: 2
   isTransitionText: 0
   LevelToLoad: 7
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level4
+  textName: 6
   columnNumber: 2
   isTransitionText: 0
   LevelToLoad: 6
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: Tutorial
+  textName: 2
   columnNumber: 1
   isTransitionText: 0
   LevelToLoad: 2
@@ -1337,7 +1337,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level6
+  textName: 8
   columnNumber: 2
   isTransitionText: 0
   LevelToLoad: 8
@@ -1656,7 +1656,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level1
+  textName: 3
   columnNumber: 1
   isTransitionText: 0
   LevelToLoad: 3
@@ -1748,7 +1748,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
   m_Name: 
-  textName: level3
+  textName: 5
   columnNumber: 1
   isTransitionText: 0
   LevelToLoad: 5

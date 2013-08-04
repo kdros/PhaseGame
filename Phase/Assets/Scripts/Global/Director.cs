@@ -593,6 +593,10 @@ public class Director : MonoBehaviour
 	// in the Continue Submenu.
 	public void cacheCurrentLevelIndex()
 	{
-		PlayerPrefs.SetInt("LevelToLoad", Application.loadedLevel);	
+		int lastLevel = PlayerPrefs.GetInt("LevelToLoad");
+		int currentLevel = Application.loadedLevel;
+		
+		if (currentLevel > lastLevel)
+			PlayerPrefs.SetInt("LevelToLoad", Application.loadedLevel);
 	}
 }

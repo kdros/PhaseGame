@@ -36,7 +36,8 @@ public class GameMenu : MonoBehaviour
 	
 	private List<TextScript> ModeMenuOptionScripts;	
 	private List<string> ModeMenuNames;
-
+	
+	private int sceneToLoad;							// continue menu should show options up to this
 	private int display;								// current menu that is being displayed
 	private int last;									// last menu that was displayed
 	private bool transitionDone;						// whether all menu options are done transitioning or not
@@ -50,6 +51,16 @@ public class GameMenu : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		if (!PlayerPrefs.HasKey("LevelToLoad"))
+		{
+			PlayerPrefs.SetInt("LevelToLoad",0);
+			sceneToLoad = 0;
+		}
+		else
+		{
+			sceneToLoad = PlayerPrefs.GetInt("LevelToLoad");	
+		}
+		
 		display = (int)MenuState.MainMenuOptions;
 		last = display;
 		transitionDone = true;
@@ -70,7 +81,14 @@ public class GameMenu : MonoBehaviour
 		
 		for (int i = 0 ; i < ContinueMenuOptions.Length ; i++)
 		{
-			ContinueMenuOptionScripts.Add(ContinueMenuOptions[i].GetComponent<TextScript>());	
+			TextScript ts = ContinueMenuOptions[i].GetComponent<TextScript>(); // TODO: Only add levels that we should have access to
+			
+			if(ts.textName.Equals("ContinueBack"))
+				ContinueMenuOptionScripts.Add(ts);
+			else if (int.Parse(ts.textName) <= sceneToLoad)
+				ContinueMenuOptionScripts.Add(ts);
+			
+			
 		}
 		
 		for (int i = 0 ; i < ModeMenuOptions.Length ; i++)
@@ -280,7 +298,20 @@ public class GameMenu : MonoBehaviour
 			}
 			else if (ts.columnNumber == 3)
 			{
-				ts.setDistance(Mathf.Abs (DisplayCol3Anchor.position.x - ContinueMenuOptions[textIndex].transform.position.x));
+				float origX = 0.0f;
+				
+				for (int i = 0 ; i < ContinueMenuOptions.Length ; i++)
+				{
+					if (ts.textName.Equals(ContinueMenuOptions[i].GetComponent<TextScript>().textName))
+					{
+						origX = ContinueMenuOptions[i].transform.position.x;
+						break;
+					}
+				}
+				
+				
+				float distance = Mathf.Abs (DisplayCol3Anchor.position.x - origX);
+				ts.setDistance(distance);
 				ts.setSpeed (continueMenuBaseSpeed3);
 				continueMenuBaseSpeed3 = continueMenuBaseSpeed3 - 1.0f;
 			}

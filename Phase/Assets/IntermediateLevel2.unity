@@ -15388,7 +15388,7 @@ Prefab:
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: spawnPosition
       value: 
-      objectReference: {fileID: 233594369}
+      objectReference: {fileID: 2032285113}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
   m_RootGameObject: {fileID: 1506799938}
@@ -28232,7 +28232,10 @@ MonoBehaviour:
   - {fileID: 100000, guid: 667eb9506ed9c104e9ebad65373e3b59, type: 2}
   - {fileID: 100000, guid: ef895266c7cce3c4bb573d4967959d8e, type: 2}
   - {fileID: 100000, guid: 667eb9506ed9c104e9ebad65373e3b59, type: 2}
+  blockBoulder: {fileID: 100000, guid: bdcb72b956bf8c34299642759cfad148, type: 2}
   boulderSpawn: {fileID: 731758504}
+  breakPformPos: {fileID: 1557411394}
+  blockBoulderPos: {fileID: 1878472872}
 --- !u!4 &1208775043
 Transform:
   m_ObjectHideFlags: 0
@@ -35549,7 +35552,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
-  spawnPosition: {fileID: 233594369}
+  spawnPosition: {fileID: 2032285113}
   tipDisplayTime: 0
   lastLevel: 9
   messageFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}

@@ -100,7 +100,7 @@ public class Director : MonoBehaviour
 		
 		LoadTriggerMessagesFromFile ();
 		GUIDimensionSetup ();
-		SetCurrentLevel();
+//		SetCurrentLevel();
 		
 		// Creates a backup of the light intensities of all the lights in the scene.
 		// This is needed since we need to lerp the light intensities to zero when player
@@ -573,11 +573,6 @@ public class Director : MonoBehaviour
 		if (ld != null)
 			return ld.OnEventTrigger (eventName, colliderName);
 		return false;
-	}
-	
-	public void SetCurrentLevel()
-	{
-
 	}
 	
 	public void MoveToNextLevel()

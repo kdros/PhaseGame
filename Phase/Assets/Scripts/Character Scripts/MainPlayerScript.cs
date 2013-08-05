@@ -678,6 +678,7 @@ public class MainPlayerScript : MonoBehaviour {
 		m_platCtrlScript.ResetCharSpeed();
 
 		dir.ResetIcicles ();
+		dir.EventTrigger ("PLAYER_DEAD");
 	}
 	
 	public void CanChange (State state, bool ableToChange)

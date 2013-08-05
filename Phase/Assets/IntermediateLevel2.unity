@@ -3163,7 +3163,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1168166720}
   m_GameObject: {fileID: 81816909}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -6577,7 +6577,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1642608463}
   m_GameObject: {fileID: 265259155}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -7576,7 +7576,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1872886640}
   m_GameObject: {fileID: 340888410}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -9392,6 +9392,66 @@ MeshFilter:
   m_PrefabInternal: {fileID: 716666884}
   m_GameObject: {fileID: 469327988}
   m_Mesh: {fileID: 4300000, guid: f5b934508f31bfc479a266443c7ead2d, type: 3}
+--- !u!1001 &470051524
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 11400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: platformBreakers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: platformBreakers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 245.261871
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -29.3951492
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: m_Name
+      value: BreakablePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: platformBreakers.Array.data[0]
+      value: FallingBoulders
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+      propertyPath: platformBreakers.Array.data[0]
+      value: FallingBoulders
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_RootGameObject: {fileID: 1557411393}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &474671435
 GameObject:
   m_ObjectHideFlags: 0
@@ -10655,7 +10715,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 103441889}
   m_GameObject: {fileID: 540181664}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -15328,7 +15388,7 @@ Prefab:
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: spawnPosition
       value: 
-      objectReference: {fileID: 2032285113}
+      objectReference: {fileID: 233594369}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
   m_RootGameObject: {fileID: 1506799938}
@@ -26324,7 +26384,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1679276460}
   m_GameObject: {fileID: 1108281605}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -35489,7 +35549,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
-  spawnPosition: {fileID: 2032285113}
+  spawnPosition: {fileID: 233594369}
   tipDisplayTime: 0
   lastLevel: 9
   messageFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}
@@ -35741,7 +35801,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 993546500}
   m_GameObject: {fileID: 1513682139}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -36426,8 +36486,8 @@ Transform:
 --- !u!1 &1557411393
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1557411394}
@@ -36441,11 +36501,11 @@ GameObject:
 --- !u!4 &1557411394
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1557411393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 245.261856, y: -29.3951492, z: 0}
+  m_LocalPosition: {x: 245.261871, y: -29.3951492, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1571938076}
@@ -36756,8 +36816,8 @@ MeshFilter:
 --- !u!1 &1571938072
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100002, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1571938076}
@@ -36776,8 +36836,9 @@ GameObject:
 --- !u!23 &1571938073
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 2300000, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1571938072}
   m_Enabled: 1
   m_CastShadows: 1
@@ -36794,8 +36855,9 @@ Renderer:
 --- !u!65 &1571938074
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 6500000, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1571938072}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -36806,15 +36868,16 @@ BoxCollider:
 --- !u!33 &1571938075
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 3300000, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1571938072}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1571938076
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400002, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1571938072}
   m_LocalRotation: {x: -.0467301011, y: .0485416315, z: -.133650258, w: .988735437}
   m_LocalPosition: {x: -3.18719482, y: -.0325660706, z: 0}
@@ -36824,8 +36887,9 @@ Transform:
 --- !u!54 &1571938077
 Rigidbody:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 5400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1571938072}
   serializedVersion: 2
   m_Mass: 1
@@ -36839,13 +36903,16 @@ Rigidbody:
 --- !u!114 &1571938078
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400000, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1571938072}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da06a55d7374a3341be77b589e01b7d7, type: 3}
   m_Name: 
+  platformBreakers:
+  - FallingBoulders
 --- !u!1 &1579142630
 GameObject:
   m_ObjectHideFlags: 0
@@ -37945,7 +38012,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 661981365}
   m_GameObject: {fileID: 1648012805}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -39931,8 +39998,8 @@ Transform:
 --- !u!1 &1687966245
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 100004, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1687966246}
@@ -39951,8 +40018,8 @@ GameObject:
 --- !u!4 &1687966246
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 400004, guid: 1603e3ca6a89e0545a15521c3bb2f7be, type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1687966245}
   m_LocalRotation: {x: .0104180677, y: -.0613634922, z: .0903237015, w: .993965626}
   m_LocalPosition: {x: 3.18713379, y: .0325698853, z: 0}
@@ -39962,8 +40029,9 @@ Transform:
 --- !u!23 &1687966247
 Renderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 2300002, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1687966245}
   m_Enabled: 1
   m_CastShadows: 1
@@ -39980,8 +40048,9 @@ Renderer:
 --- !u!65 &1687966248
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 6500002, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1687966245}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -39992,15 +40061,17 @@ BoxCollider:
 --- !u!33 &1687966249
 MeshFilter:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 3300002, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1687966245}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &1687966250
 Rigidbody:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 5400002, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1687966245}
   serializedVersion: 2
   m_Mass: 1
@@ -40014,13 +40085,16 @@ Rigidbody:
 --- !u!114 &1687966251
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11400002, guid: 1603e3ca6a89e0545a15521c3bb2f7be,
+    type: 2}
+  m_PrefabInternal: {fileID: 470051524}
   m_GameObject: {fileID: 1687966245}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da06a55d7374a3341be77b589e01b7d7, type: 3}
   m_Name: 
+  platformBreakers:
+  - FallingBoulders
 --- !u!1 &1691042855
 GameObject:
   m_ObjectHideFlags: 0
@@ -50030,7 +50104,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1197456434}
   m_GameObject: {fileID: 2058061683}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -51986,7 +52060,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 431142103}
   m_GameObject: {fileID: 2105945707}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001

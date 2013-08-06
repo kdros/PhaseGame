@@ -1761,6 +1761,46 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1796287843}
+--- !u!1001 &44220484
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+  m_RootGameObject: {fileID: 1481554770}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &44581599
 GameObject:
   m_ObjectHideFlags: 0
@@ -16519,8 +16559,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2348ac004988931429deb5c89fca30d2, type: 3}
   m_Name: 
-  boulderSpawn: {fileID: 1341427507}
+  boulderSpawn1: {fileID: 0}
+  boulderSpawn2: {fileID: 0}
+  boulderSpawn3: {fileID: 0}
+  boulderSpawn4: {fileID: 0}
   boulder: {fileID: 100000, guid: 667eb9506ed9c104e9ebad65373e3b59, type: 2}
+  timer: 0
 --- !u!82 &194406786
 AudioSource:
   m_ObjectHideFlags: 0
@@ -38014,7 +38058,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 648283472}
   m_GameObject: {fileID: 493625318}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -57974,7 +58018,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1424154384}
   m_GameObject: {fileID: 755989013}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -80868,7 +80912,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 857359848}
   m_GameObject: {fileID: 1084651177}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -89655,7 +89699,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 858180680}
   m_GameObject: {fileID: 1235017291}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -102583,7 +102627,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 1478779887}
   m_GameObject: {fileID: 1370284247}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001
@@ -110857,6 +110901,45 @@ Prefab:
   m_RootGameObject: {fileID: 1370284247}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1481554770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+  m_PrefabInternal: {fileID: 44220484}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1481554772}
+  - 114: {fileID: 1481554771}
+  m_Layer: 0
+  m_Name: Stopwatch
+  m_TagString: Stopwatch
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1481554771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 566c0cbb9a14d2e4f919d9a18be47102,
+    type: 2}
+  m_PrefabInternal: {fileID: 44220484}
+  m_GameObject: {fileID: 1481554770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61fa80f73d7fffd41b3166b0e054c071, type: 3}
+  m_Name: 
+  timerFont: {fileID: 12800000, guid: 43961558129becb468b4f6a4bed350a1, type: 3}
+--- !u!4 &1481554772
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 566c0cbb9a14d2e4f919d9a18be47102, type: 2}
+  m_PrefabInternal: {fileID: 44220484}
+  m_GameObject: {fileID: 1481554770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1481631831
 GameObject:
   m_ObjectHideFlags: 0
@@ -112484,7 +112567,7 @@ MonoBehaviour:
   m_Name: 
   spawnPosition: {fileID: 152468162}
   tipDisplayTime: 0
-  lastLevel: 8
+  lastLevel: 9
   messageFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}
   menuFont: {fileID: 12800000, guid: f821af49cfa277e4eaf7ba90cc98f189, type: 3}
   defaultIcon: {fileID: 2800000, guid: d413da5d52cb79b4294ddf5e716b4265, type: 3}
@@ -157658,7 +157741,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 866117293}
   m_GameObject: {fileID: 2095758706}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: .860000014
   m_Height: 5.6500001

@@ -68,6 +68,8 @@ public class PlatformerController : MonoBehaviour
 		// This will keep track of how long we have we been in the air (not grounded)
 		[System.NonSerialized]
 		public float hangTime= 0.0f;
+		
+		public float maxSpeedUp = 10f;
 	}
 	
 	public PlatformerControllerMovement movement = new PlatformerControllerMovement();
@@ -401,7 +403,9 @@ public class PlatformerController : MonoBehaviour
 	}
 	
 	public void SpeedUp(float speed) {
-		movement.speed = movement.speed + speed;
+		float newSpeed = movement.speed + speed;
+		if (newSpeed < movement.maxSpeedUp)
+			movement.speed = newSpeed;
 	}
 	
 	public void ResetCharSpeed() {

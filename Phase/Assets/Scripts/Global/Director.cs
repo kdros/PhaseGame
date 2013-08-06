@@ -24,6 +24,8 @@ public class Director : MonoBehaviour
 	public Texture2D pausedTexture;
 	public Texture2D pauseBkgdTexture;
 	
+	public float maximumSpeedUp = 150f;
+	
 	Transform sceneCamera;
 	CameraFollow camFollow;
 	LevelDirector ld;
@@ -273,6 +275,9 @@ public class Director : MonoBehaviour
 					camFollow.panTo (player.transform.position.x, player.transform.position.y);
 					panTriggerActive = false;
 					currentIndex = 0;
+					
+					if (!player.IsControllable ())
+						player.SetPlayerControl (true);
 				}
 			}
 			
@@ -286,9 +291,9 @@ public class Director : MonoBehaviour
 				}
 			}
 		}
-		else
-			if (!player.IsControllable ())
-				player.SetPlayerControl (true);
+//		else
+//			if (!player.IsControllable ())
+//				player.SetPlayerControl (true);
 	}
 		
 	void OnGUI ()
@@ -685,6 +690,11 @@ public class Director : MonoBehaviour
 		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
 		panTriggerActive = true;
 		currentIndex = 0;
+	}
+	
+	public float GetMaxSpeedUp ()
+	{
+		return maximumSpeedUp;
 	}
 	
 	// used to store the total time it took to complete this level.

@@ -118,6 +118,8 @@ public class MainPlayerScript : MonoBehaviour {
 		spawnPoint = dir.GetSpawnPoint ();
 		m_platCtrlScript.SetSpawnPoint (spawnPoint, true);
 		
+		m_platCtrlScript.movement.maxSpeedUp = dir.GetMaxSpeedUp ();
+		
 		enableState ((int)State.Default);
 	}
 	

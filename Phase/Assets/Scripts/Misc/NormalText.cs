@@ -5,6 +5,6 @@ public class NormalText : TextScript
 {
 	public override void respondToClick()
 	{
-		PlayerPrefs.SetString ("GameMode","Normal");
+		PlayerPrefs.SetString (Constants.GameModeKey,Constants.GameModeNormal);
 	}
 }

@@ -132,6 +132,7 @@ MonoBehaviour:
   - {fileID: 1579698064}
   - {fileID: 350334639}
   - {fileID: 2132177359}
+  - {fileID: 1245182081}
   ModeMenuOptions:
   - {fileID: 893123515}
   - {fileID: 1016037701}
@@ -180,6 +181,7 @@ MonoBehaviour:
   textName: 9
   columnNumber: 2
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 9
 --- !u!65 &350334641
 BoxCollider:
@@ -279,7 +281,7 @@ GameObject:
   - 65: {fileID: 507280626}
   - 114: {fileID: 507280627}
   m_Layer: 0
-  m_Name: Text - Continue
+  m_Name: Text - Continueue
   m_TagString: MenuText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,7 +312,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 507280622}
-  m_Text: Continue
+  m_Text: Stage Select
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -389,6 +391,7 @@ MonoBehaviour:
   textName: 4
   columnNumber: 1
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 4
 --- !u!65 &546357521
 BoxCollider:
@@ -877,6 +880,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71cf37cd19634a4e8a0a3c65962c456, type: 3}
   m_Name: 
   degreesPerSecond: 10
+--- !u!1 &1245182081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1245182086}
+  - 102: {fileID: 1245182085}
+  - 23: {fileID: 1245182084}
+  - 65: {fileID: 1245182083}
+  - 114: {fileID: 1245182082}
+  m_Layer: 0
+  m_Name: Text - Records
+  m_TagString: MenuText
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1245182082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245182081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a858ea530043b9c498d279454cfce973, type: 3}
+  m_Name: 
+  textName: Records
+  columnNumber: 3
+  isTransitionText: 0
+  newGameButton: 0
+  LevelToLoad: 10
+--- !u!65 &1245182083
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245182081}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 45, y: 8, z: 0}
+  m_Center: {x: 22.75, y: -3, z: 0}
+--- !u!23 &1245182084
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245182081}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: f821af49cfa277e4eaf7ba90cc98f189, type: 3}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!102 &1245182085
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245182081}
+  m_Text: Records
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 100
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 12800000, guid: f821af49cfa277e4eaf7ba90cc98f189, type: 3}
+--- !u!4 &1245182086
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1245182081}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.19999981, y: .300000012, z: 0}
+  m_LocalScale: {x: .0224764589, y: .0224764589, z: .0224764589}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1257991968
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +1005,7 @@ MonoBehaviour:
   textName: 7
   columnNumber: 2
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 7
 --- !u!65 &1257991970
 BoxCollider:
@@ -1001,6 +1098,7 @@ MonoBehaviour:
   textName: 6
   columnNumber: 2
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 6
 --- !u!65 &1270920077
 BoxCollider:
@@ -1248,6 +1346,7 @@ MonoBehaviour:
   textName: 2
   columnNumber: 1
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 2
 --- !u!65 &1568911301
 BoxCollider:
@@ -1340,6 +1439,7 @@ MonoBehaviour:
   textName: 8
   columnNumber: 2
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 8
 --- !u!65 &1579698066
 BoxCollider:
@@ -1659,6 +1759,7 @@ MonoBehaviour:
   textName: 3
   columnNumber: 1
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 3
 --- !u!65 &1884907872
 BoxCollider:
@@ -1751,6 +1852,7 @@ MonoBehaviour:
   textName: 5
   columnNumber: 1
   isTransitionText: 0
+  newGameButton: 0
   LevelToLoad: 5
 --- !u!65 &1950530196
 BoxCollider:
@@ -1928,6 +2030,7 @@ MonoBehaviour:
   textName: NewGame
   columnNumber: 1
   isTransitionText: 0
+  newGameButton: 1
   LevelToLoad: 2
 --- !u!1 &2132177359
 GameObject:

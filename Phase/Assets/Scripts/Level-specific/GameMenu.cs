@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /* Main Screen Script
  * Handles the transition between each option.
  * PlayerPref keys - values: LevelToLoad - [list of texts containing the levels to show]
- *							 GameMode - [Normal, SpeedRun] 					
+ *							 GameMode - [Normal, SpeedRun] 				
  */
 public class GameMenu : MonoBehaviour 
 {
@@ -51,16 +51,22 @@ public class GameMenu : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		if (!PlayerPrefs.HasKey("LevelToLoad"))
+		if (!PlayerPrefs.HasKey(Constants.LevelToLoadKey))
 		{
-			PlayerPrefs.SetInt("LevelToLoad",0);
+			PlayerPrefs.SetInt(Constants.LevelToLoadKey,0);
 			sceneToLoad = 0;
 		}
 		else
 		{
-			sceneToLoad = PlayerPrefs.GetInt("LevelToLoad");	
+			sceneToLoad = PlayerPrefs.GetInt(Constants.LevelToLoadKey);	
 		}
 		
+		if (!PlayerPrefs.HasKey(Constants.GameModeKey))
+		{
+			// default to normal mode
+			PlayerPrefs.SetString (Constants.GameModeKey,Constants.GameModeNormal);
+		}
+				
 		display = (int)MenuState.MainMenuOptions;
 		last = display;
 		transitionDone = true;
@@ -83,12 +89,12 @@ public class GameMenu : MonoBehaviour
 		{
 			TextScript ts = ContinueMenuOptions[i].GetComponent<TextScript>(); // TODO: Only add levels that we should have access to
 			
-			if(ts.textName.Equals("ContinueBack"))
+			if(ts.textName.Equals(Constants.continueBackButton))
 				ContinueMenuOptionScripts.Add(ts);
+			else if (ts.textName.Equals(Constants.loadRecordLevel))
+				ContinueMenuOptionScripts.Add(ts);			
 			else if (int.Parse(ts.textName) <= sceneToLoad)
 				ContinueMenuOptionScripts.Add(ts);
-			
-			
 		}
 		
 		for (int i = 0 ; i < ModeMenuOptions.Length ; i++)

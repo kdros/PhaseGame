@@ -5,6 +5,6 @@ public class SpeedRunText : TextScript
 {
 	public override void respondToClick()
 	{
-		PlayerPrefs.SetString ("GameMode", "SpeedRun");
+		PlayerPrefs.SetString (Constants.GameModeKey, Constants.GameModeSpeedRun);
 	}
 }

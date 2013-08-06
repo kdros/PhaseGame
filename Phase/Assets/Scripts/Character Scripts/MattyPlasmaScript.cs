@@ -15,7 +15,7 @@ public class MattyPlasmaScript : MatterScript
 	bool grounded, isOnLava;
 	float curTime, lavaMaxTimeBy2;
 	
-	void Start ()
+	void Awake ()
 	{
 //		clothRenderer = GetComponent<ClothRenderer>();
 		meshRenderer = GetComponent<MeshRenderer>();

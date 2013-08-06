@@ -677,8 +677,8 @@ public class MainPlayerScript : MonoBehaviour {
 //		}
 		spawnPoint = dir.GetSpawnPoint ();
 		transform.position = spawnPoint;
-		m_platCtrlScript.canControl = false;
 		
+		m_platCtrlScript.canControl = false;		
 		Vector2 thisPt = new Vector2 (spawnPoint.x, spawnPoint.y);	
 		m_camera.panTo (thisPt.x, thisPt.y);
 		

@@ -9,6 +9,7 @@ public class PanTrigger : MonoBehaviour
 		public Transform position;
 		public string message;
 		public float waitTime;
+		public float panTime;
 	}
 	
 	public PanDestination[] destination;

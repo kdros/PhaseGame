@@ -25,6 +25,7 @@ public class Director : MonoBehaviour
 	public Texture2D pauseBkgdTexture;
 	
 	Transform sceneCamera;
+	CameraFollow camFollow;
 	LevelDirector ld;
 	
 	Color originalAmbientColor;
@@ -41,7 +42,7 @@ public class Director : MonoBehaviour
 	bool panTriggerActive = false;
 	float displayTime = 0f;
 	float one = 1f;
-	string triggerMessages, messageToBeDisplayed;
+	string triggerMessages, messageToBeDisplayed, messageToPlayer = "";
 	
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	System.Collections.Generic.List<DarkCave> darkCavesList;
@@ -82,6 +83,7 @@ public class Director : MonoBehaviour
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
 		sceneCamera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>();
+		camFollow = sceneCamera.gameObject.GetComponent<CameraFollow>();
 		
 		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
 		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
@@ -216,30 +218,46 @@ public class Director : MonoBehaviour
 		if (Input.GetButtonDown ("LoadPauseMenu"))
 			PauseGame ();
 		
-		CameraFollow camFollow = sceneCamera.gameObject.GetComponent<CameraFollow>();
 		if (panTriggerActive)
 		{
-			player.SetPlayerControl (false);
+			if (player.IsControllable ())
+				player.SetPlayerControl (false);
+			
 			if (currentIndex < dest.Length)
 			{
+				// Cycle through all the positions.
 				if (camFollow.isCameraInPosition ())
 				{
-					camFollow.PanToAbsolute (dest [currentIndex].position.position, dest [currentIndex].waitTime, 3.5f);
-					messageToBeDisplayed = dest [currentIndex].message;
+					// If camera has completed panning to (and waiting at) the previous position,
+					// pan to the next (current) position.
+					if (dest [currentIndex].panTime == 0f)
+						dest [currentIndex].panTime = -1f;
+					camFollow.PanToAbsolute (dest [currentIndex].position.position, dest [currentIndex].waitTime, 
+											 dest [currentIndex].panTime);
+					messageToPlayer = dest [currentIndex].message;
 					currentIndex ++;
-				}
-				else if (camFollow.IsStopped ())
-				{	
-					if (messageToBeDisplayed != "")
-						DisplayMessage (messageToBeDisplayed);
 				}
 			}
 			else
 			{
+				// Camera has panned or is panning to the last position. 
 				if (camFollow.isCameraInPosition ())
 				{
+					// Camera has completed panning to (and waiting at) the last position. 
+					// So, pan back to where the player is.
 					camFollow.panTo (player.transform.position.x, player.transform.position.y);
 					panTriggerActive = false;
+					currentIndex = 0;
+				}
+			}
+			
+			if (camFollow.IsStopped ())
+			{	
+				// If camera is waiting at the current position, display message, if any.
+				if (messageToPlayer != "")
+				{
+					DisplayMessage (messageToPlayer);
+					messageToPlayer = "";
 				}
 			}
 		}

@@ -34,7 +34,7 @@ public class GameMenu : MonoBehaviour
 	private List<TextScript> ContinueMenuOptionScripts;
 	private List<string> ContinueMenuNames;
 	
-	private List<TextScript> ModeMenuOptionScripts;	
+	private List<TextScript> ModeMenuOptionScripts;
 	private List<string> ModeMenuNames;
 	
 	private int sceneToLoad;							// continue menu should show options up to this

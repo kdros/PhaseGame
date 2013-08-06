@@ -7,8 +7,6 @@ public class LoadLevelText : TextScript
 	public int LevelToLoad;
 	public override void respondToClick ()
 	{
-		int startLevel = LevelToLoad;
-		
 		if (newGameButton)
 			PlayerPrefs.SetInt(Constants.LevelToLoadKey, Constants.introSceneIndex);
 			

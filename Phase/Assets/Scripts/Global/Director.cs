@@ -265,7 +265,7 @@ public class Director : MonoBehaviour
 					currentIndex ++;
 				}
 			}
-			else
+			else if (currentIndex == dest.Length)
 			{
 				// Camera has panned or is panning to the last position. 
 				if (camFollow.isCameraInPosition ())
@@ -273,6 +273,15 @@ public class Director : MonoBehaviour
 					// Camera has completed panning to (and waiting at) the last position. 
 					// So, pan back to where the player is.
 					camFollow.panTo (player.transform.position.x, player.transform.position.y);
+					currentIndex ++;
+				}
+			}
+			else
+			{
+				// Camera has panned to all positions and is returning to focu on player. 
+				if (camFollow.isCameraInPosition ())
+				{
+					// Camera has panned back to where the player is.
 					panTriggerActive = false;
 					currentIndex = 0;
 					

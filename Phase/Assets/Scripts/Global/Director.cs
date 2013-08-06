@@ -243,7 +243,7 @@ public class Director : MonoBehaviour
 		if (Input.GetButtonDown ("LoadPauseMenu"))
 			PauseGame ();
 		
-		if (panTriggerActive)
+		if (panTriggerActive && !isSpeedRun)
 		{
 			if (player.IsControllable ())
 				player.SetPlayerControl (false);
@@ -299,7 +299,7 @@ public class Director : MonoBehaviour
 		newStyle.alignment = TextAnchor.MiddleCenter;
 		GUI.skin.button = newStyle;
 		
-		if (displayMessage)
+		if (displayMessage && !isSpeedRun)
 		{
 			GUIStyle wordWrapStyle = new GUIStyle ();
 			wordWrapStyle.wordWrap = true;

@@ -688,6 +688,7 @@ public class Director : MonoBehaviour
 	}
 	
 	// used to store the total time it took to complete this level.
+	// will keep track of top 5 fastest attempts
 	public void storeTime()
 	{
 		

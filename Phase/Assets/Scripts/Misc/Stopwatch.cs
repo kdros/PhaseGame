@@ -8,13 +8,13 @@ public class Stopwatch : MonoBehaviour
 	public Font timerFont;
 	
 	private GUIStyle timerGUIStyle;
-	private bool active;
+	private bool isActive;
 	private float timeInSec;
 	private TimeSpan ts;
 	
-	void Start ()
+	void Awake ()
 	{
-		active = true;
+		isActive = false;
 		timeInSec = 0.0f;
 		
 		timerGUIStyle = new GUIStyle();
@@ -27,13 +27,13 @@ public class Stopwatch : MonoBehaviour
 	
 	void OnGUI()
 	{
-		GUI.Box (new Rect ((float)Screen.width / 2 - 125.0f, (float)Screen.height / 15, 250.0f, 30.0f), getFormattedTimeString (), timerGUIStyle);
+		if (isActive)
+			GUI.Box (new Rect ((float)Screen.width / 2 - 125.0f, (float)Screen.height / 15, 250.0f, 30.0f), getFormattedTimeString (), timerGUIStyle);
 	}
 	
 	void FixedUpdate () 
 	{
-		getTime ();
-		if (active)
+		if (isActive)
 		{
 			timeInSec += Time.deltaTime;
 		}
@@ -41,12 +41,12 @@ public class Stopwatch : MonoBehaviour
 	
 	public void pauseStopwatch()
 	{
-		active = false;
+		isActive = false;
 	}
 	
 	public void resumeStopwatch()
 	{
-		active = true;
+		isActive = true;
 	}
 	
 	public void startStopwatch()
@@ -57,7 +57,7 @@ public class Stopwatch : MonoBehaviour
 	public void restartStopwatch()
 	{
 		timeInSec = 0.0f;
-		active = true;	
+		isActive = true;	
 	}
 	
 	public string getFormattedTimeString()
@@ -76,8 +76,12 @@ public class Stopwatch : MonoBehaviour
 	
 	public string getTime()
 	{
-//		Debug.Log("Time: "+TimeSpan.FromSeconds(timeInSec).ToString());
 		string timeString = TimeSpan.FromSeconds(timeInSec).ToString();
 		return timeString.Substring(0,timeString.Length - 4);
+	}
+	
+	public double getTotalSeconds()
+	{
+		return ts.TotalSeconds;
 	}
 }

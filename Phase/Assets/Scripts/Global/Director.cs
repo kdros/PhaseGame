@@ -58,6 +58,10 @@ public class Director : MonoBehaviour
 	PanTrigger.PanDestination[] dest;
 	int currentIndex = 0;
 	
+	GameObject levelStopwatch;
+	Stopwatch stopwatch;
+	bool isSpeedRun;
+	
 	// Get the current scene
 //	public string currentLevel;
 //	public int currentLevelNum;
@@ -141,6 +145,24 @@ public class Director : MonoBehaviour
 		{
 			Debug.LogWarning ("A Level Director was not found for this level!");
 		}
+		
+		try
+		{
+			levelStopwatch = GameObject.FindGameObjectWithTag("Stopwatch");
+		}
+		catch (System.Exception e)
+		{
+			Debug.LogWarning ("Stopwatch was not found for this level!");	
+		}
+		
+		stopwatch = levelStopwatch.GetComponent<Stopwatch>();
+		
+		if (PlayerPrefs.GetString(Constants.GameModeKey).Equals(Constants.GameModeSpeedRun))
+		{
+			stopwatch.startStopwatch();
+			isSpeedRun = true;
+		}
+		
 	}
 	
 	// Update is called once per frame
@@ -306,8 +328,12 @@ public class Director : MonoBehaviour
 		}
 		
 		if (displayPauseMenu)
+		{
+			//stopwatch.pauseStopwatch();
 			loadPauseMenu ();
-
+		}
+		//else
+		//	stopwatch.resumeStopwatch();
 		
 		// Display boxes to show possible transitions.
 		for (int i = 0; i < 5; i++)
@@ -630,6 +656,10 @@ public class Director : MonoBehaviour
 	public void MoveToNextLevel()
 	{
 		int currentLevelNum = Application.loadedLevel;
+		
+		if (isSpeedRun)
+			storeTime();
+		
 		if (currentLevelNum == lastLevel)
 			Application.LoadLevel(1); // Load GameMenu scene
 		else
@@ -652,5 +682,11 @@ public class Director : MonoBehaviour
 		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
 		panTriggerActive = true;
 		currentIndex = 0;
+	}
+	
+	// used to store the total time it took to complete this level.
+	public void storeTime()
+	{
+		
 	}
 }

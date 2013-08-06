@@ -55,9 +55,7 @@ That's the end. All's well that ends well.
 BegLev3_Trigger12
 You know you've crossed a Checkpoint when it shows a green flag instead of a red one. If you die at any point from here onward, you will respawn here.  
 BegLev3_Trigger13
-Welcome to the Plasma state tutorial level. In this level, we'll learn to use Matty's plasma state to get past various traps. 
-BegLev3_Trigger14
-Ooh, some fancy trap sequences ahead. Use what you've learnt from this level, avoid them and dash to the finish!
+Welcome to the Plasma state tutorial level. In this level, we'll learn to use Matty's plasma state to get past various traps.
 BegLev3_Trigger15
 That seems to have done the trick!
 BegLev4_MessageWelcome

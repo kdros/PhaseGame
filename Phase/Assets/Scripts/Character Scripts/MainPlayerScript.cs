@@ -653,7 +653,10 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		
 		playerDead = true;
-
+		
+		if (m_plasmaMatty.activeSelf)
+			m_plasmaMattyScript.Reset ();
+		
 		m_defaultMatty.SetActive(false);
 		m_solidMatty.SetActive(false);		
 		m_liquidMatty.SetActive(false);

@@ -7,7 +7,7 @@ public class Destroyer : MonoBehaviour
 	void OnCollisionEnter (Collision collision)
 	{
 		Collider collider = collision.collider;
-		if ((!collider.CompareTag ("Player")) || (!collider.tag.Contains ("Matty")))
+		if ((!collider.CompareTag ("Player")) && (!collider.tag.Contains ("Matty")))
 			Destroy (collider.gameObject);	
 	}
 }

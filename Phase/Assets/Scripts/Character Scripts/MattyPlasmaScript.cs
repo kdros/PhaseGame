@@ -58,7 +58,7 @@ public class MattyPlasmaScript : MatterScript
 			glow.color = Color.Lerp (originalColour, Color.red, curTime/lavaMaxTime);
 			meshRenderer.material.SetColor ("_Color", glow.color);
 		}
-		else if (curTime < 0f)
+		else if (curTime <= 0f)
 		{
 			curTime = 0f;
 			if (!glow.color.Equals (originalColour))
@@ -68,7 +68,7 @@ public class MattyPlasmaScript : MatterScript
 		}
 	}
 	
-	void Reset ()
+	public void Reset ()
 	{
 		if (embers.isPlaying)
 			embers.Stop ();

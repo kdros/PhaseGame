@@ -149,18 +149,21 @@ public class Director : MonoBehaviour
 		try
 		{
 			levelStopwatch = GameObject.FindGameObjectWithTag("Stopwatch");
+			stopwatch = levelStopwatch.GetComponent<Stopwatch>();
+		
+			if (PlayerPrefs.GetString(Constants.GameModeKey).Equals(Constants.GameModeSpeedRun))
+			{
+				stopwatch.startStopwatch();
+				isSpeedRun = true;
+			}
 		}
-		catch (System.Exception e)
+		catch (System.NullReferenceException e)
 		{
 			Debug.LogWarning ("Stopwatch was not found for this level!");	
 		}
-		
-		stopwatch = levelStopwatch.GetComponent<Stopwatch>();
-		
-		if (PlayerPrefs.GetString(Constants.GameModeKey).Equals(Constants.GameModeSpeedRun))
+		catch (System.Exception e)
 		{
-			stopwatch.startStopwatch();
-			isSpeedRun = true;
+			Debug.LogError (e.Message);
 		}
 		
 	}

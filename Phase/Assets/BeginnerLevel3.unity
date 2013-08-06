@@ -14247,7 +14247,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 287124196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.3860016, y: 24.796524, z: -19.655508}
+  m_LocalPosition: {x: -30.165329, y: 24.796524, z: -19.655508}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15875,7 +15875,7 @@ Prefab:
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: spawnPosition
       value: 
-      objectReference: {fileID: 502824811}
+      objectReference: {fileID: 621821562}
     - target: {fileID: 11400000, guid: efc8c83505a623b479077b0a689d7cbc, type: 2}
       propertyPath: quitTexture
       value: 
@@ -24084,45 +24084,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1820770895}
---- !u!1 &502251422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 502251423}
-  - 65: {fileID: 502251424}
-  m_Layer: 0
-  m_Name: BegLev3_Trigger14
-  m_TagString: TriggerText
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &502251423
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 502251422}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.3539658, y: 24.6792183, z: 0}
-  m_LocalScale: {x: 1, y: 11.3420277, z: 5.24593306}
-  m_Children: []
-  m_Father: {fileID: 1719820334}
---- !u!65 &502251424
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 502251422}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &502389212
 GameObject:
   m_ObjectHideFlags: 0
@@ -25340,11 +25301,14 @@ MonoBehaviour:
   m_Name: 
   destination:
   - position: {fileID: 1175372051}
-    message: Hello!
-    waitTime: 5
+    message: 
+    waitTime: 0
+    panTime: 2
   - position: {fileID: 287124201}
-    message: Nice to meet you!
-    waitTime: 4
+    message: Ooh, some fancy trap sequences ahead. Use what you've learnt from this
+      level, avoid them and dash to the finish!
+    waitTime: 3
+    panTime: 8
 --- !u!65 &531774971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25365,7 +25329,7 @@ Transform:
   m_PrefabInternal: {fileID: 1256739000}
   m_GameObject: {fileID: 531774969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -126.772263, y: 27.6043549, z: 0}
+  m_LocalPosition: {x: -134.433441, y: 27.6043549, z: 0}
   m_LocalScale: {x: 1, y: 11.3420277, z: 5.24593306}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55373,7 +55337,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1340298f894839141b6c50a31abad8ba, type: 3}
   m_Name: 
-  spawnPosition: {fileID: 502824811}
+  spawnPosition: {fileID: 621821562}
   tipDisplayTime: 0
   lastLevel: 9
   messageFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}
@@ -58186,7 +58150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -126.772263
+      value: -134.433441
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalPosition.y
@@ -58226,19 +58190,28 @@ Prefab:
       objectReference: {fileID: 287124201}
     - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: destination.Array.data[0].waitTime
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: destination.Array.data[0].message
-      value: Hello!
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: destination.Array.data[1].message
-      value: Nice to meet you!
+      value: Ooh, some fancy trap sequences ahead. Use what you've learnt from this
+        level, avoid them and dash to the finish!
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: destination.Array.data[1].waitTime
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].panTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].panTime
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
@@ -67742,7 +67715,6 @@ GameObject:
   - 33: {fileID: 1446601327}
   - 23: {fileID: 1446601325}
   - 65: {fileID: 1446601329}
-  - 65: {fileID: 1446601326}
   m_Layer: 0
   m_Name: IcyFloor
   m_TagString: IcyFloor
@@ -67769,18 +67741,6 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
---- !u!65 &1446601326
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1446601324}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: .340000004, z: 10}
-  m_Center: {x: 0, y: .180000007, z: 0}
 --- !u!33 &1446601327
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -67796,7 +67756,7 @@ Transform:
   m_PrefabInternal: {fileID: 1682967236}
   m_GameObject: {fileID: 1446601324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -130.783997, y: 21.912138, z: .501408339}
+  m_LocalPosition: {x: -128.554276, y: 21.912138, z: .501408339}
   m_LocalScale: {x: .463986665, y: .567785978, z: .567785978}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78233,7 +78193,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 5baa9ef0e87e3cd44a4d2d6cf4cd8ec7, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -130.783997
+      value: -128.554276
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5baa9ef0e87e3cd44a4d2d6cf4cd8ec7, type: 2}
       propertyPath: m_LocalPosition.y
@@ -80871,7 +80831,6 @@ Transform:
   m_Children:
   - {fileID: 559253190}
   - {fileID: 1408905064}
-  - {fileID: 502251423}
   - {fileID: 1792371220}
   - {fileID: 1957628211}
   - {fileID: 974427590}

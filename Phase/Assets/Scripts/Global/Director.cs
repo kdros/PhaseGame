@@ -38,6 +38,7 @@ public class Director : MonoBehaviour
 	
 	bool displayMessage = false;
 	bool displayPauseMenu = false;
+	bool panTriggerActive = false;
 	float displayTime = 0f;
 	float one = 1f;
 	string triggerMessages, messageToBeDisplayed;
@@ -52,7 +53,10 @@ public class Director : MonoBehaviour
 	
 	GUIStyle stateInfoBox;
 	MainPlayerScript player;
-		
+	
+	PanTrigger.PanDestination[] dest;
+	int currentIndex = 0;
+	
 	// Get the current scene
 //	public string currentLevel;
 //	public int currentLevelNum;
@@ -68,6 +72,7 @@ public class Director : MonoBehaviour
 		
 		displayMessage = false;
 		displayPauseMenu = false;
+		panTriggerActive = false;
 		displayTime = 0f;
 		one = 1f;
 		messageToBeDisplayed = "";
@@ -100,7 +105,6 @@ public class Director : MonoBehaviour
 		
 		LoadTriggerMessagesFromFile ();
 		GUIDimensionSetup ();
-//		SetCurrentLevel();
 		
 		// Creates a backup of the light intensities of all the lights in the scene.
 		// This is needed since we need to lerp the light intensities to zero when player
@@ -123,7 +127,6 @@ public class Director : MonoBehaviour
 		stateInfoBox.name = "StateInfoBox";
 		stateInfoBox.alignment = TextAnchor.LowerRight;
 		stateInfoBox.font = menuFont;
-//		stateInfoBox.fontStyle = FontStyle.Bold;
 		stateInfoBox.normal.textColor = Color.white;
 		
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
@@ -212,6 +215,37 @@ public class Director : MonoBehaviour
 		
 		if (Input.GetButtonDown ("LoadPauseMenu"))
 			PauseGame ();
+		
+		CameraFollow camFollow = sceneCamera.gameObject.GetComponent<CameraFollow>();
+		if (panTriggerActive)
+		{
+			player.SetPlayerControl (false);
+			if (currentIndex < dest.Length)
+			{
+				if (camFollow.isCameraInPosition ())
+				{
+					camFollow.PanToAbsolute (dest [currentIndex].position.position, dest [currentIndex].waitTime, 3.5f);
+					messageToBeDisplayed = dest [currentIndex].message;
+					currentIndex ++;
+				}
+				else if (camFollow.IsStopped ())
+				{	
+					if (messageToBeDisplayed != "")
+						DisplayMessage (messageToBeDisplayed);
+				}
+			}
+			else
+			{
+				if (camFollow.isCameraInPosition ())
+				{
+					camFollow.panTo (player.transform.position.x, player.transform.position.y);
+					panTriggerActive = false;
+				}
+			}
+		}
+		else
+			if (!player.IsControllable ())
+				player.SetPlayerControl (true);
 	}
 		
 	void OnGUI ()
@@ -593,5 +627,12 @@ public class Director : MonoBehaviour
 		
 		if (currentLevel > lastLevel)
 			PlayerPrefs.SetInt("LevelToLoad", Application.loadedLevel);
+	}
+	
+	public void PanTrigger (Collider collider)
+	{
+		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
+		panTriggerActive = true;
+		currentIndex = 0;
 	}
 }

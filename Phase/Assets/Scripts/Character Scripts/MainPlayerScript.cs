@@ -507,6 +507,11 @@ public class MainPlayerScript : MonoBehaviour {
 			if (dir.EventTrigger (collider.name))
 				collider.gameObject.SetActive (false);
 		}
+		else if (collider.CompareTag ("PanTrigger"))
+		{
+			dir.PanTrigger (collider);
+			collider.gameObject.SetActive (false);
+		}
 		else if (collider.CompareTag ("DeathPlane"))
 		{
 			Debug.Log("Fell off");
@@ -671,8 +676,8 @@ public class MainPlayerScript : MonoBehaviour {
 		m_platCtrlScript.canControl = false;
 		
 //		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
-			
-		m_camera.panTo (new Vector2 (spawnPoint.x, spawnPoint.y));
+		Vector2 thisPt = new Vector2 (spawnPoint.x, spawnPoint.y);	
+		m_camera.panTo (thisPt.x, thisPt.y);
 		
 		// Reset speed
 		m_platCtrlScript.ResetCharSpeed();
@@ -716,6 +721,11 @@ public class MainPlayerScript : MonoBehaviour {
 	public void SetPlayerControl (bool isControllable)
 	{
 		m_platCtrlScript.canControl = isControllable;
+	}
+	
+	public bool IsControllable ()
+	{
+		return m_platCtrlScript.canControl;
 	}
 	
 	public void ResetSpeed ()

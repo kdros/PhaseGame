@@ -13,10 +13,13 @@ public class CameraFollow : MonoBehaviour {
 	public float distance; 		// the distance in the x-y plane to the target
 	public float height;		// the height we want the camera to be above the target
 	public float panTime;
-	
+		
 	float speed;
+	float curTime;
+	float waitAfterPanning;
 	bool isPanning;
-	Vector2 newPosition;
+	bool stopPanning;
+	Vector3 newPosition;
 	Vector3 normalizedError;
 	
 	Vector3 camDist;
@@ -28,6 +31,8 @@ public class CameraFollow : MonoBehaviour {
 		if (panTime == 0f)
 			panTime = 3f;
 		speed = 0f;
+		curTime = 0f;
+		waitAfterPanning = 0f;
 		isPanning = false;
 		newPosition = Vector2.zero;
 		normalizedError = Vector3.one;
@@ -45,23 +50,42 @@ public class CameraFollow : MonoBehaviour {
 		
 		if (isPanning)
 		{	
-			camDist = new Vector3(0,-height,distance);
-			Vector3 error = new Vector3 (newPosition.x, newPosition.y, 0) - camDist - transform.position;
-			if ((error.sqrMagnitude < 0.25f)||(Vector3.Dot (error, normalizedError) < 0))
+			// Panning is in progress.
+			Vector3 error = newPosition - camDist - transform.position;
+			if ((error.sqrMagnitude < 0.01f)||(Vector3.Dot (error, normalizedError) < 0))
 			{
-				transform.position = new Vector3 (newPosition.x, newPosition.y, 0) - camDist;
-				newPosition = Vector2.zero;
-				isPanning = false;
+				if (!stopPanning)
+				{
+					// Camera has reached close enough to the target position.
+					// Set Camera position to target position.
+					transform.position = newPosition - camDist;
+					newPosition = Vector3.zero;
+					// Stop moving the camera.
+					stopPanning = true;
+				}
+				else
+				{
+					// Camera has reached target position and must wait waitAfterPanning seconds
+					// before setting isPanning to false, indicating that panning is complete.
+					curTime += Time.deltaTime;
+					if (curTime > waitAfterPanning)
+					{
+						curTime = 0f;
+						stopPanning = false;
+						isPanning = false;
+					}
+				}
 			}
 				
 			else
+				// Keep moving the camera to target position.
 				transform.position += (normalizedError*Time.deltaTime*speed);
 			
 			lookAtTarget = transform.position + camDist;
 		}
 		else
 		{
-//			Vector3 camPos = transform.position;
+			// Camera is not panning. Respond to user controls to increase/decrease height/distance.
 			
 			float h = Input.GetAxis ("CameraHeight");
 			camDist.y -= (h*Time.deltaTime);
@@ -79,24 +103,45 @@ public class CameraFollow : MonoBehaviour {
 			
 			transform.position = target.position - camDist;
 		}
-
+		
 		transform.LookAt (lookAtTarget);
 	}
 	
-	public void panTo (Vector2 newLookAtPosition)
+	public void panTo (float x, float y)
 	{
-		Vector3 camDist = new Vector3(0,-height,distance);
+		panTo (new Vector3 (x, y, 0), 0f, -1f);
+	}
+	
+	public void panTo (Vector3 newLookAtPosition, float waitTime = 0f, float panningTime = -1f)
+	{
+		if (panningTime == -1f)
+			panningTime = panTime;
+		camDist = new Vector3(0,-height,distance);
 		
-		isPanning = true;
+		isPanning = true;	 // Camera is panning.
+		stopPanning = false; // Do not stop panning.
+		
 		newPosition = newLookAtPosition;
-		normalizedError = (new Vector3 (newPosition.x, newPosition.y, 0) - camDist) - transform.position;
+		normalizedError = (newPosition - camDist) - transform.position;
 		
 		// The below hack is to combine two vector length operations into one.
 		speed = normalizedError.magnitude;
 		normalizedError = normalizedError / speed;
-		speed /= panTime;
+		speed /= panningTime;
+		
+		// Camera would wait this many seconds after panning before indicating that panning is complete.
+		waitAfterPanning = waitTime;
+	}
+	
+	public void PanToAbsolute (Vector3 absoluteCamPos, float waitTime = 0f, float panningTime = -1f)
+	{
+		panTo (absoluteCamPos + camDist, waitTime, panningTime);
 	}
 	
 	public bool isCameraInPosition ()
 	{	return !isPanning;	}
+	
+	public bool IsStopped ()
+	{	return stopPanning;	}
+	
 }

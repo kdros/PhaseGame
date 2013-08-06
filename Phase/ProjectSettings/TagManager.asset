@@ -32,6 +32,7 @@ TagManager:
   - LevelDirector
   - GameMenu
   - MenuText
+  - PanTrigger
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

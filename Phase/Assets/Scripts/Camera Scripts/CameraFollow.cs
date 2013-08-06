@@ -59,7 +59,6 @@ public class CameraFollow : MonoBehaviour {
 					// Camera has reached close enough to the target position.
 					// Set Camera position to target position.
 					transform.position = newPosition - camDist;
-					newPosition = Vector3.zero;
 					// Stop moving the camera.
 					stopPanning = true;
 				}
@@ -72,6 +71,7 @@ public class CameraFollow : MonoBehaviour {
 					{
 						curTime = 0f;
 						stopPanning = false;
+						newPosition = Vector3.zero;
 						isPanning = false;
 					}
 				}

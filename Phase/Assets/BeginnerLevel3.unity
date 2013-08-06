@@ -25340,11 +25340,11 @@ MonoBehaviour:
   m_Name: 
   destination:
   - position: {fileID: 1175372051}
-    message: 
-    waitTime: 0
+    message: Hello!
+    waitTime: 5
   - position: {fileID: 287124201}
-    message: 
-    waitTime: 0
+    message: Nice to meet you!
+    waitTime: 4
 --- !u!65 &531774971
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58224,6 +58224,22 @@ Prefab:
       propertyPath: destination.Array.data[1].position
       value: 
       objectReference: {fileID: 287124201}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].waitTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].message
+      value: Hello!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].message
+      value: Nice to meet you!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].waitTime
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
   m_RootGameObject: {fileID: 531774969}

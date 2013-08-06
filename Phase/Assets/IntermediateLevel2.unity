@@ -21947,7 +21947,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 345475369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67.2642212, y: 19.8292656, z: -25.529808}
+  m_LocalPosition: {x: 47.7860565, y: 22.6488113, z: -25.529808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 182495669}
@@ -68829,6 +68829,10 @@ Prefab:
       propertyPath: m_Name
       value: BlockingBoulder
       objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: bdcb72b956bf8c34299642759cfad148, type: 2}
+      propertyPath: m_Constraints
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bdcb72b956bf8c34299642759cfad148, type: 2}
   m_RootGameObject: {fileID: 1878472867}
@@ -70971,7 +70975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6b713ae419b5048b4a29dc763bd952, type: 3}
   m_Name: 
   target: {fileID: 173449318}
-  distance: 15
+  distance: 13
   height: 3
   panTime: 2
 --- !u!1 &1124160713
@@ -125621,7 +125625,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 8
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!64 &1878472869
 MeshCollider:
@@ -133614,7 +133618,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2032285112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 348.880707, y: -92.4975586, z: 0}
+  m_LocalPosition: {x: 224.03511, y: -23.3442307, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

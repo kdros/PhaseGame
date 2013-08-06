@@ -200,7 +200,6 @@ public class MainPlayerScript : MonoBehaviour {
 				playerDead = false;
 				dir.ResetDarkCave ();
 				m_platCtrlScript.SetSpawnPoint (spawnPoint);
-//				transform.position = spawnPoint;
 				m_platCtrlScript.canControl = true;
 				
 				enableState (m_currentState);
@@ -388,6 +387,7 @@ public class MainPlayerScript : MonoBehaviour {
 					GameObject explosion = Instantiate(deathExplosion, collider.transform.position, Quaternion.identity) as GameObject;
 					Destroy (explosion, 2);
 					Destroy (collider.gameObject);
+					AudioSource.PlayClipAtPoint (deathSound, collider.transform.position);
 				}
 				else if ((m_currentState == (int)State.Gas) || (m_currentState == (int)State.Liquid))
 				{
@@ -654,8 +654,9 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		playerDead = true;
 		
-		if (m_plasmaMatty.activeSelf)
-			m_plasmaMattyScript.Reset ();
+		if (!m_plasmaMatty.activeSelf)
+			m_plasmaMatty.SetActive (true);
+		m_plasmaMattyScript.Reset ();
 		
 		m_defaultMatty.SetActive(false);
 		m_solidMatty.SetActive(false);		
@@ -678,7 +679,6 @@ public class MainPlayerScript : MonoBehaviour {
 		transform.position = spawnPoint;
 		m_platCtrlScript.canControl = false;
 		
-//		GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraFollow>().panTo 
 		Vector2 thisPt = new Vector2 (spawnPoint.x, spawnPoint.y);	
 		m_camera.panTo (thisPt.x, thisPt.y);
 		

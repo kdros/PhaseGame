@@ -25,6 +25,7 @@ public class Director : MonoBehaviour
 	public Texture2D pauseBkgdTexture;
 	
 	Transform sceneCamera;
+	CameraFollow camFollow;
 	LevelDirector ld;
 	
 	Color originalAmbientColor;
@@ -38,9 +39,10 @@ public class Director : MonoBehaviour
 	
 	bool displayMessage = false;
 	bool displayPauseMenu = false;
+	bool panTriggerActive = false;
 	float displayTime = 0f;
 	float one = 1f;
-	string triggerMessages, messageToBeDisplayed;
+	string triggerMessages, messageToBeDisplayed, messageToPlayer = "";
 	
 	System.Collections.Generic.List<IcicleBase> iciclesList;
 	System.Collections.Generic.List<DarkCave> darkCavesList;
@@ -52,7 +54,10 @@ public class Director : MonoBehaviour
 	
 	GUIStyle stateInfoBox;
 	MainPlayerScript player;
-		
+	
+	PanTrigger.PanDestination[] dest;
+	int currentIndex = 0;
+	
 	// Get the current scene
 //	public string currentLevel;
 //	public int currentLevelNum;
@@ -68,6 +73,7 @@ public class Director : MonoBehaviour
 		
 		displayMessage = false;
 		displayPauseMenu = false;
+		panTriggerActive = false;
 		displayTime = 0f;
 		one = 1f;
 		messageToBeDisplayed = "";
@@ -77,6 +83,7 @@ public class Director : MonoBehaviour
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
 		sceneCamera = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Transform>();
+		camFollow = sceneCamera.gameObject.GetComponent<CameraFollow>();
 		
 		iciclesList = new System.Collections.Generic.List<IcicleBase> ();
 		GameObject[] icicleBaseArray = GameObject.FindGameObjectsWithTag ("IceCeiling");
@@ -100,7 +107,6 @@ public class Director : MonoBehaviour
 		
 		LoadTriggerMessagesFromFile ();
 		GUIDimensionSetup ();
-//		SetCurrentLevel();
 		
 		// Creates a backup of the light intensities of all the lights in the scene.
 		// This is needed since we need to lerp the light intensities to zero when player
@@ -123,7 +129,6 @@ public class Director : MonoBehaviour
 		stateInfoBox.name = "StateInfoBox";
 		stateInfoBox.alignment = TextAnchor.LowerRight;
 		stateInfoBox.font = menuFont;
-//		stateInfoBox.fontStyle = FontStyle.Bold;
 		stateInfoBox.normal.textColor = Color.white;
 		
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
@@ -212,6 +217,53 @@ public class Director : MonoBehaviour
 		
 		if (Input.GetButtonDown ("LoadPauseMenu"))
 			PauseGame ();
+		
+		if (panTriggerActive)
+		{
+			if (player.IsControllable ())
+				player.SetPlayerControl (false);
+			
+			if (currentIndex < dest.Length)
+			{
+				// Cycle through all the positions.
+				if (camFollow.isCameraInPosition ())
+				{
+					// If camera has completed panning to (and waiting at) the previous position,
+					// pan to the next (current) position.
+					if (dest [currentIndex].panTime == 0f)
+						dest [currentIndex].panTime = -1f;
+					camFollow.PanToAbsolute (dest [currentIndex].position.position, dest [currentIndex].waitTime, 
+											 dest [currentIndex].panTime);
+					messageToPlayer = dest [currentIndex].message;
+					currentIndex ++;
+				}
+			}
+			else
+			{
+				// Camera has panned or is panning to the last position. 
+				if (camFollow.isCameraInPosition ())
+				{
+					// Camera has completed panning to (and waiting at) the last position. 
+					// So, pan back to where the player is.
+					camFollow.panTo (player.transform.position.x, player.transform.position.y);
+					panTriggerActive = false;
+					currentIndex = 0;
+				}
+			}
+			
+			if (camFollow.IsStopped ())
+			{	
+				// If camera is waiting at the current position, display message, if any.
+				if (messageToPlayer != "")
+				{
+					DisplayMessage (messageToPlayer);
+					messageToPlayer = "";
+				}
+			}
+		}
+		else
+			if (!player.IsControllable ())
+				player.SetPlayerControl (true);
 	}
 		
 	void OnGUI ()
@@ -593,5 +645,12 @@ public class Director : MonoBehaviour
 		
 		if (currentLevel > lastLevel)
 			PlayerPrefs.SetInt(Constants.LevelToLoadKey, Application.loadedLevel);
+	}
+	
+	public void PanTrigger (Collider collider)
+	{
+		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
+		panTriggerActive = true;
+		currentIndex = 0;
 	}
 }

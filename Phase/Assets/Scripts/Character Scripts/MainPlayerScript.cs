@@ -620,7 +620,9 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("Icicle"))
 		{
-			collider.isTrigger = false; // Set collider back to normal.
+			if (!collider.name.Contains ("FloorCollider"))
+				collider.isTrigger = false; // Set collider back to normal, if it's not a floor collider.
+											// Floor colliders should remain triggers.
 		}
 		
 		if (m_currentState == (int)State.Gas)

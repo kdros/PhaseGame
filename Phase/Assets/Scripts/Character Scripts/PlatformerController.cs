@@ -207,7 +207,7 @@ public class PlatformerController : MonoBehaviour
 			// - With a timeout so you can press the button slightly before landing		
 			if (jump.enabled && Time.time < jump.lastButtonTime + jump.timeout) {
 				movement.verticalSpeed = CalculateJumpVerticalSpeed (jump.height);
-//				movement.inAirVelocity = lastPlatformVelocity;
+				movement.inAirVelocity = lastPlatformVelocity;
 				SendMessage ("DidJump", SendMessageOptions.DontRequireReceiver);
 			}
 		}

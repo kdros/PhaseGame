@@ -14,10 +14,14 @@ public class RecordBoard : MonoBehaviour {
 	public GameObject baseText;
 	public float spacing;
 	
+	private TextScript backButtonTextScript;
+	private TextScript nextButtonTextScript;
+	
 	private bool transitionDone;
 	private int totalLevels;
 	private int currentLevel; 								// level ordering (1~7)
-	private int last;	
+	private int last;										// keep track of the current level that is being displayed and the last
+	private int display;									// and the last level that was displayed
 	
 	private List<GameObject[]> allTexts;					// each entry of the list represents all records for a level
 	private List<TextScript[]> allTextScripts;
@@ -33,9 +37,13 @@ public class RecordBoard : MonoBehaviour {
 		recordManager = gameObject.GetComponent("RecordManager") as RecordManager;
 		currentLevel = 1;
 		last = currentLevel;
+		display = last;
+		
 		if (spacing == 0)
 			spacing = 0.5f;
 		
+		backButtonTextScript = backButton.GetComponent("TextScript") as TextScript;
+		nextButtonTextScript = nextButton.GetComponent("TextScript") as TextScript;
 		
 		instantiateTexts();
 		initTextScripts();
@@ -46,10 +54,59 @@ public class RecordBoard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (currentLevel != last || !transitionDone)
+		if (display != last || !transitionDone)
 		{
-			
+			// want to display previous level records
+			if (display < currentLevel)
+			{
+				// to begin transition process
+				if (display != last)
+				{
+					for (int i = currentLevel - 2 ; i < currentLevel ; i++)
+					{
+						for (int j = 0 ; j < Constants.numRecordEntries + 1 ; j++)
+						{
+							string name = allTextNames[i][j];
+							isTransitionDone[name] = false;
+						}
+					}
+					
+					nextButtonTextScript.enabled = false;
+					backButtonTextScript.enabled = false;
+				}
+				
+				transitionDone = toPrevious();	
+			}
+			else if (display > currentLevel)
+			{
+				// to begin transition process
+				if (display != last)
+				{
+					for (int i = currentLevel - 1 ; i < currentLevel + 1 ; i++)
+					{
+						for (int j = 0 ; j < Constants.numRecordEntries + 1 ; j++)
+						{
+							string name = allTextNames[i][j];
+							isTransitionDone[name] = false;
+						}
+					}
+					
+					nextButtonTextScript.enabled = false;
+					backButtonTextScript.enabled = false;
+				}
+				
+				transitionDone = toNext();								
+			}			
 		}
+		
+		if (transitionDone)
+		{
+			currentLevel = display;
+			nextButtonTextScript.enabled = true;
+			backButtonTextScript.enabled = true;
+		}
+		
+		last = display;
 	}
 	
 	private void initIsDoneTransition()
@@ -87,7 +144,7 @@ public class RecordBoard : MonoBehaviour {
 	{
 		for (int i = 0 ; i < allTextScripts.Count ; i++)
 		{
-			float baseSpeed = 20.0f;
+			float baseSpeed = 40.0f;
 			for (int j = 0 ; j < allTextScripts[i].Length ; j++)
 			{
 				TextScript ts = allTextScripts[i][j];
@@ -146,7 +203,11 @@ public class RecordBoard : MonoBehaviour {
 						level.transform.tag = Constants.menuTextItemTag;
 						TextMesh levelText = level.GetComponent("TextMesh") as TextMesh;
 						int l = i + 1;
-						levelText.text = "Level "+l.ToString();
+						if (l == totalLevels)	
+							levelText.text = "Final";
+						else
+							levelText.text = "Level "+l.ToString();
+						
 						allTexts[i][j] = level;
 					}	
 					else
@@ -167,11 +228,24 @@ public class RecordBoard : MonoBehaviour {
 	// shift display and previous level to the left
 	public bool toPrevious()
 	{
+		Vector3 direction = new Vector3(1,0,0);
+		
 		if (currentLevel == 1)
 			return true;
 		else
 		{
 			bool ret = true;
+		
+			for (int i = currentLevel - 2 ; i < currentLevel ; i++)
+			{
+				for (int j = 0 ; j < Constants.numRecordEntries + 1 ; j++)
+				{
+					TextScript ts = allTextScripts[i][j];
+					if (!isTransitionDone[ts.textName])
+						isTransitionDone[ts.textName] = ts.translateText(direction);
+					ret = ret && isTransitionDone[ts.textName];
+				}
+			}
 			
 			return ret;
 		}
@@ -181,15 +255,37 @@ public class RecordBoard : MonoBehaviour {
 	// shift display and the next level to the right
 	public bool toNext()
 	{
+		Vector3 direction = new Vector3(-1,0,0);
 		if (currentLevel == Constants.lastPlayableSceneIndex - Constants.introSceneIndex)
 			return true;
 		else
 		{
 			bool ret = true;
 			
+			for (int i = currentLevel - 1 ; i < currentLevel+1 ; i++)
+			{
+				for (int j = 0 ; j < Constants.numRecordEntries + 1 ; j++)
+				{
+					TextScript ts = allTextScripts[i][j];
+					if (!isTransitionDone[ts.textName])
+						isTransitionDone[ts.textName] = ts.translateText(direction);
+					ret = ret && isTransitionDone[ts.textName];
+				}
+			}
+			
 			return ret;
 		}
-		
-		
+	}
+	
+	public void toNextRecords()
+	{
+		if (display < Constants.lastPlayableSceneIndex - Constants.introSceneIndex)
+			display++;
+	}
+	
+	public void toPrevRecords()
+	{
+		if (display > 1)
+			display--;
 	}
 }

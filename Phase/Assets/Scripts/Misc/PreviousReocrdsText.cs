@@ -10,7 +10,7 @@ public class PreviousReocrdsText : TextScript
 			Debug.Log("clicked to go to previous set of records");
 			GameObject rb = GameObject.FindGameObjectWithTag ("RecordBoard");
 			RecordBoard recordBoard = rb.GetComponent<RecordBoard>();
-			recordBoard.toPrevious();
+			recordBoard.toPrevRecords();
 		}
 	}
 }

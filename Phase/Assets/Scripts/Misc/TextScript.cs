@@ -24,7 +24,7 @@ public class TextScript : MonoBehaviour
 	private float moveSpeed;      // speed at which the text will travel with
 	private float currentDistance;
 		
-	void Start ()
+	void Awake ()
 	{
 		originalPosition = transform.position;
 		currentDistance = 0.0f;
@@ -81,6 +81,11 @@ public class TextScript : MonoBehaviour
 			transform.position = transform.position + deltaPos;
 			return false;	
 		}
+	}
+	
+	public void setOriginalPosition(Vector3 originalPos)
+	{
+		originalPosition = originalPos;
 	}
 		
 	public void setDistance(float dist)

@@ -10,7 +10,7 @@ public class NextRecordsText : TextScript
 			Debug.Log("go to the next set of records");
 			GameObject rb = GameObject.FindGameObjectWithTag ("RecordBoard");
 			RecordBoard recordBoard = rb.GetComponent<RecordBoard>();
-			recordBoard.toNext();
+			recordBoard.toNextRecords();
 		}
 	}
 }

@@ -24,6 +24,8 @@ public class Director : MonoBehaviour
 	public Texture2D pausedTexture;
 	public Texture2D pauseBkgdTexture;
 	
+	public float maximumSpeedUp = 150f;
+	
 	Transform sceneCamera;
 	CameraFollow camFollow;
 	LevelDirector ld;
@@ -262,7 +264,7 @@ public class Director : MonoBehaviour
 					currentIndex ++;
 				}
 			}
-			else
+			else if (currentIndex == dest.Length)
 			{
 				// Camera has panned or is panning to the last position. 
 				if (camFollow.isCameraInPosition ())
@@ -270,8 +272,20 @@ public class Director : MonoBehaviour
 					// Camera has completed panning to (and waiting at) the last position. 
 					// So, pan back to where the player is.
 					camFollow.panTo (player.transform.position.x, player.transform.position.y);
+					currentIndex ++;
+				}
+			}
+			else
+			{
+				// Camera has panned to all positions and is returning to focu on player. 
+				if (camFollow.isCameraInPosition ())
+				{
+					// Camera has panned back to where the player is.
 					panTriggerActive = false;
 					currentIndex = 0;
+					
+					if (!player.IsControllable ())
+						player.SetPlayerControl (true);
 				}
 			}
 			
@@ -285,9 +299,9 @@ public class Director : MonoBehaviour
 				}
 			}
 		}
-		else
-			if (!player.IsControllable ())
-				player.SetPlayerControl (true);
+//		else
+//			if (!player.IsControllable ())
+//				player.SetPlayerControl (true);
 	}
 		
 	void OnGUI ()
@@ -684,6 +698,11 @@ public class Director : MonoBehaviour
 		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
 		panTriggerActive = true;
 		currentIndex = 0;
+	}
+	
+	public float GetMaxSpeedUp ()
+	{
+		return maximumSpeedUp;
 	}
 	
 	// used to store the total time it took to complete this level.

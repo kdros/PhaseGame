@@ -68,6 +68,8 @@ public class PlatformerController : MonoBehaviour
 		// This will keep track of how long we have we been in the air (not grounded)
 		[System.NonSerialized]
 		public float hangTime= 0.0f;
+		
+		public float maxSpeedUp = 10f;
 	}
 	
 	public PlatformerControllerMovement movement = new PlatformerControllerMovement();
@@ -205,7 +207,7 @@ public class PlatformerController : MonoBehaviour
 			// - With a timeout so you can press the button slightly before landing		
 			if (jump.enabled && Time.time < jump.lastButtonTime + jump.timeout) {
 				movement.verticalSpeed = CalculateJumpVerticalSpeed (jump.height);
-				movement.inAirVelocity = lastPlatformVelocity;
+//				movement.inAirVelocity = lastPlatformVelocity;
 				SendMessage ("DidJump", SendMessageOptions.DontRequireReceiver);
 			}
 		}
@@ -401,13 +403,16 @@ public class PlatformerController : MonoBehaviour
 	}
 	
 	public void SpeedUp(float speed) {
-		movement.speed = movement.speed + speed;
+		float newSpeed = movement.speed + speed;
+		if (newSpeed < movement.maxSpeedUp)
+			movement.speed = newSpeed;
 	}
 	
 	public void ResetCharSpeed() {
 		// reset the character's speed
 		movement.verticalSpeed = 0.0f;
 		movement.speed = 0.0f;	
+		movement.inAirVelocity = Vector3.zero;
 	}
 	
 	public void SetSpawnPoint (Vector3 spawnPos, bool canSpawn = false)

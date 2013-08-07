@@ -74,10 +74,10 @@ public class Stopwatch : MonoBehaviour
 		return timeString;
 	}
 	
-	public string getTime()
+	// return resulting time in seconds.
+	public double getTime()
 	{
-		string timeString = TimeSpan.FromSeconds(timeInSec).ToString();
-		return timeString.Substring(0,timeString.Length - 4);
+		return timeInSec;
 	}
 	
 	public double getTotalSeconds()

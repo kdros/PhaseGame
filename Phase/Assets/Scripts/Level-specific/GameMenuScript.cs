@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+// Deprecated
 public class GameMenuScript : MonoBehaviour {
 
 	private GUIStyle buttonStyle;

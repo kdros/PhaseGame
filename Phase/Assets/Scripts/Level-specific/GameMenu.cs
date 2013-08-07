@@ -61,12 +61,9 @@ public class GameMenu : MonoBehaviour
 			sceneToLoad = PlayerPrefs.GetInt(Constants.LevelToLoadKey);	
 		}
 		
-		if (!PlayerPrefs.HasKey(Constants.GameModeKey))
-		{
-			// default to normal mode
-			PlayerPrefs.SetString (Constants.GameModeKey,Constants.GameModeNormal);
-		}
-				
+		// default to normal mode
+		PlayerPrefs.SetString (Constants.GameModeKey,Constants.GameModeNormal);		
+		
 		display = (int)MenuState.MainMenuOptions;
 		last = display;
 		transitionDone = true;

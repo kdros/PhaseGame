@@ -11,7 +11,7 @@ public class Director : MonoBehaviour
 	
 	public Transform spawnPosition;
 	public float tipDisplayTime = 0f;
-	public int lastLevel = 9;
+	public int lastLevel = Constants.lastPlayableSceneIndex;
 	
 	public Font messageFont;
 	public Font menuFont;
@@ -61,7 +61,7 @@ public class Director : MonoBehaviour
 	GameObject levelStopwatch;
 	Stopwatch stopwatch;
 	bool isSpeedRun;
-	
+		
 	// Get the current scene
 //	public string currentLevel;
 //	public int currentLevelNum;
@@ -165,7 +165,6 @@ public class Director : MonoBehaviour
 		{
 			Debug.LogError (e.Message);
 		}
-		
 	}
 	
 	// Update is called once per frame
@@ -691,6 +690,7 @@ public class Director : MonoBehaviour
 	// will keep track of top 5 fastest attempts
 	public void storeTime()
 	{
-		
+		RecordManager rm = gameObject.GetComponent("RecordManager") as RecordManager;
+		rm.addRecord(Application.loadedLevel,stopwatch.getTime());
 	}
 }

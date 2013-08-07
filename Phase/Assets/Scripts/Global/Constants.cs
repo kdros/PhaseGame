@@ -4,7 +4,9 @@ using System.Collections;
 public class Constants : MonoBehaviour 
 {
 	public static int introSceneIndex = 2;								// index of the introductory scene (first playable level)
-	public static double defaultSpeedRecord = 362439;					// speed run records are initialized to this value
+	public static int lastPlayableSceneIndex = 9;						// index of the last playable scene
+	public static int numRecordEntries = 5;								// number of record entries
+	public static double defaultSpeedRecord = 86399;					// speed run records are initialized to this value
 	public static string LevelToLoadKey = "LevelToLoad";				// key for playerpref used for choosing which scene to load
 	public static string GameModeKey = "GameMode";						// key for playerpref used for switching game modes
 	public static string GameModeNormal = "Normal";						// value for playerpref's GameMode key that represents normal game mode

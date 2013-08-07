@@ -119,6 +119,7 @@ public class RecordBoard : MonoBehaviour {
 					if (j == 0)
 					{
 						GameObject level = Instantiate (baseText, DisplayAnchor.transform.position, Quaternion.identity) as GameObject;
+						level.transform.tag = Constants.menuTextItemTag;
 						TextMesh levelText = level.GetComponent("TextMesh") as TextMesh;
 						int l = i + 1;
 						levelText.text = "Level "+l.ToString();
@@ -129,6 +130,7 @@ public class RecordBoard : MonoBehaviour {
 						Vector3 position = DisplayAnchor.transform.position;
 						position = position - new Vector3(0, j*spacing, 0);
 						GameObject record = Instantiate (baseText, position, Quaternion.identity) as GameObject;
+						record.transform.tag = Constants.menuTextItemTag;
 						TextMesh recorddText = record.GetComponent("TextMesh") as TextMesh;
 						recorddText.text = texts[j-1];
 						allTexts[i][j] = record;
@@ -141,6 +143,7 @@ public class RecordBoard : MonoBehaviour {
 					if (j == 0)
 					{
 						GameObject level = Instantiate (baseText, HideAnchorRight.transform.position, Quaternion.identity) as GameObject;
+						level.transform.tag = Constants.menuTextItemTag;
 						TextMesh levelText = level.GetComponent("TextMesh") as TextMesh;
 						int l = i + 1;
 						levelText.text = "Level "+l.ToString();
@@ -151,6 +154,7 @@ public class RecordBoard : MonoBehaviour {
 						Vector3 position = HideAnchorRight.transform.position;
 						position = position - new Vector3(0, j*spacing, 0);
 						GameObject record = Instantiate (baseText, position, Quaternion.identity) as GameObject;
+						record.transform.tag = Constants.menuTextItemTag;
 						TextMesh recorddText = record.GetComponent("TextMesh") as TextMesh;
 						recorddText.text = texts[j-1];
 						allTexts[i][j] = record;

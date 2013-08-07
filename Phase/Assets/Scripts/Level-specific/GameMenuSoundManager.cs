@@ -9,7 +9,7 @@ public class GameMenuSoundManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		GameObject[] texts = GameObject.FindGameObjectsWithTag("MenuText");
+		GameObject[] texts = GameObject.FindGameObjectsWithTag(Constants.menuTextItemTag);
 		
 		for (int i = 0 ; i < texts.Length ; i++)
 		{

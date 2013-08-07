@@ -605,7 +605,7 @@ GameObject:
   - 114: {fileID: 1124210497}
   m_Layer: 0
   m_Name: Text - Previous
-  m_TagString: Untagged
+  m_TagString: MenuText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -696,7 +696,7 @@ GameObject:
   - 114: {fileID: 1210815806}
   m_Layer: 0
   m_Name: Text - Next
-  m_TagString: Untagged
+  m_TagString: MenuText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -952,6 +952,7 @@ GameObject:
   - 4: {fileID: 1683368087}
   - 114: {fileID: 1683368088}
   - 114: {fileID: 1683368089}
+  - 114: {fileID: 1683368090}
   m_Layer: 0
   m_Name: RecordBoard
   m_TagString: RecordBoard
@@ -997,6 +998,18 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f11a2e7b8ff87cc4db392fb72bdd4a85, type: 3}
   m_Name: 
+--- !u!114 &1683368090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683368086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c7dacf5c25a1045a574d196b6a2d2c, type: 3}
+  m_Name: 
+  hoverSound: {fileID: 8300000, guid: 219de73b0ad2a584d9c877d2ae22c19f, type: 3}
+  clickSound: {fileID: 8300000, guid: af4fb47b7f57bdd4fbb279a45e684350, type: 3}
 --- !u!1 &1829485009
 GameObject:
   m_ObjectHideFlags: 0

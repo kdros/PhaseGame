@@ -15,7 +15,7 @@ public class RecordManager : MonoBehaviour {
 	int numEntries;
 	
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{
 		totalScenes = Constants.lastPlayableSceneIndex - Constants.introSceneIndex;
 		allRecords = new List<List<double>>();

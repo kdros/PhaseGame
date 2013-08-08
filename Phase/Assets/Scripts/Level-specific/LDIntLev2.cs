@@ -9,6 +9,9 @@ public class LDIntLev2 : LevelDirector
 	public Transform boulderSpawn;
 	public Transform breakPformPos;
 	public Transform blockBoulderPos;
+	public Transform rotatingPform;
+	
+	public float speed = 1f; 
 	
 	Vector3 blockBoulderPosition;
 	Vector3 blockBoulderScale;
@@ -39,6 +42,14 @@ public class LDIntLev2 : LevelDirector
 										 blockBoulderPos.localScale.z);
 		
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
+	}
+	
+	void Update ()
+	{
+		foreach (Transform child in rotatingPform.transform)
+		{
+			child.transform.Rotate (child.TransformDirection (Vector3.forward), Time.deltaTime*10f*speed);
+		}
 	}
 	
 	public void ResetPuzzle () 

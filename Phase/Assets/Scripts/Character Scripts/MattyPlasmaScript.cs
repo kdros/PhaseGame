@@ -3,9 +3,11 @@ using System.Collections;
 
 public class MattyPlasmaScript : MatterScript 
 {
-	public float lavaMaxTime = 7f;
-	public float lavaHeatDecay = 1.0f;
-	public float lavaHeatThreshold = 0.5f;
+	public float lavaMaxTime = 15f;
+	public float lavaHeatDecay = 0.01f;
+	public float lavaHeatGainRate = 10f;
+	public float lavaHeatThreshold = 0.1f;
+	
 //	public float lavaMaxTime = 20f;
 	
 	ParticleSystem	embers;
@@ -40,7 +42,7 @@ public class MattyPlasmaScript : MatterScript
 			{
 				if (curTime < lavaMaxTime)
 				{	
-					curTime += Time.deltaTime;
+					curTime += lavaHeatGainRate * Time.deltaTime;
 					if (Mathf.Abs (curTime - lavaMaxTimeBy2) < 0.1f)
 						embers.Play ();
 				}

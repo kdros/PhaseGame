@@ -15,8 +15,8 @@ public class MattySolidScript : MatterScript
 	{
 		//matter_matty = new MatterScript();
 		
-		facingRight_yDegrees = gameObject.transform.eulerAngles.y + 180;
-		facingLeft_yDegrees = gameObject.transform.eulerAngles.y;
+		facingRight_yDegrees = gameObject.transform.eulerAngles.y + 90;
+		facingLeft_yDegrees = gameObject.transform.eulerAngles.y - 90;
 		
 		//gameObject.transform.position = new Vector3(gameObject.transform.position.x,
 										//gameObject.transform.position.y - 100.0f,
@@ -33,7 +33,7 @@ public class MattySolidScript : MatterScript
 		// Set Jump to only play once
 		gameObject.animation["Jump"].wrapMode = WrapMode.Once;
 		
-		gameObject.animation.Play("Idle", PlayMode.StopAll);
+		gameObject.animation.CrossFade("Idle", 1.0f);
 		
 	}
 	
@@ -56,7 +56,7 @@ public class MattySolidScript : MatterScript
 		else if(Input.GetKey("space"))
 			gameObject.animation.Play("Jump", PlayMode.StopAll);
 		else
-			gameObject.animation.Play("Idle", PlayMode.StopAll);
+			gameObject.animation.CrossFade("Idle", 0.6f);
 	}
 	
 	// Collision Resolution Overrides

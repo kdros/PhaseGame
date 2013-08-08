@@ -52,7 +52,7 @@ MonoBehaviour:
   plasmaMatty: {fileID: 100000, guid: 25eccb617f10a9842a8dbbff09a92bf2, type: 2}
   gasMatty: {fileID: 100000, guid: 8f81b01eb2ca4974aa78a5aef7eda13b, type: 2}
   liquidMatty: {fileID: 100000, guid: 796c6f82551c7ad40a856bfb650613e7, type: 2}
-  solidMatty: {fileID: 100108, guid: 6b202bcf451b7ac41b56dba564432f15, type: 2}
+  solidMatty: {fileID: 100042, guid: 322c3cf14c4b0df4c9de1b523be65a68, type: 2}
   defaultMatty: {fileID: 100092, guid: d945a9a292c33124db1c87a439ad8800, type: 2}
   slidingSound: {fileID: 8300000, guid: 257387989ab5318459c6d76b4e03ba0f, type: 3}
   deathSound: {fileID: 8300000, guid: e63580cc76d723141a8104ff2ea6f906, type: 3}
@@ -75,6 +75,7 @@ MonoBehaviour:
     maxFallSpeed: 20
     speedSmoothing: 5
     rotationSmoothing: 10
+    maxSpeedUp: 10
   jump:
     enabled: 1
     height: 1

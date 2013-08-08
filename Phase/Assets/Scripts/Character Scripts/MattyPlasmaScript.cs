@@ -3,8 +3,10 @@ using System.Collections;
 
 public class MattyPlasmaScript : MatterScript 
 {
-//	public float lavaMaxTime = 7f;
-	public float lavaMaxTime = 20f;
+	public float lavaMaxTime = 7f;
+	public float lavaHeatDecay = 1.0f;
+	public float lavaHeatThreshold = 0.5f;
+//	public float lavaMaxTime = 20f;
 	
 	ParticleSystem	embers;
 	Light glow;
@@ -51,7 +53,7 @@ public class MattyPlasmaScript : MatterScript
 			}
 			else
 			{
-				curTime -= Time.deltaTime;
+				curTime -= (lavaHeatDecay*Time.deltaTime);
 //				if (Mathf.Abs (curTime - lavaMaxTimeBy2) < 0.1f)
 //					embers.loop = false;
 			}
@@ -87,8 +89,8 @@ public class MattyPlasmaScript : MatterScript
 	
 	public override bool FallingBouldersCollisionResolution()
 	{
-		//if ((curTime/lavaMaxTime) < 0.5f)
-		if (curTime<=0)
+		if ((curTime/lavaMaxTime) < lavaHeatThreshold)
+//		if (curTime<=0)
 		{
 		// DEATH if plasma is not hot
 			Reset ();

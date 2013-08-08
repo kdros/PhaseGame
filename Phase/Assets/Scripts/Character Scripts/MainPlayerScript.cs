@@ -739,4 +739,19 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		m_platCtrlScript.ResetCharSpeed ();
 	}
+	
+	public void SetPlasmaHeatTime (float time)
+	{
+		m_plasmaMattyScript.lavaMaxTime = time;
+	}
+	
+	public void SetPlasmaHeatDecayCoeff (float decayCoeff)
+	{
+		m_plasmaMattyScript.lavaHeatDecay = decayCoeff;
+	}
+	
+	public void SetPlasmaHeatThreshold (float threshold)
+	{
+		m_plasmaMattyScript.lavaHeatThreshold = threshold;
+	}
 }

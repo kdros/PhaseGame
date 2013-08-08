@@ -11,27 +11,33 @@ public class TranslateObject : MonoBehaviour
 	public Vector3 direction;
 	public float speed;
 	public float maxDistance;
-	
+	public float timeDelay;
 	private float m_curDistance;
+	private float m_curTime;
 	
 	// Use this for initialization
 	void Start () 
 	{
-	
+		m_curTime = 0.0f;
 	}
 	
 	void FixedUpdate () 
 	{
-		Vector3 newPos = transform.position;
-		Vector3 deltaD = direction * speed * Time.deltaTime;
-		newPos = newPos + deltaD;
-		transform.position = newPos;
+		m_curTime += Time.deltaTime;
 		
-		m_curDistance += deltaD.magnitude;
-		if (m_curDistance >= maxDistance)
+		if (m_curTime > timeDelay)
 		{
-			speed *= -1;
-			m_curDistance = 0;
+			Vector3 newPos = transform.position;
+			Vector3 deltaD = direction * speed * Time.deltaTime;
+			newPos = newPos + deltaD;
+			transform.position = newPos;
+			
+			m_curDistance += deltaD.magnitude;
+			if (m_curDistance >= maxDistance)
+			{
+				speed *= -1;
+				m_curDistance = 0;
+			}
 		}
 	}
 }

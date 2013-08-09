@@ -77,7 +77,6 @@ public class LDIntro : LevelDirector
 			return true;
 		case "Intro_Message2":
 			dir.ShowTriggerText (triggerN);
-			SetTimedDisplay ("");
 			return true;
 		case "Intro_Message3":
 			dir.ShowTriggerText (triggerN);

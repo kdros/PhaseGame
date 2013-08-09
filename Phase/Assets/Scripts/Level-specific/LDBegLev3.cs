@@ -44,7 +44,7 @@ public class LDBegLev3 : LevelDirector
 					boulderCount ++;
 			if (boulderCount == 4)
 			{
-				dir.DisplayMessage ("Whew.. That was close! Oh no, it seems the boulders have blocked our path." +
+				dir.DisplayMessage ("Whew.. That was close! Oh no, it seems the boulders have blocked our path. " +
 					"Could they be destroyed by extreme heat from the lava?");
 				return true;
 			}

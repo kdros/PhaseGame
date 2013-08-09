@@ -33,7 +33,7 @@ public class MattySolidScript : MatterScript
 		// Set Jump to only play once
 		gameObject.animation["Jump"].wrapMode = WrapMode.Once;
 		
-		gameObject.animation.CrossFade("Idle", 1.0f);
+		gameObject.animation.Play("Idle", PlayMode.StopAll);
 		
 	}
 	
@@ -56,7 +56,7 @@ public class MattySolidScript : MatterScript
 		else if(Input.GetKey("space"))
 			gameObject.animation.Play("Jump", PlayMode.StopAll);
 		else
-			gameObject.animation.CrossFade("Idle", 0.6f);
+			gameObject.animation.Play("Idle", PlayMode.StopAll);
 	}
 	
 	// Collision Resolution Overrides

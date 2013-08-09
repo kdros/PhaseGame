@@ -53,8 +53,8 @@ public class MattySolidScript : MatterScript
 												gameObject.transform.eulerAngles.z);
 			gameObject.animation.Play("Walk", PlayMode.StopAll);
 		}
-		else if(Input.GetKey("space"))
-			gameObject.animation.Play("Jump", PlayMode.StopAll);
+		//else if(Input.GetKey("space"))
+			//gameObject.animation.Play("Jump", PlayMode.StopAll);
 		else
 			gameObject.animation.Play("Idle", PlayMode.StopAll);
 	}

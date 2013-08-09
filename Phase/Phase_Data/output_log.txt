@@ -17,26 +17,7 @@ Platform assembly: C:\Users\kdros\Documents\PhaseGame\Phase\Phase_Data\Managed\A
 Loading C:\Users\kdros\Documents\PhaseGame\Phase\Phase_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\kdros\Documents\PhaseGame\Phase\Phase_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\kdros\Documents\PhaseGame\Phase\Phase_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.049 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 351.
-Total: 1.064499 ms (FindLiveObjects: 0.014779 ms CreateObjectMapping: 0.013136 ms MarkObjects: 0.562834 ms  DeleteObjects: 0.005336 ms)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 774.
-Total: 1.875703 ms (FindLiveObjects: 0.038589 ms CreateObjectMapping: 0.017652 ms MarkObjects: 0.800940 ms  DeleteObjects: 0.477444 ms)
-
-Stopwatch was not found for this level!
- 
-(Filename: C:/BuildAgent/work/7535de4ca26c26ac/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 54)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1760.
-Total: 1.492270 ms (FindLiveObjects: 0.061989 ms CreateObjectMapping: 0.020526 ms MarkObjects: 0.736077 ms  DeleteObjects: 0.234001 ms)
-

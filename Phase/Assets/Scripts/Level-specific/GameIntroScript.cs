@@ -16,7 +16,7 @@ public class GameIntroScript : MonoBehaviour {
 	{
 		timer += Time.deltaTime;
 		
-		if (timer >= 0.5f)
+		if (timer >= 8.0f)
 			Application.LoadLevel(1); // Loads GameMenu scene
 	}
 }

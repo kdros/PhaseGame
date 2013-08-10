@@ -55,6 +55,7 @@ public class Director : MonoBehaviour
 	int buttonWidth, buttonHeight, buttonStartingX, buttonStartingY;
 	
 	GUIStyle stateInfoBox;
+	int[] reorderedStates = new int [5] {2, 1, 3, 4, 0};	// To match display to keyboard order.
 	MainPlayerScript player;
 	
 	PanTrigger.PanDestination[] dest;
@@ -299,9 +300,6 @@ public class Director : MonoBehaviour
 				}
 			}
 		}
-//		else
-//			if (!player.IsControllable ())
-//				player.SetPlayerControl (true);
 	}
 		
 	void OnGUI ()
@@ -354,9 +352,9 @@ public class Director : MonoBehaviour
 		// Display boxes to show possible transitions.
 		for (int i = 0; i < 5; i++)
 		{
-			GUI.enabled = player.IsStateEnabled (i);
+			GUI.enabled = player.IsStateEnabled (reorderedStates [i]);
 			GUIContent content = new GUIContent ();
-			switch (i)
+			switch (reorderedStates [i])
 			{
 			case 0:
 				stateInfoBox.normal.background = defaultIcon;
@@ -380,7 +378,7 @@ public class Director : MonoBehaviour
 				break;
 			}
 			
-			if (i == player.CurrentState ())
+			if (reorderedStates [i] == player.CurrentState ())
 				stateInfoBox.normal.textColor = Color.green;
 			else if (!GUI.enabled)
 				stateInfoBox.normal.textColor = Color.red;
@@ -464,7 +462,7 @@ public class Director : MonoBehaviour
 		if (sr != null)
 			triggerMessages = sr.ReadToEnd ();
 		else
-			triggerMessages = "Phase (c)2013 The Phase Team."; 
+			triggerMessages = "Phase (c)2013 MR. K"; 
 		sr.Close ();
 	}
 	

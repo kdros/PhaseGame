@@ -4,8 +4,8 @@ using System.Collections;
 public class MattyPlasmaScript : MatterScript 
 {
 	public float lavaMaxTime = 15f;
-	public float lavaHeatDecay = 0.01f;
-	public float lavaHeatGainRate = 10f;
+	public float lavaHeatDecay = 1f;
+	public float lavaHeatGainRate = 3f;
 	public float lavaHeatThreshold = 0.1f;
 	
 //	public float lavaMaxTime = 20f;

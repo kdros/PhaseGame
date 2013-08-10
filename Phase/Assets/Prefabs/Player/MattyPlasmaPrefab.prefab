@@ -98,7 +98,7 @@ Light:
   m_Type: 2
   m_Color: {r: .400000006, g: .117647059, b: .407843143, a: 1}
   m_Intensity: 2
-  m_Range: 10
+  m_Range: 13
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -133,6 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fd3b32957c097c4ab3a339dfa6a953d, type: 3}
   m_Name: 
   lavaMaxTime: 10
+  lavaHeatDecay: 1
+  lavaHeatGainRate: 3
+  lavaHeatThreshold: .100000001
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

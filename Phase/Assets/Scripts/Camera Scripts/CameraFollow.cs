@@ -13,7 +13,8 @@ public class CameraFollow : MonoBehaviour {
 	public float distance; 		// the distance in the x-y plane to the target
 	public float height;		// the height we want the camera to be above the target
 	public float panTime;
-		
+	public float userPanspeed = 3f;
+	
 	float speed;
 	float curTime;
 	float waitAfterPanning;
@@ -88,14 +89,14 @@ public class CameraFollow : MonoBehaviour {
 			// Camera is not panning. Respond to user controls to increase/decrease height/distance.
 			
 			float h = Input.GetAxis ("CameraHeight");
-			camDist.y -= (h*Time.deltaTime);
+			camDist.y -= (h*Time.deltaTime*userPanspeed);
 			if (h < 0)
 				camDist.y = Mathf.Min (camDist.y, -height);
 			else if (h > 0)
 				camDist.y = Mathf.Max (camDist.y, -(height+3f));
 			
 			float z = Input.GetAxis ("CameraZoom");
-			camDist.z += (z*Time.deltaTime);
+			camDist.z += (z*Time.deltaTime*userPanspeed);
 			if (z < 0)
 				camDist.z = Mathf.Max (camDist.z, distance);
 			else if (z > 0)

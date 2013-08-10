@@ -136,6 +136,7 @@ public class CameraFollow : MonoBehaviour {
 	
 	public void PanToAbsolute (Vector3 absoluteCamPos, float waitTime = 0f, float panningTime = -1f)
 	{
+		camDist = new Vector3(0,-height,distance);
 		panTo (absoluteCamPos + camDist, waitTime, panningTime);
 	}
 	

@@ -513,6 +513,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			dir.PanTrigger (collider);
 			collider.gameObject.SetActive (false);
+			m_platCtrlScript.ResetCharSpeed ();
 		}
 		else if (collider.CompareTag ("DeathPlane"))
 		{

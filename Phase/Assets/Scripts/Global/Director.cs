@@ -23,6 +23,7 @@ public class Director : MonoBehaviour
 	public Texture2D plasmaIcon;
 	public Texture2D pausedTexture;
 	public Texture2D pauseBkgdTexture;
+	public Texture2D cameraTexture;
 	
 	// Character profile textures
 	public Texture2D blackBackground;
@@ -472,6 +473,15 @@ public class Director : MonoBehaviour
 		
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
+		
+		// TODO: Display camera icon.
+		if (subsectionCam != null && currentSubsectCamPos != null)
+		{
+			GUIContent content = new GUIContent ();
+			content.text = "E";
+			stateInfoBox.normal.background = cameraTexture;
+			GUI.Box (new Rect (70f, 10f, 64f, 64f), content, stateInfoBox);
+		}
 	}
 	
 	void loadPauseMenu()

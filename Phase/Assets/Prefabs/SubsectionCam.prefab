@@ -12,7 +12,7 @@ GameObject:
   - 92: {fileID: 9200000}
   m_Layer: 0
   m_Name: SubsectionCam
-  m_TagString: Untagged
+  m_TagString: SubsectionCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

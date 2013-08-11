@@ -75,8 +75,8 @@ public class Director : MonoBehaviour
 	Transform currentSubsectCamPos; // Used to keep track of where the subcamera should be positioned.
 	Camera mainCam;
 	Camera subsectionCam;
-	Transform subsectionCamPos;
 	bool startSubsectCam; // set to true once the player has reached the first pan trigger
+	GameObject subcam;
 	
 	int currentIndex = 0;
 	
@@ -197,9 +197,9 @@ public class Director : MonoBehaviour
 		
 		try
 		{
-			GameObject subcam = GameObject.FindGameObjectWithTag("SubsectionCamera");
+			subcam = GameObject.FindGameObjectWithTag("SubsectionCamera");
 			subsectionCam = subcam.GetComponent<Camera>();
-			subsectionCamPos = subcam.transform;
+			//subsectionCamPos = subcam.transform;
 			
 			subsectionCam.enabled = false;
 			mainCam.enabled = true;
@@ -350,7 +350,7 @@ public class Director : MonoBehaviour
 		if (Input.GetButtonDown("toSubsectionCam") && startSubsectCam)
 		{
 			
-			if (subsectionCam != null )
+			if (subsectionCam != null && currentSubsectCamPos != null)
 			{
 				mainCam.enabled = !mainCam.enabled;	
 				subsectionCam.enabled = !subsectionCam.enabled;
@@ -1001,7 +1001,11 @@ public class Director : MonoBehaviour
 		dest = pt.destination;
 		panTriggerActive = true;
 		currentIndex = 0;
-		currentSubsectCamPos = pt.subsectionCameraPos;		
+		currentSubsectCamPos = pt.subsectionCameraPos;
+		
+		if (currentSubsectCamPos != null)
+			subcam.transform.position = currentSubsectCamPos.transform.position;
+		
 		startSubsectCam = true;
 	}
 	

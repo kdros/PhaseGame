@@ -26,7 +26,11 @@ public class Director : MonoBehaviour
 	
 	// Character profile textures
 	public Texture2D blackBackground;
+	public Texture2D mattyDescription;
+	public Texture2D liquidDescription;
 	public Texture2D solidDescription;
+	public Texture2D gasDescription;
+	public Texture2D plasmaDescription;
 	[System.NonSerialized]
 	public GameObject m_solidMatty;
 	public GameObject solidMatty;
@@ -365,11 +369,11 @@ public class Director : MonoBehaviour
 		}
 		if (mattyProfile)
 		{
-			//loadMattyProfile ();
+			loadMattyProfile ();
 		}
 		if (liquidProfile)
 		{
-			//loadLiquidProfile ();
+			loadLiquidProfile ();
 		}
 		if (solidProfile)
 		{
@@ -377,11 +381,11 @@ public class Director : MonoBehaviour
 		}
 		if (gasProfile)
 		{
-			//loadGasProfile ();
+			loadGasProfile ();
 		}
 		if (plasmaProfile)
 		{
-			//loadPlasmaProfile ();
+			loadPlasmaProfile ();
 		}
 		//else
 		//	stopwatch.resumeStopwatch();
@@ -434,14 +438,8 @@ public class Director : MonoBehaviour
 	{
 		Time.timeScale = 0.0f;
 		
-		//GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 260, Screen.height / 2 -290, 609, 609), pauseBkgdTexture);
-		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
-		//GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
-		//GUI.DrawTexture(new Rect(new Rect(Screen.width / 2 - 150, 50, 609, 609)), pauseBkgdTexture);
-		
-		//GUI.Label(new Rect(Screen.width / 2 - 150, 80, 300, 68), pausedTexture);
-		
+
 		if(GUI.Button(new Rect(180.0f, 162.0f, 160, 30), "Resume Game"))
 		{
 			PauseGame ();
@@ -454,7 +452,7 @@ public class Director : MonoBehaviour
 		if(GUI.Button(new Rect(180.0f, 292.0f, 160, 30), "Character Profiles"))
 		{
 			PauseGame ();
-			SolidProfile();
+			MattyProfile();
 		}
 		if(GUI.Button(new Rect(180.0f, 357.0f, 160, 30), "Exit to Main Menu"))
 		{
@@ -465,10 +463,85 @@ public class Director : MonoBehaviour
 		GUI.EndGroup();	
 	}
 	
+	void loadMattyProfile()
+	{
+
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), mattyDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Liquid"))
+		{
+			MattyProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Solid"))
+		{
+			MattyProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
+		{
+			MattyProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			MattyProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			MattyProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();	
+	}
+	
+	void loadLiquidProfile()
+	{
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), liquidDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			LiquidProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Solid"))
+		{
+			LiquidProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
+		{
+			LiquidProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			LiquidProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			LiquidProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
+	}
+	
 	void loadSolidProfile()
 	{
-		//Debug.Log ("Please name your trigger properly!");
-		
+		//m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_solidMatty = Instantiate (solidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_liquidMatty = Instantiate (liquidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_gasMatty = Instantiate (gasMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_plasmaMatty = Instantiate (plasmaMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 		Time.timeScale = 0.0f;
 		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), solidDescription);
@@ -476,27 +549,98 @@ public class Director : MonoBehaviour
 		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
 		{
 			SolidProfile();
-			//m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
-			//m_solidMatty = Instantiate (solidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
-			//m_liquidMatty = Instantiate (liquidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
-			//m_gasMatty = Instantiate (gasMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
-			//m_plasmaMatty = Instantiate (plasmaMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			MattyProfile();
 		}
 		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
 		{
 			SolidProfile();
+			LiquidProfile();
 		}
 		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
 		{
 			SolidProfile();
+			GasProfile();
 		}
 		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
 		{
 			SolidProfile();
+			PlasmaProfile();
 		}
 		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
 		{
 			SolidProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
+	}
+	
+	void loadGasProfile()
+	{
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), gasDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			GasProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
+		{
+			GasProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Solid"))
+		{
+			GasProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			GasProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			GasProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
+	}
+	
+	void loadPlasmaProfile()
+	{
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), plasmaDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			PlasmaProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
+		{
+			PlasmaProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Solid"))
+		{
+			PlasmaProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Gas"))
+		{
+			PlasmaProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			PlasmaProfile();
 			PauseGame();
 		}
 		
@@ -555,12 +699,44 @@ public class Director : MonoBehaviour
 		player.SetPlayerControl (!displayPauseMenu);
 	}
 	
+	void MattyProfile()
+	{
+		mattyProfile = !mattyProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!mattyProfile);
+	}
+	
+	void LiquidProfile()
+	{
+		liquidProfile = !liquidProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!liquidProfile);
+	}
+	
 	void SolidProfile()
 	{
 		solidProfile = !solidProfile;
 		one *= -1f;
 		Time.timeScale += one;
 		player.SetPlayerControl (!solidProfile);
+	}
+	
+	void GasProfile()
+	{
+		gasProfile = !gasProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!gasProfile);
+	}
+	
+	void PlasmaProfile()
+	{
+		plasmaProfile = !plasmaProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!plasmaProfile);
 	}
 	
 	public void OnEnterDarkCave (Collider collider)

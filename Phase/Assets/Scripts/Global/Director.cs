@@ -31,9 +31,6 @@ public class Director : MonoBehaviour
 	public Texture2D solidDescription;
 	public Texture2D gasDescription;
 	public Texture2D plasmaDescription;
-	[System.NonSerialized]
-	public GameObject m_solidMatty;
-	public GameObject solidMatty;
 	
 	public float maximumSpeedUp = 150f;
 	
@@ -581,7 +578,6 @@ public class Director : MonoBehaviour
 	void loadSolidProfile()
 	{
 		//m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
-			//m_solidMatty = Instantiate (solidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 			//m_liquidMatty = Instantiate (liquidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 			//m_gasMatty = Instantiate (gasMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
 			//m_plasmaMatty = Instantiate (plasmaMatty, gameObject.transform.position, Quaternion.identity) as GameObject;

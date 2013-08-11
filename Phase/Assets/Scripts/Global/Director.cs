@@ -59,6 +59,12 @@ public class Director : MonoBehaviour
 	MainPlayerScript player;
 	
 	PanTrigger.PanDestination[] dest;
+	Transform currentSubsectCamPos; // Used to keep track of where the subcamera should be positioned.
+	Camera mainCam;
+	Camera subsectionCam;
+	Transform subsectionCamPos;
+	bool startSubsectCam; // set to true once the player has reached the first pan trigger
+	
 	int currentIndex = 0;
 	
 	GameObject levelStopwatch;
@@ -168,6 +174,24 @@ public class Director : MonoBehaviour
 		{
 			Debug.LogError (e.Message);
 		}
+		
+		mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		
+		try
+		{
+			GameObject subcam = GameObject.FindGameObjectWithTag("SubsectionCamera");
+			subsectionCam = subcam.GetComponent<Camera>();
+			subsectionCamPos = subcam.transform;
+			
+			subsectionCam.enabled = false;
+			mainCam.enabled = true;
+		}
+		catch (System.Exception e)
+		{
+			Debug.LogWarning("No subsection camera was found");	
+		}
+		
+		startSubsectCam = false;
 	}
 	
 	// Update is called once per frame
@@ -298,6 +322,25 @@ public class Director : MonoBehaviour
 					DisplayMessage (messageToPlayer);
 					messageToPlayer = "";
 				}
+			}
+		}
+		
+		// when player presses "e", main camera will be disabled and subsectionCamera will be enabled.
+		// The subsectionCamera should be set up for each pan trigger and it is meant to let the player view the
+		// area covered by the pan trigger again (but this time, the player will be able to view everything at once through
+		// a static view).
+		if (Input.GetButtonDown("toSubsectionCam") && startSubsectCam)
+		{
+			
+			if (subsectionCam != null )
+			{
+				mainCam.enabled = !mainCam.enabled;	
+				subsectionCam.enabled = !subsectionCam.enabled;
+				
+				if (subsectionCam.enabled == true)
+					player.SetPlayerControl (false);
+				else
+					player.SetPlayerControl (true);
 			}
 		}
 	}
@@ -693,9 +736,12 @@ public class Director : MonoBehaviour
 	
 	public void PanTrigger (Collider collider)
 	{
-		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
+		PanTrigger pt = collider.gameObject.GetComponent<PanTrigger>();
+		dest = pt.destination;
 		panTriggerActive = true;
 		currentIndex = 0;
+		currentSubsectCamPos = pt.subsectionCameraPos;		
+		startSubsectCam = true;
 	}
 	
 	public float GetMaxSpeedUp ()

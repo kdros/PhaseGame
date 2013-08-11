@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PanTrigger : MonoBehaviour 
 {
+	public Transform subsectionCameraPos; // camera position for viewing the subarea covered by the pan trigger
+	
 	[System.Serializable]
 	public class PanDestination
 	{

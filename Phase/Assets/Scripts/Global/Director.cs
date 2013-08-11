@@ -24,6 +24,14 @@ public class Director : MonoBehaviour
 	public Texture2D pausedTexture;
 	public Texture2D pauseBkgdTexture;
 	
+	// Character profile textures
+	public Texture2D blackBackground;
+	public Texture2D mattyDescription;
+	public Texture2D liquidDescription;
+	public Texture2D solidDescription;
+	public Texture2D gasDescription;
+	public Texture2D plasmaDescription;
+	
 	public float maximumSpeedUp = 150f;
 	
 	Transform sceneCamera;
@@ -41,6 +49,11 @@ public class Director : MonoBehaviour
 	
 	bool displayMessage = false;
 	bool displayPauseMenu = false;
+	bool mattyProfile = false;
+	bool liquidProfile = false;
+	bool solidProfile = false;
+	bool gasProfile = false;
+	bool plasmaProfile = false;
 	bool panTriggerActive = false;
 	float displayTime = 0f;
 	float one = 1f;
@@ -59,6 +72,12 @@ public class Director : MonoBehaviour
 	MainPlayerScript player;
 	
 	PanTrigger.PanDestination[] dest;
+	Transform currentSubsectCamPos; // Used to keep track of where the subcamera should be positioned.
+	Camera mainCam;
+	Camera subsectionCam;
+	bool startSubsectCam; // set to true once the player has reached the first pan trigger
+	GameObject subcam;
+	
 	int currentIndex = 0;
 	
 	GameObject levelStopwatch;
@@ -80,6 +99,11 @@ public class Director : MonoBehaviour
 		
 		displayMessage = false;
 		displayPauseMenu = false;
+		bool mattyProfile = false;
+		bool liquidProfile = false;
+		bool solidProfile = false;
+		bool gasProfile = false;
+		bool plasmaProfile = false;
 		panTriggerActive = false;
 		displayTime = 0f;
 		one = 1f;
@@ -168,6 +192,24 @@ public class Director : MonoBehaviour
 		{
 			Debug.LogError (e.Message);
 		}
+		
+		mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+		
+		try
+		{
+			subcam = GameObject.FindGameObjectWithTag("SubsectionCamera");
+			subsectionCam = subcam.GetComponent<Camera>();
+			//subsectionCamPos = subcam.transform;
+			
+			subsectionCam.enabled = false;
+			mainCam.enabled = true;
+		}
+		catch (System.Exception e)
+		{
+			Debug.LogWarning("No subsection camera was found");	
+		}
+		
+		startSubsectCam = false;
 	}
 	
 	// Update is called once per frame
@@ -300,6 +342,25 @@ public class Director : MonoBehaviour
 				}
 			}
 		}
+		
+		// when player presses "e", main camera will be disabled and subsectionCamera will be enabled.
+		// The subsectionCamera should be set up for each pan trigger and it is meant to let the player view the
+		// area covered by the pan trigger again (but this time, the player will be able to view everything at once through
+		// a static view).
+		if (Input.GetButtonDown("toSubsectionCam") && startSubsectCam)
+		{
+			
+			if (subsectionCam != null && currentSubsectCamPos != null)
+			{
+				mainCam.enabled = !mainCam.enabled;	
+				subsectionCam.enabled = !subsectionCam.enabled;
+				
+				if (subsectionCam.enabled == true)
+					player.SetPlayerControl (false);
+				else
+					player.SetPlayerControl (true);
+			}
+		}
 	}
 		
 	void OnGUI ()
@@ -345,6 +406,26 @@ public class Director : MonoBehaviour
 		{
 			//stopwatch.pauseStopwatch();
 			loadPauseMenu ();
+		}
+		if (mattyProfile)
+		{
+			loadMattyProfile ();
+		}
+		if (liquidProfile)
+		{
+			loadLiquidProfile ();
+		}
+		if (solidProfile)
+		{
+			loadSolidProfile ();
+		}
+		if (gasProfile)
+		{
+			loadGasProfile ();
+		}
+		if (plasmaProfile)
+		{
+			loadPlasmaProfile ();
 		}
 		//else
 		//	stopwatch.resumeStopwatch();
@@ -397,30 +478,213 @@ public class Director : MonoBehaviour
 	{
 		Time.timeScale = 0.0f;
 		
-		//GUI.BeginGroup(new Rect(Screen.width / 2 - 150, 50, 300, 250));
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 260, Screen.height / 2 -290, 609, 609), pauseBkgdTexture);
-		//GUI.Box(new Rect(0, 0, 300, 250), pauseBkgdTexture, ScaleMode.ScaleToFit, true);
-		//GUI.DrawTexture(new Rect(0.0f, 0.0f, Screen.width, Screen.height), pauseBkgdTexture, ScaleMode.ScaleToFit, true, 0.0f);
-		//GUI.DrawTexture(new Rect(new Rect(Screen.width / 2 - 150, 50, 609, 609)), pauseBkgdTexture);
-		
-		//GUI.Label(new Rect(Screen.width / 2 - 150, 80, 300, 68), pausedTexture);
-		
-		if(GUI.Button(new Rect(180.0f, 178.0f, 160, 30), "Resume Game"))//resumeTexture))
+
+		if(GUI.Button(new Rect(180.0f, 162.0f, 160, 30), "Resume Game"))
 		{
 			PauseGame ();
 		}
-		if(GUI.Button(new Rect(180.0f, 250.0f, 160, 30), "Restart Game"))//restartTexture))
+		if(GUI.Button(new Rect(180.0f, 227.0f, 160, 30), "Restart Game"))
 		{
 			PauseGame ();
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect(180.0f, 322.0f, 160, 30), "Exit to Main Menu"))//quitTexture))
+		if(GUI.Button(new Rect(180.0f, 292.0f, 160, 30), "Character Profiles"))
+		{
+			PauseGame ();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(180.0f, 357.0f, 160, 30), "Exit to Main Menu"))
 		{
 			PauseGame ();
 			Application.LoadLevel(1);
 		}
 		
 		GUI.EndGroup();	
+	}
+	
+	void loadMattyProfile()
+	{
+
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), mattyDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Liquid"))
+		{
+			MattyProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Solid"))
+		{
+			MattyProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
+		{
+			MattyProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			MattyProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			MattyProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();	
+	}
+	
+	void loadLiquidProfile()
+	{
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), liquidDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			LiquidProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Solid"))
+		{
+			LiquidProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
+		{
+			LiquidProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			LiquidProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			LiquidProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
+	}
+	
+	void loadSolidProfile()
+	{
+		//m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_liquidMatty = Instantiate (liquidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_gasMatty = Instantiate (gasMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_plasmaMatty = Instantiate (plasmaMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), solidDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			SolidProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
+		{
+			SolidProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
+		{
+			SolidProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			SolidProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			SolidProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
+	}
+	
+	void loadGasProfile()
+	{
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), gasDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			GasProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
+		{
+			GasProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Solid"))
+		{
+			GasProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			GasProfile();
+			PlasmaProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			GasProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
+	}
+	
+	void loadPlasmaProfile()
+	{
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), plasmaDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			PlasmaProfile();
+			MattyProfile();
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
+		{
+			PlasmaProfile();
+			LiquidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Solid"))
+		{
+			PlasmaProfile();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Gas"))
+		{
+			PlasmaProfile();
+			GasProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			PlasmaProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
 	}
 	
 	void GUIDimensionSetup ()
@@ -472,6 +736,46 @@ public class Director : MonoBehaviour
 		one *= -1f;
 		Time.timeScale += one;
 		player.SetPlayerControl (!displayPauseMenu);
+	}
+	
+	void MattyProfile()
+	{
+		mattyProfile = !mattyProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!mattyProfile);
+	}
+	
+	void LiquidProfile()
+	{
+		liquidProfile = !liquidProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!liquidProfile);
+	}
+	
+	void SolidProfile()
+	{
+		solidProfile = !solidProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!solidProfile);
+	}
+	
+	void GasProfile()
+	{
+		gasProfile = !gasProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!gasProfile);
+	}
+	
+	void PlasmaProfile()
+	{
+		plasmaProfile = !plasmaProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!plasmaProfile);
 	}
 	
 	public void OnEnterDarkCave (Collider collider)
@@ -714,9 +1018,16 @@ public class Director : MonoBehaviour
 	
 	public void PanTrigger (Collider collider)
 	{
-		dest = collider.gameObject.GetComponent<PanTrigger>().destination;
+		PanTrigger pt = collider.gameObject.GetComponent<PanTrigger>();
+		dest = pt.destination;
 		panTriggerActive = true;
 		currentIndex = 0;
+		currentSubsectCamPos = pt.subsectionCameraPos;
+		
+		if (currentSubsectCamPos != null)
+			subcam.transform.position = currentSubsectCamPos.transform.position;
+		
+		startSubsectCam = true;
 	}
 	
 	public float GetMaxSpeedUp ()

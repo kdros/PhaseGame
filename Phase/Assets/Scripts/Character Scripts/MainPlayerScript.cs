@@ -743,4 +743,9 @@ public class MainPlayerScript : MonoBehaviour {
 	{
 		m_plasmaMattyScript.lavaHeatThreshold = threshold;
 	}
+	
+	public bool IsGrounded ()
+	{
+		return m_platCtrlScript.IsGrounded ();
+	}
 }

@@ -422,6 +422,10 @@ public class PlatformerController : MonoBehaviour
 			Spawn ();
 	}
 	
+	public bool IsGrounded ()
+	{
+		return controller.isGrounded;
+	}
 	
 }
 

@@ -24,6 +24,13 @@ public class Director : MonoBehaviour
 	public Texture2D pausedTexture;
 	public Texture2D pauseBkgdTexture;
 	
+	// Character profile textures
+	public Texture2D blackBackground;
+	public Texture2D solidDescription;
+	[System.NonSerialized]
+	public GameObject m_solidMatty;
+	public GameObject solidMatty;
+	
 	public float maximumSpeedUp = 150f;
 	
 	Transform sceneCamera;
@@ -41,6 +48,11 @@ public class Director : MonoBehaviour
 	
 	bool displayMessage = false;
 	bool displayPauseMenu = false;
+	bool mattyProfile = false;
+	bool liquidProfile = false;
+	bool solidProfile = false;
+	bool gasProfile = false;
+	bool plasmaProfile = false;
 	bool panTriggerActive = false;
 	float displayTime = 0f;
 	float one = 1f;
@@ -80,6 +92,11 @@ public class Director : MonoBehaviour
 		
 		displayMessage = false;
 		displayPauseMenu = false;
+		bool mattyProfile = false;
+		bool liquidProfile = false;
+		bool solidProfile = false;
+		bool gasProfile = false;
+		bool plasmaProfile = false;
 		panTriggerActive = false;
 		displayTime = 0f;
 		one = 1f;
@@ -346,6 +363,26 @@ public class Director : MonoBehaviour
 			//stopwatch.pauseStopwatch();
 			loadPauseMenu ();
 		}
+		if (mattyProfile)
+		{
+			//loadMattyProfile ();
+		}
+		if (liquidProfile)
+		{
+			//loadLiquidProfile ();
+		}
+		if (solidProfile)
+		{
+			loadSolidProfile ();
+		}
+		if (gasProfile)
+		{
+			//loadGasProfile ();
+		}
+		if (plasmaProfile)
+		{
+			//loadPlasmaProfile ();
+		}
 		//else
 		//	stopwatch.resumeStopwatch();
 		
@@ -405,22 +442,66 @@ public class Director : MonoBehaviour
 		
 		//GUI.Label(new Rect(Screen.width / 2 - 150, 80, 300, 68), pausedTexture);
 		
-		if(GUI.Button(new Rect(180.0f, 178.0f, 160, 30), "Resume Game"))//resumeTexture))
+		if(GUI.Button(new Rect(180.0f, 162.0f, 160, 30), "Resume Game"))
 		{
 			PauseGame ();
 		}
-		if(GUI.Button(new Rect(180.0f, 250.0f, 160, 30), "Restart Game"))//restartTexture))
+		if(GUI.Button(new Rect(180.0f, 227.0f, 160, 30), "Restart Game"))
 		{
 			PauseGame ();
 			Application.LoadLevel(Application.loadedLevel);
 		}
-		if(GUI.Button(new Rect(180.0f, 322.0f, 160, 30), "Exit to Main Menu"))//quitTexture))
+		if(GUI.Button(new Rect(180.0f, 292.0f, 160, 30), "Character Profiles"))
+		{
+			PauseGame ();
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(180.0f, 357.0f, 160, 30), "Exit to Main Menu"))
 		{
 			PauseGame ();
 			Application.LoadLevel(1);
 		}
 		
 		GUI.EndGroup();	
+	}
+	
+	void loadSolidProfile()
+	{
+		//Debug.Log ("Please name your trigger properly!");
+		
+		Time.timeScale = 0.0f;
+		
+		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), solidDescription);
+		
+		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
+		{
+			SolidProfile();
+			//m_defaultMatty = Instantiate (defaultMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_solidMatty = Instantiate (solidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_liquidMatty = Instantiate (liquidMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_gasMatty = Instantiate (gasMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+			//m_plasmaMatty = Instantiate (plasmaMatty, gameObject.transform.position, Quaternion.identity) as GameObject;
+		}
+		if(GUI.Button(new Rect(155, 30, 95, 30), "Liquid"))
+		{
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(255, 30, 95, 30), "Gas"))
+		{
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(355, 30, 95, 30), "Plasma"))
+		{
+			SolidProfile();
+		}
+		if(GUI.Button(new Rect(455, 30, 95, 30), "BACK"))
+		{
+			SolidProfile();
+			PauseGame();
+		}
+		
+		GUI.EndGroup();
+		
 	}
 	
 	void GUIDimensionSetup ()
@@ -472,6 +553,14 @@ public class Director : MonoBehaviour
 		one *= -1f;
 		Time.timeScale += one;
 		player.SetPlayerControl (!displayPauseMenu);
+	}
+	
+	void SolidProfile()
+	{
+		solidProfile = !solidProfile;
+		one *= -1f;
+		Time.timeScale += one;
+		player.SetPlayerControl (!solidProfile);
 	}
 	
 	public void OnEnterDarkCave (Collider collider)

@@ -53,7 +53,7 @@ public class CameraFollow : MonoBehaviour {
 		{	
 			// Panning is in progress.
 			Vector3 error = newPosition - camDist - transform.position;
-			if ((error.sqrMagnitude < 0.01f)||(Vector3.Dot (error, normalizedError) < 0))
+			if ((error.sqrMagnitude < Mathf.Pow (Time.deltaTime*speed, 2f))||(Vector3.Dot (error, normalizedError) < 0))
 			{
 				if (!stopPanning)
 				{
@@ -117,7 +117,7 @@ public class CameraFollow : MonoBehaviour {
 	{
 		if (panningTime == -1f)
 			panningTime = panTime;
-		camDist = new Vector3(0,-height,distance);
+//		camDist = new Vector3(0,-height,distance);
 		
 		isPanning = true;	 // Camera is panning.
 		stopPanning = false; // Do not stop panning.
@@ -136,7 +136,7 @@ public class CameraFollow : MonoBehaviour {
 	
 	public void PanToAbsolute (Vector3 absoluteCamPos, float waitTime = 0f, float panningTime = -1f)
 	{
-		camDist = new Vector3(0,-height,distance);
+//		camDist = new Vector3(0,-height,distance);
 		panTo (absoluteCamPos + camDist, waitTime, panningTime);
 	}
 	

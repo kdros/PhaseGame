@@ -468,13 +468,13 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		if (collider.CompareTag ("DarkCaveEnter"))
 		{
-			Debug.Log("Player is entering dark cave trigger");
+  			Debug.Log("Player is entering dark cave trigger");
 			dir.OnEnterDarkCave (collider);
 //			RenderSettings.ambientLight = Color.black;
 		}
 		else if (collider.CompareTag ("DarkCaveExit"))
 		{
-			Debug.Log("Player is exiting dark cave trigger");
+ 			Debug.Log("Player is exiting dark cave trigger");
 			dir.OnDarkCaveExit (collider);
 //			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
 //				RenderSettings.ambientLight = originalAmbientColor;
@@ -668,18 +668,7 @@ public class MainPlayerScript : MonoBehaviour {
 		m_liquidMatty.SetActive(false);
 		m_gasMatty.SetActive(false);
 		m_plasmaMatty.SetActive(false);
-//		if (System.IO.File.Exists ("Save/currentSave") && reachedCheckPoint)
-//		{
-//			System.IO.StreamReader sr = new System.IO.StreamReader ("Save/currentSave");
-//			for (int i = 0; i < 3; i ++)
-//				spawnPosition [i] = float.Parse (sr.ReadLine ());
-//			sr.Close ();
-//		}
-//		else
-//		{
-//			// Temp: used for web browser version as the above case would not work. TODO: Instead of using StreamReader/StreamWriter, use PlayerPrefs
-//			transform.position = spawnPoint.transform.position;
-//		}
+
 		spawnPoint = dir.GetSpawnPoint ();
 		transform.position = spawnPoint;
 		
@@ -690,7 +679,6 @@ public class MainPlayerScript : MonoBehaviour {
 		// Reset speed
 		m_platCtrlScript.ResetCharSpeed();
 
-		dir.ResetIcicles ();
 		dir.EventTrigger ("PLAYER_DEAD");
 	}
 	

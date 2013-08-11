@@ -477,9 +477,15 @@ public class Director : MonoBehaviour
 	public void OnEnterDarkCave (Collider collider)
 	{
 		if (darkCave)
-			OnDarkCaveExit (collider);
+		{
+			Vector2 darkCaveDoor = new Vector2 (collider.transform.position.x, collider.transform.position.y);
+			if (darkCaveDoor.Equals (curDarkCave.Door1) || darkCaveDoor.Equals (curDarkCave.Door2))
+				OnDarkCaveExit (collider);
+			else
+				darkCave = false;
+		}
 		
-		else
+		if (!darkCave)
 		{
 			bool found = false;
 			for (int i = 0; i < darkCavesList.Count; i ++)
@@ -530,10 +536,16 @@ public class Director : MonoBehaviour
 	
 	public void OnDarkCaveExit (Collider collider)
 	{
-		if (!darkCave)
-			OnEnterDarkCave (collider);
+		if (darkCave)
+		{
+			Vector2 darkCaveDoor = new Vector2 (collider.transform.position.x, collider.transform.position.y);
+			if (darkCaveDoor.Equals (curDarkCave.Door1) || darkCaveDoor.Equals (curDarkCave.Door2))
+				ResetDarkCave ();
+			else
+				OnEnterDarkCave (collider);
+		}
 		else
-			ResetDarkCave ();
+			OnEnterDarkCave (collider);
 	}
 	
 	public void ResetIcicles ()
@@ -654,9 +666,18 @@ public class Director : MonoBehaviour
 	// Handles event triggers when player collides with them
 	public bool EventTrigger (string eventName)
 	{
+		bool returnVal = false;
+		if (eventName == "PLAYER_DEAD")
+		{
+			ResetIcicles ();
+//			ResetDarkCave ();
+			returnVal = true;
+		}
+		
 		if (ld != null)
-			return ld.OnEventTrigger (eventName);
-		return false;
+			returnVal = ld.OnEventTrigger (eventName);
+		
+		return returnVal;
 	}
 	
 	// Handles event triggers when other objects collide with them

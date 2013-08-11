@@ -15,15 +15,22 @@ public class CameraFollow : MonoBehaviour {
 	public float panTime;
 	public float userPanspeed = 3f;
 	
+	public bool oldStyle = false;
+	
 	float speed;
 	float curTime;
 	float waitAfterPanning;
 	bool isPanning;
 	bool stopPanning;
+	bool isRepositioning = false;
 	Vector3 newPosition;
 	Vector3 normalizedError;
 	
 	Vector3 camDist;
+	Vector3 lookAtTarget;
+	
+	MainPlayerScript player;
+
 	void Start()
 	{
 		if (distance == 0.0f)
@@ -39,6 +46,10 @@ public class CameraFollow : MonoBehaviour {
 		normalizedError = Vector3.one;
 		
 		camDist = new Vector3(0,-height,distance);
+		lookAtTarget = target.position;
+		transform.position = target.position - camDist;
+		
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
 	}
 	
 	
@@ -47,7 +58,7 @@ public class CameraFollow : MonoBehaviour {
 		if (!target)
 			return;
 		
-		Vector3 lookAtTarget = target.position;
+//		Vector3 lookAtTarget = target.position;
 		
 		if (isPanning)
 		{	
@@ -102,10 +113,43 @@ public class CameraFollow : MonoBehaviour {
 			else if (z > 0)
 				camDist.z = Mathf.Min (camDist.z, (distance+10f));
 			
-			transform.position = target.position - camDist;
+			Vector3 wouldBePosition = target.position - camDist;
+			
+			if (!oldStyle)
+			{
+				float yDiff = (wouldBePosition.y - transform.position.y);
+				if ((yDiff > 0f) && (yDiff < 4.5f))
+				{
+					if (!player.IsGrounded ())
+						wouldBePosition.y = transform.position.y;
+				}			
+				rePosition (wouldBePosition, 0.25f);
+			}
+			else
+				transform.position = wouldBePosition;
+
+			lookAtTarget = transform.position + camDist;
 		}
 		
 		transform.LookAt (lookAtTarget);
+	}
+	
+	void rePosition (Vector3 newCamPosition, float panningTime)
+	{
+		newPosition = newCamPosition;
+
+		// The below hack is to combine two vector length operations into one.
+		normalizedError = (newPosition) - transform.position;
+		speed = normalizedError.magnitude;
+		if (speed > 0)
+			normalizedError = normalizedError / speed;
+		speed /= panningTime;
+		
+		transform.position += (normalizedError*Time.deltaTime*speed);
+		
+		Vector3 resetX = transform.position;
+		resetX.x = newCamPosition.x;
+		transform.position = resetX;
 	}
 	
 	public void panTo (float x, float y)

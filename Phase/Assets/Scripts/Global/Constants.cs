@@ -12,6 +12,7 @@ public class Constants : MonoBehaviour
 	public static string GameModeNormal = "Normal";						// value for playerpref's GameMode key that represents normal game mode
 	public static string GameModeSpeedRun = "Speed Run";				// value for playerpref's GameMode key that represents Speed run game mode
 	public static string loadRecordLevel = "Records";					// name of the text in main menu that represents the link to the record scene
+	public static string loadCharProfiles = "mattyProfiles";			// name of the text in main menu that represents the link to the character profile scene
 	public static string continueBackButton = "ContinueBack";			// name of the text in main menu that represents the continue option's back button
 	public static string menuTextItemTag = "MenuText";					// name of the tag for each hoverable / clickable menu text. Used by GameMenuSoundManager.
 	public static string level1SpeedRunDataKey = "lev1SpeedRun";		// key for playerpref used for keeping track of level 1 speed run data

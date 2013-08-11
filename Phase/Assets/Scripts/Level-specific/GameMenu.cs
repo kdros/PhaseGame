@@ -89,7 +89,9 @@ public class GameMenu : MonoBehaviour
 			if(ts.textName.Equals(Constants.continueBackButton))
 				ContinueMenuOptionScripts.Add(ts);
 			else if (ts.textName.Equals(Constants.loadRecordLevel))
-				ContinueMenuOptionScripts.Add(ts);			
+				ContinueMenuOptionScripts.Add(ts);
+			else if (ts.textName.Equals(Constants.loadCharProfiles))
+				ContinueMenuOptionScripts.Add(ts);
 			else if (int.Parse(ts.textName) <= sceneToLoad)
 				ContinueMenuOptionScripts.Add(ts);
 		}

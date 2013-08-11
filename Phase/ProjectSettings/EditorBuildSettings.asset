@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/IntermediateLevel3.unity
   - enabled: 1
     path: Assets/SpeedRunRecords.unity
+  - enabled: 1
+    path: Assets/CharacterProfile.unity

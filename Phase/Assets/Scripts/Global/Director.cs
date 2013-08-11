@@ -360,7 +360,7 @@ public class Director : MonoBehaviour
 				else
 					player.SetPlayerControl (true);
 			}
-		}
+		}				
 	}
 		
 	void OnGUI ()
@@ -1042,4 +1042,7 @@ public class Director : MonoBehaviour
 		RecordManager rm = gameObject.GetComponent("RecordManager") as RecordManager;
 		rm.addRecord(Application.loadedLevel,stopwatch.getTime());
 	}
+	
+	public bool IsSubsectCamActive ()
+	{	return subsectionCam.enabled;	}
 }

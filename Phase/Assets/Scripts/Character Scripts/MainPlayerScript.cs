@@ -202,9 +202,9 @@ public class MainPlayerScript : MonoBehaviour {
 				playerDead = false;
 				dir.ResetDarkCave ();
 				m_platCtrlScript.SetSpawnPoint (spawnPoint);
-				m_platCtrlScript.canControl = true;
-				
 				enableState (m_currentState);
+
+				m_platCtrlScript.canControl = !dir.IsSubsectCamActive ();
 			}		
 		}
 	}

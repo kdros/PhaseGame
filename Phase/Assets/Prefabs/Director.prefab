@@ -50,6 +50,14 @@ MonoBehaviour:
   plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
   pausedTexture: {fileID: 2800000, guid: 1506f8179d95b1e47b896121572b86b2, type: 3}
   pauseBkgdTexture: {fileID: 2800000, guid: e5275fb5a0a8fec4c9b03b321b878a53, type: 3}
+  blackBackground: {fileID: 2800000, guid: 75b005f247568a54ebf34b5315c3159b, type: 3}
+  mattyDescription: {fileID: 2800000, guid: f466beff27a0c7d42b384eafae75d826, type: 3}
+  liquidDescription: {fileID: 2800000, guid: 88c1bae0bc270e549bd26e8dce831a6a, type: 3}
+  solidDescription: {fileID: 2800000, guid: 24c9adc31fcb3624baa66d1f4abbdb28, type: 3}
+  gasDescription: {fileID: 2800000, guid: 0248bb9fa8d20f24ea42d1ca0d2b27c1, type: 3}
+  plasmaDescription: {fileID: 2800000, guid: ca0de333ae5fd0d48907e316fbf1bb39, type: 3}
+  solidMatty: {fileID: 100040, guid: 6a9914023da83264da110e2c3d00887a, type: 3}
+  maximumSpeedUp: 150
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

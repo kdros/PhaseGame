@@ -22,6 +22,7 @@ public class CharacterProfile : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		//Time.timeScale = one;
 		mattyProfile = true;
 		liquidProfile = false;
 		solidProfile = false;
@@ -62,9 +63,6 @@ public class CharacterProfile : MonoBehaviour {
 	
 	void loadMattyProfile()
 	{
-
-		Time.timeScale = 0.0f;
-		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), mattyDescription);
 		
 		if(GUI.Button(new Rect(55, 30, 95, 30), "Liquid"))
@@ -98,8 +96,6 @@ public class CharacterProfile : MonoBehaviour {
 	
 	void loadLiquidProfile()
 	{
-		Time.timeScale = 0.0f;
-		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), liquidDescription);
 		
 		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
@@ -134,8 +130,6 @@ public class CharacterProfile : MonoBehaviour {
 	
 	void loadSolidProfile()
 	{
-		Time.timeScale = 0.0f;
-		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), solidDescription);
 		
 		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
@@ -169,9 +163,7 @@ public class CharacterProfile : MonoBehaviour {
 	}
 	
 	void loadGasProfile()
-	{
-		Time.timeScale = 0.0f;
-		
+	{		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), gasDescription);
 		
 		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
@@ -206,8 +198,6 @@ public class CharacterProfile : MonoBehaviour {
 	
 	void loadPlasmaProfile()
 	{
-		Time.timeScale = 0.0f;
-		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), plasmaDescription);
 		
 		if(GUI.Button(new Rect(55, 30, 95, 30), "Matty"))
@@ -243,35 +233,25 @@ public class CharacterProfile : MonoBehaviour {
 	void MattyProfile()
 	{
 		mattyProfile = !mattyProfile;
-		one *= -1f;
-		Time.timeScale += one;
 	}
 	
 	void LiquidProfile()
 	{
 		liquidProfile = !liquidProfile;
-		one *= -1f;
-		Time.timeScale += one;
 	}
 	
 	void SolidProfile()
 	{
 		solidProfile = !solidProfile;
-		one *= -1f;
-		Time.timeScale += one;
 	}
 	
 	void GasProfile()
 	{
 		gasProfile = !gasProfile;
-		one *= -1f;
-		Time.timeScale += one;
 	}
 	
 	void PlasmaProfile()
 	{
 		plasmaProfile = !plasmaProfile;
-		one *= -1f;
-		Time.timeScale += one;
 	}
 }

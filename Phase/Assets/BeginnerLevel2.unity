@@ -4313,6 +4313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 929467259}
+  - {fileID: 1105579158}
   - {fileID: 1674057050}
   m_Father: {fileID: 0}
 --- !u!1 &202501859
@@ -11496,7 +11497,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: destination.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalPosition.x
@@ -11568,6 +11569,28 @@ Prefab:
       value: Oh dear, those boulders will kill Solid Matty. He has to change into
         liquid mid-way through the jump if he has to make out of it alive!
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].position
+      value: 
+      objectReference: {fileID: 1105579158}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].message
+      value: A camera icon on the top left part of the screen indicates it is possible
+        to have a better view of the traps ahead. Press E to toggle between this camera
+        and the normal one.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].waitTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].panTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: subsectionCameraPos
+      value: 
+      objectReference: {fileID: 1528993050}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
   m_RootGameObject: {fileID: 1830046479}
@@ -27552,6 +27575,61 @@ Transform:
   - {fileID: 1904765294}
   - {fileID: 824640508}
   m_Father: {fileID: 0}
+--- !u!1 &1105579157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1105579158}
+  - 20: {fileID: 1105579159}
+  m_Layer: 0
+  m_Name: SubsectionCamBeacon1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1105579158
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105579157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.42851257, y: .974298477, z: -23.5670929}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 201768862}
+--- !u!20 &1105579159
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105579157}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 100
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_HDR: 0
 --- !u!1 &1105622885
 GameObject:
   m_ObjectHideFlags: 0
@@ -41073,6 +41151,71 @@ Prefab:
   m_RootGameObject: {fileID: 35021651}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1528993047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+  m_PrefabInternal: {fileID: 2031964665}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1528993050}
+  - 20: {fileID: 1528993049}
+  - 92: {fileID: 1528993048}
+  m_Layer: 0
+  m_Name: SubsectionCam
+  m_TagString: SubsectionCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!92 &1528993048
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9200000, guid: eb1bfd9263e942c4e9a2531b542603c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2031964665}
+  m_GameObject: {fileID: 1528993047}
+  m_Enabled: 1
+--- !u!20 &1528993049
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2000000, guid: eb1bfd9263e942c4e9a2531b542603c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2031964665}
+  m_GameObject: {fileID: 1528993047}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 100
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_HDR: 0
+--- !u!4 &1528993050
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+  m_PrefabInternal: {fileID: 2031964665}
+  m_GameObject: {fileID: 1528993047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 37.5343475, y: 13.6591377, z: -25.1839943}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1530396184
 GameObject:
   m_ObjectHideFlags: 0
@@ -43133,6 +43276,13 @@ MonoBehaviour:
   plasmaIcon: {fileID: 2800000, guid: 5225a9dea6ee4944292d944ff90fd61b, type: 3}
   pausedTexture: {fileID: 2800000, guid: 1506f8179d95b1e47b896121572b86b2, type: 3}
   pauseBkgdTexture: {fileID: 2800000, guid: e5275fb5a0a8fec4c9b03b321b878a53, type: 3}
+  cameraTexture: {fileID: 2800000, guid: d3f97c42eff52e848b839004970352b7, type: 3}
+  blackBackground: {fileID: 2800000, guid: 75b005f247568a54ebf34b5315c3159b, type: 3}
+  mattyDescription: {fileID: 2800000, guid: f466beff27a0c7d42b384eafae75d826, type: 3}
+  liquidDescription: {fileID: 2800000, guid: 88c1bae0bc270e549bd26e8dce831a6a, type: 3}
+  solidDescription: {fileID: 2800000, guid: 24c9adc31fcb3624baa66d1f4abbdb28, type: 3}
+  gasDescription: {fileID: 2800000, guid: 0248bb9fa8d20f24ea42d1ca0d2b27c1, type: 3}
+  plasmaDescription: {fileID: 2800000, guid: ca0de333ae5fd0d48907e316fbf1bb39, type: 3}
   maximumSpeedUp: 150
 --- !u!4 &1591665590
 Transform:
@@ -47130,6 +47280,7 @@ MonoBehaviour:
   height: 3
   panTime: 2
   userPanspeed: 3
+  oldStyle: 0
 --- !u!1 &1738192122
 GameObject:
   m_ObjectHideFlags: 0
@@ -48890,6 +49041,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd15d85b3e5a4144b8aa981bc75b82b3, type: 3}
   m_Name: 
+  subsectionCameraPos: {fileID: 1528993050}
   destination:
   - position: {fileID: 929467259}
     message: A long pitfall up ahead and Liquid Matty can't jump! Besides, the Icy
@@ -48901,6 +49053,12 @@ MonoBehaviour:
       liquid mid-way through the jump if he has to make out of it alive!
     waitTime: 3
     panTime: 3
+  - position: {fileID: 1105579158}
+    message: A camera icon on the top left part of the screen indicates it is possible
+      to have a better view of the traps ahead. Press E to toggle between this camera
+      and the normal one.
+    waitTime: 3
+    panTime: 4
 --- !u!65 &1830046481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53537,6 +53695,66 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!1001 &2031964665
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 37.5343475
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13.6591377
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -25.1839943
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: eb1bfd9263e942c4e9a2531b542603c8, type: 2}
+  m_RootGameObject: {fileID: 1528993047}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &2033325567
 GameObject:
   m_ObjectHideFlags: 0

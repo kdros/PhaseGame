@@ -8671,7 +8671,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61fa80f73d7fffd41b3166b0e054c071, type: 3}
   m_Name: 
-  timerFont: {fileID: 12800000, guid: 43961558129becb468b4f6a4bed350a1, type: 3}
+  timerFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}
 --- !u!4 &398454938
 Transform:
   m_ObjectHideFlags: 0
@@ -11501,11 +11501,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.6363182
+      value: 54.6511497
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.36026
+      value: 12.6058989
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -11529,11 +11529,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_Name
-      value: BegLev2_IcyPitfallPanTrigger
+      value: BegLev2_ClearSubsectionCamTrigger
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 6.45028496
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
       propertyPath: destination.Array.data[0].position
@@ -11591,7 +11591,12 @@ Prefab:
       propertyPath: subsectionCameraPos
       value: 
       objectReference: {fileID: 1528993050}
-    m_RemovedComponents: []
+    - target: {fileID: 100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_TagString
+      value: TriggerEvent
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
   m_RootGameObject: {fileID: 1830046479}
   m_IsPrefabParent: 0
@@ -48249,6 +48254,114 @@ Prefab:
   m_RootGameObject: {fileID: 1325401519}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1001 &1797531355
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 16.6363182
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 12.36026
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_Name
+      value: BegLev2_IcyPitfallPanTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].position
+      value: 
+      objectReference: {fileID: 929467259}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].waitTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].panTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].panTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].waitTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[0].message
+      value: A long pitfall up ahead and Liquid Matty can't jump! Besides, the Icy
+        Floor would kill him. He needs to transition to Solid state to make the jump.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].position
+      value: 
+      objectReference: {fileID: 1674057050}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[1].message
+      value: Oh dear, those boulders will kill Solid Matty. He has to change into
+        liquid mid-way through the jump if he has to make out of it alive!
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].position
+      value: 
+      objectReference: {fileID: 1105579158}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].message
+      value: A camera icon on the top left part of the screen indicates it is possible
+        to have a better view of the traps ahead. Press E to toggle between this camera
+        and the normal one.
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].waitTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: destination.Array.data[2].panTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+      propertyPath: subsectionCameraPos
+      value: 
+      objectReference: {fileID: 1528993050}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+  m_RootGameObject: {fileID: 2128066270}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &1799555594
 Prefab:
   m_ObjectHideFlags: 0
@@ -49022,43 +49135,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 1830046482}
   - 65: {fileID: 1830046481}
-  - 114: {fileID: 1830046480}
   m_Layer: 0
-  m_Name: BegLev2_IcyPitfallPanTrigger
-  m_TagString: PanTrigger
+  m_Name: BegLev2_ClearSubsectionCamTrigger
+  m_TagString: TriggerEvent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1830046480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d,
-    type: 2}
-  m_PrefabInternal: {fileID: 500759999}
-  m_GameObject: {fileID: 1830046479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd15d85b3e5a4144b8aa981bc75b82b3, type: 3}
-  m_Name: 
-  subsectionCameraPos: {fileID: 1528993050}
-  destination:
-  - position: {fileID: 929467259}
-    message: A long pitfall up ahead and Liquid Matty can't jump! Besides, the Icy
-      Floor would kill him. He needs to transition to Solid state to make the jump.
-    waitTime: 4
-    panTime: 3
-  - position: {fileID: 1674057050}
-    message: Oh dear, those boulders will kill Solid Matty. He has to change into
-      liquid mid-way through the jump if he has to make out of it alive!
-    waitTime: 3
-    panTime: 3
-  - position: {fileID: 1105579158}
-    message: A camera icon on the top left part of the screen indicates it is possible
-      to have a better view of the traps ahead. Press E to toggle between this camera
-      and the normal one.
-    waitTime: 3
-    panTime: 4
 --- !u!65 &1830046481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49079,8 +49162,8 @@ Transform:
   m_PrefabInternal: {fileID: 500759999}
   m_GameObject: {fileID: 1830046479}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.6363182, y: 12.36026, z: 0}
-  m_LocalScale: {x: 1, y: 6, z: 5.24593306}
+  m_LocalPosition: {x: 54.6511497, y: 12.6058989, z: 0}
+  m_LocalScale: {x: 1, y: 6.45028496, z: 5.24593306}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1830446339
@@ -56075,6 +56158,76 @@ Prefab:
   m_RootGameObject: {fileID: 1764456818}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &2128066270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+  m_PrefabInternal: {fileID: 1797531355}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2128066273}
+  - 65: {fileID: 2128066272}
+  - 114: {fileID: 2128066271}
+  m_Layer: 0
+  m_Name: BegLev2_IcyPitfallPanTrigger
+  m_TagString: PanTrigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2128066271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 14ca2602d7e72f74bb57500dfff5f94d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1797531355}
+  m_GameObject: {fileID: 2128066270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd15d85b3e5a4144b8aa981bc75b82b3, type: 3}
+  m_Name: 
+  subsectionCameraPos: {fileID: 1528993050}
+  destination:
+  - position: {fileID: 929467259}
+    message: A long pitfall up ahead and Liquid Matty can't jump! Besides, the Icy
+      Floor would kill him. He needs to transition to Solid state to make the jump.
+    waitTime: 4
+    panTime: 3
+  - position: {fileID: 1674057050}
+    message: Oh dear, those boulders will kill Solid Matty. He has to change into
+      liquid mid-way through the jump if he has to make out of it alive!
+    waitTime: 3
+    panTime: 3
+  - position: {fileID: 1105579158}
+    message: A camera icon on the top left part of the screen indicates it is possible
+      to have a better view of the traps ahead. Press E to toggle between this camera
+      and the normal one.
+    waitTime: 3
+    panTime: 4
+--- !u!65 &2128066272
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6500000, guid: 14ca2602d7e72f74bb57500dfff5f94d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1797531355}
+  m_GameObject: {fileID: 2128066270}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &2128066273
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 14ca2602d7e72f74bb57500dfff5f94d, type: 2}
+  m_PrefabInternal: {fileID: 1797531355}
+  m_GameObject: {fileID: 2128066270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.6363182, y: 12.36026, z: 0}
+  m_LocalScale: {x: 1, y: 6, z: 5.24593306}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &2135421101
 GameObject:
   m_ObjectHideFlags: 0

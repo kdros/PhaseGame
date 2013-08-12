@@ -48,6 +48,9 @@ public class GameMenu : MonoBehaviour
 	
 	private enum MenuState {MainMenuOptions, ModeOptions, ContinueOptions};
 	
+	private TextScript srtScript;
+	private TextScript ntScript;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -98,8 +101,19 @@ public class GameMenu : MonoBehaviour
 		
 		for (int i = 0 ; i < ModeMenuOptions.Length ; i++)
 		{
-			ModeMenuOptionScripts.Add (ModeMenuOptions[i].GetComponent<TextScript>());
+			TextScript ts = ModeMenuOptions[i].GetComponent<TextScript>();
+			ModeMenuOptionScripts.Add (ts);
+			
+			if (ts.textName.Equals("Normal"))
+				ntScript = ts;
+			else if (ts.textName.Equals ("SpeedRun"))
+				srtScript = ts;
 		}
+		
+		ntScript.selectText();
+		srtScript.unselectText();
+		
+		
 		
 		initTransitionValues();
 		initIsDoneTransition();
@@ -519,4 +533,16 @@ public class GameMenu : MonoBehaviour
 		
 		return ret;
 	}
+	
+	public void unselectNormalModeText ()
+	{
+		ntScript.unselectText();
+	}
+	
+	public void unselectSpeedRunModeText ()
+	{
+		srtScript.unselectText();	
+	}
+	
+	
 }

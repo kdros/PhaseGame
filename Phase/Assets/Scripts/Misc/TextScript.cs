@@ -23,7 +23,8 @@ public class TextScript : MonoBehaviour
 	private float travelDistance; // distance traveled in the +x or -x direction in order for the text to be shown or hidden
 	private float moveSpeed;      // speed at which the text will travel with
 	private float currentDistance;
-		
+	private bool isSelected;	  // used for speedRun and normal Texts (make sure the text stays green)
+	
 	void Awake ()
 	{
 		originalPosition = transform.position;
@@ -38,6 +39,8 @@ public class TextScript : MonoBehaviour
 			columnNumber = 3;
 		else if (columnNumber <= 0)
 			columnNumber = 1;
+		
+		isSelected = false;
 	}
 	
 	
@@ -49,7 +52,10 @@ public class TextScript : MonoBehaviour
 	
 	void OnMouseExit()
 	{
-		renderer.material.color = Color.white;	
+		if (!isSelected)
+			renderer.material.color = Color.white;	
+		else 
+			renderer.material.color = Color.green;
 	}
 			
 	void OnMouseDown ()
@@ -98,4 +104,15 @@ public class TextScript : MonoBehaviour
 		moveSpeed = speed;
 	}
 	
+	public void selectText ()
+	{
+		isSelected = true;
+		renderer.material.color = Color.green;	
+	}
+	
+	public void unselectText()
+	{
+		isSelected = false;
+		renderer.material.color = Color.white;
+	}
 }

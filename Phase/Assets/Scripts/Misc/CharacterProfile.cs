@@ -11,6 +11,8 @@ public class CharacterProfile : MonoBehaviour {
 	public Texture2D gasDescription;
 	public Texture2D plasmaDescription;
 	
+	public Font menuFont;
+	
 	bool mattyProfile = false;
 	bool liquidProfile = false;
 	bool solidProfile = false;
@@ -39,6 +41,12 @@ public class CharacterProfile : MonoBehaviour {
 		
 	void OnGUI ()
 	{
+		GUIStyle newStyle = new GUIStyle ();		
+		newStyle = GUI.skin.button;
+		newStyle.font = menuFont;
+		newStyle.alignment = TextAnchor.MiddleCenter;
+		GUI.skin.button = newStyle;
+		
 		if (mattyProfile)
 		{
 			loadMattyProfile ();

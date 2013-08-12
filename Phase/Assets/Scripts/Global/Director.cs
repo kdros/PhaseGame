@@ -183,8 +183,10 @@ public class Director : MonoBehaviour
 			{
 				stopwatch.startStopwatch();
 				isSpeedRun = true;
-				player.setIsSpeedRun(isSpeedRun);
 			}
+			
+			player.setIsSpeedRun(isSpeedRun);
+			
 		}
 		catch (System.NullReferenceException e)
 		{

@@ -470,11 +470,12 @@ public class Director : MonoBehaviour
 			GUI.Box (new Rect ((float)screenWidthBy2 + ((float)i - 2.5f)*70f, 
 								Screen.height - 64f - 5f, 64f, 64f), content, stateInfoBox);
 		}
+		// Reset text colour to White.
+		stateInfoBox.normal.textColor = Color.white;
 		
 		// Set GUI.enabled to true so that subsequent GUI objects aren't rendered as disabled.
 		GUI.enabled = true;
 		
-		// TODO: Display camera icon.
 		if (subsectionCam != null && currentSubsectCamPos != null)
 		{
 			GUIContent content = new GUIContent ();
@@ -985,6 +986,11 @@ public class Director : MonoBehaviour
 		{
 			ResetIcicles ();
 //			ResetDarkCave ();
+			returnVal = true;
+		}
+		else if (eventName.Contains ("ClearSubsectionCam"))
+		{
+			currentSubsectCamPos = null;
 			returnVal = true;
 		}
 		

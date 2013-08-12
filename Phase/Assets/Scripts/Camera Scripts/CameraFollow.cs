@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour {
 	public float panTime;
 	public float userPanspeed = 3f;
 	
-	public bool oldStyle = false;
+	public bool oldStyle = true;
 	
 	float speed;
 	float curTime;

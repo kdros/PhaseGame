@@ -115,7 +115,7 @@ You can zoom the camera in/out.
 Intro_Message4
 You can also pan the camera vertically.
 Intro_Message5
-You can dismiss messages like these by clicking on the "Dismiss" button or by pressing 'Esc'. When you're ready to start playing, go and touch the next beacon.
+You can dismiss messages like these by clicking on the "Dismiss" button or by pressing 'Esc'. Continue to the next beacon.
 Intro_Message6
 Remember: You may not be able to jump in all the states. Continue on to the next beacon. 
 IntLev3_IceJump

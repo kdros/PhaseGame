@@ -110,7 +110,7 @@ public class Director : MonoBehaviour
 		one = 1f;
 		messageToBeDisplayed = "";
 		if (tipDisplayTime == 0f)
-			tipDisplayTime = 5f;
+			tipDisplayTime = 10f;
 		
 		originalAmbientColor = RenderSettings.ambientLight;
 		darknessTriggerSpots = new float [2];
@@ -1063,5 +1063,9 @@ public class Director : MonoBehaviour
 	}
 	
 	public bool IsSubsectCamActive ()
-	{	return subsectionCam.enabled;	}
+	{
+		if (subsectionCam != null)
+			return subsectionCam.enabled;	
+		return false;
+	}
 }

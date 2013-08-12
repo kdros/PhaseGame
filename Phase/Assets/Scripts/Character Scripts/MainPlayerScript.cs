@@ -72,8 +72,12 @@ public class MainPlayerScript : MonoBehaviour {
 	// keep track of boulder colliders that are being ignored
 	List<Collider> ignoredBoulders;
 	
+	// keep track of whether the current mode is speed run or not
+	bool isSpeedRun;
+	
 	void Awake ()
 	{
+		isSpeedRun = false;
 		changeFlags = new bool [5];
 		for (int i = 0; i < 5; i ++)
 			changeFlags [i] = true;
@@ -83,7 +87,7 @@ public class MainPlayerScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () 
-	{
+	{		
 		m_currentState = (int)State.Default;
 				
 		// instantiate each state of matter
@@ -513,7 +517,9 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			dir.PanTrigger (collider);
 			collider.gameObject.SetActive (false);
-			m_platCtrlScript.ResetCharSpeed ();
+			
+			if (!isSpeedRun)
+				m_platCtrlScript.ResetCharSpeed ();
 		}
 		else if (collider.CompareTag ("DeathPlane"))
 		{
@@ -747,5 +753,10 @@ public class MainPlayerScript : MonoBehaviour {
 	public bool IsGrounded ()
 	{
 		return m_platCtrlScript.IsGrounded ();
+	}
+	
+	public void setIsSpeedRun(bool s)
+	{
+		isSpeedRun = s;	
 	}
 }

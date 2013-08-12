@@ -12433,7 +12433,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61fa80f73d7fffd41b3166b0e054c071, type: 3}
   m_Name: 
-  timerFont: {fileID: 12800000, guid: 43961558129becb468b4f6a4bed350a1, type: 3}
+  timerFont: {fileID: 12800000, guid: e97596532e0aaff4094e3d5758c553b6, type: 3}
 --- !u!4 &233626268
 Transform:
   m_ObjectHideFlags: 0
@@ -52920,7 +52920,7 @@ AudioSource:
   m_GameObject: {fileID: 1081293120}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: a37f16c607b39ed4cb9ca8f403c23fde, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4f43b64c56366ab41804e5af052e4608, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -52952,7 +52952,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -66897,6 +66897,14 @@ Prefab:
     - target: {fileID: 6500000, guid: 12e4cdbfd8dda7c408c57086aa54113a, type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 12e4cdbfd8dda7c408c57086aa54113a, type: 2}
+      propertyPath: m_Size.y
+      value: 2.74000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500000, guid: 12e4cdbfd8dda7c408c57086aa54113a, type: 2}
+      propertyPath: m_Center.y
+      value: .839999974
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12e4cdbfd8dda7c408c57086aa54113a, type: 2}
@@ -96915,8 +96923,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.74000001, z: 1}
+  m_Center: {x: 0, y: .839999974, z: 0}
 --- !u!1 &2124829185
 GameObject:
   m_ObjectHideFlags: 0

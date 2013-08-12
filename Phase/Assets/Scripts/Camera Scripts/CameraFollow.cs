@@ -49,6 +49,8 @@ public class CameraFollow : MonoBehaviour {
 		lookAtTarget = target.position;
 		transform.position = target.position - camDist;
 		
+		oldStyle = true;
+		
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<MainPlayerScript>();
 	}
 	

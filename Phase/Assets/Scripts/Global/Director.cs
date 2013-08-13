@@ -997,10 +997,19 @@ public class Director : MonoBehaviour
 			returnVal = true;
 		}
 		
+		bool oldReturnVal = returnVal;
 		if (ld != null)
 			returnVal = ld.OnEventTrigger (eventName);
 		
-		return returnVal;
+		// If the level director didn't handle the event (returnVal = false)
+		// but Director did (oldReturnVal = true), return oldReturnVal
+		// to signify the event was handled.
+		// If Director did not as well (oldReturnVal = false), or if level
+		// director did, then this doesn't matter.
+		if (!oldReturnVal)
+			return returnVal;
+		else
+			return oldReturnVal;
 	}
 	
 	// Handles event triggers when other objects collide with them

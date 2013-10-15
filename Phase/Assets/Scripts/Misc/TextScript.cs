@@ -18,13 +18,13 @@ public class TextScript : MonoBehaviour
 	public AudioClip clickSound;
 	[System.NonSerialized]
 	public Vector3 originalPosition;
-	// Used by GameMenu Script
 	
 	private float travelDistance; // distance traveled in the +x or -x direction in order for the text to be shown or hidden
 	private float moveSpeed;      // speed at which the text will travel with
-	private float currentDistance;
 	private bool isSelected;	  // used for speedRun and normal Texts (make sure the text stays green)
+	private float currentDistance;
 	
+	// Initialization
 	void Awake ()
 	{
 		originalPosition = transform.position;
@@ -43,13 +43,15 @@ public class TextScript : MonoBehaviour
 		isSelected = false;
 	}
 	
-	
+	// Change the color of the text to red when the user mouse over the text
 	void OnMouseEnter()
 	{
 		renderer.material.color = Color.red;
 		AudioSource.PlayClipAtPoint(hoverSound, Camera.main.transform.position);
 	}
 	
+	// When the mouse is exiting the text, change the color of the text back to white if the 
+	// text is not selected. Otherwise, leave the color as green.
 	void OnMouseExit()
 	{
 		if (!isSelected)
@@ -57,13 +59,16 @@ public class TextScript : MonoBehaviour
 		else 
 			renderer.material.color = Color.green;
 	}
-			
+	
+	// When the user clicks on the text, the text should respond somehow.		
 	void OnMouseDown ()
 	{
 		AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);
 		respondToClick ();
 	}
 	
+	// This function will need to be overridden by the derived classes to provide specific
+	// response to click
 	public virtual void respondToClick()
 	{
 		// no op
@@ -89,6 +94,7 @@ public class TextScript : MonoBehaviour
 		}
 	}
 	
+	// Setters	
 	public void setOriginalPosition(Vector3 originalPos)
 	{
 		originalPosition = originalPos;
@@ -104,6 +110,7 @@ public class TextScript : MonoBehaviour
 		moveSpeed = speed;
 	}
 	
+	// Text selection response
 	public void selectText ()
 	{
 		isSelected = true;

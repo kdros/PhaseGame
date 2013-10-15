@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Icicle : IcicleBase 
 {
-//	public enum IcicleType { Cone, Cube, Cylinder}
-//	Vector3[] particles;
-	// Use this for initialization
 	void Start () 
 	{
 		particles = new Vector3 [3];
@@ -37,7 +34,6 @@ public class Icicle : IcicleBase
 			break;
 		}
 		
-//		childObj.parent = null;
 		childObj.rigidbody.useGravity = true;
 		childObj.rigidbody.isKinematic = false;
 		childObj.rigidbody.AddForce (Vector3.down * 100f);

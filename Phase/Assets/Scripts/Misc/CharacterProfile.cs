@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class CharacterProfile : MonoBehaviour {
-	
+// Main script for setting up the character profile scene.
+public class CharacterProfile : MonoBehaviour 
+{
 	// Character profile textures
 	public Texture2D blackBackground;
 	public Texture2D mattyDescription;
@@ -32,13 +33,8 @@ public class CharacterProfile : MonoBehaviour {
 		plasmaProfile = false;
 
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{	
 
-	}
-		
+	// Display gui information depending on which character profile is currently active
 	void OnGUI ()
 	{
 		GUIStyle newStyle = new GUIStyle ();		
@@ -69,6 +65,7 @@ public class CharacterProfile : MonoBehaviour {
 		}
 	}
 	
+	// Load default matty profile
 	void loadMattyProfile()
 	{
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), mattyDescription);
@@ -102,6 +99,7 @@ public class CharacterProfile : MonoBehaviour {
 		GUI.EndGroup();	
 	}
 	
+	// load liquid matty profile
 	void loadLiquidProfile()
 	{
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), liquidDescription);
@@ -136,6 +134,7 @@ public class CharacterProfile : MonoBehaviour {
 		
 	}
 	
+	// load solid matty profile
 	void loadSolidProfile()
 	{
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), solidDescription);
@@ -170,6 +169,7 @@ public class CharacterProfile : MonoBehaviour {
 		
 	}
 	
+	// load gas matty profile
 	void loadGasProfile()
 	{		
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), gasDescription);
@@ -204,6 +204,7 @@ public class CharacterProfile : MonoBehaviour {
 		
 	}
 	
+	// load plasma matty profile
 	void loadPlasmaProfile()
 	{
 		GUI.BeginGroup(new Rect(Screen.width / 2 - 300, 0, Screen.width, Screen.height), plasmaDescription);
@@ -238,6 +239,7 @@ public class CharacterProfile : MonoBehaviour {
 		
 	}
 	
+	// Switches for the current state of the GUI
 	void MattyProfile()
 	{
 		mattyProfile = !mattyProfile;

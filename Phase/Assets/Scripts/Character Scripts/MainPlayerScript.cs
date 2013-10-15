@@ -9,6 +9,8 @@ using System.Collections.Generic;
  * 2. moving the base character (& the states of matter). That is, deal with locomotion and use the various scripts attached to 
  * each state of matter for collision handling.
  * 
+ * Written by Mikey Chen, Rohith Chandran and Kristen Drosinos.
+ * 
  * <TODO: Determine additional tasks to do in this class>
  * <TODO: All the states of matter prefabs will only be used for collision detection. The locomotion is handled through this class.>
  */
@@ -370,7 +372,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("DeathPlane"))
 		{
-			Debug.Log("Fell off");
+//			Debug.Log("Fell off");
 			Die ();	
 		}
 		
@@ -378,7 +380,7 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		else if (collider.CompareTag("FallingBoulders"))
 		{
-			Debug.Log("Player got hit by falling boulders");
+//			Debug.Log("Player got hit by falling boulders");
 			
 			if(stateScript.FallingBouldersCollisionResolution())
 			{	
@@ -405,13 +407,13 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("FlamePillar"))
 		{
-			Debug.Log("Player got hit by flame pillar");
+//			Debug.Log("Player got hit by flame pillar");
 			if(stateScript.FlamePillarCollisionResolution())
 				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("Grate"))
 		{
-			Debug.Log("Player reached grate");
+//			Debug.Log("Player reached grate");
 			
 			if(m_currentState == (int)State.Liquid)
 				collidedWithGrates = true;
@@ -421,13 +423,13 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("IceCeiling"))
 		{
-			Debug.Log("Player got hit by ice ceiling");
+//			Debug.Log("Player got hit by ice ceiling");
 			if(stateScript.IceCeilingCollisionResolution())
 				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("Lava"))
 		{
-			Debug.Log("Player hit lava");
+//			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
 				if(playerDead != true) Die();
 		}
@@ -439,13 +441,13 @@ public class MainPlayerScript : MonoBehaviour {
 		//}
 		else if (collider.CompareTag("SwingingMace"))
 		{
-			Debug.Log("Player got hit by mace");
+//			Debug.Log("Player got hit by mace");
 			if(stateScript.SwingingMaceCollisionResolution())
 				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("Icicle"))
 		{
-			Debug.Log("Player hit icicle");
+//			Debug.Log("Player hit icicle");
 			if (m_currentState == (int)State.Gas) 	// If current state is gas, change icicle collider to trigger
 				collider.isTrigger = true;			// we'll set it back to normal once it exits the collider.
 			// The above was done to correctly handle condensation when gas hits icicle (it didn't stop before).
@@ -472,36 +474,36 @@ public class MainPlayerScript : MonoBehaviour {
 		
 		if (collider.CompareTag ("DarkCaveEnter"))
 		{
-  			Debug.Log("Player is entering dark cave trigger");
+// 			Debug.Log("Player is entering dark cave trigger");
 			dir.OnEnterDarkCave (collider);
 //			RenderSettings.ambientLight = Color.black;
 		}
 		else if (collider.CompareTag ("DarkCaveExit"))
 		{
- 			Debug.Log("Player is exiting dark cave trigger");
+ //			Debug.Log("Player is exiting dark cave trigger");
 			dir.OnDarkCaveExit (collider);
 //			if (!RenderSettings.ambientLight.Equals (originalAmbientColor))
 //				RenderSettings.ambientLight = originalAmbientColor;
 		}
 		else if (collider.CompareTag ("Lava"))
 		{
-			Debug.Log("Player hit lava");
+//			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
 				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag("FlamePillar"))
 		{
-			Debug.Log("Player got hit by flame pillar");
+//			Debug.Log("Player got hit by flame pillar");
 			if(stateScript.FlamePillarCollisionResolution())
 				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("IcyFloor"))
 		{
-			Debug.Log ("In IcyFloor");
+//			Debug.Log ("In IcyFloor");
 		}
 		else if (collider.CompareTag("Spike"))
 		{
-			Debug.Log("Player got hit by spike");
+//			Debug.Log("Player got hit by spike");
 			if(stateScript.SpikeCollisionResolution())
 				if(playerDead != true) Die();
 		}
@@ -523,12 +525,12 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag ("DeathPlane"))
 		{
-			Debug.Log("Fell off");
+//			Debug.Log("Fell off");
 			Die ();	
 		}
 		else if (collider.CompareTag("SwingingMace"))
 		{
-			Debug.Log("Player got hit by mace");
+//			Debug.Log("Player got hit by mace");
 			if(stateScript.SwingingMaceCollisionResolution())
 				if(playerDead != true) Die();
 		}
@@ -552,7 +554,7 @@ public class MainPlayerScript : MonoBehaviour {
 
 		if (collider.CompareTag("IcyFloor"))
 		{
-			Debug.Log("Player hit icy floor");
+//			Debug.Log("Player hit icy floor");
 			if(m_currentState == (int)State.Solid)
 			{
 				AudioSource.PlayClipAtPoint(slidingSound, gameObject.transform.position);
@@ -565,18 +567,18 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("Checkpoint"))
 		{
-			Debug.Log("Player reached checkpoint!");
+//			Debug.Log("Player reached checkpoint!");
 //			reachedCheckPoint = true;
 		}
 		else if (collider.CompareTag("WindTunnel"))
 		{
-			Debug.Log("Player hit wind tunnel");
+//			Debug.Log("Player hit wind tunnel");
 			if(stateScript.WindTunnelCollisionResolution(m_platCtrlScript))
 				if(playerDead != true) Die();
 		}
 		else if (collider.CompareTag ("Lava"))
 		{
-			Debug.Log("Player hit lava");
+//			Debug.Log("Player hit lava");
 			if(stateScript.LavaCollisionResolution())
 				if(playerDead != true) Die();
 		}
@@ -603,7 +605,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag("Pitfall"))
 		{
-			Debug.Log("Player fell into pitfall");
+//			Debug.Log("Player fell into pitfall");
 			Die (false);
 //			// Want to kill player but don't want there to be an explosion, so re-use some Die() code
 //			playerDead = true;
@@ -619,7 +621,7 @@ public class MainPlayerScript : MonoBehaviour {
 		}
 		else if (collider.CompareTag ("IcyFloor"))
 		{
-			Debug.Log ("Out of IcyFloor");
+//			Debug.Log ("Out of IcyFloor");
 		}
 		else if (collider.CompareTag ("WindTunnel"))
 		{
@@ -636,7 +638,7 @@ public class MainPlayerScript : MonoBehaviour {
 		{
 			if (collider.CompareTag ("IcyFloor"))
 			{
-				Debug.Log("Gas-Matty exits IcyFloor, destroy rain");
+//				Debug.Log("Gas-Matty exits IcyFloor, destroy rain");
 				m_gasMattyScript.StopCondensation ();
 			}
 //			else if (collider.CompareTag("WindTunnel"))
@@ -646,12 +648,13 @@ public class MainPlayerScript : MonoBehaviour {
 //			}
 			else if (collider.CompareTag("Icicle"))
 			{
-				Debug.Log("Gas-Matty exits icicle, stopping rain");
+//				Debug.Log("Gas-Matty exits icicle, stopping rain");
 				m_gasMattyScript.StopCondensation ();
 			}
 		}
 	}
 	
+	// Kills the player. 
 	void Die(bool explode = true) 
 	{
 		Debug.Log ("Player Die function called");
@@ -688,6 +691,7 @@ public class MainPlayerScript : MonoBehaviour {
 		dir.EventTrigger ("PLAYER_DEAD");
 	}
 	
+	// Used to enable/disable transitions to a specific state.
 	public void CanChange (State state, bool ableToChange)
 	{
 		int i = 0;
@@ -710,6 +714,7 @@ public class MainPlayerScript : MonoBehaviour {
 		changeFlags [i] = ableToChange;
 	}
 	
+	// Checks if a specifed state is enabled or not (Use Index as below).
 	public bool IsStateEnabled (int stateIndex)
 	{	// 0: default, 1: Solid, 2: Liquid, 3: Gas, 4: Plasma.
 		return changeFlags [stateIndex];
@@ -720,6 +725,7 @@ public class MainPlayerScript : MonoBehaviour {
 		return m_currentState;
 	}
 	
+	// Used to enable/disable player control.
 	public void SetPlayerControl (bool isControllable)
 	{
 		m_platCtrlScript.canControl = isControllable;

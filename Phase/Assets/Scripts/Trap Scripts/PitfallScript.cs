@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class PitfallScript : MonoBehaviour {
-	
+// PitfallScript is responsible for the behavior of the pitfall prefab
+public class PitfallScript : MonoBehaviour 
+{
+	// audio to play when the player falls through the pitfall
 	public AudioClip fallingSound;
 	bool hasCrossed;
 	
@@ -11,12 +13,8 @@ public class PitfallScript : MonoBehaviour {
 	{
 		hasCrossed = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	//AudioSource.PlayClipAtPoint(fallingSound, gameObject.transform.position);
-	}
-	
+		
+	// Collision detection and resolution.
 	void OnTriggerEnter (Collider collObjCollider)
 	{
 		if (collObjCollider.CompareTag ("Player"))

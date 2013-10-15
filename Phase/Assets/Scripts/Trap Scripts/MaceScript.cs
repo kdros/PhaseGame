@@ -1,30 +1,28 @@
 using UnityEngine;
 using System.Collections;
 
+// MaceScript is responsible for defining the behavior of the mace prefab.
 public class MaceScript : MonoBehaviour {
 	
+	// Time to stay idle before the mace starts swinging
 	public float timer = 0;
+	
+	// Speed of the swing
 	public float swingSpeed = 1.0f;
+	
+	// Max angle the mace will reach before switcing directions
 	public float maxAngle = 45f;
 	
-	float curTimer;
+	private float curTimer;
+	
 	// Use this for initialization
 	void Start () {
-//		timer;
-//		swingSpeed;
+		
 		if (swingSpeed == 0f)
 			swingSpeed = 1f;
 		if (maxAngle == 0f)
 			maxAngle = 45f;
 		curTimer = 0f;
-//		gameObject.transform.eulerAngles = new Vector3(
-//			gameObject.transform.eulerAngles.x - 45,
-//			gameObject.transform.eulerAngles.y,
-//			gameObject.transform.eulerAngles.z);
-	}
-	
-	// Update is called once per frame
-	void Update () {
 	}
 	
 	void FixedUpdate() 

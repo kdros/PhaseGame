@@ -21,6 +21,7 @@ public class TranslateObject : MonoBehaviour
 		m_curTime = 0.0f;
 	}
 	
+	// Update loop
 	void FixedUpdate () 
 	{
 		m_curTime += Time.deltaTime;

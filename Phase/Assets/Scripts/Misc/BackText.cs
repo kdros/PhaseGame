@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-// BackText is a inherits TextScript and is responsible for defining the behavior of the back text in the game menu
+// BackText inherits TextScript and is responsible for defining the behavior of the back text in the game menu
 public class BackText : TextScript 
 {
 	// Go back to the main menu if the back text is clicked

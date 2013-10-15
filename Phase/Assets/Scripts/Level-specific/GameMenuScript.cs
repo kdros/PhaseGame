@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-// Deprecated
+// DEPRECATED
+// Developer's menu for quick access to each stage.
 public class GameMenuScript : MonoBehaviour {
 
 	private GUIStyle buttonStyle;
@@ -22,7 +23,6 @@ public class GameMenuScript : MonoBehaviour {
 		//The scene needs to be added into build setting to be loaded!
 		if(GUILayout.Button("Instructions"))
 		{
-//			Debug.Log ("No Instructions Yet!");
 			Application.LoadLevel(2);
 		}
 		if(GUILayout.Button("Let's Play!"))
@@ -53,10 +53,6 @@ public class GameMenuScript : MonoBehaviour {
 		{
 			Application.LoadLevel(8);
 		}
-//		if(GUILayout.Button("Intermediate Level 3"))
-//		{
-//			Application.LoadLevel(8);
-//		}
 		if(GUILayout.Button("Exit"))
 		{
 			Application.Quit ();

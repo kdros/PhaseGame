@@ -5,15 +5,11 @@ using System.Collections.Generic;
 /* Main Screen Script
  * Handles the transition between each option.
  * PlayerPref keys - values: LevelToLoad - [list of texts containing the levels to show]
- *							 GameMode - [Normal, SpeedRun] 				
+ *							 GameMode - [Normal, SpeedRun]			
  */
 public class GameMenu : MonoBehaviour 
 {
-	
-	/// <summary>
-	/// Things to set in the inspector panel
-	/// </summary>
-	
+	// Things to set in the inspector panel
 	public Transform HideAnchorRight;
 	public Transform HideAnchorLeft;
 	public Transform DisplayCol1Anchor;
@@ -24,18 +20,15 @@ public class GameMenu : MonoBehaviour
 	public GameObject[] ContinueMenuOptions;
 	public GameObject[] ModeMenuOptions;
 	
-	/// <summary>
-	/// Private member variables
-	/// </summary>
+	// Private member variables
+	private List<TextScript> MainMenuOptionScripts;		// Keep track of all the textScripts under the main menu
+	private List<string> MainMenuNames;					// Keep track of the names of each textScript under the main menu
 	
-	private List<TextScript> MainMenuOptionScripts;
-	private List<string> MainMenuNames;
+	private List<TextScript> ContinueMenuOptionScripts;	// Keep track of all the textScripts under the continue menu options
+	private List<string> ContinueMenuNames;				// Keep track of the names of each textScript under the continue sub menu
 	
-	private List<TextScript> ContinueMenuOptionScripts;
-	private List<string> ContinueMenuNames;
-	
-	private List<TextScript> ModeMenuOptionScripts;
-	private List<string> ModeMenuNames;
+	private List<TextScript> ModeMenuOptionScripts;		// Keep track of all the textScripts under the mode menu options
+	private List<string> ModeMenuNames;					// Keep track of the names of each textScript under the mode menu options 
 	
 	private int sceneToLoad;							// continue menu should show options up to this
 	private int display;								// current menu that is being displayed
@@ -112,8 +105,6 @@ public class GameMenu : MonoBehaviour
 		
 		ntScript.selectText();
 		srtScript.unselectText();
-		
-		
 		
 		initTransitionValues();
 		initIsDoneTransition();
@@ -264,12 +255,9 @@ public class GameMenu : MonoBehaviour
 		last = display;
 	}
 	
-	// set up speed and distances for each text
+	// set up speed and distances for each text depending on the column that the text is at
 	private void initTransitionValues()
 	{
-		// TODO: ensure that the transforms of all texts start from the appropriate column coordinates
-		// right now, this is done by manual positioning.
-
 		// MainMenuOptions are initially in display. Therefore, need to compute distance to hiding point
 		float mainMenuBaseSpeed = 6.5f;
 		int textIndex = 0;
@@ -391,7 +379,6 @@ public class GameMenu : MonoBehaviour
 	/////////////
 	// The following functions are called by various derived TextScript classes
 	/////////////
-	
 	public void toModeOptions ()
 	{
 		display = (int)MenuState.ModeOptions;

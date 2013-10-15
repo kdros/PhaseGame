@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+// This script is responsible for setting the hover and click sounds for each textScript.
 public class GameMenuSoundManager : MonoBehaviour {
 	
 	public AudioClip hoverSound;

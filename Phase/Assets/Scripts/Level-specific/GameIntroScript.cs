@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+// Script responsible for displaying the game intro splash scene
 public class GameIntroScript : MonoBehaviour {
 	
 	public float timer;

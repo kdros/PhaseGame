@@ -4,7 +4,7 @@ using System.Collections;
  * Use this script to make the camera follow Matty.
  * Assume that the camera will always be looking down the positive z-axis
  * 
- * M: TODO - Make it so that when the player jumps, the camera will not translate in the y direction with the player.
+ * Written by Rohith Chandran, Mikey Chen and Kristen Drosinos.
  */
 
 
@@ -12,22 +12,23 @@ public class CameraFollow : MonoBehaviour {
 	public Transform target;	// the target that we want to follow
 	public float distance; 		// the distance in the x-y plane to the target
 	public float height;		// the height we want the camera to be above the target
-	public float panTime;
-	public float userPanspeed = 3f;
+	public float panTime;		// Camera would take these many seconds to pan to the target position.
+	public float userPanspeed = 3f; // Used to control the speed of zoom/height changes by the user.
 	
-	public bool oldStyle = true;
+	public bool oldStyle = true;	// Use this to switch between Old-Style ("Sonic") camera and the 
+									// New-Style camera where the camera does not translate with the player when he jumps.
+	float speed;				
+	float curTime;				// Counter that keeps track of time elapsed since some event.
+	float waitAfterPanning;		// Used to specify a wait time - Camera would wait these many seconds after panning to one target before panning to the next.
+	bool isPanning;				// Used to keep track if camera is panning or not.
+	bool stopPanning;			// Used to keep track if the camera has stopped after panning.
+	bool isRepositioning = false;	// Used to keep track if the camera is repositioning itself in new-style camera panning.
+	Vector3 newPosition;		// The new position the camera should pan to.
+	Vector3 normalizedError;	// The normalized difference vector between current position and target position.
 	
-	float speed;
-	float curTime;
-	float waitAfterPanning;
-	bool isPanning;
-	bool stopPanning;
-	bool isRepositioning = false;
-	Vector3 newPosition;
-	Vector3 normalizedError;
-	
-	Vector3 camDist;
-	Vector3 lookAtTarget;
+	Vector3 camDist;			// The camera's position is offset by this vector from the lookAtTarget's position.
+								// camDist is calculated as (0, -height, distance).
+	Vector3 lookAtTarget;		// Position of the target object the camera should look at after panning.
 	
 	MainPlayerScript player;
 
@@ -59,9 +60,7 @@ public class CameraFollow : MonoBehaviour {
 	{
 		if (!target)
 			return;
-		
-//		Vector3 lookAtTarget = target.position;
-		
+				
 		if (isPanning)
 		{	
 			// Panning is in progress.
@@ -117,6 +116,8 @@ public class CameraFollow : MonoBehaviour {
 			
 			Vector3 wouldBePosition = target.position - camDist;
 			
+			// New style camera positioning.
+			// Camera will follow player in the +y-direction only if he goes outside a fixed area on the screen. 
 			if (!oldStyle)
 			{
 				float yDiff = (wouldBePosition.y - transform.position.y);
@@ -127,6 +128,8 @@ public class CameraFollow : MonoBehaviour {
 				}			
 				rePosition (wouldBePosition, 0.25f);
 			}
+			// Old-style positioning.
+			// Camera will follow the player always, so that he's at the centre of the screen.
 			else
 				transform.position = wouldBePosition;
 
@@ -136,6 +139,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.LookAt (lookAtTarget);
 	}
 	
+	// This function "repositions" the camera in the new-style camera panning.
 	void rePosition (Vector3 newCamPosition, float panningTime)
 	{
 		newPosition = newCamPosition;
@@ -149,21 +153,25 @@ public class CameraFollow : MonoBehaviour {
 		
 		transform.position += (normalizedError*Time.deltaTime*speed);
 		
+		// Camera will always follow the player in the x-direction.
 		Vector3 resetX = transform.position;
 		resetX.x = newCamPosition.x;
 		transform.position = resetX;
 	}
 	
+	// Pans to (x, y, 0)
 	public void panTo (float x, float y)
 	{
 		panTo (new Vector3 (x, y, 0), 0f, -1f);
 	}
 	
+	// Given a target position (newLookAtPosition), this function translates the camera to that position, 
+	// offset by the camDist vector. A waiting time (waitTime) and speed of panning (panningTime) can be 
+	// optionally specified.
 	public void panTo (Vector3 newLookAtPosition, float waitTime = 0f, float panningTime = -1f)
 	{
 		if (panningTime == -1f)
 			panningTime = panTime;
-//		camDist = new Vector3(0,-height,distance);
 		
 		isPanning = true;	 // Camera is panning.
 		stopPanning = false; // Do not stop panning.
@@ -180,9 +188,10 @@ public class CameraFollow : MonoBehaviour {
 		waitAfterPanning = waitTime;
 	}
 	
+	// Pans the camera to a specified absolute position (absoluteCamPos). Camera's new position 
+	// will NOT be offset by camDist, if this function is used. 
 	public void PanToAbsolute (Vector3 absoluteCamPos, float waitTime = 0f, float panningTime = -1f)
 	{
-//		camDist = new Vector3(0,-height,distance);
 		panTo (absoluteCamPos + camDist, waitTime, panningTime);
 	}
 	

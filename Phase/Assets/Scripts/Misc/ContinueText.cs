@@ -15,5 +15,4 @@ public class ContinueText : TextScript
 			gameMenu.toContinueOptions();
 		}
 	}
-	
 }
